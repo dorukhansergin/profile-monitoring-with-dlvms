@@ -1,0 +1,857 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass beamer
+\begin_preamble
+\graphicspath{{./figs/}}
+\DeclareGraphicsExtensions{.pdf,.jpeg,.png,.eps}
+\usepackage{amsthm}
+\theoremstyle{definition}
+
+\usepackage{cleveref}
+\usepackage{algorithmic}
+\usepackage{array}
+\usepackage{stfloats}
+\usepackage[super]{nth}
+% for inkscape images
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{pgf}
+
+
+
+\g@addto@macro\@floatboxreset\centering
+
+
+% \usepackage{hyperref}
+ 
+ \AtBeginDocument{% Overrides ref for Cref
+ 	\let\ref\Cref
+ }
+
+\crefalias{prop}{proposition}
+\end_preamble
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package none
+\inputencoding default
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype true
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command biber
+\index_command default
+\paperfontsize 12
+\spacing single
+\use_hyperref false
+\papersize letterpaper
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine biblatex
+\cite_engine_type authoryear
+\biblatex_bibstyle ieee
+\biblatex_citestyle ieee
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Toward A Better Monitoring Statistic for Phase-II Monitoring of High-Dimensional
+ Profiles with Deep Latent Variable Models
+\end_layout
+
+\begin_layout Author
+Nurettin Dorukhan Sergin
+\end_layout
+
+\begin_layout Author
+Hao Yan
+\end_layout
+
+\begin_layout Institute
+School of Computing, Information and Decision Systems Engineering, Arizona
+ State University
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand include
+filename "preamble/preamble_glossary.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Introduction
+\end_layout
+
+\begin_layout Section
+Background
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Gaussian Factorized Latent Variable Models
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\begin{split}\pz & =\Norm(\mbz;0,\mbI_{r})\\
+\decoding & =\Norm(\mbx;\mu_{\mbtheta}(\mbz),\sigma^{2}\mbI_{d})\\
+p_{\mbtheta}(\mbx,\mbz) & =\decoding\pz
+\end{split}
+\label{eq:gaussian-factorized}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Variational Autoencoders
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\begin{split}\text{ELBO} & \triangleq\log\left(p(\mbx)\right)-\KL{\encoding}{q^{*}(\mbz|\mbx)}\\
+ & =\E_{\mbz\sim q_{\mbtheta}}\log\decoding+\KL{\encoding}{p(\mbz)}
+\end{split}
+\label{eqn:VAELoss}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Methodology
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Analysis of Sources of Disturbances
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Since 
+\begin_inset Formula $p(\mbx)=\int p(\mbx\g\mbz)p(\mbz)d\mbz$
+\end_inset
+
+, we can observe two sources of out-of-control behaviours:
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+disturbances in latent space:
+\series default
+ 
+\begin_inset Formula $p_{\delta}(\mbz)\neq\pz$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+disturbances in observable space:
+\series default
+ 
+\begin_inset Formula $p_{\delta}(\mbx\g\mbz)\neq p(\mbx\g\mbz)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Note that various combinations of these two disturbances cover disturbances
+ in the entire process.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Dissection of ELBO - I
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+ELBO revisited:
+\begin_inset Formula 
+\[
+\textcolor{red}{\E_{\mbz\sim q_{\mbtheta}}\log\decoding}+\textcolor{blue}{\ensuremath{\KL{\encoding}{p(\mbz)}}}
+\]
+
+\end_inset
+
+Assumptions in earlier works:
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\textcolor{red}{\E_{\mbz\sim q_{\mbtheta}}\log\decoding}$
+\end_inset
+
+ will capture disturbance in observable space 
+\begin_inset Formula $\textcolor{red}{p_{\delta}(\mbx\g\mbz)≠p(\mbx\g\mbz)}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\textcolor{blue}{\ensuremath{\KL{\encoding}{p(\mbz)}}}$
+\end_inset
+
+ will capture disturbances in latent space 
+\begin_inset Formula $\textcolor{blue}{p_{\delta}(\mbz)≠\pz}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Dissection of ELBO - II
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Earlier works see these two statistics as an extension to PCA's 
+\begin_inset Formula $Q$
+\end_inset
+
+ and 
+\begin_inset Formula $T^{2}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Indeed, for a shallow latent variable model such as PPCA this holds true
+ (and we prove this in Proposition 1).
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Entanglement and Failure to Extrapolate - I
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Claim: 
+\begin_inset Formula $\textcolor{blue}{\ensuremath{\KL{\encoding}{p(\mbz)}}}$
+\end_inset
+
+ 
+\series bold
+will fail to 
+\series default
+capture disturbances in latent space 
+\begin_inset Formula $\textcolor{blue}{p_{\delta}(\mbz)≠\pz}$
+\end_inset
+
+ because inferred representations:
+\end_layout
+
+\begin_layout Itemize
+will be entangled
+\end_layout
+
+\begin_layout Itemize
+will fail to extrapolate beyond training dataset 
+\begin_inset Formula $\mbx\sim p(\mbx)$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Entanglement and Failure to Extrapolate - II
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figs/Disentangled_Extrapolated.pdf
+	lyxscale 50
+	width 50text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+Gray Zone: 
+\series default
+In-control region 
+\series bold
+Top Left: 
+\series default
+Real latent variables.
+ 
+\series bold
+Top Right:
+\series default
+ Ideal learned representations 
+\series bold
+Bottom Left: 
+\series default
+Representations fail to extrapolate beyond training set 
+\series bold
+Bottom Right: 
+\series default
+Representations are disentangled
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Entanglement and Failure to Extrapolate - III
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Ideally, we want extreme values of a latent variation 
+\series bold
+to consistently converge out of the in-control zone
+\series default
+.
+\end_layout
+
+\begin_layout Itemize
+Only that way we get consistent and accurate behavior in KLD statistic.
+\end_layout
+
+\begin_layout Itemize
+Entanglement and failure to extrapolate prevents this desired behavior (see
+ figure in the previous slide).
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Sampling to Approximate 
+\begin_inset Formula $\E_{\mbz\sim q_{\mbtheta}}\log\decoding$
+\end_inset
+
+?
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+For high dimensional profiles, 
+\begin_inset Formula $\E_{\mbz\sim q_{\mbtheta}}\log\decoding$
+\end_inset
+
+ will need too many samples to converge to a meaningful estimate.
+\end_layout
+
+\begin_layout Itemize
+Computationally expensive for high-throughput manufacturing processes.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Proposed Monitoring Statistic
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Using first order Taylor approximation:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align}
+ERE & \triangleq\E_{\mbz\sim q_{\mbtheta}}\log\decoding\label{eqn:propstat:final}\\
+ & =\E_{\mbz\sim p_{\mbtheta}}\left[\log q_{\mbtheta}(\mbx\g\mbz-(\mu_{\mbphi}-\mbz))\right]\\
+ & \approx\log\ptheta(\mbx\g\mu_{\mbphi}(\mbx))\\
+ & \propto\gg\mbx-\mu_{\mbtheta}(\mu_{\mbphi}(\mbx))\gg_{2}^{2}+C_{3}
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Advantages of 
+\begin_inset Formula $FOA$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Needs only a 
+\series bold
+single pass
+\series default
+ through the autoencoder; computationally efficient
+\end_layout
+
+\begin_layout Itemize
+Provides good enough approximation
+\end_layout
+
+\begin_layout Itemize
+Will detect disturbances on latent space too; failure to extrapolate helps
+ in this case because 
+\begin_inset Formula $\mu_{\mbphi}$
+\end_inset
+
+ will fail to extrapolate and thus 
+\begin_inset Formula $\mu_{\mbtheta}(\mu_{\mbphi}(\mbx))$
+\end_inset
+
+ will deviate from 
+\begin_inset Formula $\mbx$
+\end_inset
+
+.
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Simulation Study and Results
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Simulation Setup
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+details omitted here...
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Latent Representations are Partially Entangled
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figs/proposals.pdf
+	width 50text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Profiles with extremely low radius are converging into the in-control zone.
+\end_layout
+
+\begin_layout Itemize
+They will go undetected in a potential disturbance scenario that involves
+ small radii.
+\end_layout
+
+\begin_layout Itemize
+This is how entangled representations pose a threat to monitoring statistics
+ based on latent dimensions.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Latent Representations Fail to Extrapolate
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figs/manifold_vae.pdf
+	width 50text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Extrapolation starts failing beyond 
+\begin_inset Formula $\pm2$
+\end_inset
+
+ standard deviations.
+\end_layout
+
+\begin_layout Itemize
+OC samples might fall onto IC region should a statistic based on latent
+ variables are used.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Case Study and Results
+\end_layout
+
+\begin_layout Section
+Conclusions
+\end_layout
+
+\end_body
+\end_document

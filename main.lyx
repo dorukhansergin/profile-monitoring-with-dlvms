@@ -1,0 +1,517 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass IEEEtran
+\begin_preamble
+
+
+% I was getting the warning: Error: LaTeX Error: Something's wrong--perhaps a missing \item
+% Then I googled this and got the answer
+% The following snippet is taken from:
+% https://tex.stackexchange.com/questions/350907/error-latex-error-somethings-wrong-perhaps-a-missing-item
+
+\def\endthebibliography{%
+	\def\@noitemerr{\@latex@warning{Empty `thebibliography' environment}}%
+	\endlist
+}
+
+
+%%% TO REMOVE: 
+\usepackage[colorinlistoftodos]{todonotes}
+\newcommand{\hao}[1]{\todo[color=orange,inline]{Hao: #1}}
+\newcommand{\dorukhan}[1]{\todo[color=green,inline]{dorukhan: #1}}
+%%% To REMOVE ENDS
+
+
+% INPUT PREAMBLES
+\input{preamble/preamble}
+\input{preamble/preamble_glossary}
+\input{preamble/preamble_typography}
+
+% CHECK: Acronym TODOs
+% FAR: false alarm rate
+% OC: out-of-control // @DS: all except first changed to OC
+% IC: in control // @DS: all except first changed to IC
+
+% TODOs:
+% Phase-I or Phase I . // @DS: all changed to Phase-I (or Phase-II)
+% \KL instead of KL . // @DS: checked
+% Q-statistic or Q statistic // @DS: Q statistic (and T statistic)
+% cite parallel
+% [!t]
+
+% TODO (@DS): Bold symbol not consistent: we need to also bold the matrix, some times $\Sigma$ and $W$ are not bold, please fix. // @DS: I remember fixing this a while ago. I checked again and couldn't spot a problem.
+ 
+\end_preamble
+\options journal,peerreview
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package none
+\inputencoding auto
+\fontencoding default
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref true
+\pdf_bookmarks false
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks false
+\pdf_backref section
+\pdf_pdfusetitle false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 0
+\use_package cancel 0
+\use_package esint 1
+\use_package mathdots 0
+\use_package mathtools 0
+\use_package mhchem 0
+\use_package stackrel 0
+\use_package stmaryrd 0
+\use_package undertilde 0
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+High-dimensional Nonlinear Profile Monitoring with Deep Latent Variable
+ Models
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+ifCLASSOPTIONpeerreview
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+else
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+% The paper headers
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Page headings
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+Journal of \SpecialChar LaTeX
+
+\begin_inset space \space{}
+\end_inset
+
+Class Files,
+\begin_inset space ~
+\end_inset
+
+Vol.
+\begin_inset space ~
+\end_inset
+
+14, No.
+\begin_inset space ~
+\end_inset
+
+8, August
+\begin_inset space ~
+\end_inset
+
+2015
+\end_layout
+
+\end_inset
+
+Shell 
+\begin_inset Flex Lowercase
+status collapsed
+
+\begin_layout Plain Layout
+
+\shape italic
+et al.
+\end_layout
+
+\end_inset
+
+: Bare Demo of IEEEtran.cls for IEEE Journals
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+fi
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+% make the title area
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+% CHECK : As a general rule, do not put math, special symbols or citations
+ in the abstract or keywords.
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Abstract
+Wide accessibility of imaging and profile sensors in modern industrial systems
+ created an abundance of high-dimensional sensing variables.
+ This led to a a growing interest in the research of high-dimensional process
+ monitoring.
+ However, most of the approaches in the literature assume the in-control
+ population to lie on a linear manifold with a given basis (i.e., spline,
+ wavelet, kernel, etc) or an unknown basis (i.e., principal component analysis
+ and its variants), which cannot be used to efficiently model profiles with
+ a nonlinear manifold which is common in many real-life cases.
+ We propose deep probabilistic autoencoders as a viable unsupervised learning
+ approach to model such manifolds.
+ To do so, we formulate nonlinear and probabilistic extensions of the monitoring
+ statistics from classical approaches as the expected reconstruction error
+ (ERE) and the KL-divergence (KLD) based monitoring statistics.
+ Through extensive simulation study, we provide insights on why latent-space
+ based statistics are unreliable and why residual-space based ones typically
+ perform much better for deep learning based approaches.
+ Finally, we demonstrate the superiority of deep probabilistic models via
+ both simulation study and a real-life case study involving images of defects
+ from a hot steel rolling process.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\abstractname}{Note to Practitioners}
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Abstract
+This paper investigates whether deep probabilistic autoencoders can improve
+ process monitoring of high-dimensional data such as images.
+ Our motivating example consist of images collected from a hot steel rolling
+ process with various types of defects.
+ The goal is to detect when the system starts producing unseen defects.
+ Existing methods fail to fully address the nonlinearity of the latent structure
+ of in-control samples.
+ We demonstrated both on simulated and real-life dataset that deep learning
+ methods can recover the structures of HD data via few latent variables.
+ We also demonstrate that the statistics based on residual space should
+ be used.
+ Finally, we provide a guideline on how to optimize hyper-parameters for
+ such a scenario where we don't have access to out-of-control data, which
+ is crucial when applying this method in real systems.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+% Note that keywords are not normally used for peerreview papers.
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+ifCLASSOPTIONpeerreview
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+else
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+% TODO (@DS): make keywords // @DS: added
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Keywords
+Process monitoring,control charting, high-dimensionality, deep probabilistic
+ autoencoders, adversarial autoencoders, variational autoencoders 
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+fi
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+% TODO (@DS) : Make sure this looks like this during preview
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Peer Review Title
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+listoftodos
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+[
+\end_layout
+
+\end_inset
+
+List of suggested changes
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+]
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+% 
+\backslash
+label{tab:my_label}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+% 
+\backslash
+end{table}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

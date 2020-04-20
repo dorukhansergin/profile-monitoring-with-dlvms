@@ -1,0 +1,6356 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass scrartcl
+\begin_preamble
+
+
+
+\graphicspath{{./figs/}}
+\DeclareGraphicsExtensions{.pdf,.jpeg,.png,.eps}
+\usepackage{amsthm}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\usepackage{cleveref}
+\usepackage{algorithmic}
+\usepackage{array}
+\usepackage{stfloats}
+\usepackage[super]{nth}
+% for inkscape images
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{pgf}
+
+
+
+\g@addto@macro\@floatboxreset\centering
+
+
+% \usepackage{hyperref}
+ 
+ \AtBeginDocument{% Overrides ref for Cref
+ 	\let\ref\Cref
+ }
+
+\crefalias{prop}{proposition}
+\end_preamble
+\use_default_options false
+\begin_modules
+theorems-ams
+theorems-sec
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package none
+\inputencoding utf8
+\fontencoding T1
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command biber
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 2
+\use_package amssymb 2
+\use_package cancel 0
+\use_package esint 1
+\use_package mathdots 0
+\use_package mathtools 0
+\use_package mhchem 0
+\use_package stackrel 0
+\use_package stmaryrd 0
+\use_package undertilde 0
+\cite_engine biblatex
+\cite_engine_type authoryear
+\biblio_style plainnat
+\biblatex_bibstyle authoryear
+\biblatex_citestyle authoryear
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+% INPUT PREAMBLES
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset include
+LatexCommand include
+filename "preamble/preamble_glossary.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Introduction
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:introduction"
+
+\end_inset
+
+ Profile monitoring has attracted a growing interest in the literature in
+ the past decades 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Woodall2004-bp,Woodall2007-xs,Maleki2018-uo"
+literal "false"
+
+\end_inset
+
+ for its ability to construct control charts with much better representations
+ for certain types of process measurements.
+ A profile can be defined as a functional relationship between the response
+ variables and explanatory variables or spatiotemporal coordinates.
+ In this work, we focus on the case where the profiles generated from the
+ process are high-dimensional (HD)—
+\shape italic
+i.e.
+\shape default
+, the number of such explanatory variables or spatiotemporal coordinates
+ are large.
+ Specifically, we focus on sets of HD profiles for which intra-sample variation
+ lies on a nonlinear low-dimensional manifold 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Shi2016-tg"
+literal "false"
+
+\end_inset
+
+.
+ Our motivating example of such HD profiles is presented in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Rolling"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ in which we exhibit a sample of surface images collected from a hot steel
+ rolling process.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement t
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figs/profile_examples.pdf
+	width 25theight%
+
+\end_inset
+
+ 
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+A collection of 64 by 64 image profiles taken from a hot steel rolling process.
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Rolling"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In literature, profile monitoring techniques can be categorized by their
+ assumptions on the type of the functional relationship that they assume.
+ Linear profile monitoring can be considered the most basic profile monitoring
+ technique, in which it is assumed that the profile can be represented by
+ a linear function.
+ The idea is to extract the slope and the intercept from each profile and
+ monitor its coefficients 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "zhu2009monitoring"
+literal "false"
+
+\end_inset
+
+.
+ Regularization techniques can also be used in linear profile estimation.
+ For example, Zou 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+etal
+\end_layout
+
+\end_inset
+
+ utilize a multivariate linear regression model for profiles with the LASSO
+ penalty and use the regression coefficients for Phase-II monitoring 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "zou2012lasso"
+literal "false"
+
+\end_inset
+
+.
+ However, the assumption of linear functional relationship can be quite
+ limiting.
+ To address this challenge, nonlinear parametric models are proposed 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Williams2007-ty,Jensen2009-tu,Noorossana2011-oj,Maleki2018-uo"
+literal "false"
+
+\end_inset
+
+.
+ These models assume an explicit family of parameterized functions and,
+ their parameter estimations are estimated via nonlinear regression.
+ In any cases, the drawback of all parametric models is that these models
+ assume the parametric form is known beforehand, which might not always
+ be the case.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+% Literature: non-parametric Methods for certain types of profiles
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+Another large body of profile monitoring research focuses on the type of
+ profile data where the basis of the representation is assumed to be known
+ but the coefficients are unknown.
+ For instance, to monitor smooth profiles, various non-parametric methods
+ based on local kernel regression 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "zou2008monitoring,qiu2010nonparametric,zou2009nonparametric"
+literal "false"
+
+\end_inset
+
+ and splines 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "chang2010statistical"
+literal "false"
+
+\end_inset
+
+ are developed.
+ To monitor the non-smooth wave-form signals, a wavelet-based mixed effect
+ model is proposed 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "paynabar2011characterization"
+literal "false"
+
+\end_inset
+
+.
+ However, for all the aforementioned methods, it is assumed that the nonlinear
+ variation pattern of the profile is well captured by a known basis or kernel.
+ Usually, there is no guidance on selecting the right basis of the representatio
+n for the original data and it normally requires many trial and error.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+%Here, we focus on the HD profiles where we cannot assume a parametric function
+ form and the basis representation is unknown.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+In the case that the basis of HD profiles are not known, dimensionality
+ reduction techniques are widely used.
+ Principal component analysis (PCA) is arguably the most popular method
+ in this context for profile data monitoring because of its simplicity,
+ scalability, and good data compression capability.
+ In 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "liu1995control"
+literal "false"
+
+\end_inset
+
+, PCA is proposed to reduce the dimensionality of the streaming data and,
+ 
+\begin_inset Formula $T^{2}$
+\end_inset
+
+ and 
+\begin_inset Formula $Q$
+\end_inset
+
+ charts are constructed to monitor the extracted representations and residuals,
+ respectively.
+ To generalize PCA methods to monitor the complex correlation among the
+ channels of multi-channel profiles, Paynabar 
+\shape italic
+et al
+\shape default
+ 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "paynabar2015change"
+literal "false"
+
+\end_inset
+
+ propose a multivariate functional PCA method and apply change point detection
+ methods on the function coefficients.
+ Along this line, tensor-based PCA methods are also proposed for multi-channel
+ profiles, examples including uncorrelated multi-linear PCA 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "paynabar2013monitoring"
+literal "false"
+
+\end_inset
+
+ and multi-linear PCA 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "grasso2014profile"
+literal "false"
+
+\end_inset
+
+.
+ Finally, various tensor-based PCA methods 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "yan2015image"
+literal "false"
+
+\end_inset
+
+ are compared and different test statistics are developed for tensor-based
+ process monitoring.
+\end_layout
+
+\begin_layout Standard
+The main limitation of all the aforementioned PCA-related methods is that
+ the expressive power of linear transformations is very limited.
+ Furthermore, each principal component represents a global variation pattern
+ of the original profiles, which is not efficient at capturing the local
+ spatial correlation within a single profile.
+ Therefore, PCA requires a much larger latent space dimensions than the
+ dimension of the actual latent space, yielding a sub-optimal and overfitting-pr
+one representation.
+ This phenomena hinders the profile monitoring performance.
+\end_layout
+
+\begin_layout Standard
+A systematic discussion of this issue is articulated in 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Shi2016-tg"
+literal "false"
+
+\end_inset
+
+.
+ In that work, the authors identify the problems associated with assuming
+ a closeness relationship in the subspace that is characterized by Euclidean
+ metrics.
+ They successfully observe that the intra-sample variation in complex high-dimen
+sional corpora may lie on a nonlinear manifold as opposed to a linear manifold
+ which is assumed by PCA and related methods.
+ However, the authors only focus on applying manifold learning for Phase-I
+ analysis, while Phase-II monitoring procedure is not touched upon 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Shi2016-tg"
+literal "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Deep dimensionality reduction models have been proposed as an alternative
+ to classical dimensionality reduction techniques in a handful.
+ Deep autoencoders have been proposed for profile monitoring for Phase-I
+ analysis in 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Howard2018-op"
+literal "false"
+
+\end_inset
+
+.
+ Yan 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+etal
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Yan2016-wa"
+literal "false"
+
+\end_inset
+
+ compared the performance of contractive autoencoders and denoising autoencoders
+ for Phase-II monitoring.
+ Zhang 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+etal
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Zhang2018-js"
+literal "false"
+
+\end_inset
+
+ proposed a denoising autoencoder for process monitoring.
+ Aside from deterministic deep neural networks, only three works 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "wang2019systematic,Zhang2019-lu,lee2019process"
+literal "false"
+
+\end_inset
+
+ proposed to use deep probabilistic latent variable models, specifically,
+ variational autoencoders (VAE) 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Kingma2013-dl"
+literal "false"
+
+\end_inset
+
+.
+ While they all show impressive results in terms of improvement over classical
+ methods such as PCA, their empirical results are constrained to low-dimensional
+ problems.
+ Some of the test statistics proposed in those works require a large number
+ of Monte Carlo sampling, which can be prohibitively expensive for industrial
+ settings with high throughput and limited computing capabilities.
+ Also, issues of extrapolation to out-of-distribution samples and learning
+ disentangled representations with deep neural network based methods are
+ not mentioned and therefore not addressed.
+ These issues are critical to assess the behaviour of deep neural networks,
+ and thus monitoring statistics based on them, when faced with out-of-control
+ samples.
+\end_layout
+
+\begin_layout Standard
+In this paper, our main objective is to fill this gap in order to provide
+ a unifying understanding of how deep latent variable models should be used
+ for Phase-II high-dimensional profile monitoring based on both theoretical
+ understanding and empiricial results.
+ Our contributions can be listed as follows: 
+\end_layout
+
+\begin_layout Itemize
+We provide a detailed review and comparison of previously proposed monitoring
+ statistics for general deep latent variable model 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "wang2019systematic,Zhang2019-lu,lee2019process"
+literal "false"
+
+\end_inset
+
+ in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:bckgrnd:critique"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Itemize
+We will then propose two new theoretically grounded monitoring statistics
+ SPE and KLD for general probabilistic latent variable models in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:proposed-statistic"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ We showed theoretically that these monitoring statistics are analogous
+ to 
+\begin_inset Formula $Q$
+\end_inset
+
+ and 
+\begin_inset Formula $T^{2}$
+\end_inset
+
+ for PCA methods.
+ 
+\end_layout
+
+\begin_layout Itemize
+We will then show that for general deep latent variable models, only SPE
+ is needed, where KLD is not recommended.
+ We will show why this is the case from both theoretical understanding as
+ well as performance evaluation.
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+% This proposed monitoring statistics takes into the consideration of the
+ assumptions of the model, various sources of disturbances to the system,
+ computational restrictions and behavioural issues peculiar to deep latent
+ variable models.
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+We carry out a simulation study carefully curated to demonstrate the peculiariti
+es associated with deep latent variable models and demonstrate how the monitorin
+g statistic we propose handle them in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:simstudy"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+We support our results with a real-life case study on image profiles taken
+ from a hot steel rolling process in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:case-study"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figs/Disentangled_Extrapolated.pdf
+	width 90text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+asdas
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Background
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:bckgrnd"
+
+\end_inset
+
+ In this section, we introduce some core concepts that are essential to
+ comprehension of the methodology proposed in this study.
+ 
+\end_layout
+
+\begin_layout Subsection
+Deep Learning
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:bckgrnd:deep-learning"
+
+\end_inset
+
+ Deep learning has enjoyed a tremendous resurgence in the last decade due
+ to their superior performance that was unprecedented for many tasks such
+ as image classification 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "krizhevsky2012imagenet"
+literal "false"
+
+\end_inset
+
+, machine translation 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "bahdanau2014neural"
+literal "false"
+
+\end_inset
+
+, and speech recognition 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "amodei2016deep"
+literal "false"
+
+\end_inset
+
+.
+ In theory, under sufficient conditions, a two layer multilayer perceptron
+ can approximate any function on a bounded region 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "cybenko1989approximation,Hornik1991-li"
+literal "false"
+
+\end_inset
+
+.
+ Growing the width of shallow networks in an exponential fashion for arbitrarily
+ complex tasks is not practical.
+ It has been shown that deeper representations can often achieve the better
+ expressive power than shallow networks with less parameters due to the
+ efficient reuse of the previous layers 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "eldan2016power"
+literal "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Latent Variable Models
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:bckgrnd:lvms"
+
+\end_inset
+
+ Latent variables are powerful tools to model complex distributions over
+ high-dimensional spaces.
+ The underlying assumption is that there exists a low-dimensional latent
+ structure that explains well the variations in the high-dimensional observed
+ space.
+ Typically, the density over observed variables can be decoupled into the
+ distribution on the latent variables and the conditional distribution of
+ observed variables given latent variables can be assigned as tractable
+ families of distributions, which will be much more efficient than modeling
+ the data distribution directly.
+\end_layout
+
+\begin_layout Standard
+A typical example of latent variable models is when the joint distribution
+ is Gaussian factorized as in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:gaussian-factorized"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ 
+\begin_inset Formula 
+\begin{equation}
+\begin{split}\pz & =\Norm(\mbz;0,\mbI_{r})\\
+\decoding & =\Norm(\mbx;\mu_{\mbtheta}(\mbz),\sigma^{2}\mbI_{d})\\
+p_{\mbtheta}(\mbx,\mbz) & =\decoding\pz
+\end{split}
+\label{eq:gaussian-factorized}
+\end{equation}
+
+\end_inset
+
+In the above formulation 
+\begin_inset Formula $\mbx\in\R^{d}$
+\end_inset
+
+ are observed samples, 
+\begin_inset Formula $\mbz\in\R^{r}$
+\end_inset
+
+ are latent variables while 
+\begin_inset Formula $\mu_{\mbtheta}\colon\R^{r}\to\R^{d}$
+\end_inset
+
+ is a function paramterized by 
+\begin_inset Formula $\mbtheta\in\Theta$
+\end_inset
+
+, that describes the relationship between the latent variables and the mean
+ of the conditional.
+ The Gaussian prior 
+\begin_inset Formula $\pz$
+\end_inset
+
+ is typically chosen to be standard to avoid degenerate solutions 
+\begin_inset CommandInset citation
+LatexCommand citep
+after "p. 307"
+key "roweis1999unifying"
+literal "false"
+
+\end_inset
+
+ and conditional covariance is typically assumed to be isotropic 
+\begin_inset Formula $\sigma^{2}I_{d}$
+\end_inset
+
+ to avoid ill-defined problems.
+ The aim is to approximate the true density 
+\begin_inset Formula $p_{\mbtheta}(\mbx)\approx p(\mbx)$
+\end_inset
+
+ and this approximation can be obtained through marginalization: 
+\begin_inset Formula 
+\[
+p_{\mbtheta}(\mbx)=\int p_{\mbtheta}(\mbx,\mbz)d\mbz
+\]
+
+\end_inset
+
+Finally, in literature, there has been discussions about whether the independent
+ latent structure assumption 
+\begin_inset Formula $\pz=\Norm(\mbz;0,\mbI_{r})$
+\end_inset
+
+ can lead to the discovery of the true disentangled variations, a task also
+ known as disentangled representation learning 
+\begin_inset CommandInset citation
+LatexCommand citep
+after "Sec. 3.5"
+key "bengio2013representation"
+literal "false"
+
+\end_inset
+
+.
+ Disentangled representations are useful to represent variations in latent
+ variations due to its ability to separate out the independent factors.
+ We are interested in whether and if so, how, such representations will
+ be critical for profile monitoring.
+\end_layout
+
+\begin_layout Standard
+A famous member of the family of models described above is the probabilistic
+ principal component analysis (PPCA) 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "tipping1999probabilistic"
+literal "false"
+
+\end_inset
+
+.
+ The parameters are optimized via a maximum likelihood estimation framework
+ and it can be solved analytically due to the fact that 
+\begin_inset Formula $\mu_{\mbtheta}$
+\end_inset
+
+ is a simple linear transformation enabling the optimization to reuse results
+ from original solutions to the PCA problem.
+\end_layout
+
+\begin_layout Subsection
+Deep Latent Variable Models
+\end_layout
+
+\begin_layout Standard
+The assumption of PPCA that the latent and observed variables have a strictly
+ linear relationship can be quite restricting.
+ In real-world processes, it is likely that this relationship is highly
+ nonlinear.
+ Deep latent variable models are a marriage of deep neural networks and
+ latent variable models that aim to solve this problem.
+ We present two foundational members of this model family: Variational Autoencod
+ers (VAE) 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Kingma2013-dl"
+literal "false"
+
+\end_inset
+
+ and Adversarial Autoencoders (AAE) 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Makhzani2015-ei"
+literal "false"
+
+\end_inset
+
+.
+ We will refer to both of them as deep latent variable models (DLVMs) for
+ short in the rest of the paper.
+\end_layout
+
+\begin_layout Standard
+The main difference between PPCA and DLVMs is that the latter replace the
+ linear transformation with a high-capacity deep neural network (called
+ 
+\shape italic
+generative
+\shape default
+ or 
+\shape italic
+decoder
+\shape default
+).
+ This is powerful in the sense that along with a general purpose prior 
+\begin_inset Formula $\pz$
+\end_inset
+
+ a wide variety of densities can be modeled 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "kingma2019introduction"
+literal "false"
+
+\end_inset
+
+.
+ Unlike PPCA, these models will not have analytical solutions due to the
+ complex nature of the neural network used.
+ Like most other deep learning models, their parameters have to be optimized
+ via gradient descent for maximum likelihood.
+ The problem becomes even harder given the observation that the posterior
+ 
+\begin_inset Formula $\decoding$
+\end_inset
+
+ takes meaningful values only for a small sub-region within 
+\begin_inset Formula $\R^{r}$
+\end_inset
+
+.
+ This makes sampling from the prior 
+\begin_inset Formula $\pz$
+\end_inset
+
+ to estimate the likelihood prohibitively expensive.
+ Both models work around this problem using the importance sampling framework
+ 
+\begin_inset CommandInset citation
+LatexCommand citep
+after "p. 532"
+key "bishop2006pattern"
+literal "false"
+
+\end_inset
+
+, where they introduce another network (called 
+\shape italic
+recognition
+\shape default
+ or 
+\shape italic
+encoder
+\shape default
+) to approximate a proposal distribution 
+\begin_inset Formula $\encoding$
+\end_inset
+
+ —parametrized by 
+\begin_inset Formula $\mbphi$
+\end_inset
+
+— which will hopefully sample latent variables from a much smaller region
+ that is more likely to produce higher posterior densities for a given input
+ 
+\begin_inset Formula $\mbx$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The ultimate output of a trained DLVM is the likelihood estimator.
+ Once the two networks are trained, the log-likelihood 
+\begin_inset Formula $\log\ptheta(\mbx)$
+\end_inset
+
+ can be approximated by a Monte Carlo sampling procedure with 
+\begin_inset Formula $L$
+\end_inset
+
+ iterations 
+\begin_inset CommandInset citation
+LatexCommand citep
+after "p. 30"
+key "kingma2019introduction"
+literal "false"
+
+\end_inset
+
+: 
+\begin_inset Formula 
+\begin{equation}
+\log\ptheta(\mbx)\approx\log\frac{1}{L}\sum_{l=1}^{L}\frac{\ptheta(\mbx,\mbz^{(l)})}{\qphizgivenx{\mbz^{(l)}}{\mbx}}\label{eqn:SummationLL}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+VAEs are trained to optimize the so-called evidence lower bound (ELBO),
+ which is deemed a proxy to the likelihood: 
+\begin_inset Formula 
+\begin{equation}
+\begin{split}\text{ELBO} & \triangleq\log\left(p(\mbx)\right)-\KL{\encoding}{q^{*}(\mbz|\mbx)}\\
+ & =\E_{\mbz\sim q_{\mbtheta}}\log\decoding+\KL{\encoding}{p(\mbz)}
+\end{split}
+\label{eqn:VAELoss}
+\end{equation}
+
+\end_inset
+
+where 
+\begin_inset Formula $\KL{\cdot}{\cdot}$
+\end_inset
+
+ denotes the Kullback-Leibler divergence (KLD) between two distributions.
+ The left-hand side is the quantity of interest while the right-hand side
+ is the tractable expression that guides the updating of parameters 
+\begin_inset Formula $\mbtheta,\mbphi$
+\end_inset
+
+ in an end-to-end fashion.
+\end_layout
+
+\begin_layout Standard
+AAE (Gaussian posterior variant) 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Makhzani2015-ei"
+literal "false"
+
+\end_inset
+
+ uses a slightly different approach to impose the prior 
+\begin_inset Formula $\pz$
+\end_inset
+
+ by replacing the KLD loss with adversarial training.
+ In addition to finding good posterior proposals, recognition model 
+\begin_inset Formula $\encoding$
+\end_inset
+
+ now has to convince a third neural network —the discriminator network 
+\begin_inset Formula $D$
+\end_inset
+
+— that its samples are coming from standard Gaussian distribution.
+ The discriminator network also evolves through this process, getting better
+ and better at discriminating non-standard samples and forcing the recognition
+ model to improve itself further.
+ Formally, the discriminator tries to maximize the objective function given
+ as follows: 
+\begin_inset Formula 
+\begin{equation}
+L_{D}\triangleq\E_{\pz}\log(1-D(\mbz))+\E_{\encoding}\log(D(\mbz))\label{eqn:discloss}
+\end{equation}
+
+\end_inset
+
+This interplay of fooling-discriminating scheme results in a minimax game
+ formalized as follows: 
+\begin_inset Formula 
+\begin{equation}
+\min_{\theta,\phi}\max_{D}\E_{z\sim\encoding}\log\decoding+L_{D}\label{eqn:aae-loss}
+\end{equation}
+
+\end_inset
+
+All three networks are trained concurrently to achieve a Nash equilibrium.
+\end_layout
+
+\begin_layout Subsection
+Convolutional Layers
+\end_layout
+
+\begin_layout Standard
+Introduced in 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "lecun1989backpropagation"
+literal "false"
+
+\end_inset
+
+, convolutional layers have enabled tremendous performance increase in certain
+ neural network applications where the data is of a certain spatial neighborhood
+ structure such as images or audio waveform.
+ They exploit an important observation of such data, where the learner should
+ be equivariant to translations.
+ This is an important injection of inductive bias into the network that
+ largely reduce the number of parameters compared to the fully connected
+ network by the use of parameter sharing.
+ It eventually increase the statistical learning efficiency, especially
+ for small samples.
+ It must be noted however, convolutional layers are not equivariant to scale
+ and rotation as they are to translation.
+\end_layout
+
+\begin_layout Subsection
+Review of 
+\begin_inset Formula $\Tsq$
+\end_inset
+
+ and 
+\begin_inset Formula $Q$
+\end_inset
+
+ statistics in PCA
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:bckgrnd:ReviewPCA"
+
+\end_inset
+
+ Process monitoring via PCA is typically undertook using the so-called 
+\begin_inset Formula $\Tsq$
+\end_inset
+
+ and 
+\begin_inset Formula $Q$
+\end_inset
+
+ statistics 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Chen2004-px"
+literal "false"
+
+\end_inset
+
+.
+ The 
+\begin_inset Formula $Q$
+\end_inset
+
+ statistic for PCA is defined as the reconstruction error between the real
+ sample 
+\begin_inset Formula $\mbx$
+\end_inset
+
+ and the reconstructed sample 
+\begin_inset Formula $\tilde{\mbx}$
+\end_inset
+
+.
+ Its geometric representation is how far the sample is away from the learned
+ subpsace of in-control (IC) samples.
+ 
+\begin_inset Formula $\Tsq$
+\end_inset
+
+ represents how far the sample is away from the cluster of latent codes
+ of the IC samples.
+\end_layout
+
+\begin_layout Standard
+The 
+\begin_inset Formula $\Tsq$
+\end_inset
+
+ statistics and 
+\begin_inset Formula $Q$
+\end_inset
+
+ statistic for PCA are defined as follows: 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+%TODO: give numbers to each line or not?
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+% No need
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+\begin{split}Q(\mbx) & =\gg\mbx-\tilde{\mbx}\gg^{2}\\
+\Tsq_{PCA}(\mbx) & =\mbz^{\top}\mbSigma\inv_{r}\mbz=\mbx^{\top}\mbW_{r}\mbSigma\inv_{r}\mbW_{r}^{\top}\mbx,
+\end{split}
+\label{eqn: QTPCA}
+\end{equation}
+
+\end_inset
+
+where matrix 
+\begin_inset Formula $\mbW_{r}$
+\end_inset
+
+ is the loading matrix, and 
+\begin_inset Formula $\mbSigma\inv_{r}$
+\end_inset
+
+ is the inverse of the covariance matrix when only the first 
+\begin_inset Formula $r$
+\end_inset
+
+ principal components are kept.
+ There are various methods to choose 
+\begin_inset Formula $r$
+\end_inset
+
+ such as fixing the percentage of variation explained 
+\begin_inset CommandInset citation
+LatexCommand citep
+after "p. 41"
+key "Chiang2001-nu"
+literal "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+For processes with relatively small latent and residual dimensionality,
+ the upper control limits of these statistics for the 
+\begin_inset Formula $\alpha$
+\end_inset
+
+% Type-1 error tolerance is constructed by employing the normality assumptions
+ of PPCA 
+\begin_inset CommandInset citation
+LatexCommand citep
+after "p. 43-44"
+key "Chiang2001-nu"
+literal "false"
+
+\end_inset
+
+.
+ However, using such measures for high-dimensional nonlinear profiles is
+ prohibitively error-prone as both 
+\begin_inset Formula $r$
+\end_inset
+
+ and 
+\begin_inset Formula $d$
+\end_inset
+
+ will be much higher than the assumptions on chi-square distribution can
+ tolerate.
+ As an alternative, non-parameteric methods to estimate upper percentiles
+ are increasingly used for this purpose, such as simple sample percentile
+ on a held-out set or fitting kernel density estimation to in-control statistics.
+\end_layout
+
+\begin_layout Subsection
+Review and Critique of Previously Proposed Monitoring Statistics Proposed
+ for VAE
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:bckgrnd:critique"
+
+\end_inset
+
+ Three works have considered VAE for process monitoring, all of which propose
+ different statistic formulations for monitoring.
+ 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Zhang2019-lu"
+literal "false"
+
+\end_inset
+
+ formulate what they call 
+\begin_inset Formula $H^{2}$
+\end_inset
+
+ which is basically the Mahalanobis distance of the mean of the proposal
+ distribution from standard Gaussian distribution.
+ 
+\begin_inset Formula 
+\begin{equation}
+H^{2}=\mu_{\mbphi}(\mbx)^{\top}\mu_{\mbphi}(\mbx)
+\end{equation}
+
+\end_inset
+
+The major drawback of using only this statistic is that it completely ignores
+ the disturbances in residual distribution.
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset citation
+LatexCommand citet
+key "lee2019process"
+literal "false"
+
+\end_inset
+
+ claim to extend 
+\begin_inset Formula $T^{2}$
+\end_inset
+
+ and 
+\begin_inset Formula $SPE$
+\end_inset
+
+ of PCA for VAE.
+ For a given input 
+\begin_inset Formula $\mbx$
+\end_inset
+
+ and a singe sample drawn from proposal 
+\begin_inset Formula $\mbz^{(l)}\sim\encoding$
+\end_inset
+
+ and a reconstruction based on that sample 
+\begin_inset Formula $\mbx^{(l)}\sim p_{\mbtheta}(\mbx\g\mbz^{(l)})$
+\end_inset
+
+, the proposed test statistics in this work are as follows: 
+\begin_inset Formula 
+\begin{equation}
+\begin{aligned}T^{2} & =(\mbz^{(l)}-\bar{\mbz})^{\top}S_{\mbz}\inv(\mbz^{(l)}-\bar{\mbz})\\
+SPE & =\gg\mbx^{(l)}-\mbx\gg_{2}^{2},
+\end{aligned}
+\end{equation}
+
+\end_inset
+
+where 
+\begin_inset Formula $\bar{\mbz}$
+\end_inset
+
+ and 
+\begin_inset Formula $S_{\mbz}\inv$
+\end_inset
+
+ are estimated over a single loop from the data.
+ It is unclear why they would use such an extra step since for a well trained
+ VAE, 
+\begin_inset Formula $\bar{\mbz}$
+\end_inset
+
+ and 
+\begin_inset Formula $S_{\mbz}\inv$
+\end_inset
+
+ would be approximately equal to the mean and covariance of the standard
+ Gaussian distribution.
+ Instead, they take on the additional risk associated with the estimation.
+ The proposed control charting methodology suggests that these two statistics
+ work in combination and at least one vote of either statistics is enough
+ to make a detection.
+ The authors do not mention how false alarm rate can be fixed given this
+ methodology.
+\end_layout
+
+\begin_layout Standard
+Finally, 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "wang2019systematic"
+literal "false"
+
+\end_inset
+
+ propose the 
+\begin_inset Formula $R$
+\end_inset
+
+ and 
+\begin_inset Formula $D$
+\end_inset
+
+ statistics by focusing on the two major components of the tractable part
+ of the objective function of VAE shown as in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eqn:VAELoss"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ The 
+\begin_inset Formula $D$
+\end_inset
+
+ statistic is simply the KL divergence between the prior and proposal.
+ For 
+\begin_inset Formula $R$
+\end_inset
+
+ statistic, like 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "lee2019process"
+literal "false"
+
+\end_inset
+
+, they employ summary statistics over samples from proposal but also claim
+ that sampling size can be fixed to one: 
+\begin_inset Formula 
+\begin{equation}
+\begin{aligned}D & =\KL{\encoding}{p(\mbz)}\\
+R & =\frac{1}{L}\sum_{l=1}^{L}-\log q_{\mbtheta}(\mbx\g\mbz^{(l)}),
+\end{aligned}
+\label{eq: DR}
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula $SPE$
+\end_inset
+
+ in and 
+\begin_inset Formula $R$
+\end_inset
+
+ are essentially the same quantities up to a constant, which makes them
+ identical in the context of monitoring statistic because the rankings for
+ the same testing samples given the same model will be the same for both.
+ This is why we will use term 
+\begin_inset Formula $R$
+\end_inset
+
+ for both and reserve the name 
+\begin_inset Formula $SPE$
+\end_inset
+
+ for the statistic we propose in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:methodology"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Section
+Methodology
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:methodology"
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Subsection
+Proposed Monitoring Statistic for Deep Latent Variable Models
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:proposed-statistic"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Log-likelihood, 
+\begin_inset Formula $\log\ptheta(\mbx)$
+\end_inset
+
+, arises as a natural candidate for monitoring statistic in the context
+ of DLVMs.
+ That is, given a well trained DLVM, in-control samples should have relatively
+ higher log-likelihood than out-of-control samples.
+ However, the required number of Monte Carlo samples—
+\begin_inset Formula $L$
+\end_inset
+
+ in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eqn:SummationLL"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+— can be prohibitively large to get meaningful estimates of the likelihood
+ 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Kingma2013-dl"
+literal "false"
+
+\end_inset
+
+, which do not satisfy the real-time monitoring requirement for high throughput
+ systems.
+ To address this issue, ELBO defined in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eqn:VAELoss"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ can be used for a reasonable approximation:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\E_{\mbz\sim q_{\mbtheta}}\log\decoding+\KL{\encoding}{p(\mbz)}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+To understand the role of both terms in process monitoring, we revisit the
+ assumptions of the model described in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:gaussian-factorized"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ Let us formally represent an out-of-control distribution as 
+\begin_inset Formula $p_{\delta}(\mbx)\neq p(\mbx)$
+\end_inset
+
+.
+ Since 
+\begin_inset Formula $p(\mbx)=\int p(\mbx\g\mbz)p(\mbz)d\mbz$
+\end_inset
+
+, we can observe two sources of out-of-control behaviours: disturbances
+ in latent distribution 
+\begin_inset Formula $p_{\delta}(\mbz)\neq\pz$
+\end_inset
+
+ and disturbances in observable distribution 
+\begin_inset Formula $p_{\delta}(\mbx\g\mbz)\neq p(\mbx\g\mbz)$
+\end_inset
+
+.
+ Note that various combinations of these two disturbances cover disturbances
+ in the entire process.
+ One can argue that 
+\begin_inset Formula $\E_{\mbz\sim q_{\mbtheta}}\log\decoding$
+\end_inset
+
+ can detect the disturbances in the observable space 
+\begin_inset Formula $p_{\delta}(\mbx\g\mbz)\neq p(\mbx\g\mbz)$
+\end_inset
+
+ and 
+\begin_inset Formula $\KL{\encoding}{p(\mbz)}$
+\end_inset
+
+ represents the change in the latent space 
+\begin_inset Formula $p_{\delta}(\mbz)\neq\pz$
+\end_inset
+
+.
+ We know that for processes that can be accurately modeled by PCA, both
+ terms play an important role 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "kim2003process"
+literal "false"
+
+\end_inset
+
+ for process monitoring.
+ We argue that this holds true for PPCA too.
+ To prove this, we link the monitoring statistics of PCA (see 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:bckgrnd:ReviewPCA"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+) to PPCA using the ELBO framework.
+\end_layout
+
+\begin_layout Proposition
+\begin_inset CommandInset label
+LatexCommand label
+name "prop: T2Q"
+
+\end_inset
+
+ We know from the definition of PPCA 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "tipping1999probabilistic"
+literal "false"
+
+\end_inset
+
+ that the prior, encoding and decoding functions are normally distributed
+ as: 
+\begin_inset Formula 
+\[
+\begin{split}p(\mbz) & =\Norm(0,\mbI)\\
+\decoding & =\Norm(\mbW\mbz,\sigma^{2}\mbI)\label{eq:Gaussian}
+\end{split}
+\]
+
+\end_inset
+
+In this case, from PPCA, the encoder also follows the normal distribution
+ as 
+\begin_inset Formula $\encoding=\Norm(\mu(\mbx),\Sigma_{z})$
+\end_inset
+
+, where 
+\begin_inset Formula $\mu(\mbx)=\mbM^{-1}\mbW^{\top}\mbx$
+\end_inset
+
+ and 
+\begin_inset Formula $\Sigma_{z}=\sigma^{2}\mbM^{-1})$
+\end_inset
+
+, where 
+\begin_inset Formula $\mbM=\mbW^{\top}\mbW+\sigma^{2}\mbI$
+\end_inset
+
+.
+ Then, the two monitoring statistics can be defined as: 
+\begin_inset Formula 
+\begin{equation}
+\KL{\encoding}{p(\mbz)}=\frac{1}{2}\gg\mu(\mbx)\gg^{2}+C_{1}\label{eqn:KL_PPCA}
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+\E_{\mbz\sim q_{\mbtheta}}\log\decoding\propto\gg\mbx-\mbW\mu(\mbx)\gg^{2}+C_{2}\label{eqn:E_PPCA}
+\end{equation}
+
+\end_inset
+
+where 
+\begin_inset Formula $C_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $C_{2}$
+\end_inset
+
+ are constants that doesn't depend on 
+\begin_inset Formula $x$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The proof is given in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:PoofOfPropTQ"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ Note that the constants do not affect out-of-control decisions.
+ Thus, the test statistics 
+\begin_inset Formula $\KL{\encoding}{p(\mbz)}$
+\end_inset
+
+ is equivalent to the 
+\begin_inset Formula $T^{2}$
+\end_inset
+
+ Statistics of PCA as defined in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eqn: QTPCA"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, and 
+\begin_inset Formula $\E_{\mbz\sim q_{\mbtheta}}$
+\end_inset
+
+ is equivalent the 
+\begin_inset Formula $Q$
+\end_inset
+
+ statistic.
+ Consequently, we can argue that both statistics will play an important
+ role given the linearity assumption of PPCA is reasonable.
+\end_layout
+
+\begin_layout Standard
+However, we claim that 
+\begin_inset Formula $\KL{\encoding}{p(\mbz)}$
+\end_inset
+
+ will not be useful for process monitoring if the process has a much more
+ complex web of interactions between latent and observable variables, and
+ DLVMs are used for modeling the density function.
+ There are two reasons this is the case.
+\end_layout
+
+\begin_layout Standard
+First, for such complex processes, most of the change or disturbances should
+ be expected on residual distribution.
+ According to 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "severson2016perspectives"
+literal "false"
+
+\end_inset
+
+ faults in complex real-life processes tend to alter the existing relationship
+ between latent sources of variation and what is observed, as opposed to
+ pushing to most extreme cases in the latent variational sources.
+\end_layout
+
+\begin_layout Standard
+Second, the encoder 
+\begin_inset Formula $\encoding$
+\end_inset
+
+ is likely to lack two important features: disentangled representations
+ and extrapolation capabilities.
+ Disentangled representations are required for process monitoring because
+ of the assumption on 
+\begin_inset Formula $\pz$
+\end_inset
+
+ that latent factors are independent.
+ Entangled representations will lead to entangled monitoring statistic values
+ for 
+\begin_inset Formula $\KL{\encoding}{p(\mbz)}$
+\end_inset
+
+, interfering with the logistics of control charting.
+ Locatello 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+etal
+\end_layout
+
+\end_inset
+
+ proves in 
+\begin_inset CommandInset citation
+LatexCommand citep
+after "Thm. 1"
+key "locatello2018challenging"
+literal "false"
+
+\end_inset
+
+ that without proper inductive biases injected into the model, it is impossible
+ to find disentangled representations.
+ Unfortunately, injecting such inductive biases requires detailed anticipation
+ of variations among in-control samples as well as specialzed neural network
+ structures, both of which are extremely challenging tasks given industrial
+ settings.
+ Our motivating example, hot steel rolling process exhibited in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Rolling"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ is a good example of why this is the case.
+\end_layout
+
+\begin_layout Standard
+Moreover, even if the representations are disentangled, correct mappings
+ of 
+\begin_inset Formula $\encoding$
+\end_inset
+
+ may still not be obtained.
+ This is due to an important shortcoming of deep learning based models.
+ Deep neural networks approximates well only at a bounded domain defined
+ by where the training set (i.e., in-control samples) is densely sampled from
+ and the behavior of the function is often unpredictable outside that domain.
+ In other words, it may not extrapolate well beyond the domain of training
+ samples.
+ We refer interested readers to 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "app:rosenbrock"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ where we replicated this phenomena on a toy example.
+ To see why this is a problem, first note that the encoder 
+\begin_inset Formula $\encoding$
+\end_inset
+
+ will only be trained with profiles densely sampled from the bounded region
+ of in-control samples, for which 
+\begin_inset Formula $\pz$
+\end_inset
+
+ are high.
+ The behavior of the encoder is uncertain for profiles coming from dense
+ regions of out-of-control latent structure 
+\begin_inset Formula $p_{\delta}(\mbz)\neq\pz$
+\end_inset
+
+.
+ We expect increased false negatives should the model falsely map these
+ profiles onto high density regions of 
+\begin_inset Formula $\pz$
+\end_inset
+
+ but not 
+\begin_inset Formula $p_{\delta}(\mbz)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Unlike 
+\begin_inset Formula $\KL{\encoding}{p(\mbz)}$
+\end_inset
+
+, extrapolation and disentanglement issues in 
+\begin_inset Formula $\encoding$
+\end_inset
+
+ along with extrapolation issues in 
+\begin_inset Formula $\decoding$
+\end_inset
+
+ help 
+\begin_inset Formula $\E_{\mbz\sim q_{\mbtheta}}\log\decoding$
+\end_inset
+
+ detect faults better, even when the disturbance is purely on latent structure.
+ Incorrect mappings by 
+\begin_inset Formula $\encoding$
+\end_inset
+
+ will lead to incorrect generations by 
+\begin_inset Formula $\decoding$
+\end_inset
+
+ and thus larger 
+\begin_inset Formula $\E_{\mbz\sim q_{\mbtheta}}\log\decoding$
+\end_inset
+
+.
+ Second, even if the mapping was correct, we might have extrapolation issues
+ in the decoder 
+\begin_inset Formula $\decoding$
+\end_inset
+
+ which is another possibility for this statistic to capture disturbances
+ in latent variations.
+ To see why this is the case, note that the encoder 
+\begin_inset Formula $\encoding$
+\end_inset
+
+ is optimized to produce samples more from where 
+\begin_inset Formula $\pz$
+\end_inset
+
+ is large.
+ In turn, the decoder 
+\begin_inset Formula $\decoding$
+\end_inset
+
+ will mostly be trained on samples from where 
+\begin_inset Formula $p_{\delta}(\mbz)$
+\end_inset
+
+ is low.
+ For disturbances in observable region 
+\begin_inset Formula $p_{\delta}(\mbx\g\mbz)\neq p(\mbx\g\mbz)$
+\end_inset
+
+, it is trivial to see how 
+\begin_inset Formula $\E_{\mbz\sim q_{\mbtheta}}\log\decoding$
+\end_inset
+
+ will be effective at capturing faults.
+\end_layout
+
+\begin_layout Standard
+As of now, we have enough reasons to recommend the use of 
+\begin_inset Formula $\E_{\mbz\sim q_{\mbtheta}}\log\decoding$
+\end_inset
+
+ as the only test statistic for a profile monitoring application that uses
+ DLVMs.
+ This statistic is very similar to 
+\begin_inset Formula $SPE$
+\end_inset
+
+ of 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "lee2019process"
+literal "false"
+
+\end_inset
+
+ and 
+\begin_inset Formula $R$
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "wang2019systematic"
+literal "false"
+
+\end_inset
+
+.
+ However, they both use random samples from the proposal distribution to
+ estimate the expectation.
+ This approach may require a large number of samples to be generated and
+ thus a large number of forward passes on a neural network, which is prohibitive
+ly expensive in terms of computation.
+ We formulate a smarter way to approximate the test statistic, by using
+ first order Taylor expansion for the moment of the log-likelihood.
+ We call this approximation 
+\begin_inset Formula $\oursacronym$
+\end_inset
+
+, which is our final proposed statistic.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align}
+\oursacronym & \triangleq\E_{\mbz\sim q_{\mbtheta}}\log\decoding\label{eqn:propstat:final}\\
+ & =\E_{\mbz\sim p_{\mbtheta}}\left[\log q_{\mbtheta}(\mbx\g\mbz-(\mu_{\mbphi}-\mbz))\right]\\
+ & \approx\log\ptheta(\mbx\g\mu_{\mbphi}(\mbx))\\
+ & \propto\gg\mbx-\mu_{\mbtheta}(\mu_{\mbphi}(\mbx))\gg_{2}^{2}+C_{3}
+\end{align}
+
+\end_inset
+
+Again, the constant 
+\begin_inset Formula $C_{3}$
+\end_inset
+
+ can be ignored given control charting logistics.
+ Given a trained DLVM such as VAE or AAE, this quantity can be computed
+ by forward passing the new profile from the process 
+\begin_inset Formula $\mbx$
+\end_inset
+
+ through 
+\begin_inset Formula $\mu_{\mbphi}$
+\end_inset
+
+ and 
+\begin_inset Formula $f_{\mbtheta}$
+\end_inset
+
+ successively and calculating the squared prediction error, without any
+ reparameterization.
+\end_layout
+
+\begin_layout Subsection
+Profile Monitoring Procedure
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:methodology:procedure"
+
+\end_inset
+
+ A typical profile monitoring follows two phases: Phase-I analysis, and
+ Phase-II analysis.
+ Phase-I analysis focuses on understanding the process variability by training
+ an appropriate in-control mode, and selecting an appropriate control limit.
+ Specifically when DLVMs are used, Phase-I analysis results in a trained
+ model (i.e.
+ an encoder and a decoder) and an Upper Control Limit (UCL) to help setup
+ the control chart for each of the monitoring statistics.
+ In Phase-II, the system is exposed to new profiles generated by the process
+ to decide whether these profiles are in-control or out-of-control.
+ Our experimentation plan, outlined below, is formulated to emulate this
+ scenario to effectively assess the performance of any combination of a
+ model, a test statistic and a disturbance scenario.
+ 
+\end_layout
+
+\begin_layout Itemize
+Obtain IC dataset 
+\begin_inset Formula $\dataset$
+\end_inset
+
+ and partition it into train, validation and test sets 
+\begin_inset Formula $\dataset^{trn}$
+\end_inset
+
+,
+\begin_inset Formula $\dataset^{val}$
+\end_inset
+
+,
+\begin_inset Formula $\dataset^{tst}$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+Train the DLVM using samples from 
+\begin_inset Formula $\dataset^{trn}$
+\end_inset
+
+ over a pre-defined grid of hyper-parameters.
+ 
+\end_layout
+
+\begin_layout Itemize
+Choose the trained DLVM with the lowest reconstruction error over 
+\begin_inset Formula $\dataset^{val}$
+\end_inset
+
+ and proceed with that.
+ 
+\end_layout
+
+\begin_layout Itemize
+Calculate test statistic for all 
+\begin_inset Formula $\mbx\in\dataset^{val}$
+\end_inset
+
+ and take it's 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+nth
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\end_inset
+
+95
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ percentile as the UCL.
+ 
+\end_layout
+
+\begin_layout Itemize
+Record the estimated false alarm rate (FAR) as the average number of samples
+ 
+\begin_inset Formula $x\in\dataset^{tst}$
+\end_inset
+
+ that are misclassified as OC because their test statistic yields a number
+ higher than UCL.
+ 
+\end_layout
+
+\begin_layout Itemize
+Start admitting profiles from the disturbed process.
+ Calculate test statistic using the trained DLVM.
+ If test statistic is over UCL, identify the sample as OC.
+ 
+\end_layout
+
+\begin_layout Standard
+For each DLVM type, we train 10 different model instances with different
+ seeds to account for inherent randomness due to weight initialization of
+ DLVMs.
+\end_layout
+
+\begin_layout Subsection
+Model Architectures & Implementation Details
+\end_layout
+
+\begin_layout Standard
+Both VAE and AAE use the same encoder-decoder structure outlined in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:model-architectures"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ The layers used that builds the model architectures used in this study
+ are summarized as follows:
+\end_layout
+
+\begin_layout Itemize
+C(
+\begin_inset Formula $O,K,S,P$
+\end_inset
+
+): Convolutional layer with arguments referring to number of output channels
+ 
+\begin_inset Formula $O$
+\end_inset
+
+, kernel size 
+\begin_inset Formula $K$
+\end_inset
+
+, stride 
+\begin_inset Formula $S$
+\end_inset
+
+ and size of zero-padding 
+\begin_inset Formula $P$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Itemize
+CT(
+\begin_inset Formula $O,K,S,P$
+\end_inset
+
+): Convolutional transpose layer with arguments referring to the number
+ of output channels 
+\begin_inset Formula $O$
+\end_inset
+
+, kernel size 
+\begin_inset Formula $K$
+\end_inset
+
+, stride 
+\begin_inset Formula $S$
+\end_inset
+
+, and size of zero-padding 
+\begin_inset Formula $P$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Itemize
+FC(I, O): Fully connected layer with arguments referring to input dimension
+ 
+\begin_inset Formula $I$
+\end_inset
+
+ and output dimension 
+\begin_inset Formula $O$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Itemize
+A: Activation function.
+ Can either be Rectified linear unit (ReLU) or Leaky ReLU with a negative
+ slope 
+\begin_inset Formula $0.2$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Itemize
+S(): Sigmoid activation.
+ 
+\end_layout
+
+\begin_layout Standard
+Here, C(), CT(), and FC() are considered the linear transformation layers
+ while R(), LR(), and S() are considered the nonlinear activation layers.
+ Strided convolutions can be used to decrease the spatial dimensions in
+ the encoders.
+ Pooling layers are typically not recommended in autoencoder-like architectures
+ 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "radford2015unsupervised"
+literal "false"
+
+\end_inset
+
+.
+ Convolutional transpose layers are used to upscale latent codes back to
+ observable dimensions.
+ Leaky ReLU has been suggested to improve performance in adversarial training
+ 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "salimans2016improved"
+literal "false"
+
+\end_inset
+
+ but we include that option for both VAE and AAE for fairness.
+\end_layout
+
+\begin_layout Standard
+The sequential order of the computational graphs used for this study are
+ summarized in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:model-architectures"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ For AAE and VAE, an encoder will output 
+\begin_inset Formula $2r$
+\end_inset
+
+ nodes which is a concatenation of the inferred posterior mean and variance,
+ both are of length 
+\begin_inset Formula $r$
+\end_inset
+
+.
+ For AAE, a simple multilayer perceptron—the discriminator—is created additional
+ly.
+ A grid of hyper-parameters are considered for learning rate, batch size,
+ and the number of latent dimensions 
+\begin_inset Formula $r$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement !t
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset FormulaMacro
+\newcommand{\arraystretch}{1.3}
+\end_inset
+
+ 
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Architecture details of deep neural networks used in this study
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:model-architectures"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="2">
+<features booktabs="true" tabularvalignment="middle">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top" width="50text%">
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Module 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Architecture
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Encoder 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+C(32, 4, 2, 1) - A - C(32, 4, 2, 1) - A - C(64, 4, 2, 1) - A - C(64, 4,
+ 2, 1) - A - C(64, 4, 1, 0) - FC(256, 
+\begin_inset Formula $2r$
+\end_inset
+
+) 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Decoder 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+FC(
+\begin_inset Formula $r$
+\end_inset
+
+, 256) - A - CT(64, 4, 0, 0) - A - CT(64, 4, 2, 1) - A - C(32, 4, 2, 1)
+ - CT(32, 4, 2, 1) - A - CT(1, 4, 2, 1) 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Discriminator 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+FC(
+\begin_inset Formula $r$
+\end_inset
+
+, 512) - FC(512, 256) - FC(256, 1) - S() 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Simulation Study Analysis and Results
+\end_layout
+
+\begin_layout Subsection
+Simulation Setup
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:simsetting"
+
+\end_inset
+
+ We first evaluate the performance of the deep latent variable models in
+ a simulation setting inspired by the work of 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Shi2016-tg"
+literal "false"
+
+\end_inset
+
+.
+ The simulation procedure produces 2D point clouds that resemble the scanned
+ topology of a gasket bead.
+ Let each point on a 
+\begin_inset Formula $64$
+\end_inset
+
+ by 
+\begin_inset Formula $64$
+\end_inset
+
+ grid be denoted by a tuple 
+\begin_inset Formula $\mbp=(p_{0},p_{1})$
+\end_inset
+
+.
+ The values of the tuples stretch from 
+\begin_inset Formula $0$
+\end_inset
+
+ to 
+\begin_inset Formula $1$
+\end_inset
+
+ equally spaced, left to right and bottom-up.
+ Each tuple takes a value based on its location through a function 
+\begin_inset Formula $\mbp\mapsto f(\mbp;\czero,r)+\epsilon$
+\end_inset
+
+, where 
+\begin_inset Formula $\epsilon\sim\Norm(0,1\times10^{-2})$
+\end_inset
+
+ is i.i.d Gaussian noise.
+ The function 
+\begin_inset Formula $f$
+\end_inset
+
+ is parametrized by the horizontal center location of the bead 
+\begin_inset Formula $\czero$
+\end_inset
+
+, and the radius of the bead 
+\begin_inset Formula $r$
+\end_inset
+
+.
+ The vertical center of the bead is fixed to be at the center.
+ Given any parameter set 
+\begin_inset Formula $\{c_{0},r\}$
+\end_inset
+
+, each pixel 
+\begin_inset Formula $\mbp$
+\end_inset
+
+ can be evaluated with the following logic: 
+\begin_inset Formula 
+\begin{equation}
+\begin{split}g(\mbp;c_{0},r) & =1-\frac{(p_{0}-\czero)}{r}^{2}-\frac{(p_{1}-0.5)}{r}^{2}\\
+f(\mbp;c_{0},r) & =\begin{cases}
+\sqrt{g(\mbp;c_{0},r)} & \mbox{if }g(\mbp;c_{0},r)\geq0\\
+0 & \mbox{if }g(\mbp;c_{0},r)<0
+\end{cases}
+\end{split}
+\label{eq:gasketfun}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The samples are best visualized as grayscale images as shown in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:gasketgrid"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ 
+\begin_inset Float figure
+placement !t
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:gasketgrid"
+
+\end_inset
+
+ 
+\begin_inset Graphics
+	filename figs/gasket.pdf
+	width 90line%
+
+\end_inset
+
+ 
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Gasket profiles depicted as grayscale images simulated with radius and center
+ location they coincide with on the axes.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We define the sources of variation in IC gasket beads by two latent variables
+ sampling from independent Gaussian distributions: 
+\begin_inset Formula 
+\begin{equation}
+\begin{split}\czero\sim\Norm(0.5,1\times10^{-2})\\
+r\sim\Norm(0.2,6.25\times10^{-4})
+\end{split}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Finally, we will consider the following four types of OC variation patterns
+ for the system.
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Location shift.
+
+\series default
+ the mean of the process that generates 
+\begin_inset Formula $\czero$
+\end_inset
+
+ is altered by an amount 
+\begin_inset Formula $\delta$
+\end_inset
+
+ as in 
+\begin_inset Formula $\czero\sim\Norm(0.5+\delta\times10^{-2},1\times10^{-2})$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Width shift.
+
+\series default
+ the mean of the process that generates 
+\begin_inset Formula $a$
+\end_inset
+
+ is perturbed by an amount 
+\begin_inset Formula $\delta$
+\end_inset
+
+ as in 
+\begin_inset Formula $r\sim\Norm(0.2+\delta\times10^{-4},6.25\times10^{-4})$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Mean shift.
+
+\series default
+ all of the pixels are added an additive disturbance 
+\begin_inset Formula $\delta$
+\end_inset
+
+ as in 
+\begin_inset Formula $f(\mbp;c_{0},r)\leftarrow f(\mbp;c_{0},r)+\delta$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Magnitude shift.
+
+\series default
+ all of the pixels are added an multiplicative disturbance 
+\begin_inset Formula $\delta$
+\end_inset
+
+ as in 
+\begin_inset Formula $f(\mbp;c_{0},r)\leftarrow f(\mbp;c_{0},r)*\delta$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+Here, 
+\begin_inset Formula $\delta$
+\end_inset
+
+ is the intensity of the change.
+ Note that location shift and width shift represent disturbances in residual
+ distribution 
+\begin_inset Formula $p_{\delta}(\mbx\g\mbz)$
+\end_inset
+
+.
+ An important distinction between the two is that location equivariance
+ is injected into convolutional networks but not scale equivariance, therefore
+ we expect different reactions to these changes by deep convolutional latent
+ variable models in terms of disentanglement.
+ The other two cases, mean shift and magnitude shift, represent disturbances
+ in latent prior 
+\begin_inset Formula $p_{\delta}(\mbz)$
+\end_inset
+
+.
+ The training, validation, and testing IC or OC samples are generated of
+ size 500 each.
+\end_layout
+
+\begin_layout Subsection
+On the disentanglement and extrapolation performance of the recognition
+ network 
+\begin_inset Formula $\encoding$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:simstudy:recognition"
+
+\end_inset
+
+ To investigate the disentanglement and extrapolation performance of the
+ recognition network we employ the following procedure.
+ First, we train a DLVM (in this case a VAE with latent code being 2-dimensional
+) to convergence using in-control samples as described in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:simsetting"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ Then, we feed intentionally picked examples on the space of our latent
+ variables —radius 
+\begin_inset Formula $r$
+\end_inset
+
+ and center location 
+\begin_inset Formula $\czero$
+\end_inset
+
+— into the recognition network to obtain their respective proposal distributions.
+ The points are picked inside and outside the tolerance region of the two
+ quality characteristics to be compared against their mapping onto the represent
+ation space.
+ Finally, we sample 150 points from the proposals and plot them on the represent
+ation space.
+ The results are shown in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:proposals"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, where the samples from the proposal can be traced back to the true sources
+ of variation.
+ We observe an overall trend that distributions are not laid out in regards
+ to the layout of the true sources of variation after they are mapped to
+ the representation space.
+ It shows that the disentanglement is not reconstructed via the VAE framework.
+\end_layout
+
+\begin_layout Standard
+Furthermore, we would like to study the anomaly detection performance.
+ We observe that the extreme cases of the center location 
+\begin_inset Formula $\czero$
+\end_inset
+
+ (i.e., Case 0, 3, 6, 2, 5, 8) are actually mapped outside or near the boundary
+ of the circle.
+ For the extreme cases of radius, only extremely large radii (i.e., Case 7)
+ result in extreme latent codes.
+ This implies that circles with small radii will be missed by the monitoring
+ statistics based purely on latent code (i.e., Case 1).
+\end_layout
+
+\begin_layout Standard
+We only achieved partial disentanglement and that relates to the location
+ only because we have translational equivariance in our convolutional architectu
+re.
+ That demonstrates that our findings are in agreement with our rationale
+ behind the proposed statistic outlined in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:proposed-statistic"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ In other words, without extrapolation and disentanglement, we do not expect
+ any monitoring statistic based purely on the output of the recognition
+ network—such as 
+\begin_inset Formula $H^{2}$
+\end_inset
+
+, 
+\begin_inset Formula $T^{2}$
+\end_inset
+
+ or 
+\begin_inset Formula $D$
+\end_inset
+
+ discussed in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:bckgrnd:critique"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+— to be robust enough to be safely employed in a process control mission.
+\end_layout
+
+\begin_layout Standard
+The finding is also consistent with the one presented in 
+\begin_inset CommandInset citation
+LatexCommand citep
+after "Thm. 1"
+key "locatello2018challenging"
+literal "false"
+
+\end_inset
+
+.
+ Without proper inductive biases —which is usually a very challenging task
+ for industrial settings— it is impossible for a latent variable model to
+ learn disentangled representations.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement t
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figs/proposals.pdf
+	width 100line%
+
+\end_inset
+
+ 
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Figure depicting the behavior of the recongition network of a VAE trained
+ with in-control gasket sampled.
+ On the left nine gasket profiles whose latent variables are picked from
+ in and out of the tolerable region of radius and center location.
+ The tolerable region is represented by the gray dashed circle, a curve
+ of isodistant points in terms of Mahalanobis distance to in control distributio
+n.
+ On the right, 150 latent codes sampled from each proposal (associated with
+ the same id numbers on the top).
+ Isodistant curve for standard Gaussian that is probability-wise equivalent
+ to the one on the left is depicted as a gray dashed circle.
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:proposals"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+On the extrapolation performance of the generator network 
+\begin_inset Formula $\decoding$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:simstudy:generator"
+
+\end_inset
+
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:manifold_vae"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ depicts the extrapolation performance of the generator 
+\begin_inset Formula $\decoding$
+\end_inset
+
+ of the same DLVM described in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:simstudy:recognition"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ trained on in-control samples described in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:simsetting"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ We observe two important behavior: the posterior gets distorted beyond
+ two or three standard deviations and the representations are partially
+ disentangled in line with the behaviour of its encoder depicted in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:proposals"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ To reiterate, we observe that our generator cannot reason well beyond the
+ bounds of its training samples.
+ We observe that variation comes to a halt beyond fifth standard deviation
+ and roundness of beads becomes cluttered.
+ We observe a much severe case of the same for an example trained AAE as
+ shown in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:manifold_aae"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ where clutters start as early as second standard deviation.
+\end_layout
+
+\begin_layout Standard
+It is straightforward to define disentanglement in the context of the simulation
+ case since we have explicit control over the semantics and variations in
+ the data.
+ Ideally, we want a DLVM with two-dimensional latent code to capture variations
+ in radius and center location independently.
+ What we observe from both manifold figures is that variations in radius
+ and location are convoluted.
+ The situation can be understood better when 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:manifold_vae"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:proposals"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ are jointly examined.
+ DLVMs, without specific inductive biases injected into the networks, will
+ not discover the true latent variables and cannot extrapolate well beyond
+ the training domain, which leaves the latent variables method not useful.
+\end_layout
+
+\begin_layout Standard
+We also want to make a remark that we tried the beta-VAE framework explained
+ in 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "higgins2017beta"
+literal "false"
+
+\end_inset
+
+ to remedy the problem but failed to get disentangled representations even
+ for this simple case.
+ The lack of training samples (i.e., 500 samples) may be another reason why
+ the disentanglement is not clear.
+\end_layout
+
+\begin_layout Standard
+However, unlike the case for recognition network, the errors of generative
+ network beyond the training region are indeed welcomed as they will inflate
+ the negative log-likelihood.
+ Along with the findings 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:simstudy:recognition"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, these findings support the rationale behind the statistic we propose in
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:proposed-statistic"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement !t
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figs/manifold_vae.pdf
+	width 90line%
+
+\end_inset
+
+ 
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Figure depicting per-dimension manifold of a VAE with two-dimensional latent
+ code, trained on in-control gasket samples.
+ Each row represents which latent dimension is altered while the other dimension
+ is fixed at zero.
+ Each column represents what value is assigned to that latent dimension
+ that is represented by the row label.
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:manifold_vae"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement !t
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figs/manifold_aae.pdf
+	width 90line%
+
+\end_inset
+
+ 
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Figure depicting per-dimension manifold of a AAE with two-dimensional latent
+ code, trained on in-control gasket samples.
+ Each row represents which latent dimension is altered while the other dimension
+ is fixed at zero.
+ Each column represents what value is assigned to that latent dimension
+ that is represented by the row label.
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:manifold_aae"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Comparison of detection performance of proposed statistics
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement !t
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figs/disturbance_on_pxz.pdf
+	width 100line%
+
+\end_inset
+
+ 
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Fault detection rates (on the y-axis) for varying models (rows) and varying
+ intensities (x-axis) of different disturbance types (columns) occuring
+ on residual distributions.
+ Bands represent 95% confidence interval estimated around mean detection
+ rates.
+ 
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:disturbance_on_pxz"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement !t
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figs/disturbance_on_pz.pdf
+	width 100line%
+
+\end_inset
+
+ 
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Fault detection rates (on the y-axis) for varying models (rows) and varying
+ intensities (x-axis) of different disturbance types (columns) occuring
+ on latent distributions.
+ Bands represent 95% confidence interval estimated around mean detection
+ rates.
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:disturbance_on_pz"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We now compare the proposed statistics based on how accurately they detect
+ profiles from out-of-control processes outlined in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:simsetting"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ The first condition we must check is the robustness of the statistics by
+ making sure all proposed statistics have roughly similar false alarm rate
+ on the held-out in control test set, which should also be reasonably close
+ to the desired rate 5%.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:far"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ demonstrates that this is the case for all of them.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement t
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset FormulaMacro
+\renewcommand{\arraystretch}{1.3}
+\end_inset
+
+ 
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+False alarm rates on held-out dataset averaged over 10 replications per
+ model and monitoring statistic.
+ Standard deviations are in parentheses.
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:far"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="6">
+<features booktabs="true" tabularvalignment="middle">
+<column alignment="left" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Statistic 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+SPE 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+R 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+D 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+H2 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+T2 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Model 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+AAE 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.031(0.001) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.045(0.009) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.043(0.001) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.043(0.001) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.058(0.007) 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+VAE 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.031(0.006) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.051(0.005) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.044(0.004) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.052(0.005) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.043(0.009) 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Through 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:disturbance_on_pxz"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, we observe a clear superiority of 
+\begin_inset Formula $SPE$
+\end_inset
+
+ over other methods when the disturbance is on the residual distribution.
+ It can be easily understood why 
+\begin_inset Formula $D$
+\end_inset
+
+, 
+\begin_inset Formula $H^{2}$
+\end_inset
+
+ and 
+\begin_inset Formula $T^{2}$
+\end_inset
+
+ fail in this case, that they are purely computed using the proposal distributio
+n 
+\begin_inset Formula $\encoding$
+\end_inset
+
+.
+ The reason why 
+\begin_inset Formula $R$
+\end_inset
+
+ underperforms than 
+\begin_inset Formula $SPE$
+\end_inset
+
+ is more subtle.
+ Given only a single sample from the proposal, 
+\begin_inset Formula $R$
+\end_inset
+
+ becomes very sensitive to the estimation of variance while MAP estimation
+ yields strong and robust performance across the board.
+ In our observations, AAE models yield much larger dispersion on proposals
+ than VAE and this is why 
+\begin_inset Formula $R$
+\end_inset
+
+ has performs even more poorly for AAE compared to VAE.
+ This is likely to be related to adversarial training.
+\end_layout
+
+\begin_layout Standard
+For the latter two disturbances occurring purely on latent dimensions, results
+ are presented in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:disturbance_on_pz"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ We observe more mixed results where generally 
+\begin_inset Formula $SPE$
+\end_inset
+
+, 
+\begin_inset Formula $D$
+\end_inset
+
+ and 
+\begin_inset Formula $H^{2}$
+\end_inset
+
+ tend to perform better than 
+\begin_inset Formula $R$
+\end_inset
+
+ and 
+\begin_inset Formula $T^{2}$
+\end_inset
+
+.
+ A commonality between the former three is that they don't rely on random
+ samples, supporting argument against this practice.
+ One important observation to be made about 
+\begin_inset Formula $D$
+\end_inset
+
+ and 
+\begin_inset Formula $H^{2}$
+\end_inset
+
+ is that their detection performance do not always increase with increasing
+ magnitude of intensities while this is not the case for 
+\begin_inset Formula $SPE$
+\end_inset
+
+.
+ The reader is referred to the two left quadrants of 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:disturbance_on_pz"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ to observe this behavior.
+ This is due to the partial disentanglement (or entanglement) issue discussed
+ in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:simstudy:recognition"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ and just as expected, disturbances causing smaller radii are completely
+ missed by 
+\begin_inset Formula $D$
+\end_inset
+
+ and 
+\begin_inset Formula $H^{2}$
+\end_inset
+
+.
+ However, 
+\begin_inset Formula $D$
+\end_inset
+
+ and 
+\begin_inset Formula $H^{2}$
+\end_inset
+
+ works well for a scenario that is extremely unlikely in real-life: that
+ when the disturbance is purely on the latent space.
+ Even then, 
+\begin_inset Formula $SPE$
+\end_inset
+
+ still demonstrates decent performance regardless of the model and the direction
+ of intensity of disturbance.
+ We think there is not enough evidence to justify deploying a latent code
+ based statistic such as 
+\begin_inset Formula $D$
+\end_inset
+
+ and 
+\begin_inset Formula $H^{2}$
+\end_inset
+
+ considering the potential increase in false alarms.
+\end_layout
+
+\begin_layout Standard
+In summary, this simulation study suggests that 
+\begin_inset Formula $SPE$
+\end_inset
+
+ is the most reliable statistic among the statistics proposed for DLVMs
+ so far.
+ In the next section, we test this hypothesis on a real life example using
+ profiles from a hot steel rolling process.
+\end_layout
+
+\begin_layout Section
+Case Study Analysis & Results
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:case-study"
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+% TODO (@DS): how many anomaly samples do we have?
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+% TODO (@DS): Add a figure to illustrate both normal and abnormal samples,
+ with one image in each class
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Our dataset consists of center-cropped image profiles from a hot-steel rolling
+ process, which is shown in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Rolling"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ There are 13 classes of surface types identified by the domain engineers.
+ Four of these classes—0,1,9 and 11— are considered as in-control.
+ There are in total 338 images in these classes.
+ The other nine classes make up the out of control cases and they have in
+ combination 3351 images to report detection accuracy for.
+ We randomly partition the IC corpus to fix train, validate and test sets
+ with 60%-20%-20% relative sizes respectively.
+ The rest of the procedure followed is outlined in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:methodology:procedure"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ Same as in simulation study, to account for randomness in weight initialization
+, we replicate the experiment with 10 different seeds.
+ The results are summarized in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:rolling_results"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ They show strict similarity with the results in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:disturbance_on_pxz"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ 
+\begin_inset Formula $SPE$
+\end_inset
+
+ dominates for each of the candidate DLVM and 
+\begin_inset Formula $R$
+\end_inset
+
+ is the runner-up while statistics based on encoders suffer quite low and
+ often none detection performance.
+\end_layout
+
+\begin_layout Standard
+For completeness, we also include a comparison of our proposed statistic
+ against the baseline method PCA where 90% of the variance is retained.
+\end_layout
+
+\begin_layout Standard
+To support our claim of ineffectiveness of the statistics based on the latent
+ space such as 
+\begin_inset Formula $H^{2}$
+\end_inset
+
+ statistics, we refer the reader to 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:T2vsQ"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:T2vsQ-a"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows the 2-D latent code of the AAE model given a set of OC samples.
+ Since the 2-D latent code of OC samples are also close to the standard
+ normal distribution, 
+\begin_inset Formula $H^{2}$
+\end_inset
+
+ statistics will not be able to detect these OC behaviors.
+ The ineffectiveness of 
+\begin_inset Formula $H^{2}$
+\end_inset
+
+ statistics is validated in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:T2vsQ-b"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, where the density of 
+\begin_inset Formula $H^{2}$
+\end_inset
+
+ distribution for OC and IC samples are largely overlapped.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:T2vsQ-c"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows the reconstruction error of the images given the same 2-D latent
+ code.
+ From these images, it is clear that the reconstructed images are very different
+ from the OC images, where 
+\begin_inset Formula $SPE$
+\end_inset
+
+ can be used to capture such changes.
+ The effectiveness of 
+\begin_inset Formula $SPE$
+\end_inset
+
+ is also shown in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:T2vsQ-d"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, where the distributions of IC and OC samples do not have much overlap
+ at all.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement p
+wide false
+sideways true
+status open
+
+\begin_layout Plain Layout
+\begin_inset FormulaMacro
+\renewcommand{\arraystretch}{1.3}
+\end_inset
+
+ 
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Summary of fault detection accuracies on out-of-control cases averaged over
+ 10 replications per model and monitoring statistic.
+ Standard deviations are in parentheses.
+ Bolded values represent the maximum within each model, across different
+ statistics.
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:rolling_results"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="13" columns="11">
+<features booktabs="true" tabularvalignment="middle">
+<column alignment="left" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Model 
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="none" valignment="top" topline="true" usebox="none" special="c">
+\begin_inset Text
+
+\begin_layout Plain Layout
+AAE
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="none" valignment="top" topline="true" usebox="none" special="c">
+\begin_inset Text
+
+\begin_layout Plain Layout
+VAE
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Statistic 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+SPE 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+R 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+D 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+H2 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+T2 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+SPE 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+R 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+D 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+H2 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+T2 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Fault ID 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+0.33
+\series default
+(0.19) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.02(0.03) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00(0.00) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00(0.00) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.26(0.45) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+0.44
+\series default
+(0.06) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.37(0.03) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00(0.00) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00(0.00) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00(0.00) 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+0.84
+\series default
+(0.02) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.21(0.08) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00(0.00) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00(0.00) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.21(0.13) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+0.85
+\series default
+(0.01) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.84(0.01) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.17(0.06) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.23(0.04) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.03(0.03) 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+0.61
+\series default
+(0.09) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.10(0.03) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00(0.00) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00(0.00) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.11(0.19) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+0.75
+\series default
+(0.05) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.62(0.02) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00(0.00) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00(0.00) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00(0.00) 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+0.99
+\series default
+(0.00) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.12(0.09) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.81(0.01) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.83(0.02) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.04(0.07) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+1.00
+\series default
+(0.00) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+1.00
+\series default
+(0.00) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.58(0.07) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.62(0.09) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00(0.00) 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+0.73
+\series default
+(0.02) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.05(0.04) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00(0.00) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00(0.00) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.32(0.48) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+0.80
+\series default
+(0.01) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.79(0.01) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.06(0.03) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.15(0.08) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.05(0.05) 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+7 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+0.11
+\series default
+(0.00) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.04(0.01) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00(0.00) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00(0.00) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00(0.00) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+0.17
+\series default
+(0.01) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.13(0.01) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.01(0.01) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.01(0.01) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00(0.00) 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+8 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+0.51
+\series default
+(0.11) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.06(0.04) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00(0.00) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00(0.00) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.28(0.48) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+0.70
+\series default
+(0.07) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.64(0.02) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00(0.00) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00(0.00) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00(0.00) 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+0.54
+\series default
+(0.03) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.07(0.02) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00(0.00) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00(0.00) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.05(0.09) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+0.57
+\series default
+(0.05) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.49(0.03) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00(0.00) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00(0.00) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00(0.00) 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+12 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+0.82
+\series default
+(0.03) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.07(0.06) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00(0.00) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00(0.00) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.15(0.22) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+0.80
+\series default
+(0.02) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.79(0.01) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00(0.00) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00(0.00) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00(0.00) 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+13 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+0.76
+\series default
+(0.01) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.05(0.03) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00(0.00) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00(0.00) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.09(0.16) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+0.77
+\series default
+(0.02) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.71(0.04) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00(0.00) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00(0.00) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.01(0.00) 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement t
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+DLVM detection rate performance on hot steel rolling faulty cases compared
+ against PCA with 90% variance retained and 
+\begin_inset Formula $Q$
+\end_inset
+
+ statistic is used.
+ Best performers bolded on each row.
+ Standard deviation over 10 replication is in .
+\end_layout
+
+\end_inset
+
+
+\begin_inset FormulaMacro
+\renewcommand{\arraystretch}{1.3}
+\end_inset
+
+ 
+\begin_inset Tabular
+<lyxtabular version="3" rows="12" columns="4">
+<features booktabs="true" tabularvalignment="middle">
+<column alignment="left" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Model 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+PCA 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+AAE 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+VAE 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Fault ID 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00(0.00) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.33(0.19) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+0.44
+\series default
+(0.06) 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.78(0.00) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.84(0.02) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+0.85
+\series default
+(0.01) 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.56(0.00) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.61(0.09) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+0.75
+\series default
+(0.05) 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.99(0.00) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.99(0.00) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+1.00
+\series default
+(0.00) 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.52(0.00) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.73(0.02) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+0.80
+\series default
+(0.01) 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+7 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.11(0.00) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.11(0.00) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+0.17
+\series default
+(0.01) 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+8 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.34(0.00) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.51(0.11) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+0.70
+\series default
+(0.07) 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.29(0.00) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.54(0.03) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+0.57
+\series default
+(0.05) 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+12 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.69(0.00) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+0.82
+\series default
+(0.03) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.80(0.02) 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+13 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.56(0.00) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.76(0.01) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+0.77
+\series default
+(0.02) 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:rolling:vsPCA"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Conclusion
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:conclusions"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+btprint "btPrintCited"
+bibfiles "./bibliography"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\start_of_appendix
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+%dummy comment inserted by tex2lyx to ensure that this paragraph is not
+ empty
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+refalias
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\end_inset
+
+section
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\end_inset
+
+appendix
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Proof of 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "prop: T2Q"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:PoofOfPropTQ"
+
+\end_inset
+
+ Kullback-Leibler divergence between two multivariate Gaussian distributions
+ has a closed form solution.
+ If we define these distributions as 
+\begin_inset Formula $p_{0}=N(\mbz;\mbmu_{0},\mbSigma_{0})$
+\end_inset
+
+ and 
+\begin_inset Formula $p_{1}=N(\mbz;\mbmu_{1},\mbSigma_{1})$
+\end_inset
+
+ where 
+\begin_inset Formula $\mbmu$
+\end_inset
+
+ and 
+\begin_inset Formula $\mbSigma$
+\end_inset
+
+ are respective mean vectors and covariance matrices, then according to
+ 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "hershey2007approximating"
+literal "false"
+
+\end_inset
+
+ the closed form solution will be the following: 
+\begin_inset Formula 
+\begin{align*}
+\KL{p_{0}}{p_{1}} & =\frac{1}{2}[\log\frac{\g\mbSigma_{1}\g}{\g\mbSigma_{0}\g}+Tr(\mbSigma_{1}\inv\mbSigma_{0})-r\\
+ & +(\mu_{0}-\mu{1})^{\top}\mbSigma_{1}\inv(\mu_{0}-\mu{1})]
+\end{align*}
+
+\end_inset
+
+Since 
+\begin_inset Formula $\encoding=\Norm(\mu(\mbx),\mbSigma_{z})$
+\end_inset
+
+ and 
+\begin_inset Formula $p(\mbz)=\Norm(0,\mbI)$
+\end_inset
+
+, we can derive that 
+\begin_inset Formula 
+\begin{align*}
+\KL{\encoding}{p(\mbz)} & =\frac{1}{2}\left[-\log\g\mbSigma_{z}\g+Tr(\mbSigma_{z})-r\right]+\frac{1}{2}\mu(\mbx)^{\top}\mu(\mbx)\\
+ & =\frac{1}{2}\mu(\mbx)^{\top}\mu(\mbx)+C,
+\end{align*}
+
+\end_inset
+
+where 
+\begin_inset Formula $C=-\log\g\mbSigma_{z}\g+Tr(\mbSigma_{z})-r$
+\end_inset
+
+ is a constant, which doesn't depend on 
+\begin_inset Formula $\mbx$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+To derive the SPE statistics, we will derive
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align}
+ & \mathbb{E}_{\mbz\sim q_{\mbtheta}}\|\mbx-\mbW\mbz\|^{2}\nonumber \\
+= & \mathbb{E}_{\mbz\sim q_{\mbtheta}}(\mbx^{\top}\mbx-2\mbz^{\top}\mbW\mbx+\mbz^{\top}\mbW^{\top}\mbW\mbz)\nonumber \\
+= & \mbx^{\top}\mbx-2\mu(\mbx)^{\top}\mbW\mbx+\mathbb{E}_{\mbz\sim q_{\mbtheta}}(\mbz^{\top}\mbW^{\top}\mbW\mbz)\label{eq: spew}
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Here, we know that 
+\begin_inset Formula 
+\begin{align}
+ & \mathbb{E}_{\mbz\sim q_{\mbtheta}}(\mbz^{\top}\mbW^{\top}\mbW\mbz)\nonumber \\
+= & \mathbb{E}_{\mbz\sim q_{\mbtheta}}tr(\mbz^{\top}\mbW^{\top}\mbW\mbz)\nonumber \\
+= & tr\left(\mbW^{\top}\mbW\mathbb{E}_{\mbz\sim q_{\mbtheta}}(\mbz\mbz^{\top})\right)\nonumber \\
+= & tr\left(\mbW^{\top}\mbW(\mu(\mbx)\mu(\mbx)^{\top}+\Sigma_{z})\right)\nonumber \\
+= & \mu(\mbx)^{\top}\mbW^{\top}\mbW\mu(\mbx)+tr\left(\mbW^{\top}\mbW\Sigma_{z}\right)\label{eq: tracezwwz}
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Therefore, by plugging 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq: tracezwwz"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ into 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq: spew"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, we have 
+\begin_inset Formula 
+\begin{align*}
+\mathbb{E}_{\mbz\sim q_{\mbtheta}}\|\mbx-\mbW\mbz\|^{2} & =\mbx^{\top}\mbx-2\mu(\mbx)^{\top}\mbW\mbx+\mathbb{E}_{\mbz\sim q_{\mbtheta}}(\mbz^{\top}\mbW^{\top}\mbW\mbz)\\
+ & =\mbx^{\top}\mbx-2\mu(\mbx)^{\top}\mbW\mbx+\mu(\mbx)^{\top}\mbW^{\top}\mbW\mu(\mbx)+tr\left(\mbW^{\top}\mbW\Sigma_{z}\right)\\
+ & =\|\mbx-\mbW\mu(\mbx)\|^{2}+C\\
+\end{align*}
+
+\end_inset
+
+where 
+\begin_inset Formula $C=tr\left(\mbW^{\top}\mbW\Sigma_{z}\right)$
+\end_inset
+
+ that does not depend on 
+\begin_inset Formula $\mbx$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
+A Toy Example to Demonstrate Out-of-distribution Behavior of Neural Networks
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset label
+LatexCommand label
+name "app:rosenbrock"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Derived Testing Statistics for SPE
+\end_layout
+
+\begin_layout Standard
+Here, we define 
+\begin_inset Formula $R(z)=\|y-g(z)\|^{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+E_{\mbz\sim q_{\theta}}R(\mbz) & =R(\mu_{z})+R'(\mbz)E[(\mbz-\mu(\mbx))]+R''(\mbz)\frac{1}{2}E[(\mbz-\mu(\mbx))^{\top}H_{z}(\mbz-\mu(\mbx))]\\
+ & =R(\mu_{z})+R''(\mbz)\frac{1}{2}E[(\mbz-\mu(\mbx))^{\top}H_{z}(\mbz-\mu(\mbx))]\\
+ & =R(\mu_{z})+\frac{1}{2}tr(H_{z}E[(\mbz-\mu_{z})(\mbz-\mu_{z})^{T}])\\
+ & =R(\mu_{z})+\frac{1}{2}tr(H_{z}\Sigma_{z})
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Since 
+\begin_inset Formula $\Sigma_{z}$
+\end_inset
+
+ is a diagonal matrix, 
+\begin_inset Formula $tr(H_{z}S_{z})=tr(diag(H_{z})S_{z})=\sum_{i}(H_{z})_{ii}(S_{z})_{ii}$
+\end_inset
+
+, and only diagonal element of 
+\begin_inset Formula $H_{z}$
+\end_inset
+
+ is needed, so it can be computed efficiently.
+\end_layout
+
+\end_body
+\end_document
