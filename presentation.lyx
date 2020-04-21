@@ -239,7 +239,7 @@ Since
 \begin_inset Formula $p(\mbx)=\int p(\mbx\g\mbz)p(\mbz)d\mbz$
 \end_inset
 
-, we can observe two sources of out-of-control behaviours:
+, we can observe two sources of out-of-control behaviors:
 \end_layout
 
 \begin_layout Enumerate
@@ -610,6 +610,13 @@ ERE & \triangleq\E_{\mbz\sim q_{\mbtheta}}\log\decoding\label{eqn:propstat:final
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset Formula $ERE$
+\end_inset
+
+ stands for Expected Reconstruction Error.
+\end_layout
+
 \end_deeper
 \begin_layout Standard
 \begin_inset Separator plain
@@ -709,7 +716,7 @@ details omitted here...
 status open
 
 \begin_layout Plain Layout
-Latent Representations are Partially Entangled
+Latent Representations are Partially Entangled and Fail to Extrapolate
 \end_layout
 
 \end_inset
@@ -761,8 +768,8 @@ They will go undetected in a potential disturbance scenario that involves
 \end_layout
 
 \begin_layout Itemize
-This is how entangled representations pose a threat to monitoring statistics
- based on latent dimensions.
+This is how entangled representations and failure to extrapolate pose a
+ threat to monitoring statistics based on latent dimensions.
 \end_layout
 
 \end_deeper
@@ -837,6 +844,10 @@ OC samples might fall onto IC region should a statistic based on latent
  variables are used.
 \end_layout
 
+\begin_layout Itemize
+On the other hand, OC samples will not be reconstructed
+\end_layout
+
 \end_deeper
 \begin_layout Standard
 \begin_inset Separator plain
@@ -849,6 +860,33 @@ OC samples might fall onto IC region should a statistic based on latent
 Case Study and Results
 \end_layout
 
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Case Study Dataset
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+A set of defect profiles
+\end_layout
+
+\begin_layout Itemize
+In-control: Minor Defects
+\end_layout
+
+\begin_layout Itemize
+Out-of-control: Major Defects
+\end_layout
+
+\end_deeper
 \begin_layout Section
 Conclusions
 \end_layout

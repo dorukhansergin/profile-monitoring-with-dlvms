@@ -198,7 +198,6 @@ noprefix "false"
 
 \begin_layout Standard
 \begin_inset Float figure
-placement t
 wide false
 sideways false
 status open
@@ -226,7 +225,7 @@ name "fig:Rolling"
 
 \end_inset
 
- 
+
 \end_layout
 
 \end_inset
@@ -1468,11 +1467,11 @@ literal "false"
 
 In this case, from PPCA, the encoder also follows the normal distribution
  as 
-\begin_inset Formula $\encoding=\Norm(\mu(\mbx),\Sigma_{z})$
+\begin_inset Formula $\encoding=\Norm(\mu_{\mbphi}(\mbx),\Sigma_{z})$
 \end_inset
 
 , where 
-\begin_inset Formula $\mu(\mbx)=\mbM^{-1}\mbW^{\top}\mbx$
+\begin_inset Formula $\mu_{\mbphi}(\mbx)=\mbM^{-1}\mbW^{\top}\mbx$
 \end_inset
 
  and 
@@ -1487,7 +1486,7 @@ In this case, from PPCA, the encoder also follows the normal distribution
  Then, the two monitoring statistics can be defined as: 
 \begin_inset Formula 
 \begin{equation}
-\KL{\encoding}{p(\mbz)}=\frac{1}{2}\gg\mu(\mbx)\gg^{2}+C_{1}\label{eqn:KL_PPCA}
+\KL{\encoding}{p(\mbz)}=\frac{1}{2}\gg\mu_{\mbphi}(\mbx)\gg^{2}+C_{1}\label{eqn:KL_PPCA}
 \end{equation}
 
 \end_inset
@@ -1495,7 +1494,7 @@ In this case, from PPCA, the encoder also follows the normal distribution
 
 \begin_inset Formula 
 \begin{equation}
-\E_{\mbz\sim q_{\mbtheta}}\log\decoding\propto\gg\mbx-\mbW\mu(\mbx)\gg^{2}+C_{2}\label{eqn:E_PPCA}
+\E_{\mbz\sim q_{\mbphi}}\log\decoding\propto\gg\mbx-\mbW\mu_{\mbphi}(\mbx)\gg^{2}+C_{2}\label{eqn:E_PPCA}
 \end{equation}
 
 \end_inset
@@ -1547,7 +1546,7 @@ noprefix "false"
 \end_inset
 
 , and 
-\begin_inset Formula $\E_{\mbz\sim q_{\mbtheta}}$
+\begin_inset Formula $\E_{\mbz\sim q_{\mbphi}}\log\decoding$
 \end_inset
 
  is equivalent the 
@@ -1579,7 +1578,7 @@ noprefix "false"
 \end_inset
 
  or in the case of PPCA 
-\begin_inset Formula $\E_{\mbz\sim q_{\mbtheta}}\log\decoding$
+\begin_inset Formula $\E_{\mbz\sim q_{\mbphi}}\log\decoding$
 \end_inset
 
 .
@@ -1637,7 +1636,7 @@ Second, the mean encoder
 \begin_inset Formula $\mu_{\mbphi}$
 \end_inset
 
- —which is a deep encoder—is likely to lack two important features: disentangled
+—which is a deep encoder—is likely to lack two important features: disentangled
  representations and extrapolation capabilities.
  These two qualities are required so that extreme values of latent variables
  consistently converge out of in-control zone.
@@ -1654,6 +1653,71 @@ noprefix "false"
 .
  Observe how Point C is falsely identified as in-control when learned representa
 tions are not disentangled or when they fail to extrapolate.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figs/Disentangled_Extrapolated.pdf
+	lyxscale 50
+	width 90text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Different ways how an independent source of variation is learned.
+ 
+\series bold
+Top Left:
+\series default
+ A hypothetical in-control latent space (gray area) and a range of independent
+ source of variation (line).
+ Points A and B are extreme values of in-control and point C is an out-of-contro
+l sample.
+ 
+\series bold
+Top Right: 
+\series default
+An ideal learned representation.
+ 
+\series bold
+Bottom Left:
+\series default
+ A learned representation fails to extrapolate.
+ 
+\series bold
+Bottom Right: 
+\series default
+A learned representation that is entangled.
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:entang-extrap"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1679,17 +1743,7 @@ Moreover, even if the representations are disentangled, correct mappings
 \begin_inset Formula $\encoding$
 \end_inset
 
- may still not be obtained due to failure to extrapolate (see 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:entang-extrap"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-).
+ may still not be obtained due to failure to extrapolate.
  Deep neural networks approximates well only at a bounded domain defined
  by where the training set—in our case, the in-control set—is densely sampled
  from.
@@ -1736,69 +1790,6 @@ noprefix "false"
 \end_layout
 
 \begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\begin_inset Graphics
-	filename figs/Disentangled_Extrapolated.pdf
-	width 90text%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\series bold
-Top Left:
-\series default
- A hypothetical in-control latent space (gray area) and a range of independent
- source of variation (line).
- Points A and B are extreme values of in-control and point C is an out-of-contro
-l sample.
- 
-\series bold
-Top Right: 
-\series default
-An ideal learned representation.
- 
-\series bold
-Bottom Left:
-\series default
- A learned representation fails to extrapolate.
- 
-\series bold
-Bottom Right: 
-\series default
-A learned representation that is entangled.
- 
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:entang-extrap"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 Unlike latent variable-based statistics, extrapolation and disentanglement
  issues in 
 \begin_inset Formula $\encoding$
@@ -1809,7 +1800,8 @@ Unlike latent variable-based statistics, extrapolation and disentanglement
 \end_inset
 
  help observable variable-based statistic detect faults better.
- This holds true even when the disturbance is purely on latent structure.
+ More interestingly, this holds true even when the disturbance is purely
+ on the latent structure.
  Incorrect mappings by 
 \begin_inset Formula $\encoding$
 \end_inset
@@ -1818,7 +1810,7 @@ Unlike latent variable-based statistics, extrapolation and disentanglement
 \begin_inset Formula $\decoding$
 \end_inset
 
- and thus larger statistic that will fall beyond control imits.
+ and thus larger statistic that will fall beyond control limits.
  Second, even if the mapping was correct, we might have extrapolation issues
  in the decoder 
 \begin_inset Formula $\decoding$
@@ -1856,13 +1848,10 @@ Unlike latent variable-based statistics, extrapolation and disentanglement
 \end_layout
 
 \begin_layout Standard
-As of now, we have enough reasons to recommend the use of 
-\begin_inset Formula $\E_{\mbz\sim q_{\mbtheta}}\log\decoding$
-\end_inset
-
- as the only test statistic for a profile monitoring application that uses
- DLVMs.
- This statistic is very similar to 
+As of now, we have enough reasons to recommend the use of observable variable-ba
+sed statistics as the only type of test statistic for a profile monitoring
+ application that uses VAE.
+ Indeed, variations of this type have been proposed previously: 
 \begin_inset Formula $SPE$
 \end_inset
 
@@ -1890,21 +1879,26 @@ literal "false"
  However, they both use random samples from the proposal distribution to
  estimate the expectation.
  This approach may require a large number of samples to be generated and
- thus a large number of forward passes on a neural network, which is prohibitive
-ly expensive in terms of computation.
- We formulate a smarter way to approximate the test statistic, by using
- first order Taylor expansion for the moment of the log-likelihood.
+ thus a large number of forward passes on the decoder network, which is
+ prohibitively expensive in terms of computation.
+ We propose using first order Taylor expansion instead.
  We call this approximation 
 \begin_inset Formula $ERE$
 \end_inset
 
-, which is our final proposed statistic.
+, which stands for expected reconstruction error due to the resemblance
+ of this statistic to the reconstruction error in deterministic autoencoders.
+ 
+\begin_inset Formula $ERE$
+\end_inset
+
+ can be derived as follows:
 \end_layout
 
 \begin_layout Standard
 \begin_inset Formula 
 \begin{align}
-\oursacronym & \triangleq\E_{\mbz\sim q_{\mbtheta}}\log\decoding\label{eqn:propstat:final}\\
+ERE & \triangleq\E_{\mbz\sim q_{\mbtheta}}\log\decoding\label{eqn:propstat:final}\\
  & =\E_{\mbz\sim p_{\mbtheta}}\left[\log q_{\mbtheta}(\mbx\g\mbz-(\mu_{\mbphi}-\mbz))\right]\\
  & \approx\log\ptheta(\mbx\g\mu_{\mbphi}(\mbx))\\
  & \propto\gg\mbx-\mu_{\mbtheta}(\mu_{\mbphi}(\mbx))\gg_{2}^{2}+C_{3}
@@ -1912,13 +1906,13 @@ ly expensive in terms of computation.
 
 \end_inset
 
-Again, the constant 
+The constant 
 \begin_inset Formula $C_{3}$
 \end_inset
 
  can be ignored given control charting logistics.
- Given a trained DLVM such as VAE or AAE, this quantity can be computed
- by forward passing the new profile from the process 
+ Given a trained VAE, this quantity can be computed by forward passing the
+ new profile from the process 
 \begin_inset Formula $\mbx$
 \end_inset
 
@@ -2029,39 +2023,33 @@ status collapsed
 \end_inset
 
  percentile as the UCL.
- 
 \end_layout
 
 \begin_layout Itemize
-Record the estimated false alarm rate (FAR) as the average number of samples
- 
-\begin_inset Formula $x\in\dataset^{tst}$
-\end_inset
-
- that are misclassified as OC because their test statistic yields a number
- higher than UCL.
- 
-\end_layout
-
-\begin_layout Itemize
-Start admitting profiles from the disturbed process.
- Calculate test statistic using the trained DLVM.
+Start admitting profiles from the process.
+ Calculate test statistic using the trained VAE.
  If test statistic is over UCL, identify the sample as OC.
  
 \end_layout
 
 \begin_layout Standard
-For each DLVM type, we train 10 different model instances with different
- seeds to account for inherent randomness due to weight initialization of
- DLVMs.
+We train 10 different model instances with different seeds to account for
+ inherent randomness due to weight initialization of deep neural networks.
 \end_layout
 
 \begin_layout Subsection
-Model Architectures & Implementation Details
+Neural Network Architectures 
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Model-Architectures"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-Both VAE and AAE use the same encoder-decoder structure outlined in 
+We use the encoder-decoder structure outlined in 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "tab:model-architectures"
@@ -2129,8 +2117,11 @@ CT(
 \end_layout
 
 \begin_layout Itemize
-FC(I, O): Fully connected layer with arguments referring to input dimension
- 
+FC(
+\begin_inset Formula $I,O$
+\end_inset
+
+): Fully connected layer with arguments referring to input dimension 
 \begin_inset Formula $I$
 \end_inset
 
@@ -2144,18 +2135,11 @@ FC(I, O): Fully connected layer with arguments referring to input dimension
 
 \begin_layout Itemize
 A: Activation function.
- Can either be Rectified linear unit (ReLU) or Leaky ReLU with a negative
- slope 
+ Leaky ReLU with a negative slope 
 \begin_inset Formula $0.2$
 \end_inset
 
 .
- 
-\end_layout
-
-\begin_layout Itemize
-S(): Sigmoid activation.
- 
 \end_layout
 
 \begin_layout Standard
@@ -2175,16 +2159,6 @@ literal "false"
 .
  Convolutional transpose layers are used to upscale latent codes back to
  observable dimensions.
- Leaky ReLU has been suggested to improve performance in adversarial training
- 
-\begin_inset CommandInset citation
-LatexCommand citep
-key "salimans2016improved"
-literal "false"
-
-\end_inset
-
- but we include that option for both VAE and AAE for fairness.
 \end_layout
 
 \begin_layout Standard
@@ -2200,20 +2174,12 @@ noprefix "false"
 \end_inset
 
 .
- For AAE and VAE, an encoder will output 
+ The encoder will output 
 \begin_inset Formula $2r$
 \end_inset
 
  nodes which is a concatenation of the inferred posterior mean and variance,
  both are of length 
-\begin_inset Formula $r$
-\end_inset
-
-.
- For AAE, a simple multilayer perceptron—the discriminator—is created additional
-ly.
- A grid of hyper-parameters are considered for learning rate, batch size,
- and the number of latent dimensions 
 \begin_inset Formula $r$
 \end_inset
 
@@ -2237,11 +2203,6 @@ status open
 
 \begin_layout Plain Layout
 Architecture details of deep neural networks used in this study
-\end_layout
-
-\end_inset
-
-
 \begin_inset CommandInset label
 LatexCommand label
 name "tab:model-architectures"
@@ -2251,9 +2212,14 @@ name "tab:model-architectures"
 
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
 \begin_layout Plain Layout
 \begin_inset Tabular
-<lyxtabular version="3" rows="4" columns="2">
+<lyxtabular version="3" rows="3" columns="2">
 <features booktabs="true" tabularvalignment="middle">
 <column alignment="left" valignment="top">
 <column alignment="left" valignment="top" width="50text%">
@@ -2303,7 +2269,7 @@ C(32, 4, 2, 1) - A - C(32, 4, 2, 1) - A - C(64, 4, 2, 1) - A - C(64, 4,
 </cell>
 </row>
 <row>
-<cell alignment="left" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -2312,7 +2278,7 @@ Decoder
 
 \end_inset
 </cell>
-<cell alignment="left" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -2322,30 +2288,6 @@ FC(
 
 , 256) - A - CT(64, 4, 0, 0) - A - CT(64, 4, 2, 1) - A - C(32, 4, 2, 1)
  - CT(32, 4, 2, 1) - A - CT(1, 4, 2, 1) 
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="left" valignment="top" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Discriminator 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-FC(
-\begin_inset Formula $r$
-\end_inset
-
-, 512) - FC(512, 256) - FC(256, 1) - S() 
 \end_layout
 
 \end_inset
@@ -2365,6 +2307,45 @@ FC(
 
 \begin_layout Section
 Simulation Study Analysis and Results
+\end_layout
+
+\begin_layout Standard
+In this section, we propose the setup and results of our simulation study.
+ The rationale behind conducting a simulation study is to have full control
+ and information over the data generating process.
+ This way, we can test our claims we make in
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:proposed-statistic"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ For every experiment mentioned in this section, we follow the procedure
+ outlined in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:methodology:procedure"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ and we use VAE models with the architecture described in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Model-Architectures"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Subsection
@@ -2390,7 +2371,7 @@ literal "false"
 .
  The simulation procedure produces 2D point clouds that resemble the scanned
  topology of a gasket bead.
- Let each point on a 
+ Let each pixel on a 
 \begin_inset Formula $64$
 \end_inset
 
@@ -2411,7 +2392,7 @@ literal "false"
 \begin_inset Formula $1$
 \end_inset
 
- equally spaced, left to right and bottom-up.
+, equally spaced, left to right and bottom-up.
  Each tuple takes a value based on its location through a function 
 \begin_inset Formula $\mbp\mapsto f(\mbp;\czero,r)+\epsilon$
 \end_inset
@@ -2489,6 +2470,7 @@ name "fig:gasketgrid"
  
 \begin_inset Graphics
 	filename figs/gasket.pdf
+	lyxscale 50
 	width 90line%
 
 \end_inset
@@ -2528,15 +2510,13 @@ r\sim\Norm(0.2,6.25\times10^{-4})
 
 \begin_layout Standard
 Finally, we will consider the following four types of OC variation patterns
- for the system.
- 
+ for the system:
 \end_layout
 
 \begin_layout Itemize
 
 \series bold
-Location shift.
-
+Location shift:
 \series default
  the mean of the process that generates 
 \begin_inset Formula $\czero$
@@ -2557,8 +2537,7 @@ Location shift.
 \begin_layout Itemize
 
 \series bold
-Width shift.
-
+Width shift:
 \series default
  the mean of the process that generates 
 \begin_inset Formula $a$
@@ -2579,10 +2558,9 @@ Width shift.
 \begin_layout Itemize
 
 \series bold
-Mean shift.
-
+Mean shift
 \series default
- all of the pixels are added an additive disturbance 
+: all of the pixels are added an additive disturbance 
 \begin_inset Formula $\delta$
 \end_inset
 
@@ -2597,8 +2575,7 @@ Mean shift.
 \begin_layout Itemize
 
 \series bold
-Magnitude shift.
-
+Magnitude shift:
 \series default
  all of the pixels are added an multiplicative disturbance 
 \begin_inset Formula $\delta$
@@ -2608,7 +2585,7 @@ Magnitude shift.
 \begin_inset Formula $f(\mbp;c_{0},r)\leftarrow f(\mbp;c_{0},r)*\delta$
 \end_inset
 
- 
+
 \end_layout
 
 \begin_layout Standard
@@ -2617,9 +2594,9 @@ Here,
 \end_inset
 
  is the intensity of the change.
- Note that location shift and width shift represent disturbances in residual
+ Note that location shift and width shift represent disturbances in latent
  distribution 
-\begin_inset Formula $p_{\delta}(\mbx\g\mbz)$
+\begin_inset Formula $p_{\delta}(\mbz)$
 \end_inset
 
 .
@@ -2628,8 +2605,8 @@ Here,
  we expect different reactions to these changes by deep convolutional latent
  variable models in terms of disentanglement.
  The other two cases, mean shift and magnitude shift, represent disturbances
- in latent prior 
-\begin_inset Formula $p_{\delta}(\mbz)$
+ in the conditional distribution 
+\begin_inset Formula $p_{\delta}(\mbx\g\mbz)$
 \end_inset
 
 .
@@ -2638,12 +2615,7 @@ Here,
 \end_layout
 
 \begin_layout Subsection
-On the disentanglement and extrapolation performance of the recognition
- network 
-\begin_inset Formula $\encoding$
-\end_inset
-
-
+On the disentanglement and extrapolation performance of the encoder
 \end_layout
 
 \begin_layout Standard
@@ -2655,8 +2627,8 @@ name "sec:simstudy:recognition"
 
  To investigate the disentanglement and extrapolation performance of the
  recognition network we employ the following procedure.
- First, we train a DLVM (in this case a VAE with latent code being 2-dimensional
-) to convergence using in-control samples as described in 
+ First, we train a VAE with 2-dimensional latent code (for easier visualization)
+ to convergence using in-control samples as described in 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "sec:simsetting"
@@ -2667,16 +2639,15 @@ noprefix "false"
 \end_inset
 
 .
- Then, we feed intentionally picked examples on the space of our latent
- variables —radius 
+ Then, we a set of profiles with varying center location 
+\begin_inset Formula $c_{0}$
+\end_inset
+
+ and radius 
 \begin_inset Formula $r$
 \end_inset
 
- and center location 
-\begin_inset Formula $\czero$
-\end_inset
-
-— into the recognition network to obtain their respective proposal distributions.
+ into the recognition network to obtain their respective proposal distributions.
  The points are picked inside and outside the tolerance region of the two
  quality characteristics to be compared against their mapping onto the represent
 ation space.
@@ -2692,34 +2663,113 @@ noprefix "false"
 
 \end_inset
 
-, where the samples from the proposal can be traced back to the true sources
- of variation.
- We observe an overall trend that distributions are not laid out in regards
- to the layout of the true sources of variation after they are mapped to
- the representation space.
- It shows that the disentanglement is not reconstructed via the VAE framework.
+.
+ There are two important observations we would like to point out:
 \end_layout
 
-\begin_layout Standard
-Furthermore, we would like to study the anomaly detection performance.
- We observe that the extreme cases of the center location 
-\begin_inset Formula $\czero$
+\begin_layout Itemize
+
+\series bold
+Representations are partially entangled
+\series default
+.
+ For every fixed center location, the direction of the axis on which radius
+ change differs.
+ The direction would have been independent from the fixed value of center
+ location should the representations were disentangled.
+ We may claim partial disentanglement for location but that would be quite
+ unlikely if it wasn't for the translational equivariance injected in convolutio
+nal layers 
+\begin_inset CommandInset citation
+LatexCommand citep
+after "Thm. 1"
+key "locatello2018challenging"
+literal "false"
+
 \end_inset
 
- (i.e., Case 0, 3, 6, 2, 5, 8) are actually mapped outside or near the boundary
- of the circle.
- For the extreme cases of radius, only extremely large radii (i.e., Case 7)
- result in extreme latent codes.
- This implies that circles with small radii will be missed by the monitoring
- statistics based purely on latent code (i.e., Case 1).
+.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Encoder cannot extrapolate for extremely values of radius.
+ 
+\series default
+Observe how from point 7 to 1, from point 6 to 0 and from point 8 to 2 the
+ proposal means are converging to a point in the in-control region.
+ This signals that the representations will not be able to extrapolate for
+ even smaller values of radii.
 \end_layout
 
 \begin_layout Standard
-We only achieved partial disentanglement and that relates to the location
- only because we have translational equivariance in our convolutional architectu
-re.
- That demonstrates that our findings are in agreement with our rationale
- behind the proposed statistic outlined in 
+Given these two observations, we can conclude right away that extremely
+ small gaskets (in terms of radius) will likely be gone undetected.
+ On the other hand, samples coming from some tolerable radius ranges—such
+ as point 7— will be falsely identified as out-of-control.
+ Observe for that point, how most sample latent codes fall outside the tolerable
+ region in the inferred space.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figs/proposals_gray.pdf
+	width 100line%
+
+\end_inset
+
+ 
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Figure depicting the behavior of the recongition network of a VAE trained
+ with in-control gasket sampled.
+ 
+\series bold
+Left: 
+\series default
+Nine gasket profiles whose latent variables are picked from in and out of
+ the tolerable region of radius and center location.
+ The tolerable region is represented by the gray dashed circle, a curve
+ of isodistant points in terms of Mahalanobis distance to in control distributio
+n.
+ 
+\series bold
+Right:
+\series default
+ 150 latent codes sampled from each proposal (associated with the same id
+ numbers on the top).
+ Isodistant curve for standard Gaussian that is probability-wise equivalent
+ to the one on the left is depicted as a gray dashed circle.
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:proposals"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Overall, our are in agreement with our rationale behind the proposed statistic
+ outlined in 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "sec:proposed-statistic"
@@ -2758,85 +2808,38 @@ noprefix "false"
 \end_layout
 
 \begin_layout Standard
-The finding is also consistent with the one presented in 
+We also want to make a remark that we tried the beta-VAE framework explained
+ in 
 \begin_inset CommandInset citation
 LatexCommand citep
-after "Thm. 1"
-key "locatello2018challenging"
+key "higgins2017beta"
 literal "false"
 
 \end_inset
 
-.
- Without proper inductive biases —which is usually a very challenging task
- for industrial settings— it is impossible for a latent variable model to
- learn disentangled representations.
-\end_layout
+ with 
+\series bold
 
-\begin_layout Standard
-\begin_inset Float figure
-placement t
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\begin_inset Graphics
-	filename figs/proposals.pdf
-	width 100line%
-
-\end_inset
-
- 
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Figure depicting the behavior of the recongition network of a VAE trained
- with in-control gasket sampled.
- On the left nine gasket profiles whose latent variables are picked from
- in and out of the tolerable region of radius and center location.
- The tolerable region is represented by the gray dashed circle, a curve
- of isodistant points in terms of Mahalanobis distance to in control distributio
-n.
- On the right, 150 latent codes sampled from each proposal (associated with
- the same id numbers on the top).
- Isodistant curve for standard Gaussian that is probability-wise equivalent
- to the one on the left is depicted as a gray dashed circle.
-\end_layout
-
+\begin_inset Formula $\beta=4$
 \end_inset
 
 
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:proposals"
-
-\end_inset
-
- 
-\end_layout
-
-\end_inset
-
-
+\series default
+ to remedy the problem of entanglement but obtained similar results.
 \end_layout
 
 \begin_layout Subsection
-On the extrapolation performance of the generator network 
-\begin_inset Formula $\decoding$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
+On the extrapolation performance of the decoder network
 \begin_inset CommandInset label
 LatexCommand label
 name "sec:simstudy:generator"
 
 \end_inset
 
- 
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:manifold_vae"
@@ -2846,11 +2849,8 @@ noprefix "false"
 
 \end_inset
 
- depicts the extrapolation performance of the generator 
-\begin_inset Formula $\decoding$
-\end_inset
-
- of the same DLVM described in 
+ hints us about the extrapolation performance of the decoder of the same
+ VAE described in 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "sec:simstudy:recognition"
@@ -2871,9 +2871,20 @@ noprefix "false"
 \end_inset
 
 .
+ It should be cross-examined with 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:proposals"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ as the encoder and decoder are tightly coupled to each other.
  We observe two important behavior: the posterior gets distorted beyond
  two or three standard deviations and the representations are partially
- disentangled in line with the behaviour of its encoder depicted in 
+ entangled in line with the behavior of its encoder depicted in 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:proposals"
@@ -2884,105 +2895,16 @@ noprefix "false"
 \end_inset
 
 .
- To reiterate, we observe that our generator cannot reason well beyond the
- bounds of its training samples.
- We observe that variation comes to a halt beyond fifth standard deviation
- and roundness of beads becomes cluttered.
- We observe a much severe case of the same for an example trained AAE as
- shown in 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:manifold_aae"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
- where clutters start as early as second standard deviation.
-\end_layout
-
-\begin_layout Standard
-It is straightforward to define disentanglement in the context of the simulation
- case since we have explicit control over the semantics and variations in
- the data.
- Ideally, we want a DLVM with two-dimensional latent code to capture variations
- in radius and center location independently.
- What we observe from both manifold figures is that variations in radius
- and location are convoluted.
- The situation can be understood better when 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:manifold_vae"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
- and 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:proposals"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
- are jointly examined.
- DLVMs, without specific inductive biases injected into the networks, will
- not discover the true latent variables and cannot extrapolate well beyond
- the training domain, which leaves the latent variables method not useful.
-\end_layout
-
-\begin_layout Standard
-We also want to make a remark that we tried the beta-VAE framework explained
- in 
-\begin_inset CommandInset citation
-LatexCommand citep
-key "higgins2017beta"
-literal "false"
-
-\end_inset
-
- to remedy the problem but failed to get disentangled representations even
- for this simple case.
- The lack of training samples (i.e., 500 samples) may be another reason why
- the disentanglement is not clear.
-\end_layout
-
-\begin_layout Standard
-However, unlike the case for recognition network, the errors of generative
- network beyond the training region are indeed welcomed as they will inflate
- the negative log-likelihood.
- Along with the findings 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "sec:simstudy:recognition"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-, these findings support the rationale behind the statistic we propose in
- 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "sec:proposed-statistic"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-.
+ To see how this will help detecting disturbances in latent space, consider
+ a gasket that is extremely large or at the very margins of the grid.
+ Since the decoder cannot generate such a sample, there will be large pixel-to-p
+ixel differences.
+ This will in turn produce a larger monitoring statistic that will likely
+ to fall outside the control limit.
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float figure
-placement !t
 wide false
 sideways false
 status open
@@ -2998,10 +2920,10 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Figure depicting per-dimension manifold of a VAE with two-dimensional latent
- code, trained on in-control gasket samples.
- Each row represents which latent dimension is altered while the other dimension
- is fixed at zero.
+Latent space traversal and the response of the decoder of a VAE with 2-dimension
+al latent codes and trained with in-control gasket samples.
+ Each row represents which latent dimension is traversed while the other
+ dimension is fixed at zero.
  Each column represents what value is assigned to that latent dimension
  that is represented by the row label.
 \end_layout
@@ -3023,42 +2945,88 @@ name "fig:manifold_vae"
 
 \end_layout
 
+\begin_layout Subsection
+On the estimation of log-likelihood under importance sampling
+\end_layout
+
+\begin_layout Standard
+Earlier, we claimed that it would take too many Monte Carlo sampling iterations
+ to get a meaningful estimate of 
+\begin_inset Formula $\E_{\mbz\sim q_{\mbtheta}}\log\decoding$
+\end_inset
+
+.
+ In this section we test that claim on a random sample 
+\begin_inset Formula $\mbx$
+\end_inset
+
+ using the proposal distribution 
+\begin_inset Formula $\mbz\sim\encoding$
+\end_inset
+
+ which is obtained via the encoder of the same VAE model we have been using
+ in this section.
+ See 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Estimation-comparison-between"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ for the results.
+ The key observation is that it takes at least a few tens of Monte Carlo
+ iterations to get a stable and accurate estimation.
+ At that level, the single pass through encoder is negligible.
+ This means using sampling will be more costly at least a factor of few
+ tens to achieve the same accuracy as first-order approximation that we
+ suggest.
+\end_layout
+
 \begin_layout Standard
 \begin_inset Float figure
-placement !t
 wide false
 sideways false
 status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename figs/manifold_aae.pdf
-	width 90line%
+	filename figs/mc_vs_foa.pdf
+	lyxscale 90
+	width 90text%
 
 \end_inset
 
- 
+
+\end_layout
+
+\begin_layout Plain Layout
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Figure depicting per-dimension manifold of a AAE with two-dimensional latent
- code, trained on in-control gasket samples.
- Each row represents which latent dimension is altered while the other dimension
- is fixed at zero.
- Each column represents what value is assigned to that latent dimension
- that is represented by the row label.
+Estimation comparison between Monte Carlo sampling (black line) and first
+ order approximation (black dashed line).
+ 95% confidence interval band is shown in gray band and is based on simulations
+ with ten different seeds.
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Estimation-comparison-between"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
 
 
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:manifold_aae"
+\end_layout
 
-\end_inset
+\begin_layout Plain Layout
 
- 
 \end_layout
 
 \end_inset
@@ -3068,91 +3036,6 @@ name "fig:manifold_aae"
 
 \begin_layout Subsection
 Comparison of detection performance of proposed statistics
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-placement !t
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\begin_inset Graphics
-	filename figs/disturbance_on_pxz.pdf
-	width 100line%
-
-\end_inset
-
- 
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Fault detection rates (on the y-axis) for varying models (rows) and varying
- intensities (x-axis) of different disturbance types (columns) occuring
- on residual distributions.
- Bands represent 95% confidence interval estimated around mean detection
- rates.
- 
-\end_layout
-
-\end_inset
-
-
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:disturbance_on_pxz"
-
-\end_inset
-
- 
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-placement !t
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\begin_inset Graphics
-	filename figs/disturbance_on_pz.pdf
-	width 100line%
-
-\end_inset
-
- 
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Fault detection rates (on the y-axis) for varying models (rows) and varying
- intensities (x-axis) of different disturbance types (columns) occuring
- on latent distributions.
- Bands represent 95% confidence interval estimated around mean detection
- rates.
-\end_layout
-
-\end_inset
-
-
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:disturbance_on_pz"
-
-\end_inset
-
- 
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -3168,10 +3051,14 @@ noprefix "false"
 \end_inset
 
 .
- The first condition we must check is the robustness of the statistics by
- making sure all proposed statistics have roughly similar false alarm rate
- on the held-out in control test set, which should also be reasonably close
- to the desired rate 5%.
+ Note that for all statistics that require sampling, we obtain a single
+ sample and calculate the statistic based on that.
+ This way we keep the computational demand same for all statistics and emulate
+ the computational constraints of a real-life case.
+ A preliminary result we must check is the robustness of the statistics
+ by making sure all proposed statistics have roughly similar false alarm
+ rate on the held-out in-control test set, which should also be reasonably
+ close to the desired rate 5%.
  
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -3204,11 +3091,6 @@ status open
 False alarm rates on held-out dataset averaged over 10 replications per
  model and monitoring statistic.
  Standard deviations are in parentheses.
-\end_layout
-
-\end_inset
-
-
 \begin_inset CommandInset label
 LatexCommand label
 name "tab:far"
@@ -3218,9 +3100,14 @@ name "tab:far"
 
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
 \begin_layout Plain Layout
 \begin_inset Tabular
-<lyxtabular version="3" rows="4" columns="6">
+<lyxtabular version="3" rows="2" columns="6">
 <features booktabs="true" tabularvalignment="middle">
 <column alignment="left" valignment="top">
 <column alignment="center" valignment="top">
@@ -3242,7 +3129,7 @@ Statistic
 \begin_inset Text
 
 \begin_layout Plain Layout
-SPE 
+ERE
 \end_layout
 
 \end_inset
@@ -3251,7 +3138,7 @@ SPE
 \begin_inset Text
 
 \begin_layout Plain Layout
-R 
+SPE/R 
 \end_layout
 
 \end_inset
@@ -3285,123 +3172,11 @@ T2
 </cell>
 </row>
 <row>
-<cell alignment="left" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Model 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="none" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="left" valignment="top" topline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-AAE 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.031(0.001) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.045(0.009) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.043(0.001) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.043(0.001) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.058(0.007) 
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
 <cell alignment="left" valignment="top" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-VAE 
+ 
 \end_layout
 
 \end_inset
@@ -3410,7 +3185,7 @@ VAE
 \begin_inset Text
 
 \begin_layout Plain Layout
-0.031(0.006) 
+0.041(0.006) 
 \end_layout
 
 \end_inset
@@ -3476,11 +3251,12 @@ noprefix "false"
 \end_inset
 
 , we observe a clear superiority of 
-\begin_inset Formula $SPE$
+\begin_inset Formula $ERE$
 \end_inset
 
- over other methods when the disturbance is on the residual distribution.
- It can be easily understood why 
+ over other methods when the disturbance is on the observable space (top
+ row).
+ Latent variable-based statistics 
 \begin_inset Formula $D$
 \end_inset
 
@@ -3492,42 +3268,25 @@ noprefix "false"
 \begin_inset Formula $T^{2}$
 \end_inset
 
- fail in this case, that they are purely computed using the proposal distributio
-n 
-\begin_inset Formula $\encoding$
+ fail in this case since that they are purely computed using the proposal
+ distribution latent variables.
+ 
+\begin_inset Formula $ERE$
 \end_inset
 
-.
- The reason why 
-\begin_inset Formula $R$
+ also outperforms 
+\begin_inset Formula $SPE/R$
 \end_inset
 
- underperforms than 
-\begin_inset Formula $SPE$
-\end_inset
-
- is more subtle.
- Given only a single sample from the proposal, 
-\begin_inset Formula $R$
-\end_inset
-
- becomes very sensitive to the estimation of variance while MAP estimation
- yields strong and robust performance across the board.
- In our observations, AAE models yield much larger dispersion on proposals
- than VAE and this is why 
-\begin_inset Formula $R$
-\end_inset
-
- has performs even more poorly for AAE compared to VAE.
- This is likely to be related to adversarial training.
+, although by a smaller margin it has with the latent variable-statistics.
 \end_layout
 
 \begin_layout Standard
 For the latter two disturbances occurring purely on latent dimensions, results
- are presented in 
+ are presented in the bottom row of 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "fig:disturbance_on_pz"
+reference "fig:disturbance_on_pxz"
 plural "false"
 caps "false"
 noprefix "false"
@@ -3535,8 +3294,12 @@ noprefix "false"
 \end_inset
 
 .
- We observe more mixed results where generally 
-\begin_inset Formula $SPE$
+ The key observations can be listed as follows:
+\end_layout
+
+\begin_layout Itemize
+We observe mixed results but generally 
+\begin_inset Formula $ERE$
 \end_inset
 
 , 
@@ -3548,7 +3311,7 @@ noprefix "false"
 \end_inset
 
  tend to perform better than 
-\begin_inset Formula $R$
+\begin_inset Formula $SPE/R$
 \end_inset
 
  and 
@@ -3557,34 +3320,18 @@ noprefix "false"
 
 .
  A commonality between the former three is that they don't rely on random
- samples, supporting argument against this practice.
- One important observation to be made about 
-\begin_inset Formula $D$
-\end_inset
+ samples, supporting our argument against this practice.
+\end_layout
 
- and 
+\begin_layout Itemize
+Observe the radius shift type disturbance show in bottom left.
+ Even though 
 \begin_inset Formula $H^{2}$
 \end_inset
 
- is that their detection performance do not always increase with increasing
- magnitude of intensities while this is not the case for 
-\begin_inset Formula $SPE$
-\end_inset
-
-.
- The reader is referred to the two left quadrants of 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:disturbance_on_pz"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
- to observe this behavior.
- This is due to the partial disentanglement (or entanglement) issue discussed
- in 
+ performs better on positive intensities (larger radii), it completely misses
+ negative intensities (smaller radii).
+ We foresaw this result in 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "sec:simstudy:recognition"
@@ -3594,53 +3341,84 @@ noprefix "false"
 
 \end_inset
 
- and just as expected, disturbances causing smaller radii are completely
- missed by 
-\begin_inset Formula $D$
+.
+ To reiterate, disentanglement and failure to extrapolate in encoder is
+ the reason behind this.
+ Observe that this result extend to all the latent-variable based statistics.
+\end_layout
+
+\begin_layout Itemize
+Unlike latent variable-based statistics, 
+\begin_inset Formula $ERE$
 \end_inset
 
  and 
-\begin_inset Formula $H^{2}$
+\begin_inset Formula $SPE/R$
+\end_inset
+
+ behave more robustly against varying intensities.
+ Among the two, we observe that 
+\begin_inset Formula $ERE$
+\end_inset
+
+ consistently outperforms 
+\begin_inset Formula $SPE/R$
 \end_inset
 
 .
- However, 
-\begin_inset Formula $D$
-\end_inset
-
- and 
-\begin_inset Formula $H^{2}$
-\end_inset
-
- works well for a scenario that is extremely unlikely in real-life: that
- when the disturbance is purely on the latent space.
- Even then, 
-\begin_inset Formula $SPE$
-\end_inset
-
- still demonstrates decent performance regardless of the model and the direction
- of intensity of disturbance.
- We think there is not enough evidence to justify deploying a latent code
- based statistic such as 
-\begin_inset Formula $D$
-\end_inset
-
- and 
-\begin_inset Formula $H^{2}$
-\end_inset
-
- considering the potential increase in false alarms.
 \end_layout
 
 \begin_layout Standard
-In summary, this simulation study suggests that 
-\begin_inset Formula $SPE$
+\begin_inset Float figure
+placement !t
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figs/disturbance_on_pxz_vae_only.pdf
+	lyxscale 70
+	width 100line%
+
 \end_inset
 
- is the most reliable statistic among the statistics proposed for DLVMs
- so far.
- In the next section, we test this hypothesis on a real life example using
- profiles from a hot steel rolling process.
+ 
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Fault detection rates (y-axis) for varying intensities (x-axis) of different
+ disturbance types (quadrants).
+ Bands represent 95% confidence interval estimated around mean detection
+ rates.
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:disturbance_on_pxz"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Note that in a real-life process, disturbances purely on either observable
+ or latent space would be very unlikely.
+ This is why overall, we conclude that 
+\begin_inset Formula $ERE$
+\end_inset
+
+ is the best statistic among all when a combination of accuracy, robustness
+ and computational demand is considered.
 \end_layout
 
 \begin_layout Section
@@ -3847,9 +3625,8 @@ noprefix "false"
 
 \begin_layout Standard
 \begin_inset Float table
-placement p
 wide false
-sideways true
+sideways false
 status open
 
 \begin_layout Plain Layout
@@ -3866,11 +3643,7 @@ Summary of fault detection accuracies on out-of-control cases averaged over
  Standard deviations are in parentheses.
  Bolded values represent the maximum within each model, across different
  statistics.
-\end_layout
-
-\end_inset
-
-
+ 
 \begin_inset CommandInset label
 LatexCommand label
 name "tab:rolling_results"
@@ -3880,9 +3653,14 @@ name "tab:rolling_results"
 
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
 \begin_layout Plain Layout
 \begin_inset Tabular
-<lyxtabular version="3" rows="13" columns="11">
+<lyxtabular version="3" rows="12" columns="6">
 <features booktabs="true" tabularvalignment="middle">
 <column alignment="left" valignment="top">
 <column alignment="center" valignment="top">
@@ -3890,163 +3668,12 @@ name "tab:rolling_results"
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<row>
-<cell alignment="left" valignment="top" topline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Model 
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="1" alignment="none" valignment="top" topline="true" usebox="none" special="c">
-\begin_inset Text
-
-\begin_layout Plain Layout
-AAE
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="1" alignment="none" valignment="top" topline="true" usebox="none" special="c">
-\begin_inset Text
-
-\begin_layout Plain Layout
-VAE
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
 <row>
 <cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 Statistic 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-SPE 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-R 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-D 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-H2 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-T2 
 \end_layout
 
 \end_inset
@@ -4143,51 +3770,6 @@ Fault ID
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
 <cell alignment="none" valignment="top" usebox="none">
 \begin_inset Text
 
@@ -4204,55 +3786,6 @@ Fault ID
 
 \begin_layout Plain Layout
 2 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
-0.33
-\series default
-(0.19) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.02(0.03) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.00(0.00) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.00(0.00) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.26(0.45) 
 \end_layout
 
 \end_inset
@@ -4323,55 +3856,6 @@ Fault ID
 \begin_layout Plain Layout
 
 \series bold
-0.84
-\series default
-(0.02) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.21(0.08) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.00(0.00) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.00(0.00) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.21(0.13) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
 0.85
 \series default
 (0.01) 
@@ -4432,55 +3916,6 @@ Fault ID
 \begin_layout Plain Layout
 
 \series bold
-0.61
-\series default
-(0.09) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.10(0.03) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.00(0.00) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.00(0.00) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.11(0.19) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
 0.75
 \series default
 (0.05) 
@@ -4531,55 +3966,6 @@ Fault ID
 
 \begin_layout Plain Layout
 5 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
-0.99
-\series default
-(0.00) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.12(0.09) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.81(0.01) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.83(0.02) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.04(0.07) 
 \end_layout
 
 \end_inset
@@ -4654,55 +4040,6 @@ Fault ID
 \begin_layout Plain Layout
 
 \series bold
-0.73
-\series default
-(0.02) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.05(0.04) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.00(0.00) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.00(0.00) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.32(0.48) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
 0.80
 \series default
 (0.01) 
@@ -4753,55 +4090,6 @@ Fault ID
 
 \begin_layout Plain Layout
 7 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
-0.11
-\series default
-(0.00) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.04(0.01) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.00(0.00) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.00(0.00) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.00(0.00) 
 \end_layout
 
 \end_inset
@@ -4872,55 +4160,6 @@ Fault ID
 \begin_layout Plain Layout
 
 \series bold
-0.51
-\series default
-(0.11) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.06(0.04) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.00(0.00) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.00(0.00) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.28(0.48) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
 0.70
 \series default
 (0.07) 
@@ -4971,55 +4210,6 @@ Fault ID
 
 \begin_layout Plain Layout
 10 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
-0.54
-\series default
-(0.03) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.07(0.02) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.00(0.00) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.00(0.00) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.05(0.09) 
 \end_layout
 
 \end_inset
@@ -5090,55 +4280,6 @@ Fault ID
 \begin_layout Plain Layout
 
 \series bold
-0.82
-\series default
-(0.03) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.07(0.06) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.00(0.00) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.00(0.00) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.15(0.22) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
 0.80
 \series default
 (0.02) 
@@ -5189,55 +4330,6 @@ Fault ID
 
 \begin_layout Plain Layout
 13 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
-0.76
-\series default
-(0.01) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.05(0.03) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.00(0.00) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.00(0.00) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.09(0.16) 
 \end_layout
 
 \end_inset
