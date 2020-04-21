@@ -192,8 +192,8 @@ noprefix "false"
 
 \end_inset
 
- in which we exhibit a sample of surface images collected from a hot steel
- rolling process.
+ in which we exhibit a sample of surface defect image profiles collected
+ from a hot steel rolling process.
 \end_layout
 
 \begin_layout Standard
@@ -368,7 +368,7 @@ In the case that the basis of HD profiles are not known, dimensionality
  scalability, and good data compression capability.
  In 
 \begin_inset CommandInset citation
-LatexCommand citep
+LatexCommand citet
 key "liu1995control"
 literal "false"
 
@@ -386,13 +386,9 @@ literal "false"
  charts are constructed to monitor the extracted representations and residuals,
  respectively.
  To generalize PCA methods to monitor the complex correlation among the
- channels of multi-channel profiles, Paynabar 
-\shape italic
-et al
-\shape default
- 
+ channels of multi-channel profiles, 
 \begin_inset CommandInset citation
-LatexCommand citep
+LatexCommand citet
 key "paynabar2015change"
 literal "false"
 
@@ -476,29 +472,16 @@ Deep dimensionality reduction models have been proposed as an alternative
  Deep autoencoders have been proposed for profile monitoring for Phase-I
  analysis in 
 \begin_inset CommandInset citation
-LatexCommand citep
+LatexCommand citet
 key "Howard2018-op"
 literal "false"
 
 \end_inset
 
 .
- Yan 
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-
-\backslash
-etal
-\end_layout
-
-\end_inset
-
  
 \begin_inset CommandInset citation
-LatexCommand citep
+LatexCommand citet
 key "Yan2016-wa"
 literal "false"
 
@@ -506,22 +489,9 @@ literal "false"
 
  compared the performance of contractive autoencoders and denoising autoencoders
  for Phase-II monitoring.
- Zhang 
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-
-\backslash
-etal
-\end_layout
-
-\end_inset
-
  
 \begin_inset CommandInset citation
-LatexCommand citep
+LatexCommand citet
 key "Zhang2018-js"
 literal "false"
 
@@ -537,7 +507,55 @@ literal "false"
 \end_inset
 
  proposed to use deep probabilistic latent variable models, specifically,
- variational autoencoders (VAE) 
+ variational autoencoders (VAE), for Phase-II monitoring.
+ All of the proposed monitoring statistics in those works differ slightly
+ but conceptually they are all extensions of the classic 
+\begin_inset Formula $T^{2}$
+\end_inset
+
+ and 
+\begin_inset Formula $Q$
+\end_inset
+
+-charts of PCA.
+ We argue that there is room for improvement for the monitoring statistic
+ formulations in those works for a number of reasons, especially when high-dimen
+sional profiles are considered.
+ In this work, we propose a new monitoring statistic formulation to address
+ this issue.
+ The contributions of this work can be listed as follows:
+\end_layout
+
+\begin_layout Itemize
+We demonstrate why latent variable-based monitoring statistics should not
+ be used due to the two issues related to deep encoders: (1) their representatio
+ns are likely entangled, (2) they will likely fail to extrapolate well beyond
+ the region of in-control profiles.
+\end_layout
+
+\begin_layout Itemize
+We demonstrate why observable variable-based monitoring statistics should
+ not be estimated via sampling due to prohibitively expensive computational
+ demand.
+\end_layout
+
+\begin_layout Itemize
+We propose a better monitoring statistic that responds robustly and in most
+ cases more accurately than previous formulations.
+ We demonstrate the effectiveness of this new formulation on both simulation
+ and real-life case studies.
+\end_layout
+
+\begin_layout Section
+Background
+\end_layout
+
+\begin_layout Subsection
+Variational Autoencoders
+\end_layout
+
+\begin_layout Standard
+In this section, we introduce Variational Autoencoder (VAE) 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "Kingma2013-dl"
@@ -545,254 +563,9 @@ literal "false"
 
 \end_inset
 
-.
- While they all show impressive results in terms of improvement over classical
- methods such as PCA, their empirical results are constrained to low-dimensional
- problems.
- Some of the test statistics proposed in those works require a large number
- of Monte Carlo sampling, which can be prohibitively expensive for industrial
- settings with high throughput and limited computing capabilities.
- Also, issues of extrapolation to out-of-distribution samples and learning
- disentangled representations with deep neural network based methods are
- not mentioned and therefore not addressed.
- These issues are critical to assess the behaviour of deep neural networks,
- and thus monitoring statistics based on them, when faced with out-of-control
- samples.
-\end_layout
-
-\begin_layout Standard
-In this paper, our main objective is to fill this gap in order to provide
- a unifying understanding of how deep latent variable models should be used
- for Phase-II high-dimensional profile monitoring based on both theoretical
- understanding and empiricial results.
- Our contributions can be listed as follows: 
-\end_layout
-
-\begin_layout Itemize
-We provide a detailed review and comparison of previously proposed monitoring
- statistics for general deep latent variable model 
-\begin_inset CommandInset citation
-LatexCommand citep
-key "wang2019systematic,Zhang2019-lu,lee2019process"
-literal "false"
-
-\end_inset
-
- in 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "sec:bckgrnd:critique"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-.
- 
-\end_layout
-
-\begin_layout Itemize
-We will then propose two new theoretically grounded monitoring statistics
- SPE and KLD for general probabilistic latent variable models in 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "sec:proposed-statistic"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-.
- We showed theoretically that these monitoring statistics are analogous
- to 
-\begin_inset Formula $Q$
-\end_inset
-
- and 
-\begin_inset Formula $T^{2}$
-\end_inset
-
- for PCA methods.
- 
-\end_layout
-
-\begin_layout Itemize
-We will then show that for general deep latent variable models, only SPE
- is needed, where KLD is not recommended.
- We will show why this is the case from both theoretical understanding as
- well as performance evaluation.
- 
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-% This proposed monitoring statistics takes into the consideration of the
- assumptions of the model, various sources of disturbances to the system,
- computational restrictions and behavioural issues peculiar to deep latent
- variable models.
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
- 
-\end_layout
-
-\begin_layout Itemize
-We carry out a simulation study carefully curated to demonstrate the peculiariti
-es associated with deep latent variable models and demonstrate how the monitorin
-g statistic we propose handle them in 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "sec:simstudy"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
- 
-\end_layout
-
-\begin_layout Itemize
-We support our results with a real-life case study on image profiles taken
- from a hot steel rolling process in 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "sec:case-study"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\begin_inset Graphics
-	filename figs/Disentangled_Extrapolated.pdf
-	width 90text%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-asdas
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Section
-Background
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset label
-LatexCommand label
-name "sec:bckgrnd"
-
-\end_inset
-
- In this section, we introduce some core concepts that are essential to
- comprehension of the methodology proposed in this study.
- 
-\end_layout
-
-\begin_layout Subsection
-Deep Learning
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset label
-LatexCommand label
-name "sec:bckgrnd:deep-learning"
-
-\end_inset
-
- Deep learning has enjoyed a tremendous resurgence in the last decade due
- to their superior performance that was unprecedented for many tasks such
- as image classification 
-\begin_inset CommandInset citation
-LatexCommand citep
-key "krizhevsky2012imagenet"
-literal "false"
-
-\end_inset
-
-, machine translation 
-\begin_inset CommandInset citation
-LatexCommand citep
-key "bahdanau2014neural"
-literal "false"
-
-\end_inset
-
-, and speech recognition 
-\begin_inset CommandInset citation
-LatexCommand citep
-key "amodei2016deep"
-literal "false"
-
-\end_inset
-
-.
- In theory, under sufficient conditions, a two layer multilayer perceptron
- can approximate any function on a bounded region 
-\begin_inset CommandInset citation
-LatexCommand citep
-key "cybenko1989approximation,Hornik1991-li"
-literal "false"
-
-\end_inset
-
-.
- Growing the width of shallow networks in an exponential fashion for arbitrarily
- complex tasks is not practical.
- It has been shown that deeper representations can often achieve the better
- expressive power than shallow networks with less parameters due to the
- efficient reuse of the previous layers 
-\begin_inset CommandInset citation
-LatexCommand citep
-key "eldan2016power"
-literal "false"
-
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Subsection
-Latent Variable Models
+ which is the primary modeling tool in this work.
+ In order to do that, we believe a brief introduction to Gaussian factorized
+ latent variable models is necessary.
 \end_layout
 
 \begin_layout Standard
@@ -802,8 +575,8 @@ name "sec:bckgrnd:lvms"
 
 \end_inset
 
- Latent variables are powerful tools to model complex distributions over
- high-dimensional spaces.
+ Latent variables models are powerful tools to model complex distributions
+ over high-dimensional spaces.
  The underlying assumption is that there exists a low-dimensional latent
  structure that explains well the variations in the high-dimensional observed
  space.
@@ -851,12 +624,12 @@ In the above formulation
 \begin_inset Formula $\mu_{\mbtheta}\colon\R^{r}\to\R^{d}$
 \end_inset
 
- is a function paramterized by 
+ is a function parameterized by 
 \begin_inset Formula $\mbtheta\in\Theta$
 \end_inset
 
 , that describes the relationship between the latent variables and the mean
- of the conditional.
+ of the conditional distribution.
  The Gaussian prior 
 \begin_inset Formula $\pz$
 \end_inset
@@ -929,10 +702,6 @@ literal "false"
  from original solutions to the PCA problem.
 \end_layout
 
-\begin_layout Subsection
-Deep Latent Variable Models
-\end_layout
-
 \begin_layout Standard
 The assumption of PPCA that the latent and observed variables have a strictly
  linear relationship can be quite restricting.
@@ -940,30 +709,62 @@ The assumption of PPCA that the latent and observed variables have a strictly
  nonlinear.
  Deep latent variable models are a marriage of deep neural networks and
  latent variable models that aim to solve this problem.
- We present two foundational members of this model family: Variational Autoencod
-ers (VAE) 
+ Deep learning has enjoyed a tremendous resurgence in the last decade due
+ to their superior performance that was unprecedented for many tasks such
+ as image classification 
 \begin_inset CommandInset citation
 LatexCommand citep
-key "Kingma2013-dl"
+key "krizhevsky2012imagenet"
 literal "false"
 
 \end_inset
 
- and Adversarial Autoencoders (AAE) 
+, machine translation 
 \begin_inset CommandInset citation
 LatexCommand citep
-key "Makhzani2015-ei"
+key "bahdanau2014neural"
+literal "false"
+
+\end_inset
+
+, and speech recognition 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "amodei2016deep"
 literal "false"
 
 \end_inset
 
 .
- We will refer to both of them as deep latent variable models (DLVMs) for
- short in the rest of the paper.
+ In theory, under sufficient conditions, a two layer multilayer perceptron
+ can approximate any function on a bounded region 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "cybenko1989approximation,Hornik1991-li"
+literal "false"
+
+\end_inset
+
+.
+ Growing the width of shallow networks in an exponential fashion for arbitrarily
+ complex tasks is not practical.
+ It has been shown that deeper representations can often achieve the better
+ expressive power than shallow networks with less parameters due to the
+ efficient reuse of the previous layers 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "eldan2016power"
+literal "false"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
-The main difference between PPCA and DLVMs is that the latter replace the
+VAE is arguably the most foundational member of the deep latent variable
+ model family.
+ The main difference between PPCA and VAE is that the latter replace the
  linear transformation with a high-capacity deep neural network (called
  
 \shape italic
@@ -1042,7 +843,7 @@ encoder
 \end_layout
 
 \begin_layout Standard
-The ultimate output of a trained DLVM is the likelihood estimator.
+The ultimate output of a trained VAE is the likelihood estimator.
  Once the two networks are trained, the log-likelihood 
 \begin_inset Formula $\log\ptheta(\mbx)$
 \end_inset
@@ -1072,7 +873,7 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
-VAEs are trained to optimize the so-called evidence lower bound (ELBO),
+VAEs are trained to maximize the so-called evidence lower bound (ELBO),
  which is deemed a proxy to the likelihood: 
 \begin_inset Formula 
 \begin{equation}
@@ -1097,59 +898,13 @@ where
  in an end-to-end fashion.
 \end_layout
 
-\begin_layout Standard
-AAE (Gaussian posterior variant) 
-\begin_inset CommandInset citation
-LatexCommand citep
-key "Makhzani2015-ei"
-literal "false"
-
-\end_inset
-
- uses a slightly different approach to impose the prior 
-\begin_inset Formula $\pz$
-\end_inset
-
- by replacing the KLD loss with adversarial training.
- In addition to finding good posterior proposals, recognition model 
-\begin_inset Formula $\encoding$
-\end_inset
-
- now has to convince a third neural network —the discriminator network 
-\begin_inset Formula $D$
-\end_inset
-
-— that its samples are coming from standard Gaussian distribution.
- The discriminator network also evolves through this process, getting better
- and better at discriminating non-standard samples and forcing the recognition
- model to improve itself further.
- Formally, the discriminator tries to maximize the objective function given
- as follows: 
-\begin_inset Formula 
-\begin{equation}
-L_{D}\triangleq\E_{\pz}\log(1-D(\mbz))+\E_{\encoding}\log(D(\mbz))\label{eqn:discloss}
-\end{equation}
-
-\end_inset
-
-This interplay of fooling-discriminating scheme results in a minimax game
- formalized as follows: 
-\begin_inset Formula 
-\begin{equation}
-\min_{\theta,\phi}\max_{D}\E_{z\sim\encoding}\log\decoding+L_{D}\label{eqn:aae-loss}
-\end{equation}
-
-\end_inset
-
-All three networks are trained concurrently to achieve a Nash equilibrium.
-\end_layout
-
 \begin_layout Subsection
 Convolutional Layers
 \end_layout
 
 \begin_layout Standard
-Introduced in 
+In this work, we use convolutional encoders and decoders in our VAE architecture.
+ Introduced in 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "lecun1989backpropagation"
@@ -1169,6 +924,9 @@ literal "false"
  for small samples.
  It must be noted however, convolutional layers are not equivariant to scale
  and rotation as they are to translation.
+ Knowing what sort of inductive biases are injected into these layers is
+ important for the understanding of disentanglement, which we will introduce
+ later in this paper.
 \end_layout
 
 \begin_layout Subsection
@@ -1519,26 +1277,6 @@ R & =\frac{1}{L}\sum_{l=1}^{L}-\log q_{\mbtheta}(\mbx\g\mbz^{(l)}),
  are essentially the same quantities up to a constant, which makes them
  identical in the context of monitoring statistic because the rankings for
  the same testing samples given the same model will be the same for both.
- This is why we will use term 
-\begin_inset Formula $R$
-\end_inset
-
- for both and reserve the name 
-\begin_inset Formula $SPE$
-\end_inset
-
- for the statistic we propose in 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "sec:methodology"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-.
- 
 \end_layout
 
 \begin_layout Section
@@ -1556,7 +1294,7 @@ name "sec:methodology"
 \end_layout
 
 \begin_layout Subsection
-Proposed Monitoring Statistic for Deep Latent Variable Models
+Proposed Monitoring Statistic
 \end_layout
 
 \begin_layout Standard
@@ -1817,27 +1555,73 @@ noprefix "false"
 \end_inset
 
  statistic.
- Consequently, we can argue that both statistics will play an important
- role given the linearity assumption of PPCA is reasonable.
-\end_layout
+ Observe that previously proposed formulations mentioned in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:bckgrnd:critique"
+plural "false"
+caps "false"
+noprefix "false"
 
-\begin_layout Standard
-However, we claim that 
+\end_inset
+
+ rely—directly or indirectly—on this framework.
+ Statistics 
+\begin_inset Formula $R$
+\end_inset
+
+ and 
+\begin_inset Formula $SPE$
+\end_inset
+
+ are based on 
+\begin_inset Formula $Q$
+\end_inset
+
+ or in the case of PPCA 
+\begin_inset Formula $\E_{\mbz\sim q_{\mbtheta}}\log\decoding$
+\end_inset
+
+.
+ Let us call these 
+\emph on
+observable variable-based statistics
+\emph default
+.
+ Likewise, 
+\begin_inset Formula $H^{2},T^{2}$
+\end_inset
+
+ and 
+\begin_inset Formula $D$
+\end_inset
+
+ is based on 
+\begin_inset Formula $T^{2}$
+\end_inset
+
+ of PCA or 
 \begin_inset Formula $\KL{\encoding}{p(\mbz)}$
 \end_inset
 
- will not be useful for process monitoring if the process has a much more
- complex web of interactions between latent and observable variables, and
- DLVMs are used for modeling the density function.
- There are two reasons this is the case.
+ of PPCA.
+ We shall call these statistics, 
+\emph on
+latent-variable based statistics
+\emph default
+, as they rely exclusively on latent representations.
 \end_layout
 
 \begin_layout Standard
-First, for such complex processes, most of the change or disturbances should
- be expected on residual distribution.
+Our first major claim is that latent variable-based statistics are not useful
+ for profile monitoring when deep neural network based encoders are used
+ to produce latent representations.
+ We cite two reasons for that.
+ First, for such high-dimensional complex processes, most of the change
+ or disturbances should be expected on residual distribution.
  According to 
 \begin_inset CommandInset citation
-LatexCommand citep
+LatexCommand citet
 key "severson2016perspectives"
 literal "false"
 
@@ -1849,63 +1633,44 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
-Second, the encoder 
-\begin_inset Formula $\encoding$
+Second, the mean encoder 
+\begin_inset Formula $\mu_{\mbphi}$
 \end_inset
 
- is likely to lack two important features: disentangled representations
- and extrapolation capabilities.
- Disentangled representations are required for process monitoring because
- of the assumption on 
-\begin_inset Formula $\pz$
-\end_inset
-
- that latent factors are independent.
- Entangled representations will lead to entangled monitoring statistic values
- for 
-\begin_inset Formula $\KL{\encoding}{p(\mbz)}$
-\end_inset
-
-, interfering with the logistics of control charting.
- Locatello 
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-
-\backslash
-etal
-\end_layout
-
-\end_inset
-
- proves in 
-\begin_inset CommandInset citation
-LatexCommand citep
-after "Thm. 1"
-key "locatello2018challenging"
-literal "false"
-
-\end_inset
-
- that without proper inductive biases injected into the model, it is impossible
- to find disentangled representations.
- Unfortunately, injecting such inductive biases requires detailed anticipation
- of variations among in-control samples as well as specialzed neural network
- structures, both of which are extremely challenging tasks given industrial
- settings.
- Our motivating example, hot steel rolling process exhibited in 
+ —which is a deep encoder—is likely to lack two important features: disentangled
+ representations and extrapolation capabilities.
+ These two qualities are required so that extreme values of latent variables
+ consistently converge out of in-control zone.
+ We illustrate this in 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "fig:Rolling"
+reference "fig:entang-extrap"
 plural "false"
 caps "false"
 noprefix "false"
 
 \end_inset
 
- is a good example of why this is the case.
+.
+ Observe how Point C is falsely identified as in-control when learned representa
+tions are not disentangled or when they fail to extrapolate.
+\end_layout
+
+\begin_layout Standard
+Theorem 1 in 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "locatello2018challenging"
+literal "false"
+
+\end_inset
+
+ proves that without proper inductive biases injected into the model about
+ sources of variation, it is impossible to find disentangled representations.
+ Unfortunately, injecting such inductive biases requires detailed anticipation
+ of variations among in-control samples as well as specialized neural network
+ structures, both of which are extremely challenging tasks given the potential
+ complexity of the processes that generates high-dimensional profiles.
 \end_layout
 
 \begin_layout Standard
@@ -1914,11 +1679,21 @@ Moreover, even if the representations are disentangled, correct mappings
 \begin_inset Formula $\encoding$
 \end_inset
 
- may still not be obtained.
- This is due to an important shortcoming of deep learning based models.
+ may still not be obtained due to failure to extrapolate (see 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:entang-extrap"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
  Deep neural networks approximates well only at a bounded domain defined
- by where the training set (i.e., in-control samples) is densely sampled from
- and the behavior of the function is often unpredictable outside that domain.
+ by where the training set—in our case, the in-control set—is densely sampled
+ from.
+ The behavior of the function is often unpredictable outside that domain.
  In other words, it may not extrapolate well beyond the domain of training
  samples.
  We refer interested readers to 
@@ -1961,11 +1736,71 @@ noprefix "false"
 \end_layout
 
 \begin_layout Standard
-Unlike 
-\begin_inset Formula $\KL{\encoding}{p(\mbz)}$
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figs/Disentangled_Extrapolated.pdf
+	width 90text%
+
 \end_inset
 
-, extrapolation and disentanglement issues in 
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+Top Left:
+\series default
+ A hypothetical in-control latent space (gray area) and a range of independent
+ source of variation (line).
+ Points A and B are extreme values of in-control and point C is an out-of-contro
+l sample.
+ 
+\series bold
+Top Right: 
+\series default
+An ideal learned representation.
+ 
+\series bold
+Bottom Left:
+\series default
+ A learned representation fails to extrapolate.
+ 
+\series bold
+Bottom Right: 
+\series default
+A learned representation that is entangled.
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:entang-extrap"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Unlike latent variable-based statistics, extrapolation and disentanglement
+ issues in 
 \begin_inset Formula $\encoding$
 \end_inset
 
@@ -1973,11 +1808,8 @@ Unlike
 \begin_inset Formula $\decoding$
 \end_inset
 
- help 
-\begin_inset Formula $\E_{\mbz\sim q_{\mbtheta}}\log\decoding$
-\end_inset
-
- detect faults better, even when the disturbance is purely on latent structure.
+ help observable variable-based statistic detect faults better.
+ This holds true even when the disturbance is purely on latent structure.
  Incorrect mappings by 
 \begin_inset Formula $\encoding$
 \end_inset
@@ -1986,11 +1818,7 @@ Unlike
 \begin_inset Formula $\decoding$
 \end_inset
 
- and thus larger 
-\begin_inset Formula $\E_{\mbz\sim q_{\mbtheta}}\log\decoding$
-\end_inset
-
-.
+ and thus larger statistic that will fall beyond control imits.
  Second, even if the mapping was correct, we might have extrapolation issues
  in the decoder 
 \begin_inset Formula $\decoding$
@@ -2040,7 +1868,7 @@ As of now, we have enough reasons to recommend the use of
 
  of 
 \begin_inset CommandInset citation
-LatexCommand citep
+LatexCommand citet
 key "lee2019process"
 literal "false"
 
@@ -2052,7 +1880,7 @@ literal "false"
 
  
 \begin_inset CommandInset citation
-LatexCommand citep
+LatexCommand citet
 key "wang2019systematic"
 literal "false"
 
@@ -2067,7 +1895,7 @@ ly expensive in terms of computation.
  We formulate a smarter way to approximate the test statistic, by using
  first order Taylor expansion for the moment of the log-likelihood.
  We call this approximation 
-\begin_inset Formula $\oursacronym$
+\begin_inset Formula $ERE$
 \end_inset
 
 , which is our final proposed statistic.
@@ -2121,8 +1949,7 @@ name "sec:methodology:procedure"
  Phase-II analysis.
  Phase-I analysis focuses on understanding the process variability by training
  an appropriate in-control mode, and selecting an appropriate control limit.
- Specifically when DLVMs are used, Phase-I analysis results in a trained
- model (i.e.
+ In our case, Phase-I analysis results in a trained model (i.e.
  an encoder and a decoder) and an Upper Control Limit (UCL) to help setup
  the control chart for each of the monitoring statistics.
  In Phase-II, the system is exposed to new profiles generated by the process
@@ -2154,21 +1981,11 @@ Obtain IC dataset
 \end_layout
 
 \begin_layout Itemize
-Train the DLVM using samples from 
+Train VAE using samples from 
 \begin_inset Formula $\dataset^{trn}$
 \end_inset
 
- over a pre-defined grid of hyper-parameters.
- 
-\end_layout
-
-\begin_layout Itemize
-Choose the trained DLVM with the lowest reconstruction error over 
-\begin_inset Formula $\dataset^{val}$
-\end_inset
-
- and proceed with that.
- 
+.
 \end_layout
 
 \begin_layout Itemize

@@ -83,7 +83,7 @@ Story of the Paper
 \end_layout
 
 \begin_layout Itemize
-Previous attempts at formulating Phase-II monitoring statistics for DLVMs:
+Previous attempts at formulating Phase-II monitoring statistics for VAE:
 \end_layout
 
 \begin_deeper
@@ -110,8 +110,8 @@ Statistics based on latent variables are sub-optimal because:
 
 \begin_deeper
 \begin_layout Itemize
-deep architectures are prone to two problems, both of which required to
- get reliable monitoring statistics.
+deep encoders are prone to two problems, both of which required to get reliable
+ monitoring statistics.
  these are:
 \end_layout
 
