@@ -20,6 +20,8 @@
 \usepackage{array}
 \usepackage{stfloats}
 \usepackage[super]{nth}
+\usepackage{subcaption}
+\usepackage{caption}
 % for inkscape images
 \usepackage{xcolor}
 \usepackage{tikz}
@@ -2615,17 +2617,18 @@ Here,
 \end_layout
 
 \begin_layout Subsection
-On the disentanglement and extrapolation performance of the encoder
-\end_layout
-
-\begin_layout Standard
+On the disentanglement and extrapolation performance of the encoder 
 \begin_inset CommandInset label
 LatexCommand label
 name "sec:simstudy:recognition"
 
 \end_inset
 
- To investigate the disentanglement and extrapolation performance of the
+
+\end_layout
+
+\begin_layout Standard
+To investigate the disentanglement and extrapolation performance of the
  recognition network we employ the following procedure.
  First, we train a VAE with 2-dimensional latent code (for easier visualization)
  to convergence using in-control samples as described in 
@@ -3463,8 +3466,8 @@ status collapsed
 \end_layout
 
 \begin_layout Standard
-Our dataset consists of center-cropped image profiles from a hot-steel rolling
- process, which is shown in 
+Our dataset consists of defect image profiles from a hot-steel rolling process,
+ which is shown in 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Rolling"
@@ -3475,8 +3478,9 @@ noprefix "false"
 \end_inset
 
 .
- There are 13 classes of surface types identified by the domain engineers.
- Four of these classes—0,1,9 and 11— are considered as in-control.
+ There are 13 classes of surface defect types identified by the domain engineers.
+ Four of these classes—0,1,9 and 11—are considered minor defects and they
+ constitute our in-control set.
  There are in total 338 images in these classes.
  The other nine classes make up the out of control cases and they have in
  combination 3351 images to report detection accuracy for.
@@ -3506,121 +3510,13 @@ noprefix "false"
 \end_inset
 
 .
- They show strict similarity with the results in 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:disturbance_on_pxz"
-plural "false"
-caps "false"
-noprefix "false"
-
+ We observe that 
+\begin_inset Formula $ERE$
 \end_inset
 
-.
- 
-\begin_inset Formula $SPE$
-\end_inset
-
- dominates for each of the candidate DLVM and 
-\begin_inset Formula $R$
-\end_inset
-
- is the runner-up while statistics based on encoders suffer quite low and
- often none detection performance.
-\end_layout
-
-\begin_layout Standard
-For completeness, we also include a comparison of our proposed statistic
+ consistently outperforms all other statistic formulations.
+ For completeness, we also include a comparison of our proposed statistic
  against the baseline method PCA where 90% of the variance is retained.
-\end_layout
-
-\begin_layout Standard
-To support our claim of ineffectiveness of the statistics based on the latent
- space such as 
-\begin_inset Formula $H^{2}$
-\end_inset
-
- statistics, we refer the reader to 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:T2vsQ"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-.
- 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:T2vsQ-a"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
- shows the 2-D latent code of the AAE model given a set of OC samples.
- Since the 2-D latent code of OC samples are also close to the standard
- normal distribution, 
-\begin_inset Formula $H^{2}$
-\end_inset
-
- statistics will not be able to detect these OC behaviors.
- The ineffectiveness of 
-\begin_inset Formula $H^{2}$
-\end_inset
-
- statistics is validated in 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:T2vsQ-b"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-, where the density of 
-\begin_inset Formula $H^{2}$
-\end_inset
-
- distribution for OC and IC samples are largely overlapped.
- 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:T2vsQ-c"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
- shows the reconstruction error of the images given the same 2-D latent
- code.
- From these images, it is clear that the reconstructed images are very different
- from the OC images, where 
-\begin_inset Formula $SPE$
-\end_inset
-
- can be used to capture such changes.
- The effectiveness of 
-\begin_inset Formula $SPE$
-\end_inset
-
- is also shown in 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:T2vsQ-d"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-, where the distributions of IC and OC samples do not have much overlap
- at all.
 \end_layout
 
 \begin_layout Standard
@@ -3641,8 +3537,7 @@ status open
 Summary of fault detection accuracies on out-of-control cases averaged over
  10 replications per model and monitoring statistic.
  Standard deviations are in parentheses.
- Bolded values represent the maximum within each model, across different
- statistics.
+ Bolded values represent the maximum average across different statistics.
  
 \begin_inset CommandInset label
 LatexCommand label
@@ -3682,24 +3577,6 @@ Statistic
 \begin_inset Text
 
 \begin_layout Plain Layout
-SPE 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-R 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
 D 
 \end_layout
 
@@ -3719,6 +3596,24 @@ H2
 
 \begin_layout Plain Layout
 T2 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+SPE/R 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ERE
 \end_layout
 
 \end_inset
@@ -3752,25 +3647,25 @@ Fault ID
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
 <cell alignment="none" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3794,11 +3689,25 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
+0.00(0.00) 
+\end_layout
 
-\series bold
-0.44
-\series default
-(0.06) 
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00(0.00) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00(0.00) 
 \end_layout
 
 \end_inset
@@ -3816,25 +3725,11 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
-0.00(0.00) 
-\end_layout
 
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.00(0.00) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.00(0.00) 
+\series bold
+0.44
+\series default
+(0.06) 
 \end_layout
 
 \end_inset
@@ -3846,28 +3741,6 @@ Fault ID
 
 \begin_layout Plain Layout
 3 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
-0.85
-\series default
-(0.01) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.84(0.01) 
 \end_layout
 
 \end_inset
@@ -3899,6 +3772,28 @@ Fault ID
 
 \end_inset
 </cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.84(0.01) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+0.85
+\series default
+(0.01) 
+\end_layout
+
+\end_inset
+</cell>
 </row>
 <row>
 <cell alignment="left" valignment="top" usebox="none">
@@ -3914,11 +3809,25 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
+0.00(0.00) 
+\end_layout
 
-\series bold
-0.75
-\series default
-(0.05) 
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00(0.00) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00(0.00) 
 \end_layout
 
 \end_inset
@@ -3936,25 +3845,11 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
-0.00(0.00) 
-\end_layout
 
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.00(0.00) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.00(0.00) 
+\series bold
+0.75
+\series default
+(0.05) 
 \end_layout
 
 \end_inset
@@ -3966,32 +3861,6 @@ Fault ID
 
 \begin_layout Plain Layout
 5 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
-1.00
-\series default
-(0.00) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
-1.00
-\series default
-(0.00) 
 \end_layout
 
 \end_inset
@@ -4023,13 +3892,15 @@ Fault ID
 
 \end_inset
 </cell>
-</row>
-<row>
-<cell alignment="left" valignment="top" usebox="none">
+<cell alignment="center" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-6 
+
+\series bold
+1.00
+\series default
+(0.00) 
 \end_layout
 
 \end_inset
@@ -4040,18 +3911,20 @@ Fault ID
 \begin_layout Plain Layout
 
 \series bold
-0.80
+1.00
 \series default
-(0.01) 
+(0.00) 
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-0.79(0.01) 
+6 
 \end_layout
 
 \end_inset
@@ -4083,13 +3956,11 @@ Fault ID
 
 \end_inset
 </cell>
-</row>
-<row>
-<cell alignment="left" valignment="top" usebox="none">
+<cell alignment="center" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-7 
+0.79(0.01) 
 \end_layout
 
 \end_inset
@@ -4100,18 +3971,20 @@ Fault ID
 \begin_layout Plain Layout
 
 \series bold
-0.17
+0.80
 \series default
 (0.01) 
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-0.13(0.01) 
+7 
 \end_layout
 
 \end_inset
@@ -4139,6 +4012,28 @@ Fault ID
 
 \begin_layout Plain Layout
 0.00(0.00) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.13(0.01) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+0.17
+\series default
+(0.01) 
 \end_layout
 
 \end_inset
@@ -4158,11 +4053,25 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
+0.00(0.00) 
+\end_layout
 
-\series bold
-0.70
-\series default
-(0.07) 
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00(0.00) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00(0.00) 
 \end_layout
 
 \end_inset
@@ -4180,25 +4089,11 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
-0.00(0.00) 
-\end_layout
 
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.00(0.00) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.00(0.00) 
+\series bold
+0.70
+\series default
+(0.07) 
 \end_layout
 
 \end_inset
@@ -4218,11 +4113,25 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
+0.00(0.00) 
+\end_layout
 
-\series bold
-0.57
-\series default
-(0.05) 
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00(0.00) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00(0.00) 
 \end_layout
 
 \end_inset
@@ -4240,25 +4149,11 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
-0.00(0.00) 
-\end_layout
 
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.00(0.00) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.00(0.00) 
+\series bold
+0.57
+\series default
+(0.05) 
 \end_layout
 
 \end_inset
@@ -4278,11 +4173,25 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
+0.00(0.00) 
+\end_layout
 
-\series bold
-0.80
-\series default
-(0.02) 
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00(0.00) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00(0.00) 
 \end_layout
 
 \end_inset
@@ -4300,25 +4209,11 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
-0.00(0.00) 
-\end_layout
 
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.00(0.00) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.00(0.00) 
+\series bold
+0.80
+\series default
+(0.02) 
 \end_layout
 
 \end_inset
@@ -4330,28 +4225,6 @@ Fault ID
 
 \begin_layout Plain Layout
 13 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
-0.77
-\series default
-(0.02) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.71(0.04) 
 \end_layout
 
 \end_inset
@@ -4383,6 +4256,28 @@ Fault ID
 
 \end_inset
 </cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.71(0.04) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+0.77
+\series default
+(0.02) 
+\end_layout
+
+\end_inset
+</cell>
 </row>
 </lyxtabular>
 
@@ -4398,7 +4293,6 @@ Fault ID
 
 \begin_layout Standard
 \begin_inset Float table
-placement t
 wide false
 sideways false
 status open
@@ -4407,14 +4301,14 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-DLVM detection rate performance on hot steel rolling faulty cases compared
+Detection rate performance of ERE on hot steel rolling faulty cases compared
  against PCA with 90% variance retained and 
 \begin_inset Formula $Q$
 \end_inset
 
  statistic is used.
  Best performers bolded on each row.
- Standard deviation over 10 replication is in .
+ Standard deviation over 10 replication is in parantheses.
 \end_layout
 
 \end_inset
@@ -4426,10 +4320,9 @@ DLVM detection rate performance on hot steel rolling faulty cases compared
 
  
 \begin_inset Tabular
-<lyxtabular version="3" rows="12" columns="4">
+<lyxtabular version="3" rows="12" columns="3">
 <features booktabs="true" tabularvalignment="middle">
 <column alignment="left" valignment="top">
-<column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
 <row>
@@ -4446,7 +4339,7 @@ Model
 \begin_inset Text
 
 \begin_layout Plain Layout
-PCA 
+PCA-Q
 \end_layout
 
 \end_inset
@@ -4455,16 +4348,7 @@ PCA
 \begin_inset Text
 
 \begin_layout Plain Layout
-AAE 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-VAE 
+ERE
 \end_layout
 
 \end_inset
@@ -4476,15 +4360,6 @@ VAE
 
 \begin_layout Plain Layout
 Fault ID 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
 \end_layout
 
 \end_inset
@@ -4523,15 +4398,6 @@ Fault ID
 
 \begin_layout Plain Layout
 0.00(0.00) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.33(0.19) 
 \end_layout
 
 \end_inset
@@ -4573,15 +4439,6 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
-0.84(0.02) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
 
 \series bold
 0.85
@@ -4615,15 +4472,6 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
-0.61(0.09) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
 
 \series bold
 0.75
@@ -4640,15 +4488,6 @@ Fault ID
 
 \begin_layout Plain Layout
 5 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.99(0.00) 
 \end_layout
 
 \end_inset
@@ -4699,15 +4538,6 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
-0.73(0.02) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
 
 \series bold
 0.80
@@ -4724,15 +4554,6 @@ Fault ID
 
 \begin_layout Plain Layout
 7 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.11(0.00) 
 \end_layout
 
 \end_inset
@@ -4783,15 +4604,6 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
-0.51(0.11) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
 
 \series bold
 0.70
@@ -4817,15 +4629,6 @@ Fault ID
 
 \begin_layout Plain Layout
 0.29(0.00) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.54(0.03) 
 \end_layout
 
 \end_inset
@@ -4867,19 +4670,6 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\series bold
-0.82
-\series default
-(0.03) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
 0.80(0.02) 
 \end_layout
 
@@ -4909,15 +4699,6 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
-0.76(0.01) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
 
 \series bold
 0.77
@@ -4939,11 +4720,342 @@ name "tab:rolling:vsPCA"
 
 \end_inset
 
- 
+
 \end_layout
 
 \end_inset
 
+
+\end_layout
+
+\begin_layout Standard
+To support our claim of ineffectiveness of the statistics based on the latent
+ space such as 
+\begin_inset Formula $H^{2}$
+\end_inset
+
+ statistics, we refer the reader to 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:kde"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ We observe how well separated the statistics are for 
+\begin_inset Formula $ERE$
+\end_inset
+
+ and 
+\begin_inset Formula $SPE/R$
+\end_inset
+
+ while for latent variable-based statistics the obtained values are mostly
+ overlapping.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{subfigure}[b]{0.3
+\backslash
+textwidth}
+\end_layout
+
+\begin_layout Plain Layout
+
+     
+\backslash
+centering
+\end_layout
+
+\begin_layout Plain Layout
+
+     
+\backslash
+includegraphics[width=
+\backslash
+textwidth]{figs/kdes/SPE.pdf}
+\end_layout
+
+\begin_layout Plain Layout
+
+     
+\backslash
+caption{$ERE$}
+\end_layout
+
+\begin_layout Plain Layout
+
+     
+\backslash
+label{fig:kde:ERE}
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+end{subfigure}
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hspace{0.1
+\backslash
+textwidth}
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+begin{subfigure}[b]{0.3
+\backslash
+textwidth}
+\end_layout
+
+\begin_layout Plain Layout
+
+     
+\backslash
+centering
+\end_layout
+
+\begin_layout Plain Layout
+
+     
+\backslash
+includegraphics[width=
+\backslash
+textwidth]{figs/kdes/R.pdf}
+\end_layout
+
+\begin_layout Plain Layout
+
+     
+\backslash
+caption{$SPE/R$}
+\end_layout
+
+\begin_layout Plain Layout
+
+     
+\backslash
+label{fig:kde:spe-r}
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+end{subfigure}
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{subfigure}[b]{0.3
+\backslash
+textwidth}
+\end_layout
+
+\begin_layout Plain Layout
+
+     
+\backslash
+centering
+\end_layout
+
+\begin_layout Plain Layout
+
+     
+\backslash
+includegraphics[width=
+\backslash
+textwidth]{figs/kdes/H2.pdf}
+\end_layout
+
+\begin_layout Plain Layout
+
+     
+\backslash
+caption{$H^{2}$}
+\end_layout
+
+\begin_layout Plain Layout
+
+     
+\backslash
+label{fig:kde:h2}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{subfigure}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+hfill
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{subfigure}[b]{0.3
+\backslash
+textwidth}
+\end_layout
+
+\begin_layout Plain Layout
+
+     
+\backslash
+centering
+\end_layout
+
+\begin_layout Plain Layout
+
+     
+\backslash
+includegraphics[width=
+\backslash
+textwidth]{figs/kdes/D.pdf}
+\end_layout
+
+\begin_layout Plain Layout
+
+     
+\backslash
+caption{$D$}
+\end_layout
+
+\begin_layout Plain Layout
+
+     
+\backslash
+label{fig:kde:D}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{subfigure}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+hfill
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{subfigure}[b]{0.3
+\backslash
+textwidth}
+\end_layout
+
+\begin_layout Plain Layout
+
+     
+\backslash
+centering
+\end_layout
+
+\begin_layout Plain Layout
+
+     
+\backslash
+includegraphics[width=
+\backslash
+textwidth]{figs/kdes/T2.pdf}
+\end_layout
+
+\begin_layout Plain Layout
+
+     
+\backslash
+caption{$T^{2}$}
+\end_layout
+
+\begin_layout Plain Layout
+
+     
+\backslash
+label{fig:kde:T2}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{subfigure}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Kernel density estimation plots of statistics obtained for in-control and
+ out-of-control steel defect profiles, per each proposed statistic type.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:kde"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 
 \end_layout
 
@@ -5097,7 +5209,7 @@ literal "false"
 \begin_inset Formula 
 \begin{align*}
 \KL{p_{0}}{p_{1}} & =\frac{1}{2}[\log\frac{\g\mbSigma_{1}\g}{\g\mbSigma_{0}\g}+Tr(\mbSigma_{1}\inv\mbSigma_{0})-r\\
- & +(\mu_{0}-\mu{1})^{\top}\mbSigma_{1}\inv(\mu_{0}-\mu{1})]
+ & \quad+(\mu_{0}-\mu{1})^{\top}\mbSigma_{1}\inv(\mu_{0}-\mu{1})]
 \end{align*}
 
 \end_inset
