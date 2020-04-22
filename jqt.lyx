@@ -542,8 +542,12 @@ We demonstrate why observable variable-based monitoring statistics should
 
 \begin_layout Itemize
 We propose a better monitoring statistic that responds robustly and in most
- cases more accurately than previous formulations.
- We demonstrate the effectiveness of this new formulation on both simulation
+ cases more accurately than previous formulations requiring only a single
+ pass through the autoencoder.
+\end_layout
+
+\begin_layout Itemize
+We demonstrate the effectiveness of this new formulation on both simulation
  and real-life case studies.
 \end_layout
 
@@ -5055,15 +5059,8 @@ name "fig:kde"
 
 \end_layout
 
-\begin_layout Standard
-
-\end_layout
-
 \begin_layout Section
-Conclusion
-\end_layout
-
-\begin_layout Standard
+Conclusion 
 \begin_inset CommandInset label
 LatexCommand label
 name "sec:conclusions"
@@ -5071,6 +5068,31 @@ name "sec:conclusions"
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+In this paper, we criticize Phase-II monitoring statistics proposed so far
+ in the literature for VAE that they were not performing optimally in terms
+ of accuracy and/or computational feasibility.
+ First, we point out two important issues related to the latent variables
+ learned by the encoder of VAE, namely, entanglement and failure to extrapolate.
+ Based on these issues, we argue that latent variable-based statistics should
+ be discarded altogether because they will fail to reflect extremity in
+ latent space.
+ Then, we point out that statistics based on sampling will require too many
+ samples to be computationally feasible.
+ In the light of these, we propose a novel formulation that addresses all
+ of these issues.
+\end_layout
+
+\begin_layout Standard
+We first run a simulation study to support our claims.
+ Our simulation study demonstrates the existence of the issues we argue
+ in the discussion of our methodology.
+ It also shows that our formulation is more robust and for the most part
+ more accurate than all the other statistics proposed so far.
+ Finally, we validate the superiority of our formulation on a real-life
+ case study where steel defect image profiles are used.
 \end_layout
 
 \begin_layout Standard
@@ -5158,13 +5180,10 @@ status collapsed
 \end_layout
 
 \begin_layout Section
-Proof of 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "prop: T2Q"
-plural "false"
-caps "false"
-noprefix "false"
+Proof of Proposition 3.1 
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:PoofOfPropTQ"
 
 \end_inset
 
@@ -5172,13 +5191,7 @@ noprefix "false"
 \end_layout
 
 \begin_layout Standard
-\begin_inset CommandInset label
-LatexCommand label
-name "sec:PoofOfPropTQ"
-
-\end_inset
-
- Kullback-Leibler divergence between two multivariate Gaussian distributions
+Kullback-Leibler divergence between two multivariate Gaussian distributions
  has a closed form solution.
  If we define these distributions as 
 \begin_inset Formula $p_{0}=N(\mbz;\mbmu_{0},\mbSigma_{0})$
@@ -5319,12 +5332,100 @@ where
 
 \begin_layout Section
 A Toy Example to Demonstrate Out-of-distribution Behavior of Neural Networks
-\end_layout
-
-\begin_layout Standard
+ 
 \begin_inset CommandInset label
 LatexCommand label
 name "app:rosenbrock"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Assume using a multilayer perceptron, we are trying to approximate the famous
+ Rosenbrock function 
+\begin_inset Formula $f(x,y)=(a-x)^{2}+b(y-x^{2})^{2}$
+\end_inset
+
+ given 
+\begin_inset Formula $(a,b)=(1,100)$
+\end_inset
+
+.
+ In this small experiment, we sample tuples of two-dimensional points from
+ a bounded region 
+\begin_inset Formula $(x_{i},y_{i})\in[-1,3]\times[-2,3]$
+\end_inset
+
+.
+ We use multilayer perceptron with six hidden layers and a hundred neurons
+ in each layer.
+ Half of the points are used in training and the other half is used as a
+ validation set to optimize hyperparameters.
+ Using the trained network, we plot the actual Rosenbrock function along
+ with the neural network approximation in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Rosenbrock"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ Notice how well the function is approximated for the region 
+\begin_inset Formula $[-1,3]\times[-2,3]$
+\end_inset
+
+ but there is serious discrepancy between the approximated and the real
+ outside of the region.
+ This is a small yet to the point example of out-of-distribution issues
+ with neural networks.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figs/rosenbrock.pdf
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Rosenbrock function (green surface) approximated by an MLP (red surface)
+ given training (black crosses) and validation (black dots) samples form
+ a bounded region 
+\begin_inset Formula $(x_{i},y_{i})\in[-1,3]\times[-2,3]$
+\end_inset
+
+.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Rosenbrock"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
 
 \end_inset
 
