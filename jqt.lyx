@@ -1318,8 +1318,8 @@ Log-likelihood,
 \end_inset
 
 , arises as a natural candidate for monitoring statistic in the context
- of DLVMs.
- That is, given a well trained DLVM, in-control samples should have relatively
+ of VAEs.
+ That is, given a well trained VAE, in-control samples should have relatively
  higher log-likelihood than out-of-control samples.
  However, the required number of Monte Carlo samples—
 \begin_inset Formula $L$
@@ -4312,7 +4312,7 @@ Detection rate performance of ERE on hot steel rolling faulty cases compared
 
  statistic is used.
  Best performers bolded on each row.
- Standard deviation over 10 replication is in parantheses.
+ Standard deviation over 10 replication is in parentheses.
 \end_layout
 
 \end_inset
@@ -5362,7 +5362,7 @@ Assume using a multilayer perceptron, we are trying to approximate the famous
  We use multilayer perceptron with six hidden layers and a hundred neurons
  in each layer.
  Half of the points are used in training and the other half is used as a
- validation set to optimize hyperparameters.
+ validation set to optimize hyper-parameters.
  Using the trained network, we plot the actual Rosenbrock function along
  with the neural network approximation in 
 \begin_inset CommandInset ref
