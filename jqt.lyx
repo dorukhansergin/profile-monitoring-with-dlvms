@@ -109,11 +109,13 @@ theorems-sec
 \papercolumns 1
 \papersides 1
 \paperpagestyle default
-\tracking_changes false
+\tracking_changes true
 \output_changes false
 \html_math_output 0
 \html_css_as_file 0
 \html_be_strict false
+\author -1806609307 "Hao yan"
+\author 2089042059 "Dora"
 \end_header
 
 \begin_body
@@ -237,7 +239,15 @@ name "fig:Rolling"
 
 \begin_layout Standard
 In literature, profile monitoring techniques can be categorized by their
- assumptions on the type of the functional relationship that they assume.
+ assumptions on the type of 
+\change_deleted 2089042059 1589427970
+the 
+\change_unchanged
+functional relationship
+\change_deleted 2089042059 1589427989
+ that they assume
+\change_unchanged
+.
  Linear profile monitoring can be considered the most basic profile monitoring
  technique, in which it is assumed that the profile can be represented by
  a linear function.
@@ -275,8 +285,11 @@ literal "false"
 \end_inset
 
 .
- However, the assumption of linear functional relationship can be quite
- limiting.
+ However, the assumption of 
+\change_inserted 2089042059 1589428022
+a 
+\change_unchanged
+linear functional relationship can be quite limiting.
  To address this challenge, nonlinear parametric models are proposed 
 \begin_inset CommandInset citation
 LatexCommand citep
@@ -287,10 +300,31 @@ literal "false"
 
 .
  These models assume an explicit family of parameterized functions and,
- their parameter estimations are estimated via nonlinear regression.
- In any cases, the drawback of all parametric models is that these models
- assume the parametric form is known beforehand, which might not always
- be the case.
+ their parameter 
+\change_deleted 2089042059 1589428132
+estimations
+\change_unchanged
+ are estimated via nonlinear regression.
+ In 
+\change_deleted 2089042059 1589428141
+any
+\change_inserted 2089042059 1589428141
+both
+\change_unchanged
+ cases, the drawback of 
+\change_deleted 2089042059 1589428148
+all
+\change_inserted 2089042059 1589428151
+both linear and nonlinear
+\change_unchanged
+ parametric models is that 
+\change_deleted 2089042059 1589428161
+these models 
+\change_inserted 2089042059 1589428162
+they 
+\change_unchanged
+assume the parametric form is known beforehand, which might not always be
+ the case.
 \end_layout
 
 \begin_layout Standard
@@ -309,8 +343,14 @@ status collapsed
 \end_inset
 
 Another large body of profile monitoring research focuses on the type of
- profile data where the basis of the representation is assumed to be known
- but the coefficients are unknown.
+ profile
+\change_inserted 2089042059 1589428317
+s
+\change_deleted 2089042059 1589428318
+ data
+\change_unchanged
+ where the basis of the representation is assumed to be known but the coefficien
+ts are unknown.
  For instance, to monitor smooth profiles, various non-parametric methods
  based on local kernel regression 
 \begin_inset CommandInset citation
@@ -510,7 +550,11 @@ literal "false"
  proposed to use deep probabilistic latent variable models, specifically,
  variational autoencoders (VAE), for Phase-II monitoring.
  All of the proposed monitoring statistics in those works differ slightly
- but conceptually they are all extensions of the classic 
+ but 
+\change_deleted -1806609307 1589499705
+conceptually
+\change_unchanged
+ they are all extensions of the classic 
 \begin_inset Formula $T^{2}$
 \end_inset
 
@@ -518,45 +562,239 @@ literal "false"
 \begin_inset Formula $Q$
 \end_inset
 
--charts of PCA.
+-charts of PCA
+\change_inserted -1806609307 1589499720
+, which will be proved rigorously in our paper
+\change_unchanged
+.
  We argue that there is room for improvement for the monitoring statistic
  formulations in those works for a number of reasons, especially when high-dimen
 sional profiles are considered.
  In this work, we propose a new monitoring statistic formulation to address
  this issue.
- The contributions of this work can be listed as follows:
+ 
+\change_inserted -1806609307 1589479177
+
+\end_layout
+
+\begin_layout Standard
+The contributions of this work are as follows: 
+\change_inserted -1806609307 1589479308
+
 \end_layout
 
 \begin_layout Itemize
-We demonstrate why latent variable-based monitoring statistics should not
- be used due to the two issues related to deep encoders: (1) their representatio
-ns are likely entangled, (2) they will likely fail to extrapolate well beyond
- the region of in-control profiles.
+
+\change_deleted -1806609307 1589479317
+w
+\change_inserted -1806609307 1589479317
+W
+\change_unchanged
+e compare all the existing monitoring statistics for deep latent variable
+ models with the focus on 
+\change_inserted -1806609307 1589499746
+the 
+\change_unchanged
+VAE model and propose a better monitoring statistic that responds robustly
+ and
+\change_inserted -1806609307 1589499759
+,
+\change_unchanged
+ in most cases
+\change_inserted -1806609307 1589499770
+,
+\change_unchanged
+ more accurately than previous formulations requiring only a single pass
+ through the autoencoder.
+ 
+\change_inserted -1806609307 1589479315
+
 \end_layout
 
 \begin_layout Itemize
-We demonstrate why observable variable-based monitoring statistics should
- not be estimated via sampling due to prohibitively expensive computational
- demand.
+Through extensive experiments, we demonstrate and give insight on
+\change_deleted -1806609307 1589479274
+ 1)
+\change_unchanged
+ why latent variable-based monitoring statistics shou
+\change_deleted -1806609307 1589479338
+l
+\change_unchanged
+d not be used due to the two issues related to deep encoders: 
+\change_inserted -1806609307 1589479343
+1) 
+\change_unchanged
+their representations are likely entangled 
+\change_deleted -1806609307 1589479347
+and 
+\change_inserted -1806609307 1589479349
+2) 
+\change_unchanged
+they will likely fail to extrapolate well beyond the region of in-control
+ profiles.
+ 
+\change_deleted -1806609307 1589479281
+2
+\change_unchanged
+) 
+\change_inserted -1806609307 1589479336
+
 \end_layout
 
 \begin_layout Itemize
-We propose a better monitoring statistic that responds robustly and in most
- cases more accurately than previous formulations requiring only a single
- pass through the autoencoder.
+We also demonstrate why 
+\change_deleted -1806609307 1589523243
+observable variable
+\change_inserted -1806609307 1589523243
+residual
+\change_unchanged
+-based monitoring statistics should not be estimated via sampling due to
+ prohibitively expensive computational demand
+\change_deleted -1806609307 1589479358
+.
+
+\change_inserted -1806609307 1589479358
+ and give a mathematical proof that latent variable-based monitoring statistics
+ and residual-based statistics will become classic 
+\begin_inset Formula $T^{2}$
+\end_inset
+
+ and 
+\begin_inset Formula $Q$
+\end_inset
+
+-charts for the linear case.
+ 
+\change_unchanged
+
 \end_layout
 
 \begin_layout Itemize
 We demonstrate the effectiveness of this new formulation on both simulation
  and real-life case studies.
+ 
+\change_deleted -1806609307 1589479369
+We conclude that 
+\change_inserted -1806609307 1589479382
+
+\end_layout
+
+\begin_layout Standard
+
+\change_inserted -1806609307 1589479388
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\change_inserted -1806609307 1589499978
+In conclusion, the rest of the paper is organized as follows.
+
+\color red
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Background"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ first reviews the related literature in the variational autoencoders and
+ traditional 
+\begin_inset Formula $T^{2}$
+\end_inset
+
+ and 
+\begin_inset Formula $Q$
+\end_inset
+
+ chart in the PCA method and then briefly introduce the existing monitoring
+ statistics for VAE.
+
+\color inherit
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:methodology"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ introduces the proposed monitoring statistics and gives insights on its
+ meaning and mathematical relationship with the traditional PCA methods.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Simulation-Study-Analysis"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows the simulation study to demonstrate the performance of the proposed
+ method and give insight into why only the residual-based statistics is
+ recommended.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:case-study"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ demonstrates the advantage of the proposed methodology using images from
+ hot-steel rolling processes.
+ Finally, 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:conclusions"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ concludes the paper with future work.
 \end_layout
 
 \begin_layout Section
 Background
+\change_inserted -1806609307 1589491547
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Background"
+
+\end_inset
+
+
+\change_unchanged
+
 \end_layout
 
 \begin_layout Subsection
 Variational Autoencoders
+\change_inserted -1806609307 1589439437
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:bckgrnd:lvms"
+
+\end_inset
+
+
+\change_unchanged
+
 \end_layout
 
 \begin_layout Standard
@@ -568,18 +806,38 @@ literal "false"
 
 \end_inset
 
+
+\change_inserted -1806609307 1589500164
+,
+\change_unchanged
  which is the primary modeling tool in this work.
- In order to do that, we believe a brief introduction to Gaussian factorized
- latent variable models is necessary.
+ 
+\change_deleted -1806609307 1589500249
+In order to
+\change_inserted -1806609307 1589500249
+To
+\change_unchanged
+ 
+\change_deleted -1806609307 1589439053
+do
+\change_inserted -1806609307 1589439056
+achieve
+\change_unchanged
+ that, we believe a brief introduction to Gaussian factorized latent variable
+ models is necessary.
 \end_layout
 
 \begin_layout Standard
+
+\change_deleted -1806609307 1589439436
 \begin_inset CommandInset label
 LatexCommand label
 name "sec:bckgrnd:lvms"
 
 \end_inset
 
+
+\change_unchanged
  Latent variables models are powerful tools to model complex distributions
  over high-dimensional spaces.
  The underlying assumption is that there exists a low-dimensional latent
@@ -617,11 +875,19 @@ p_{\mbtheta}(\mbx,\mbz) & =\decoding\pz
 
 \end_inset
 
-In the above formulation 
+In the above formulation
+\change_inserted -1806609307 1589500274
+,
+\change_unchanged
+ 
 \begin_inset Formula $\mbx\in\R^{d}$
 \end_inset
 
- are observed samples, 
+ are observed samples,
+\change_inserted -1806609307 1589500300
+ and
+\change_unchanged
+ 
 \begin_inset Formula $\mbz\in\R^{r}$
 \end_inset
 
@@ -633,13 +899,25 @@ In the above formulation
 \begin_inset Formula $\mbtheta\in\Theta$
 \end_inset
 
-, that describes the relationship between the latent variables and the mean
- of the conditional distribution.
+, 
+\change_deleted -1806609307 1589500316
+that
+\change_inserted -1806609307 1589500316
+which
+\change_unchanged
+ describes the relationship between the latent variables and the mean of
+ the conditional distribution.
  The Gaussian prior 
 \begin_inset Formula $\pz$
 \end_inset
 
- is typically chosen to be standard to avoid degenerate solutions 
+ is typically chosen to be 
+\change_deleted -1806609307 1589500378
+standard
+\change_inserted -1806609307 1589500378
+standard multivariate normal distribution
+\change_unchanged
+ to avoid degenerate solutions 
 \begin_inset CommandInset citation
 LatexCommand citep
 after "p. 307"
@@ -665,8 +943,14 @@ p_{\mbtheta}(\mbx)=\int p_{\mbtheta}(\mbx,\mbz)d\mbz
 
 \end_inset
 
-Finally, in literature, there has been discussions about whether the independent
- latent structure assumption 
+Finally, in literature, there 
+\change_deleted -1806609307 1589440386
+has
+\change_inserted -1806609307 1589440387
+have
+\change_unchanged
+ been discussions about whether the independent latent structure assumption
+ 
 \begin_inset Formula $\pz=\Norm(\mbz;0,\mbI_{r})$
 \end_inset
 
@@ -682,9 +966,24 @@ literal "false"
 
 .
  Disentangled representations are useful to represent variations in latent
- variations due to its ability to separate out the independent factors.
- We are interested in whether and if so, how, such representations will
- be critical for profile monitoring.
+ variations due to 
+\change_deleted -1806609307 1589501038
+its
+\change_inserted -1806609307 1589501038
+their
+\change_unchanged
+ ability to separate out the independent factors.
+ 
+\change_inserted -1806609307 1589501060
+However, there are also discussions on what disentangled representation
+ implies for profile monitoring.
+ 
+\change_unchanged
+We are interested in whether and if so, how
+\change_deleted -1806609307 1589501154
+,
+\change_unchanged
+ such representations will be critical for profile monitoring.
 \end_layout
 
 \begin_layout Standard
@@ -705,6 +1004,11 @@ literal "false"
 
  is a simple linear transformation enabling the optimization to reuse results
  from original solutions to the PCA problem.
+
+\change_inserted -1806609307 1589440464
+ 
+\change_deleted -1806609307 1589440464
+
 \end_layout
 
 \begin_layout Standard
@@ -741,8 +1045,14 @@ literal "false"
 \end_inset
 
 .
- In theory, under sufficient conditions, a two layer multilayer perceptron
- can approximate any function on a bounded region 
+ In theory, under sufficient conditions, a two
+\change_deleted -1806609307 1589440484
+ 
+\change_inserted -1806609307 1589440484
+-
+\change_unchanged
+layer multilayer perceptron can approximate any function on a bounded region
+ 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "cybenko1989approximation,Hornik1991-li"
@@ -753,9 +1063,17 @@ literal "false"
 .
  Growing the width of shallow networks in an exponential fashion for arbitrarily
  complex tasks is not practical.
- It has been shown that deeper representations can often achieve the better
- expressive power than shallow networks with less parameters due to the
- efficient reuse of the previous layers 
+ It has been shown that deeper representations can often achieve 
+\change_deleted -1806609307 1589440495
+the
+\change_unchanged
+ better expressive power than shallow networks with 
+\change_deleted -1806609307 1589440502
+less
+\change_inserted -1806609307 1589440503
+fewer
+\change_unchanged
+ parameters due to the efficient reuse of the previous layers 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "eldan2016power"
@@ -769,8 +1087,17 @@ literal "false"
 \begin_layout Standard
 VAE is arguably the most foundational member of the deep latent variable
  model family.
- The main difference between PPCA and VAE is that the latter replace the
- linear transformation with a high-capacity deep neural network (called
+ The main difference between PPCA and VAE is that 
+\change_deleted -1806609307 1589441282
+the latter
+\change_inserted -1806609307 1589441285
+VAE
+\change_unchanged
+ replace
+\change_inserted -1806609307 1589441635
+s
+\change_unchanged
+ the linear transformation with a high-capacity deep neural network (called
  
 \shape italic
 generative
@@ -780,11 +1107,30 @@ generative
 decoder
 \shape default
 ).
- This is powerful in the sense that along with a general purpose prior 
+ This is powerful in the sense that
+\change_inserted -1806609307 1589441703
+,
+\change_unchanged
+ along with a general
+\change_deleted -1806609307 1589501186
+ 
+\change_inserted -1806609307 1589501186
+-
+\change_unchanged
+purpose prior 
 \begin_inset Formula $\pz$
 \end_inset
 
- a wide variety of densities can be modeled 
+ 
+\change_inserted -1806609307 1589501286
+(i.e., often set as independent normal distributions), deep neural networks
+ can transfer such prior into 
+\change_unchanged
+a wide variety of densities 
+\change_deleted -1806609307 1589441496
+can be modeled
+\change_unchanged
+ 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "kingma2019introduction"
@@ -845,10 +1191,23 @@ encoder
 \end_inset
 
 .
+
+\change_inserted -1806609307 1589507484
+ In fact, PPCA can be treated as a special case of VAE, where the decoder
+ is modeled by linear transformation.
+ 
+\change_unchanged
+
 \end_layout
 
 \begin_layout Standard
-The ultimate output of a trained VAE is the likelihood estimator.
+
+\change_deleted -1806609307 1589440560
+The ultimate
+\change_inserted -1806609307 1589440563
+One important
+\change_unchanged
+ output of a trained VAE is the likelihood estimator.
  Once the two networks are trained, the log-likelihood 
 \begin_inset Formula $\log\ptheta(\mbx)$
 \end_inset
@@ -895,8 +1254,12 @@ where
 \end_inset
 
  denotes the Kullback-Leibler divergence (KLD) between two distributions.
- The left-hand side is the quantity of interest while the right-hand side
- is the tractable expression that guides the updating of parameters 
+ The left-hand side is the quantity of interest
+\change_inserted -1806609307 1589507508
+,
+\change_unchanged
+ while the right-hand side is the tractable expression that guides the updating
+ of parameters 
 \begin_inset Formula $\mbtheta,\mbphi$
 \end_inset
 
@@ -904,10 +1267,16 @@ where
 \end_layout
 
 \begin_layout Subsection
+
+\change_deleted -1806609307 1589491989
 Convolutional Layers
+\change_unchanged
+
 \end_layout
 
 \begin_layout Standard
+
+\change_deleted -1806609307 1589491986
 In this work, we use convolutional encoders and decoders in our VAE architecture.
  Introduced in 
 \begin_inset CommandInset citation
@@ -932,6 +1301,8 @@ literal "false"
  Knowing what sort of inductive biases are injected into these layers is
  important for the understanding of disentanglement, which we will introduce
  later in this paper.
+\change_unchanged
+
 \end_layout
 
 \begin_layout Subsection
@@ -1167,7 +1538,19 @@ literal "false"
 \begin_inset Formula $\mbx$
 \end_inset
 
- and a singe sample drawn from proposal 
+ and a sing
+\change_inserted -1806609307 1589508486
+l
+\change_unchanged
+e sample drawn from 
+\change_inserted -1806609307 1589508479
+the 
+\change_unchanged
+proposal
+\change_inserted -1806609307 1589508481
+ distribution
+\change_unchanged
+ 
 \begin_inset Formula $\mbz^{(l)}\sim\encoding$
 \end_inset
 
@@ -1194,8 +1577,12 @@ where
 \end_inset
 
  are estimated over a single loop from the data.
- It is unclear why they would use such an extra step since for a well trained
- VAE, 
+ 
+\change_inserted -1806609307 1589509898
+The proposed control charting methodology suggests that these two statistics
+ work in combination and at least one vote of either statistics is enough
+ to make a detection.
+ However, the estimation of the 
 \begin_inset Formula $\bar{\mbz}$
 \end_inset
 
@@ -1203,14 +1590,51 @@ where
 \begin_inset Formula $S_{\mbz}\inv$
 \end_inset
 
- would be approximately equal to the mean and covariance of the standard
- Gaussian distribution.
- Instead, they take on the additional risk associated with the estimation.
- The proposed control charting methodology suggests that these two statistics
+ can be slow and unneccesary since
+\change_unchanged
+ 
+\change_deleted -1806609307 1589508942
+It is unclear why they would use such an extra step since 
+\change_unchanged
+for a well trained VAE, 
+\begin_inset Formula $\bar{\mbz}$
+\end_inset
+
+ and 
+\begin_inset Formula $S_{\mbz}\inv$
+\end_inset
+
+ would be approximately equal to 
+\change_deleted -1806609307 1589509318
+the
+\change_inserted -1806609307 1589509326
+0 and 
+\begin_inset Formula $I$
+\end_inset
+
+
+\change_deleted -1806609307 1589509847
+ mean and covariance of the standard Gaussian distribution
+\change_unchanged
+.
+ Instead, 
+\change_deleted -1806609307 1589509355
+they take on the additional risk associated with
+\change_unchanged
+ the estimation
+\change_inserted -1806609307 1589509366
+ can be unstable when data is limited
+\change_unchanged
+.
+ 
+\change_deleted -1806609307 1589509896
+The proposed control charting methodology suggests that these two statistics
  work in combination and at least one vote of either statistics is enough
  to make a detection.
  The authors do not mention how false alarm rate can be fixed given this
  methodology.
+\change_unchanged
+
 \end_layout
 
 \begin_layout Standard
@@ -1280,8 +1704,17 @@ R & =\frac{1}{L}\sum_{l=1}^{L}-\log q_{\mbtheta}(\mbx\g\mbz^{(l)}),
 \end_inset
 
  are essentially the same quantities up to a constant, which makes them
- identical in the context of monitoring statistic because the rankings for
- the same testing samples given the same model will be the same for both.
+ identical in the context of monitoring statistic
+\change_inserted -1806609307 1589509957
+.
+
+\change_unchanged
+ 
+\change_deleted -1806609307 1589509958
+because the rankings for the same testing samples given the same model will
+ be the same for both.
+\change_unchanged
+
 \end_layout
 
 \begin_layout Section
@@ -1317,10 +1750,19 @@ Log-likelihood,
 \begin_inset Formula $\log\ptheta(\mbx)$
 \end_inset
 
-, arises as a natural candidate for monitoring statistic in the context
- of VAEs.
+, arises as a natural candidate for monitoring statistic
+\change_inserted -1806609307 1589510262
+s
+\change_unchanged
+ in the context of VAEs.
  That is, given a well trained VAE, in-control samples should have relatively
- higher log-likelihood than out-of-control samples.
+ 
+\change_deleted -1806609307 1589516834
+higher
+\change_inserted -1806609307 1589516836
+larger
+\change_unchanged
+ log-likelihood than out-of-control samples.
  However, the required number of Monte Carlo samples—
 \begin_inset Formula $L$
 \end_inset
@@ -1337,6 +1779,14 @@ noprefix "false"
 
 — can be prohibitively large to get meaningful estimates of the likelihood
  
+\change_inserted -1806609307 1589517898
+
+\size small
+sdf
+\change_unchanged
+
+\size default
+
 \begin_inset CommandInset citation
 LatexCommand citep
 key "Kingma2013-dl"
@@ -1344,8 +1794,17 @@ literal "false"
 
 \end_inset
 
-, which do not satisfy the real-time monitoring requirement for high throughput
- systems.
+, which do not satisfy the real-time 
+\change_deleted -1806609307 1589516859
+monitoring
+\change_unchanged
+ requirement 
+\change_deleted -1806609307 1589516866
+for
+\change_inserted -1806609307 1589516912
+to monitor
+\change_unchanged
+ high throughput systems.
  To address this issue, ELBO defined in 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -1371,8 +1830,38 @@ noprefix "false"
 \end_layout
 
 \begin_layout Standard
-To understand the role of both terms in process monitoring, we revisit the
- assumptions of the model described in 
+
+\change_inserted -1806609307 1589526638
+A natural choice of the monitoring statistics is to separate the ELBO into
+ two terms 
+\begin_inset Formula $\E_{\mbz\sim q_{\mbtheta}}\log\decoding$
+\end_inset
+
+ and 
+\begin_inset Formula $\KL{\encoding}{p(\mbz)}$
+\end_inset
+
+.
+ We call 
+\begin_inset Formula $\E_{\mbz\sim q_{\mbtheta}}\log\decoding$
+\end_inset
+
+ expected reconstruction error, which stands for expected reconstruction
+ error in the residual space and 
+\begin_inset Formula $\KL{\encoding}{p(\mbz)}$
+\end_inset
+
+ as latent KLD loss.
+
+\change_unchanged
+ To understand the role of 
+\change_deleted -1806609307 1589523180
+both
+\change_inserted -1806609307 1589526394
+these two
+\change_unchanged
+ terms in process monitoring, we revisit the assumptions of the model described
+ in 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "eq:gaussian-factorized"
@@ -1480,16 +1969,34 @@ In this case, from PPCA, the encoder also follows the normal distribution
 \begin_inset Formula $\mu_{\mbphi}(\mbx)=\mbM^{-1}\mbW^{\top}\mbx$
 \end_inset
 
- and 
-\begin_inset Formula $\Sigma_{z}=\sigma^{2}\mbM^{-1})$
+
+\change_inserted -1806609307 1589517549
+,
+\change_deleted -1806609307 1589517529
+ and
+\change_unchanged
+ 
+\begin_inset Formula $\Sigma_{z}=\sigma^{2}\mbM^{-1}$
 \end_inset
 
-, where 
+, 
+\change_deleted -1806609307 1589517553
+where
+\change_inserted -1806609307 1589517553
+and
+\change_unchanged
+ 
 \begin_inset Formula $\mbM=\mbW^{\top}\mbW+\sigma^{2}\mbI$
 \end_inset
 
 .
- Then, the two monitoring statistics can be defined as: 
+ Then, the two monitoring statistics can be 
+\change_deleted -1806609307 1589523209
+defined
+\change_inserted -1806609307 1589523210
+derived
+\change_unchanged
+ as: 
 \begin_inset Formula 
 \begin{equation}
 \KL{\encoding}{p(\mbz)}=\frac{1}{2}\gg\mu_{\mbphi}(\mbx)\gg^{2}+C_{1}\label{eqn:KL_PPCA}
@@ -1532,7 +2039,21 @@ noprefix "false"
 \end_inset
 
 .
- Note that the constants do not affect out-of-control decisions.
+ Note that the constants do not affect
+\change_inserted -1806609307 1589521223
+ the
+\change_unchanged
+ 
+\change_deleted -1806609307 1589521138
+out-of-control
+\change_inserted -1806609307 1589521146
+profile monitoring
+\change_unchanged
+ decision
+\change_deleted -1806609307 1589521228
+s
+\change_unchanged
+.
  Thus, the test statistics 
 \begin_inset Formula $\KL{\encoding}{p(\mbz)}$
 \end_inset
@@ -1589,8 +2110,14 @@ noprefix "false"
 
 .
  Let us call these 
+\change_deleted -1806609307 1589523245
+
 \emph on
-observable variable-based statistics
+observable variable
+\change_inserted -1806609307 1589523245
+residual
+\change_unchanged
+-based statistics
 \emph default
 .
  Likewise, 
@@ -1615,15 +2142,44 @@ observable variable-based statistics
 latent-variable based statistics
 \emph default
 , as they rely exclusively on latent representations.
+
+\change_inserted -1806609307 1589521150
+ 
+\change_unchanged
+
 \end_layout
 
 \begin_layout Standard
 Our first major claim is that latent variable-based statistics are not useful
  for profile monitoring when deep neural network based encoders are used
  to produce latent representations.
- We cite two reasons for that.
- First, for such high-dimensional complex processes, most of the change
- or disturbances should be expected on residual distribution.
+ We 
+\change_deleted -1806609307 1589525946
+cite
+\change_inserted -1806609307 1589525948
+ give
+\change_unchanged
+ 
+\change_inserted -1806609307 1589525954
+the following 
+\change_unchanged
+two
+\change_inserted -1806609307 1589525957
+ major
+\change_unchanged
+ reasons
+\change_inserted -1806609307 1589525965
+:
+\change_deleted -1806609307 1589525963
+ for that.
+ First,
+\change_unchanged
+ 
+\change_inserted -1806609307 1589525967
+1) 
+\change_unchanged
+for such high-dimensional complex processes, most of the change or disturbances
+ should be expected on residual distribution.
  According to 
 \begin_inset CommandInset citation
 LatexCommand citet
@@ -1635,10 +2191,20 @@ literal "false"
  faults in complex real-life processes tend to alter the existing relationship
  between latent sources of variation and what is observed, as opposed to
  pushing to most extreme cases in the latent variational sources.
-\end_layout
 
-\begin_layout Standard
-Second, the mean encoder 
+\change_inserted -1806609307 1589526055
+ 2) A deep autoencoders typically require a much smaller latent dimension
+ compared to PCA, which leaves a much smaller chance for change happening
+ in the latent space.
+ 
+\change_deleted -1806609307 1589525981
+econd
+\change_inserted -1806609307 1589526008
+3)
+\change_deleted -1806609307 1589525990
+,
+\change_unchanged
+ the mean encoder 
 \begin_inset Formula $\mu_{\mbphi}$
 \end_inset
 
@@ -1659,6 +2225,11 @@ noprefix "false"
 .
  Observe how Point C is falsely identified as in-control when learned representa
 tions are not disentangled or when they fail to extrapolate.
+
+\change_inserted -1806609307 1589526008
+ 
+\change_unchanged
+
 \end_layout
 
 \begin_layout Standard
@@ -1741,10 +2312,7 @@ literal "false"
  of variations among in-control samples as well as specialized neural network
  structures, both of which are extremely challenging tasks given the potential
  complexity of the processes that generates high-dimensional profiles.
-\end_layout
-
-\begin_layout Standard
-Moreover, even if the representations are disentangled, correct mappings
+ Moreover, even if the representations are disentangled, correct mappings
  of 
 \begin_inset Formula $\encoding$
 \end_inset
@@ -1805,7 +2373,13 @@ Unlike latent variable-based statistics, extrapolation and disentanglement
 \begin_inset Formula $\decoding$
 \end_inset
 
- help observable variable-based statistic detect faults better.
+ help 
+\change_deleted -1806609307 1589523238
+observable variable
+\change_inserted -1806609307 1589523238
+residual
+\change_unchanged
+-based statistic detect faults better.
  More interestingly, this holds true even when the disturbance is purely
  on the latent structure.
  Incorrect mappings by 
@@ -1854,8 +2428,13 @@ Unlike latent variable-based statistics, extrapolation and disentanglement
 \end_layout
 
 \begin_layout Standard
-As of now, we have enough reasons to recommend the use of observable variable-ba
-sed statistics as the only type of test statistic for a profile monitoring
+As of now, we have enough reasons to recommend the use of 
+\change_deleted -1806609307 1589523240
+observable variable
+\change_inserted -1806609307 1589523240
+residual
+\change_unchanged
+-based statistics as the only type of test statistic for a profile monitoring
  application that uses VAE.
  Indeed, variations of this type have been proposed previously: 
 \begin_inset Formula $SPE$
@@ -1887,8 +2466,24 @@ literal "false"
  This approach may require a large number of samples to be generated and
  thus a large number of forward passes on the decoder network, which is
  prohibitively expensive in terms of computation.
- We propose using first order Taylor expansion instead.
- We call this approximation 
+ We propose using first
+\change_deleted -1806609307 1589528424
+ 
+\change_inserted -1806609307 1589528424
+-
+\change_unchanged
+order Taylor expansion instead
+\change_inserted -1806609307 1589526664
+ of 
+\begin_inset Formula $ERE$
+\end_inset
+
+
+\change_unchanged
+.
+ 
+\change_deleted -1806609307 1589526445
+We call this approximation 
 \begin_inset Formula $ERE$
 \end_inset
 
@@ -1899,9 +2494,44 @@ literal "false"
 \end_inset
 
  can be derived as follows:
+\change_inserted -1806609307 1589526299
+
+\end_layout
+
+\begin_layout Proposition
+
+\change_inserted -1806609307 1589526870
+The Tayler Expansion of the ERE can be derived as 
+\begin_inset Formula 
+\[
+ERE=C_{3}+\gg\mbx-\mu_{\mbtheta}(\mu_{\mbphi}(\mbx))\gg_{2}^{2}+\frac{1}{2}tr(H_{z}\Sigma_{z})+o(\|\mathbf{z}-\mu(\mathbf{x})\|^{3})
+\]
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
+
+\change_inserted -1806609307 1589527346
+The proof is given in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "app:ere"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+
+\change_deleted -1806609307 1589526693
 \begin_inset Formula 
 \begin{align}
 ERE & \triangleq\E_{\mbz\sim q_{\mbtheta}}\log\decoding\label{eqn:propstat:final}\\
@@ -1912,13 +2542,49 @@ ERE & \triangleq\E_{\mbz\sim q_{\mbtheta}}\log\decoding\label{eqn:propstat:final
 
 \end_inset
 
+
+\change_unchanged
 The constant 
 \begin_inset Formula $C_{3}$
 \end_inset
 
  can be ignored given control charting logistics.
- Given a trained VAE, this quantity can be computed by forward passing the
- new profile from the process 
+ 
+\change_inserted -1806609307 1589528880
+We name the 1st-order approximation of 
+\begin_inset Formula $ERE$
+\end_inset
+
+ as 
+\begin_inset Formula $ERE_{1}$
+\end_inset
+
+ and 2nd-order approximation of 
+\begin_inset Formula $ERE$
+\end_inset
+
+ as 
+\begin_inset Formula $ERE_{2}$
+\end_inset
+
+.
+ 
+\change_unchanged
+Given a trained VAE, 
+\change_deleted -1806609307 1589527376
+this quantity 
+\change_inserted -1806609307 1589528876
+
+\begin_inset Formula $ERE_{1}$
+\end_inset
+
+ 
+\change_unchanged
+can be computed
+\change_inserted -1806609307 1589528876
+ efficiently
+\change_unchanged
+ by forward passing the new profile from the process 
 \begin_inset Formula $\mbx$
 \end_inset
 
@@ -1932,6 +2598,42 @@ The constant
 
  successively and calculating the squared prediction error, without any
  reparameterization.
+
+\change_inserted -1806609307 1589531740
+ We will evaluate the use of 
+\begin_inset Formula $ERE_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $ERE_{2}$
+\end_inset
+
+ for process monitoring.
+ 
+\end_layout
+
+\begin_layout Standard
+
+\change_inserted -1806609307 1589531741
+\begin_inset Note Comment
+status open
+
+\begin_layout Plain Layout
+
+\change_inserted -1806609307 1589531798
+Dorukhan, I am thinking of adding the performnace of ERE2 as well given
+ this is not that hard to compute and may be quite likely to be asked by
+ reviewer.
+ I know that you mentioned the performance is similar but I felt that we
+ can add this as well.
+ 
+\end_layout
+
+\end_inset
+
+
+\change_unchanged
+
 \end_layout
 
 \begin_layout Subsection
@@ -1950,13 +2652,23 @@ name "sec:methodology:procedure"
  Phase-I analysis focuses on understanding the process variability by training
  an appropriate in-control mode, and selecting an appropriate control limit.
  In our case, Phase-I analysis results in a trained model (i.e.
- an encoder and a decoder) and an Upper Control Limit (UCL) to help setup
- the control chart for each of the monitoring statistics.
+ an encoder and a decoder) and an Upper Control Limit (UCL) to help set
+\change_inserted -1806609307 1589528503
+ 
+\change_unchanged
+up the control chart for each of the monitoring statistics.
  In Phase-II, the system is exposed to new profiles generated by the process
+\change_inserted -1806609307 1589528492
+ in real time
+\change_unchanged
  to decide whether these profiles are in-control or out-of-control.
  Our experimentation plan, outlined below, is formulated to emulate this
  scenario to effectively assess the performance of any combination of a
- model, a test statistic and a disturbance scenario.
+ model, a test statistic and a disturbance scenario
+\change_inserted -1806609307 1589528531
+ to generate the out-of-control samples
+\change_unchanged
+.
  
 \end_layout
 
@@ -1977,6 +2689,11 @@ Obtain IC dataset
 \begin_inset Formula $\dataset^{tst}$
 \end_inset
 
+
+\change_inserted -1806609307 1589528542
+.
+
+\change_unchanged
  
 \end_layout
 
@@ -2040,17 +2757,59 @@ Start admitting profiles from the process.
 
 \begin_layout Standard
 We train 10 different model instances with different seeds to account for
- inherent randomness due to weight initialization of deep neural networks.
+ inherent randomness due to
+\change_inserted -1806609307 1589528562
+ the
+\change_unchanged
+ weight initialization of deep neural networks.
 \end_layout
 
 \begin_layout Subsection
-Neural Network Architectures 
+Neural Network Architectures
+\change_inserted -1806609307 1589528594
+ and Training
+\change_unchanged
+ 
 \begin_inset CommandInset label
 LatexCommand label
 name "subsec:Model-Architectures"
 
 \end_inset
 
+
+\change_inserted -1806609307 1589491997
+
+\end_layout
+
+\begin_layout Standard
+
+\change_inserted -1806609307 1589528740
+In this work, we use convolutional encoders and decoders in our VAE architecture
+ to represent the spatial neighborhood structures of the profiles.
+ Introduced in 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "lecun1989backpropagation"
+literal "false"
+
+\end_inset
+
+, convolutional layers have enabled tremendous performance increase in certain
+ neural network applications where the data is of a certain spatial neighborhood
+ structure such as images or audio waveform.
+ They exploit an important observation of such data, where the learner should
+ be equivariant to translations.
+ This is an important injection of inductive bias into the network that
+ largely reduces the number of parameters compared to the fully connected
+ network by the use of parameter sharing.
+ It eventually increases the statistical learning efficiency, especially
+ for small samples.
+ It must be noted, however, convolutional layers are not equivariant to
+ scale and rotation as they are to translation.
+ Knowing what sort of inductive biases is injected into these layers is
+ important for the understanding of disentanglement, which we will introduce
+ later in this paper.
+\change_unchanged
 
 \end_layout
 
@@ -2075,8 +2834,11 @@ C(
 \begin_inset Formula $O,K,S,P$
 \end_inset
 
-): Convolutional layer with arguments referring to number of output channels
- 
+): Convolutional layer with arguments referring to 
+\change_inserted -1806609307 1589528754
+the 
+\change_unchanged
+number of output channels 
 \begin_inset Formula $O$
 \end_inset
 
@@ -2142,6 +2904,10 @@ FC(
 \begin_layout Itemize
 A: Activation function.
  Leaky ReLU with a negative slope 
+\change_inserted -1806609307 1589528766
+of 
+\change_unchanged
+
 \begin_inset Formula $0.2$
 \end_inset
 
@@ -2168,7 +2934,12 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
-The sequential order of the computational graphs used for this study are
+The sequential order of the computational graphs used for this study 
+\change_deleted -1806609307 1589528793
+are
+\change_inserted -1806609307 1589528794
+is
+\change_unchanged
  summarized in 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -2184,12 +2955,21 @@ noprefix "false"
 \begin_inset Formula $2r$
 \end_inset
 
- nodes which is a concatenation of the inferred posterior mean and variance,
- both are of length 
+ nodes
+\change_inserted -1806609307 1589528802
+,
+\change_unchanged
+ which is a concatenation of the inferred posterior mean and variance, both
+ are of length 
 \begin_inset Formula $r$
 \end_inset
 
 .
+
+\change_inserted -1806609307 1589528588
+ 
+\change_unchanged
+
 \end_layout
 
 \begin_layout Standard
@@ -2309,17 +3089,73 @@ FC(
 \end_inset
 
 
+\change_inserted -1806609307 1589528604
+
+\end_layout
+
+\begin_layout Standard
+
+\change_inserted -1806609307 1589528938
+The training of the neural network is given as follows: %TODO: 
+\end_layout
+
+\begin_layout Standard
+
+\change_inserted -1806609307 1589528637
+\begin_inset Note Comment
+status open
+
+\begin_layout Plain Layout
+
+\change_inserted -1806609307 1589528651
+Can you give some details on the training of the Neural Network? 
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_unchanged
+
 \end_layout
 
 \begin_layout Section
 Simulation Study Analysis and Results
+\change_inserted -1806609307 1589499493
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Simulation-Study-Analysis"
+
+\end_inset
+
+
+\change_unchanged
+
 \end_layout
 
 \begin_layout Standard
-In this section, we propose the setup and results of our simulation study.
+In this section, we propose 
+\change_deleted -1806609307 1589530904
+the setup and results of our
+\change_inserted -1806609307 1589530912
+to evaluate the proposed methodology via the
+\change_unchanged
+ simulation study
+\change_deleted -1806609307 1589530934
+.
  The rationale behind conducting a simulation study is to have full control
  and information over the data generating process.
- This way, we can test our claims we make in
+ This way, we can 
+\change_inserted -1806609307 1589530938
+ to 
+\change_unchanged
+test our claims we make in
+\change_inserted -1806609307 1589527981
+ 
+\change_unchanged
+
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "sec:proposed-statistic"
@@ -2329,6 +3165,10 @@ noprefix "false"
 
 \end_inset
 
+
+\change_inserted -1806609307 1589530893
+ in a controlled environment over the data generating process
+\change_unchanged
 .
  For every experiment mentioned in this section, we follow the procedure
  outlined in 
@@ -2583,7 +3423,11 @@ Mean shift
 \series bold
 Magnitude shift:
 \series default
- all of the pixels are added an multiplicative disturbance 
+ all of the pixels are added a
+\change_deleted -1806609307 1589531056
+n
+\change_unchanged
+ multiplicative disturbance 
 \begin_inset Formula $\delta$
 \end_inset
 
@@ -2600,8 +3444,12 @@ Here,
 \end_inset
 
  is the intensity of the change.
- Note that location shift and width shift represent disturbances in latent
- distribution 
+ Note that
+\change_inserted -1806609307 1589531090
+ the
+\change_unchanged
+ location shift and width shift represent disturbances in latent distribution
+ 
 \begin_inset Formula $p_{\delta}(\mbz)$
 \end_inset
 
@@ -2633,9 +3481,17 @@ name "sec:simstudy:recognition"
 
 \begin_layout Standard
 To investigate the disentanglement and extrapolation performance of the
- recognition network we employ the following procedure.
- First, we train a VAE with 2-dimensional latent code (for easier visualization)
- to convergence using in-control samples as described in 
+ recognition network
+\change_inserted -1806609307 1589531148
+,
+\change_unchanged
+ we employ the following procedure.
+ First, we train a VAE with 
+\change_inserted -1806609307 1589531154
+a 
+\change_unchanged
+2-dimensional latent code (for easier visualization) to convergence using
+ in-control samples as described in 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "sec:simsetting"
@@ -2684,9 +3540,12 @@ Representations are partially entangled
  change differs.
  The direction would have been independent from the fixed value of center
  location should the representations were disentangled.
- We may claim partial disentanglement for location but that would be quite
- unlikely if it wasn't for the translational equivariance injected in convolutio
-nal layers 
+ We may claim partial disentanglement for location
+\change_inserted -1806609307 1589531184
+,
+\change_unchanged
+ but that would be quite unlikely if it wasn't for the translational equivarianc
+e injected in convolutional layers 
 \begin_inset CommandInset citation
 LatexCommand citep
 after "Thm. 1"
@@ -2700,7 +3559,11 @@ literal "false"
 
 \begin_layout Itemize
 
+\change_inserted -1806609307 1589531204
+
 \series bold
+The 
+\change_unchanged
 Encoder cannot extrapolate for extremely values of radius.
  
 \series default
@@ -2712,7 +3575,11 @@ Observe how from point 7 to 1, from point 6 to 0 and from point 8 to 2 the
 
 \begin_layout Standard
 Given these two observations, we can conclude right away that extremely
- small gaskets (in terms of radius) will likely be gone undetected.
+ small gaskets (in terms of radius) will likely be gone undetected
+\change_inserted -1806609307 1589531240
+ if only the latent variable-based statistics is used
+\change_unchanged
+.
  On the other hand, samples coming from some tolerable radius ranges—such
  as point 7— will be falsely identified as out-of-control.
  Observe for that point, how most sample latent codes fall outside the tolerable
@@ -2775,8 +3642,37 @@ name "fig:proposals"
 \end_layout
 
 \begin_layout Standard
-Overall, our are in agreement with our rationale behind the proposed statistic
- outlined in 
+
+\change_inserted -1806609307 1589531505
+\begin_inset Note Comment
+status open
+
+\begin_layout Plain Layout
+
+\change_inserted -1806609307 1589531553
+Dorukhan, I think we can give figure with colors.
+ We need to ensure that if they put into gray scale, it can still be readed.
+ But there is no restriction of not using any colored images/figures in
+ the paper so we should take advantage of that.
+ 
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Overall, 
+\change_deleted -1806609307 1589531289
+our are
+\change_inserted -1806609307 1589531290
+it is
+\change_unchanged
+ in agreement with our rationale behind the proposed statistic outlined
+ in 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "sec:proposed-statistic"
@@ -2902,8 +3798,14 @@ noprefix "false"
 \end_inset
 
 .
- To see how this will help detecting disturbances in latent space, consider
- a gasket that is extremely large or at the very margins of the grid.
+ To see how this will help 
+\change_deleted -1806609307 1589531352
+detecting
+\change_inserted -1806609307 1589531353
+to detect
+\change_unchanged
+ disturbances in latent space, consider a gasket that is extremely large
+ or at the very margins of the grid.
  Since the decoder cannot generate such a sample, there will be large pixel-to-p
 ixel differences.
  This will in turn produce a larger monitoring statistic that will likely
@@ -2963,7 +3865,11 @@ Earlier, we claimed that it would take too many Monte Carlo sampling iterations
 \end_inset
 
 .
- In this section we test that claim on a random sample 
+ In this section
+\change_inserted -1806609307 1589531389
+,
+\change_unchanged
+ we test that claim on a random sample 
 \begin_inset Formula $\mbx$
 \end_inset
 
@@ -2988,8 +3894,11 @@ noprefix "false"
  iterations to get a stable and accurate estimation.
  At that level, the single pass through encoder is negligible.
  This means using sampling will be more costly at least a factor of few
- tens to achieve the same accuracy as first-order approximation that we
- suggest.
+ tens to achieve the same accuracy as 
+\change_inserted -1806609307 1589531404
+the 
+\change_unchanged
+first-order approximation that we suggest.
 \end_layout
 
 \begin_layout Standard
@@ -3039,6 +3948,23 @@ name "fig:Estimation-comparison-between"
 \end_inset
 
 
+\change_inserted -1806609307 1589531814
+
+\begin_inset Note Comment
+status open
+
+\begin_layout Plain Layout
+
+\change_inserted -1806609307 1589531825
+Dorukhan, Similar here, we can consider add 2nd order approx.
+ 
+\end_layout
+
+\end_inset
+
+
+\change_unchanged
+
 \end_layout
 
 \begin_layout Subsection
@@ -3059,13 +3985,31 @@ noprefix "false"
 
 .
  Note that for all statistics that require sampling, we obtain a single
- sample and calculate the statistic based on that.
- This way we keep the computational demand same for all statistics and emulate
- the computational constraints of a real-life case.
+ sample and calculate the statistic based on that
+\change_deleted -1806609307 1589531861
+.
+
+\change_unchanged
+ 
+\change_deleted -1806609307 1589531863
+This way we
+\change_inserted -1806609307 1589531863
+ to
+\change_unchanged
+ keep the computational demand 
+\change_inserted -1806609307 1589531881
+the 
+\change_unchanged
+same for all statistics and emulate the computational constraints of a real-life
+ case.
  A preliminary result we must check is the robustness of the statistics
  by making sure all proposed statistics have roughly similar false alarm
- rate on the held-out in-control test set, which should also be reasonably
- close to the desired rate 5%.
+ rate
+\change_inserted -1806609307 1589531893
+s
+\change_unchanged
+ on the held-out in-control test set, which should also be reasonably close
+ to the desired rate 5%.
  
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -3415,6 +4359,28 @@ name "fig:disturbance_on_pxz"
 \end_inset
 
 
+\change_inserted -1806609307 1589531563
+
+\end_layout
+
+\begin_layout Standard
+
+\change_inserted -1806609307 1589531563
+\begin_inset Note Comment
+status open
+
+\begin_layout Plain Layout
+
+\change_inserted -1806609307 1589531581
+Similar here please use the color images.
+ 
+\end_layout
+
+\end_inset
+
+
+\change_unchanged
+
 \end_layout
 
 \begin_layout Standard
@@ -3489,7 +4455,11 @@ noprefix "false"
  The other nine classes make up the out of control cases and they have in
  combination 3351 images to report detection accuracy for.
  We randomly partition the IC corpus to fix train, validate and test sets
- with 60%-20%-20% relative sizes respectively.
+ with 60%-20%-20% relative sizes
+\change_inserted -1806609307 1589532013
+,
+\change_unchanged
+ respectively.
  The rest of the procedure followed is outlined in 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -3501,8 +4471,12 @@ noprefix "false"
 \end_inset
 
 .
- Same as in simulation study, to account for randomness in weight initialization
-, we replicate the experiment with 10 different seeds.
+ Same as in 
+\change_inserted -1806609307 1589532024
+the 
+\change_unchanged
+simulation study, to account for randomness in weight initialization, we
+ replicate the experiment with 10 different seeds.
  The results are summarized in 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -3514,13 +4488,92 @@ noprefix "false"
 \end_inset
 
 .
- We observe that 
+ 
+\change_inserted -1806609307 1589532059
+
+\end_layout
+
+\begin_layout Standard
+
+\change_inserted -1806609307 1589532065
+From 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:rolling_results"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, 
+\change_deleted -1806609307 1589532067
+W
+\change_inserted -1806609307 1589532067
+w
+\change_unchanged
+e 
+\change_inserted -1806609307 1589532068
+can 
+\change_unchanged
+observe that 
 \begin_inset Formula $ERE$
 \end_inset
 
  consistently outperforms all other statistic formulations.
- For completeness, we also include a comparison of our proposed statistic
- against the baseline method PCA where 90% of the variance is retained.
+ 
+\change_inserted -1806609307 1589532095
+
+\begin_inset Note Comment
+status open
+
+\begin_layout Plain Layout
+
+\change_inserted -1806609307 1589532149
+Please help add more explanation.
+ You can say 1) The latent-variable based monitoring statistics do not have
+ any detection power at all.
+ 2) Our method work better than R/SPE in the residual space.
+ 
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+For completeness, we also include a comparison of our proposed statistic
+ against the baseline method PCA
+\change_inserted -1806609307 1589532063
+,
+\change_unchanged
+ where 90% of the variance is retained.
+\change_inserted -1806609307 1589532160
+
+\end_layout
+
+\begin_layout Standard
+
+\change_inserted -1806609307 1589532160
+\begin_inset Note Comment
+status open
+
+\begin_layout Plain Layout
+
+\change_inserted -1806609307 1589532211
+We also add some reasons for this such as 1) Linear layers requires much
+ more number of parameters and 2) The use convolution layers can take advantage
+ of the spatial neighborhood structure and inductive bias.
+\end_layout
+
+\end_inset
+
+
+\change_unchanged
+
 \end_layout
 
 \begin_layout Standard
@@ -4759,6 +5812,24 @@ noprefix "false"
 
  while for latent variable-based statistics the obtained values are mostly
  overlapping.
+
+\change_inserted -1806609307 1589532226
+ 
+\begin_inset Note Comment
+status open
+
+\begin_layout Plain Layout
+
+\change_inserted -1806609307 1589532237
+Please add few sentences better explain this behavior.
+ 
+\end_layout
+
+\end_inset
+
+
+\change_unchanged
+
 \end_layout
 
 \begin_layout Standard
@@ -5081,8 +6152,12 @@ In this paper, we criticize Phase-II monitoring statistics proposed so far
  latent space.
  Then, we point out that statistics based on sampling will require too many
  samples to be computationally feasible.
- In the light of these, we propose a novel formulation that addresses all
- of these issues.
+ In 
+\change_deleted -1806609307 1589532258
+the
+\change_unchanged
+ light of these, we propose a novel formulation that addresses all of these
+ issues.
 \end_layout
 
 \begin_layout Standard
@@ -5434,6 +6509,17 @@ name "fig:Rosenbrock"
 
 \begin_layout Section
 Derived Testing Statistics for SPE
+\change_inserted -1806609307 1589526886
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "app:ere"
+
+\end_inset
+
+
+\change_unchanged
+
 \end_layout
 
 \begin_layout Standard
