@@ -464,23 +464,14 @@ The main limitation of all the aforementioned PCA-related methods is that
  Furthermore, each principal component represents a global variation pattern
  of the original profiles, which is not efficient at capturing the local
  spatial correlation within a single profile.
- Therefore, PCA requires 
-\change_deleted -1806609307 1590048083
-a 
+ Therefore, PCA requires much larger latent space dimensions than the dimension
+ of the actual latent space, yielding a sub-optimal and overfitting-prone
+ representation.
+ This phenomenon hinders 
+\change_deleted -767166615 1590103909
+ 
 \change_unchanged
-much larger latent space dimensions than the dimension of the actual latent
- space, yielding a sub-optimal and overfitting-prone representation.
- This phenomen
-\change_inserted -1806609307 1590019455
-on
-\change_deleted -1806609307 1590019454
-a
-\change_unchanged
- hinders 
-\change_deleted -1806609307 1590019467
-the
-\change_unchanged
- profile monitoring performance.
+profile monitoring performance.
 \end_layout
 
 \begin_layout Standard
@@ -497,17 +488,10 @@ literal "false"
  a closeness relationship in the subspace that is characterized by Euclidean
  metrics.
  They successfully observe that the intra-sample variation in complex high-dimen
-sional corpora may lie on a nonlinear manifold as opposed to a linear manifold
-\change_inserted -1806609307 1590019480
-,
-\change_unchanged
+sional corpora may lie on a nonlinear manifold as opposed to a linear manifold,
  which is assumed by PCA and related methods.
  However, the authors only focus on applying manifold learning for Phase-I
- analysis, while 
-\change_inserted -1806609307 1590019486
-the 
-\change_unchanged
-Phase-II monitoring procedure is not touched upon 
+ analysis, while the Phase-II monitoring procedure is not touched upon 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "Shi2016-tg"
@@ -560,10 +544,7 @@ literal "false"
 
  proposed to use deep probabilistic latent variable models, specifically,
  variational autoencoders (VAE), for Phase-II monitoring.
- All of the proposed monitoring statistics in those works differ slightly
-\change_inserted -1806609307 1590019516
-,
-\change_unchanged
+ All of the proposed monitoring statistics in those works differ slightly,
  but they are all extensions of the classic 
 \begin_inset Formula $T^{2}$
 \end_inset
@@ -573,10 +554,6 @@ literal "false"
 \end_inset
 
 -charts of PCA
-\change_deleted -1806609307 1589953359
-, 
-\change_unchanged
-
 \begin_inset Note Note
 status collapsed
 
@@ -607,38 +584,20 @@ We compare all the existing monitoring statistics for deep latent variable
 
 \begin_layout Itemize
 Through extensive experiments, we demonstrate and give insight on why latent
- variable-based monitoring statistics shou
-\change_inserted -1806609307 1590014810
-l
-\change_unchanged
-d not be used due to the two issues related to deep encoders: 1) their represent
-ations are likely entangled 2) they will likely fail to extrapolate well
- beyond the region of in-control profiles.
+ variable-based monitoring statistics should not be used due to the two
+ issues related to deep encoders: 1) their representations are likely entangled
+ 2) they will likely fail to extrapolate well beyond the region of in-control
+ profiles.
 \end_layout
 
 \begin_layout Itemize
-We 
-\change_deleted -1806609307 1590014545
-also demonstrate why
-\change_inserted -1806609307 1590014555
-have derived two
-\change_unchanged
- 
-\change_inserted -1806609307 1590014817
-approximations on the 
-\change_unchanged
-residual-based monitoring statistics 
-\change_inserted -1806609307 1590014826
-based on the first-order and second-order Taylor Expansion and compare with
- the sampling-based monitoring statistics.
+We derive two approximations on the residual-based monitoring statistics
+ leveraging on the first-order and second-order Taylor expansion and compare
+ with the sampling-based monitoring statistics.
  We have demonstrated that the first-order approximation of the residual-based
- monitoring statistics gives the best accuracy and is computationally efficient.
+ monitoring statistics gives the best detection accuracy and is computationally
+ efficient.
  
-\change_deleted -1806609307 1590014656
-should not be estimated via sampling due to prohibitively expensive computationa
-l demand
-\change_unchanged
-
 \begin_inset Note Note
 status collapsed
 
@@ -656,15 +615,11 @@ I don't understand why we're emphasizing this too much.
 
 \begin_layout Itemize
 We demonstrate the effectiveness of this new formulation on both simulation
- and real-life case studies
-\change_inserted -1806609307 1590014788
- and conclude that residual-based monitoring statistics with deep learning
- architecture as encoders and decoders outperform other monitoring statistics
- and the traditional methods
-\change_unchanged
-.
+ and real-life case studies and conclude that residual-based monitoring
+ statistics with deep learning architecture as encoders and decoders outperform
+ other monitoring statistics and the traditional methods.
 
-\change_inserted -1806609307 1590014693
+\change_deleted -767166615 1590103909
  
 \change_unchanged
 
@@ -1149,21 +1104,11 @@ name "sec:bckgrnd:ReviewPCA"
 
 \end_inset
 
- Process monitoring via PCA is typically undert
-\change_inserted -1806609307 1590019557
-a
-\change_deleted -1806609307 1590019555
-oo
-\change_unchanged
-k
-\change_inserted -1806609307 1590019558
-en
-\change_unchanged
- using the 
-\change_deleted -1806609307 1590022830
-so-called
-\change_unchanged
+ Process monitoring via PCA is typically undertaken using the 
+\change_deleted -767166615 1590103931
  
+\change_unchanged
+
 \begin_inset Formula $\Tsq$
 \end_inset
 
@@ -1195,15 +1140,7 @@ literal "false"
 
 .
  Its geometric representation is how far the sample is away from the learned
- sub
-\change_deleted -1806609307 1590019581
-p
-\change_unchanged
-s
-\change_inserted -1806609307 1590019583
-p
-\change_unchanged
-ace of in-control (IC) samples.
+ subspace of in-control (IC) samples.
  
 \begin_inset Formula $\Tsq$
 \end_inset
@@ -1222,40 +1159,6 @@ The
 \end_inset
 
  statistic for PCA are defined as follows: 
-\change_deleted -1806609307 1589953421
-
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-%TODO: give numbers to each line or not?
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-% No need
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\change_unchanged
-
 \begin_inset Formula 
 \begin{equation}
 \begin{split}Q(\mbx) & =\gg\mbx-\tilde{\mbx}\gg^{2}\\
@@ -1323,16 +1226,10 @@ literal "false"
 
  will be much higher than the assumptions on chi-square distribution can
  tolerate.
- As an alternative, non-paramet
-\change_deleted -1806609307 1590048141
-e
-\change_unchanged
-ric methods to estimate upper percentiles are increasingly used for this
- purpose, such as simple sample percentile on a held-out set 
-\change_inserted -1806609307 1590022937
-(i.e., validation set) 
-\change_unchanged
-or fitting kernel density estimation to in-control statistics.
+ As an alternative, non-parametric methods to estimate upper percentiles
+ are increasingly used for this purpose, such as simple sample percentile
+ on a held-out set (i.e., validation set) or fitting kernel density estimation
+ to in-control statistics.
 \end_layout
 
 \begin_layout Subsection
@@ -1472,11 +1369,7 @@ literal "false"
 
 \end_inset
 
- propose
-\change_inserted -1806609307 1590048153
-s
-\change_unchanged
- the 
+ proposes the 
 \begin_inset Formula $R$
 \end_inset
 
@@ -1534,16 +1427,7 @@ R & =\frac{1}{L}\sum_{l=1}^{L}-\log q_{\mbtheta}(\mbx\g\mbz^{(l)}),
 \end_inset
 
  are essentially the same quantities up to a constant, which makes them
- identical in the context of monitoring statistic
-\change_inserted -1806609307 1590048172
-s
-\change_unchanged
-.
-
-\change_deleted -767166615 1589826510
- 
-\change_unchanged
-
+ identical in the context of monitoring statistics.
 \end_layout
 
 \begin_layout Section
@@ -1653,12 +1537,8 @@ A natural choice of the monitoring statistics is to separate the ELBO into
 \begin_inset Formula $\E_{\mbz\sim q_{\mbtheta}}\log\decoding$
 \end_inset
 
- expected reconstruction error
-\change_inserted -1806609307 1590042295
- (ERE)
-\change_unchanged
-, which stands for expected reconstruction error in the residual space and
- 
+ expected reconstruction error (ERE), which stands for expected reconstruction
+ error in the residual space and 
 \begin_inset Formula $\KL{\encoding}{p(\mbz)}$
 \end_inset
 
@@ -1684,11 +1564,8 @@ noprefix "false"
 \begin_inset Formula $p(\mbx)=\int p(\mbx\g\mbz)p(\mbz)d\mbz$
 \end_inset
 
-, we can observe two sources of out-of-control behavio
-\change_deleted -1806609307 1590029271
-u
-\change_unchanged
-rs: disturbances in latent distribution 
+, we can observe two sources of out-of-control behaviors: disturbances in
+ latent distribution 
 \begin_inset Formula $p_{\delta}(\mbz)\neq\pz$
 \end_inset
 
@@ -1703,13 +1580,7 @@ rs: disturbances in latent distribution
 \begin_inset Formula $\E_{\mbz\sim q_{\mbtheta}}\log\decoding$
 \end_inset
 
- can detect the disturbances in the 
-\change_deleted -1806609307 1590029132
-ambient
-\change_inserted -1806609307 1590029133
-residual
-\change_unchanged
- space 
+ can detect the disturbances in the residual space 
 \begin_inset Formula $p_{\delta}(\mbx\g\mbz)\neq p(\mbx\g\mbz)$
 \end_inset
 
@@ -1717,13 +1588,7 @@ residual
 \begin_inset Formula $\KL{\encoding}{p(\mbz)}$
 \end_inset
 
- 
-\change_deleted -1806609307 1590029139
-represents
-\change_inserted -1806609307 1590029140
-can detect
-\change_unchanged
- the change in the latent space 
+ can detect the disturbance in the latent space 
 \begin_inset Formula $p_{\delta}(\mbz)\neq\pz$
 \end_inset
 
@@ -1866,11 +1731,7 @@ noprefix "false"
 \begin_inset Formula $Q$
 \end_inset
 
- statistic
-\change_inserted -1806609307 1590029337
- in the PCA case
-\change_unchanged
-.
+ statistic in the PCA case.
  Observe that previously proposed formulations mentioned in 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -1950,43 +1811,17 @@ literal "false"
  between latent sources of variation and what is observed, as opposed to
  pushing to most extreme cases in the latent variational sources.
  2) A deep autoencoders typically require a much smaller latent dimension
- compared to PCA, 
-\change_inserted -1806609307 1590033498
-due to a better data compressive of the deep autoencoder models compared
- to the traditional PCA methods.
-
-\change_unchanged
- 
-\change_deleted -1806609307 1590033500
-which
-\change_inserted -1806609307 1590033501
-This
-\change_unchanged
- leaves a much smaller chance for change happening in the latent space.
+ compared to PCA, due to a better data compression of the deep autoencoder
+ models compared to the traditional PCA methods.
+ This leaves a much smaller chance for change happening in the latent space.
  3) the mean encoder 
 \begin_inset Formula $\mu_{\mbphi}$
 \end_inset
 
-—
-\change_deleted -1806609307 1590033542
-which is a
-\change_inserted -1806609307 1590033544
-modeled by the
-\change_unchanged
- deep 
-\change_deleted -1806609307 1590033550
-encoder
-\change_inserted -1806609307 1590033554
-neural network
-\change_unchanged
-—is likely to lack two important features: disentangled representations
- and extrapolation capabilities.
+—modeled by the deep neural network—is likely to lack two important features:
+ disentangled representations and extrapolation capabilities.
  These two qualities are required so that extreme values of latent variables
- consistently converge out of 
-\change_inserted -1806609307 1590048247
-the 
-\change_unchanged
-in-control zone.
+ consistently converge out of the in-control zone.
  We illustrate this in 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -2025,53 +1860,67 @@ status open
 \begin_layout Plain Layout
 Different
 \change_inserted -1806609307 1590048306
- possibilities of
-\change_unchanged
  
-\change_inserted -1806609307 1590048279
-learned 
-\change_deleted -1806609307 1590048269
-ways
-\change_inserted -1806609307 1590048274
-latent space representation of
+\change_inserted -767166615 1590117339
+failure mode 
 \change_unchanged
- 
-\change_deleted -1806609307 1590048287
-how an
-\change_inserted -1806609307 1590048288
-the
-\change_unchanged
- independent source of variation
-\change_deleted -1806609307 1590048298
- is learned
-\change_unchanged
-.
+possibilities of learned latent space representation of the independent
+ source of variation.
  
 \series bold
-Top Left:
-\series default
- A hypothetical in-control latent space (gray area) and a range of 
-\change_inserted -1806609307 1590048329
-the 
+Top
+\change_deleted -767166615 1590117290
+ Left
 \change_unchanged
-independent source of variation (line).
- Points A and B are extreme values of in-control and point C is an out-of-contro
-l sample.
+:
+\series default
+ A hypothetical in-control latent space (gray area) and a range of the independe
+nt source of variation (
+\change_inserted -767166615 1590117744
+ABC 
+\change_unchanged
+line).
+ Points A and B are extreme values of in-control
+\change_inserted -767166615 1590104323
+ range
+\change_deleted -767166615 1590104323
+ 
+\change_unchanged
+and point C 
+\change_inserted -767166615 1590117769
+denotes
+\change_deleted -767166615 1590117768
+is
+\change_unchanged
+ an out-of-control sample.
+
+\change_deleted -767166615 1590117299
  
 \series bold
 Top Right: 
 \series default
 An ideal learned representation.
+
+\change_unchanged
  
 \series bold
 Bottom Left:
 \series default
- A learned representation fails to extrapolate.
+ A learned representation 
+\change_inserted -767166615 1590117305
+that 
+\change_unchanged
+fails to extrapolate.
  
 \series bold
 Bottom Right: 
 \series default
-A learned representation that is entangled.
+A learned representation that is entangled
+\change_inserted -767166615 1590117784
+ (i.e.
+ not axis-parallel)
+\change_unchanged
+.
  
 \begin_inset CommandInset label
 LatexCommand label
@@ -2094,7 +1943,7 @@ name "fig:entang-extrap"
 
 \begin_layout Standard
 
-\change_inserted -1806609307 1590029457
+\change_deleted -767166615 1590120509
 \begin_inset Note Comment
 status open
 
@@ -2109,6 +1958,8 @@ es??
 
 \end_inset
 
+
+\change_inserted -1806609307 1590029457
 
 \end_layout
 
@@ -2126,23 +1977,16 @@ literal "false"
  Unfortunately, injecting such inductive biases requires detailed anticipation
  of variations among in-control samples as well as specialized neural network
  structures, both of which are extremely challenging tasks given the potential
- complexity of the processes that generate
-\change_deleted -1806609307 1590033633
-s
-\change_unchanged
- high-dimensional profiles.
+ complexity of the processes that generate high-dimensional profiles.
  Moreover, even if the representations are disentangled, correct mappings
  of 
 \begin_inset Formula $\encoding$
 \end_inset
 
  may still not be obtained due to failure to extrapolate.
- Deep neural networks approximate
-\change_deleted -1806609307 1590033643
-s
-\change_unchanged
- well only at a bounded domain defined by where the training set—in our
- case, the in-control set—is densely sampled from.
+ Deep neural networks approximate well only at a bounded domain defined
+ by where the training set—in our case, the in-control set—is densely sampled
+ from.
  The behavior of the function is often unpredictable outside that domain.
  In other words, it may not extrapolate well beyond the domain of training
  samples.
@@ -2156,13 +2000,7 @@ noprefix "false"
 
 \end_inset
 
- where we replicated this phenomen
-\change_inserted -1806609307 1590033657
-on
-\change_deleted -1806609307 1590033656
-a
-\change_unchanged
- on a toy example.
+ where we replicated this phenomenon on a toy example.
  To see why this is a problem, first note that the encoder 
 \begin_inset Formula $\encoding$
 \end_inset
@@ -2174,23 +2012,13 @@ a
 
  are high.
  The behavior of the encoder is uncertain for profiles coming from dense
- regions of 
-\change_inserted -1806609307 1590033684
-the 
-\change_unchanged
-out-of-control latent structure 
+ regions of the out-of-control latent structure 
 \begin_inset Formula $p_{\delta}(\mbz)\neq\pz$
 \end_inset
 
 .
  We expect increased false negatives should the model falsely map these
- profiles onto high
-\change_deleted -1806609307 1590033710
- 
-\change_inserted -1806609307 1590033710
--
-\change_unchanged
-density regions of 
+ profiles onto high-density regions of 
 \begin_inset Formula $\pz$
 \end_inset
 
@@ -2214,21 +2042,11 @@ Unlike latent variable-based statistics, extrapolation and disentanglement
  help residual-based statistic detect faults better.
  More interestingly, this holds true even when the disturbance is purely
  on the latent structure.
- 
-\change_inserted -1806609307 1590029591
-First, 
-\change_deleted -1806609307 1590029752
-Incorrect mappings by
-\change_inserted -1806609307 1590029753
-if the encoder
-\change_unchanged
- 
+ First, if the encoder 
 \begin_inset Formula $\encoding$
 \end_inset
 
- 
-\change_inserted -1806609307 1590036500
-map the OC sample 
+ map the OC sample 
 \begin_inset Formula $\boldsymbol{x}$
 \end_inset
 
@@ -2237,49 +2055,22 @@ map the OC sample
 \end_inset
 
  in the IC domain, this will lead to the increase of the monitoring statistics
- based on the residual space for better detection power
-\change_deleted -1806609307 1590036493
-will lead to incorrect generations by 
-\begin_inset Formula $\decoding$
-\end_inset
-
- and thus larger statistic that will fall beyond control limits
-\change_unchanged
-.
- Second, even if the mapping was correct
-\change_inserted -1806609307 1590036584
- and it maps 
+ based on the residual space for better detection power.
+ Second, even if the mapping was correct and it maps 
 \begin_inset Formula $\boldsymbol{z}$
 \end_inset
 
- outside the IC region
-\change_unchanged
-, 
-\change_deleted -1806609307 1590036597
-we might have extrapolation issues in 
-\change_unchanged
-the decoder 
+ outside the IC region, the decoder 
 \begin_inset Formula $\decoding$
 \end_inset
 
-
-\change_inserted -1806609307 1590036621
  have not been trained for any 
 \begin_inset Formula $\boldsymbol{z}$
 \end_inset
 
- outside the IC regions,
-\change_unchanged
- which 
-\change_inserted -1806609307 1590036670
-still leads to a large statistics 
-\change_deleted -1806609307 1590036675
-is another possibility for this statistic
-\change_unchanged
- to capture disturbances in latent variations.
- 
-\change_inserted -1806609307 1590036711
-In conclusion, 
+ outside the IC regions, which still leads to a large statistics to capture
+ disturbances in latent variations.
+ In conclusion,
 \end_layout
 
 \begin_layout Standard
@@ -2301,15 +2092,7 @@ To see why this is the case, note that the encoder
 \end_inset
 
  is low.
- For disturbances in 
-\change_inserted -1806609307 1590029708
-the 
-\change_unchanged
-residual
-\change_inserted -1806609307 1590029706
- 
-\change_unchanged
-space 
+ For disturbances in the residual space 
 \begin_inset Formula $p_{\delta}(\mbx\g\mbz)\neq p(\mbx\g\mbz)$
 \end_inset
 
@@ -2322,17 +2105,8 @@ space
 
 \begin_layout Standard
 As of now, we have enough reasons to recommend the use of residual-based
- statistics as the only type of test statistic
-\change_inserted -1806609307 1590033776
-s
-\change_unchanged
- for 
-\change_deleted -1806609307 1590033782
-a
-\change_inserted -1806609307 1590033782
-the
-\change_unchanged
- profile monitoring application that uses VAE.
+ statistics as the only type of test statistics for the profile monitoring
+ application that uses VAE.
  Indeed, variations of this type have been proposed previously: 
 \begin_inset Formula $SPE$
 \end_inset
@@ -2361,12 +2135,8 @@ literal "false"
  However, they both use random samples from the proposal distribution to
  estimate the expectation.
  This approach may require a large number of samples to be generated and
- thus a large number of 
-\change_inserted -1806609307 1590033911
-the 
-\change_unchanged
-forward passes on the decoder network, which is prohibitively expensive
- in terms of computation.
+ thus a large number of the forward passes on the decoder network, which
+ is prohibitively expensive in terms of computation.
  Instead, we propose a Taylor expansion based approximation as the proposed
  statistic.
  First, observe that 
@@ -2473,7 +2243,11 @@ where
 \end_inset
 
 .
+
+\change_deleted -767166615 1590116253
  
+\change_unchanged
+
 \end_layout
 
 \end_deeper
@@ -2512,11 +2286,7 @@ noprefix "false"
 \begin_inset Formula $ERE_{2}$
 \end_inset
 
- requires
-\change_inserted -1806609307 1590034097
- the
-\change_unchanged
- additional computation of the diagonal of the Hessian 
+ requires the additional computation of the diagonal of the Hessian 
 \begin_inset Formula $\mathbf{H}_{z}$
 \end_inset
 
@@ -2531,13 +2301,6 @@ noprefix "false"
 \end_inset
 
  for process monitoring.
-
-\change_inserted -1806609307 1589953618
- 
-\change_deleted -1806609307 1589953617
- 
-\change_unchanged
-
 \end_layout
 
 \begin_layout Subsection
@@ -2551,33 +2314,19 @@ name "sec:methodology:procedure"
 
 \end_inset
 
- A typical profile monitoring follows two phases: Phase-I analysis
-\change_deleted -1806609307 1590035384
-,
-\change_unchanged
- and Phase-II analysis.
+ A typical profile monitoring follows two phases: Phase-I analysis and Phase-II
+ analysis.
  Phase-I analysis focuses on understanding the process variability by training
  an appropriate in-control mode, and selecting an appropriate control limit.
  In our case, Phase-I analysis results in a trained model (i.e.
  an encoder and a decoder) and an Upper Control Limit (UCL) to help set
  up the control chart for each of the monitoring statistics.
  In Phase-II, the system is exposed to new profiles generated by the process
- in real
-\change_deleted -1806609307 1590048382
- 
-\change_inserted -1806609307 1590048382
--
-\change_unchanged
-time to decide whether these profiles are in-control or out-of-control.
+ in real-time to decide whether these profiles are in-control or out-of-control.
  Our experimentation plan, outlined below, is formulated to emulate this
  scenario to effectively assess the performance of any combination of a
  model, a test statistic and a disturbance scenario to generate the out-of-contr
 ol samples.
-
-\change_deleted -767166615 1589834024
- 
-\change_unchanged
-
 \end_layout
 
 \begin_layout Itemize
@@ -2598,11 +2347,6 @@ Obtain IC dataset
 \end_inset
 
 .
-
-\change_deleted -767166615 1589834024
- 
-\change_unchanged
-
 \end_layout
 
 \begin_layout Itemize
@@ -2660,11 +2404,6 @@ status collapsed
 Start admitting profiles from the process.
  Calculate test statistic using the trained VAE.
  If test statistic is over UCL, identify the sample as OC.
-
-\change_deleted -767166615 1589834024
- 
-\change_unchanged
-
 \end_layout
 
 \begin_layout Standard
@@ -3382,14 +3121,27 @@ noprefix "false"
 \begin_layout Itemize
 
 \series bold
-Representations are partially entangled
+Representations are 
+\change_deleted -767166615 1590119137
+partially
+\change_unchanged
+ entangled
 \series default
 .
- For every fixed center location, the direction of the axis on which radius
+ 
+\change_inserted -767166615 1590119127
+For any of the fixed sources of variation, the variation in the other source
+ is not axis-parallel and therefore the variations are entangled in the
+ learned space.
+ 
+\change_deleted -767166615 1590119135
+For every fixed center location, the direction of the axis on which radius
  change differs.
  The direction would have been independent from the fixed value of center
  location should the representations were disentangled.
- We may claim partial disentanglement for location, but that would be quite
+ 
+\change_unchanged
+We may claim partial disentanglement for location, but that would be quite
  unlikely if it wasn't for the translational equivariance injected in convolutio
 nal layers 
 \begin_inset CommandInset citation
@@ -3406,27 +3158,107 @@ literal "false"
 \begin_layout Itemize
 
 \series bold
-The encoder cannot extrapolate for extreme values of
-\change_inserted -1806609307 1590048436
- the
+The encoder cannot extrapolate for extreme values
+\change_inserted -767166615 1590119631
+
+\series default
+.
+
 \change_unchanged
- radius.
+
+\series bold
  
+\change_deleted -767166615 1590119627
+of the radius.
+
+\change_unchanged
+ 
+\change_deleted -767166615 1590116404
+
 \series default
 Observe how from point 7 to 1, from point 6 to 0 and from point 8 to 2 the
  proposal means are converging to a point in the in-control region.
  This signals that the representations will not be able to extrapolate for
  even smaller values of radii.
+
+\change_inserted -767166615 1590119690
+ Observe how for the extremely high values of center location 
+\begin_inset Formula $c$
+\end_inset
+
+ or extremely low values of radius 
+\begin_inset Formula $r$
+\end_inset
+
+ are the overall variation pattern starts getting distorted.
+\change_unchanged
+
 \end_layout
 
 \begin_layout Standard
-Given these two observations, we can conclude right away that extremely
- small gaskets (in terms of radius) will likely be gone undetected if only
- the latent variable-based statistics is used.
- On the other hand, samples coming from some tolerable radius ranges—such
+Given these two observations
+\change_inserted -767166615 1590119712
+ and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Fixed-c-varying-r"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\change_unchanged
+, we can conclude right away that 
+\change_inserted -767166615 1590119799
+gaskets with extremely small radius 
+\begin_inset Formula $r$
+\end_inset
+
+
+\change_deleted -767166615 1590119789
+extremely small gaskets (in terms of radius)
+\change_unchanged
+ will likely go undetected if only the latent variable-based statistic
+\change_deleted -767166615 1590119895
+s
+\change_unchanged
+ is used.
+ 
+\change_inserted -767166615 1590120482
+This is an undesired consequence of the two aforementioned issues.
+ The model seems to be more accurately responsive to the extreme values
+ of center location 
+\begin_inset Formula $c$
+\end_inset
+
+.
+ However, this is most likely due to translational equivariance injected
+ into the model through convolutional layers 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "locatello2018challenging"
+literal "false"
+
+\end_inset
+
+.
+ In many real-life applications, the nature of variations in profiles will
+ be more complex than simple translations in spatial or temporal domain.
+ For such variations, a method to inject equivariance into the model might
+ be unknown or infeasible due to the rigid architectures of deep neural
+ networks.
+ We already have radius as the evidence because convolutional layers are
+ not scale equivariant.
+ 
+\change_deleted -767166615 1590119911
+On the other hand, samples coming from some tolerable radius ranges—such
  as point 7— will be falsely identified as out-of-control.
  Observe for that point, how most sample latent codes fall outside the tolerable
  region in the inferred space.
+\change_unchanged
+
 \end_layout
 
 \begin_layout Standard
@@ -3462,6 +3294,17 @@ Fixed
 \begin_inset Formula $c$
 \end_inset
 
+
+\change_inserted -767166615 1590118516
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Fixed-r-varying-c"
+
+\end_inset
+
+
+\change_unchanged
 
 \end_layout
 
@@ -3505,6 +3348,17 @@ Fixed
 \begin_inset Formula $r$
 \end_inset
 
+
+\change_inserted -767166615 1590118526
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Fixed-c-varying-r"
+
+\end_inset
+
+
+\change_unchanged
 
 \end_layout
 
@@ -3708,12 +3562,8 @@ noprefix "false"
 
  as the encoder and decoder are tightly coupled to each other.
  We observe two important behavior: the posterior gets distorted beyond
- two or three standard deviations
-\change_inserted -1806609307 1590042119
-,
-\change_unchanged
- and the representations are partially entangled in line with the behavior
- of its encoder depicted in 
+ two or three standard deviations, and the representations are partially
+ entangled in line with the behavior of its encoder depicted in 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:proposals"
@@ -3724,29 +3574,13 @@ noprefix "false"
 \end_inset
 
 .
- To see how this will help 
-\change_inserted -1806609307 1590042197
-to 
-\change_unchanged
-detect
-\change_deleted -1806609307 1590042131
-ing
-\change_unchanged
- disturbances in latent space, consider a gasket that is extremely small
- in term of
-\change_inserted -1806609307 1590048455
- the
-\change_unchanged
- radius (i.e.
+ To see how this will help to detect disturbances in latent space, consider
+ a gasket that is extremely small in term of the radius (i.e.
  small 
 \begin_inset Formula $r$
 \end_inset
 
-)
-\change_inserted -1806609307 1589953729
- 
-\change_unchanged
-or at the very margins of the grid in terms of center location (i.e.
+) or at the very margins of the grid in terms of center location (i.e.
  center location 
 \begin_inset Formula $c$
 \end_inset
@@ -3764,15 +3598,8 @@ noprefix "false"
 
 , we can observe that the decoder simply cannot generate such a sample because
  it does not extrapolate well in either of latent dimensions.
- This will in turn produce a larger reconstruction error
-\change_inserted -1806609307 1590033929
-,
-\change_unchanged
- and thus a larger
-\change_inserted -1806609307 1589953748
- 
-\change_unchanged
-monitoring statistic that will likely to fall outside the control limit.
+ This will in turn produce a larger reconstruction error, and thus a larger
+ monitoring statistic that will likely to fall outside the control limit.
  Recall once again that the disturbance described is purely on the latent
  distribution 
 \begin_inset Formula $p_{\delta}(\mbz)$
@@ -3832,24 +3659,12 @@ On the estimation of log-likelihood under importance sampling
 
 \begin_layout Standard
 Earlier, we claimed that it would take too many Monte Carlo sampling iterations
- to get a meaningful estimate of
-\change_inserted -1806609307 1590042282
- ERE defiend as
-\change_unchanged
- 
+ to get a meaningful estimate of ERE defiend as 
 \begin_inset Formula $\E_{\mbz\sim q_{\mbtheta}}\log\decoding$
 \end_inset
 
 .
- In this section
-\change_inserted -1806609307 1589531389
-,
-\change_unchanged
- we test that claim on a random in-control
-\change_inserted -1806609307 1589953773
- 
-\change_unchanged
-sample 
+ In this section, we test that claim on a random in-control sample 
 \begin_inset Formula $\mbx$
 \end_inset
 
@@ -3859,11 +3674,7 @@ sample
 
  which is obtained via the encoder of the same VAE model we have been using
  in this section.
- 
-\change_deleted -1806609307 1590042222
-See
-\change_inserted -1806609307 1590042366
-The results of the sampling-based estimation of ERE, first-order approximation
+ The results of the sampling-based estimation of ERE, first-order approximation
  
 \begin_inset Formula $ERE_{1}$
 \end_inset
@@ -3872,9 +3683,7 @@ The results of the sampling-based estimation of ERE, first-order approximation
 \begin_inset Formula $ERE_{2}$
 \end_inset
 
- are shown in
-\change_unchanged
- 
+ are shown in 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Estimation-comparison-between"
@@ -3884,38 +3693,21 @@ noprefix "false"
 
 \end_inset
 
-
-\change_deleted -1806609307 1590042232
- for the results
-\change_unchanged
 .
  The key observation is that it takes at least a few tens of Monte Carlo
  iterations to get a stable and accurate estimation.
  At that level, the single pass through the encoder is negligible.
  This means using sampling will be more costly at least 
-\change_deleted -1806609307 1590042394
-a factor of few tens
-\change_unchanged
+\change_deleted -767166615 1590105102
  
-\change_inserted -1806609307 1590042400
-50 samples 
 \change_unchanged
-to achieve the same accuracy as the first-order approximation that we suggest
-\change_inserted -1806609307 1590048477
- and at least 80 samples to get the accuracy of the second-order approximation
-\change_unchanged
-.
- Another important observation is that second
-\change_deleted -1806609307 1589953798
- 
-\change_inserted -1806609307 1590042343
--
-\change_unchanged
-order approximation is
-\change_inserted -1806609307 1590048491
- a bit more accurate than first-order approximation since it is closer to
- the sample average approximation, but their difference is insignificant,
- and it requires much more computation.
+50 samples to achieve the same accuracy as the first-order approximation
+ that we suggest and at least 80 samples to get the accuracy of the second-order
+ approximation.
+ Another important observation is that second-order approximation is a bit
+ more accurate than first-order approximation since it is closer to the
+ sample average approximation, but their difference is insignificant, and
+ it requires much more computation.
  In the next subsection, we will evaluate the performance of 
 \begin_inset Formula $ERE_{2}$
 \end_inset
@@ -3930,13 +3722,9 @@ order approximation is
 \end_inset
 
  is justifiable.
+
+\change_deleted -767166615 1590105102
  
-\change_deleted -1806609307 1589953885
- not too different than the first order approximation despite rather costly
- second order derivative calculation despite still being less costly than
- sampling.
- The decision to use second order approximation or not should depend on
- how much additional detection power it brings, if any.
 \change_unchanged
 
 \end_layout
@@ -3962,32 +3750,14 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Estimation comparison between Monte Carlo sampling
-\change_deleted -1806609307 1590045035
- (black line)
-\change_inserted -1806609307 1590045006
-,
-\change_deleted -1806609307 1590045006
- and
-\change_unchanged
- first
-\change_deleted -1806609307 1590045009
+Estimation comparison between Monte Carlo sampling, first-order approximation
  
-\change_inserted -1806609307 1590045009
--
+\change_deleted -767166615 1590116243
+ 
 \change_unchanged
-order approximation 
-\change_deleted -1806609307 1590045031
-(black dashed line)
-\change_inserted -1806609307 1590045025
- and second-order approximation
-\change_unchanged
-.
- 95% confidence interval band is shown in 
-\change_inserted -1806609307 1590048508
-the 
-\change_unchanged
-gray band and is based on simulations with ten different seeds.
+and second-order approximation.
+ 95% confidence interval band is shown in the gray band and is based on
+ simulations with ten different seeds.
  
 \begin_inset CommandInset label
 LatexCommand label
@@ -4065,12 +3835,8 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-False alarm rates on 
-\change_inserted -1806609307 1590048517
-the 
-\change_unchanged
-held-out dataset averaged over 10 replications per model and monitoring
- statistic.
+False alarm rates on the held-out dataset averaged over 10 replications
+ per model and monitoring statistic.
  Standard deviations are in parentheses.
 \begin_inset CommandInset label
 LatexCommand label
@@ -4102,10 +3868,6 @@ name "tab:far"
 
 \begin_layout Plain Layout
 Statistic
-\change_deleted -1806609307 1589953977
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
@@ -4124,10 +3886,6 @@ ERE
 
 \begin_layout Plain Layout
 SPE/R
-\change_deleted -1806609307 1589953977
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
@@ -4137,10 +3895,6 @@ SPE/R
 
 \begin_layout Plain Layout
 D
-\change_deleted -1806609307 1589953977
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
@@ -4150,10 +3904,6 @@ D
 
 \begin_layout Plain Layout
 H2
-\change_deleted -1806609307 1589953977
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
@@ -4163,10 +3913,6 @@ H2
 
 \begin_layout Plain Layout
 T2
-\change_deleted -1806609307 1589953977
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
@@ -4178,10 +3924,6 @@ T2
 
 \begin_layout Plain Layout
 
-\change_deleted -1806609307 1589953977
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
@@ -4191,10 +3933,6 @@ T2
 
 \begin_layout Plain Layout
 0.041(0.006)
-\change_deleted -1806609307 1589953977
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
@@ -4204,10 +3942,6 @@ T2
 
 \begin_layout Plain Layout
 0.051(0.005)
-\change_deleted -1806609307 1589953977
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
@@ -4217,10 +3951,6 @@ T2
 
 \begin_layout Plain Layout
 0.044(0.004)
-\change_deleted -1806609307 1589953977
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
@@ -4230,10 +3960,6 @@ T2
 
 \begin_layout Plain Layout
 0.052(0.005)
-\change_deleted -1806609307 1589953977
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
@@ -4243,10 +3969,6 @@ T2
 
 \begin_layout Plain Layout
 0.043(0.009)
-\change_deleted -1806609307 1589953977
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
@@ -4283,11 +4005,7 @@ noprefix "false"
 \begin_inset Formula $ERE_{2}$
 \end_inset
 
-
-\change_inserted -1806609307 1589953982
- 
-\change_unchanged
-over other methods when the disturbance is on the observable space (top
+ over other methods when the disturbance is on the observable space (top
  row).
  Latent variable-based statistics 
 \begin_inset Formula $D$
@@ -4375,15 +4093,7 @@ We observe mixed results but generally
 \end_layout
 
 \begin_layout Itemize
-Observe the radius shift type disturbance show in 
-\change_inserted -1806609307 1590015087
-the 
-\change_unchanged
-bottom left
-\change_inserted -1806609307 1590015096
- figure
-\change_unchanged
-.
+Observe the radius shift type disturbance show in the bottom left figure.
  Even though 
 \begin_inset Formula $H^{2}$
 \end_inset
@@ -4401,34 +4111,10 @@ noprefix "false"
 \end_inset
 
 .
- To reiterate, disentanglement and 
-\change_deleted -1806609307 1589954027
-failure to
-\change_inserted -1806609307 1589954028
-the lack of
-\change_unchanged
- extrapolat
-\change_inserted -1806609307 1589954031
-ion
-\change_deleted -1806609307 1589954030
-e
-\change_unchanged
- in 
-\change_inserted -1806609307 1590015106
-the 
-\change_unchanged
-encoder is the reason behind this.
- 
-\change_deleted -1806609307 1589954050
-Observe
-\change_inserted -1806609307 1589954053
-We would also suggest
-\change_unchanged
- that this result 
-\change_inserted -1806609307 1589954038
-can 
-\change_unchanged
-extend to all the latent-variable based statistics.
+ To reiterate, disentanglement and the lack of extrapolation in the encoder
+ is the reason behind this.
+ We would also suggest that this result can extend to all the latent-variable
+ based statistics.
 \end_layout
 
 \begin_layout Itemize
@@ -4445,18 +4131,9 @@ Unlike latent variable-based statistics,
 \end_inset
 
  behave more robustly against varying intensities.
- In other words, 
-\change_inserted -1806609307 1590015119
-the 
-\change_unchanged
-detection rate increase with increased intensities consistently.
- Among the
-\change_inserted -1806609307 1589954083
-se
-\change_deleted -1806609307 1589954085
- two
-\change_unchanged
-, we observe that 
+ In other words, the detection rate increase with increased intensities
+ consistently.
+ Among these, we observe that 
 \begin_inset Formula $ERE_{1}$
 \end_inset
 
@@ -4464,11 +4141,7 @@ se
 \begin_inset Formula $ERE_{2}$
 \end_inset
 
- consistently outperform
-\change_deleted -1806609307 1590015128
-s
-\change_unchanged
- 
+ consistently outperform 
 \begin_inset Formula $SPE/R$
 \end_inset
 
@@ -4476,11 +4149,6 @@ s
 \end_layout
 
 \begin_layout Itemize
-
-\change_deleted -1806609307 1589954096
-Again, among 
-\change_unchanged
-
 \begin_inset Formula $ERE_{1}$
 \end_inset
 
@@ -4488,8 +4156,6 @@ Again, among
 \begin_inset Formula $ERE_{2}$
 \end_inset
 
-
-\change_inserted -1806609307 1590015191
  perform very similarly.
  In this case, we conclude that the second-order information does not help
  too much for the Phase-II monitoring.
@@ -4498,14 +4164,9 @@ Again, among
  However, given encoders would provide inaccurate information in the OC
  regions, the second-order information for OC samples would be bias.
  Therefore, it does not provide additional gain for the monitoring performance.
+
+\change_deleted -767166615 1590105309
  
-\end_layout
-
-\begin_layout Standard
-
-\change_deleted -1806609307 1589954101
- it is hard to claim an outperformer.
- The difference is insignificant.
 \change_unchanged
 
 \end_layout
@@ -4556,60 +4217,25 @@ name "fig:disturbance_on_pxz"
 
 \begin_layout Standard
 Note that in a real-life process, disturbances 
-\change_deleted -1806609307 1590015274
-purely
-\change_unchanged
- on 
-\change_deleted -1806609307 1589954308
-either
-\change_inserted -1806609307 1589954309
-the
-\change_unchanged
+\change_deleted -767166615 1590105314
  
-\change_deleted -1806609307 1590015279
-observable
-\change_inserted -1806609307 1590015280
-residual space
 \change_unchanged
+on the residual space is often more likely than the disturbance in the 
+\change_deleted -767166615 1590105314
  
-\change_inserted -1806609307 1589954324
-is often more likely than the disturbance in the 
-\change_deleted -1806609307 1589954326
-or
 \change_unchanged
- latent space would be very unlikely.
- 
-\change_inserted -1806609307 1590042604
-Therefore, we would recommend the use of residual-based monitoring statistics.
- Among all residual-based monitoring statistics, 
-\change_deleted -1806609307 1590042578
-This is why overall, 
-\change_unchanged
-we conclude that 
+latent space would be very unlikely.
+ Therefore, we would recommend the use of residual-based monitoring statistics.
+ Among all residual-based monitoring statistics, we conclude that 
 \begin_inset Formula $ERE_{1}$
 \end_inset
 
  
-\change_deleted -1806609307 1590042620
-is the best statistic among all
-\change_unchanged
+\change_deleted -767166615 1590105314
  
-\change_inserted -1806609307 1590042626
-performance the best 
-\change_deleted -1806609307 1590042637
-when 
-\change_inserted -1806609307 1590042639
-considering 
-\change_deleted -1806609307 1590042642
-a combination of
-\change_inserted -1806609307 1590042643
-the
 \change_unchanged
- accuracy, robustness and computational demand
-\change_deleted -1806609307 1590042648
- is considered
-\change_unchanged
-.
+performance the best considering the accuracy, robustness and computational
+ demand.
 \end_layout
 
 \begin_layout Section
@@ -4673,11 +4299,7 @@ noprefix "false"
  The other nine classes make up the out of control cases and they have in
  combination 3351 images to report detection accuracy for.
  We randomly partition the IC corpus to fix train, validate and test sets
- with 60%-20%-20% relative sizes
-\change_inserted -1806609307 1589532013
-,
-\change_unchanged
- respectively.
+ with 60%-20%-20% relative sizes, respectively.
  The rest of the procedure followed is outlined in 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -4689,19 +4311,11 @@ noprefix "false"
 \end_inset
 
 .
- Same as in 
-\change_inserted -1806609307 1589532024
-the 
-\change_unchanged
-simulation study, to account for randomness in weight initialization, we
- replicate the experiment with 10 different seeds.
- 
-\change_inserted -1806609307 1590042890
-For comparison, we also include the monitoring performance with the traditional
- PCA methods with the same residual-based control chart, denoted as PCA-Q.
- 
-\change_unchanged
-The results are summarized in 
+ Same as in the simulation study, to account for randomness in weight initializa
+tion, we replicate the experiment with 10 different seeds.
+ For comparison, we also include the monitoring performance with the traditional
+ PCA method with the same residual-based control chart, denoted as PCA-Q.
+ The results are summarized in 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "tab:rolling_results"
@@ -4712,11 +4326,6 @@ noprefix "false"
 \end_inset
 
 .
-
-\change_deleted -767166615 1589936349
- 
-\change_unchanged
-
 \end_layout
 
 \begin_layout Standard
@@ -4741,58 +4350,45 @@ noprefix "false"
  consistently outperforms all other statistic formulations.
  The divide between residual-based statistics and latent variable-based
  statistics observed in simulation study is replicated here too.
- The inferiority of latent variable-based statistics are 
-\change_inserted -1806609307 1590042915
-much 
-\change_unchanged
-more 
-\change_deleted -1806609307 1590042918
-salient
-\change_inserted -1806609307 1590042920
-obvious
-\change_unchanged
+ The inferiority of latent variable-based statistics are much more obvious
  here, as we observe for most out-of-control classes the detection rate
  is simply zero.
- 
-\change_inserted -1806609307 1590043190
-This observation further validate our claims that in practice, for deep
+ This observation further validate our claims that in practice, for deep
  autoencoders, the change happens in the residual space rather than the
  latent space.
  The advantage of VAE over PCA is mainly due to the better representative
- power and data compressive ability of deep autoencoders compared to traditional
- PCAs.
- For more discussions of comparing PCA and VAE, please refer to the following
- papers [cite here].
- 
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Comment
-status collapsed
-
-\begin_layout Plain Layout
-Please help add more explanation.
- You can say 1) The latent-variable based monitoring statistics do not have
- any detection power at all.
- 2) Our method work better than R/SPE in the residual space.
-
-\change_deleted -1806609307 1590014328
+ power and data compression ability of deep autoencoders compared to 
+\change_deleted -767166615 1590105637
  
 \change_unchanged
+PCA.
 
-\end_layout
+\change_inserted -1806609307 1590043190
+ 
+\change_inserted -767166615 1590105627
+We replicated the superiority of VAE over PCA for process monitoring the
+ same way it was demonstrated in the earlier works mentioned in this study
+ 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Zhang2019-lu,wang2019systematic,lee2019process"
+literal "false"
 
 \end_inset
 
+.
+ 
+\change_deleted -767166615 1590105396
+For more discussions of comparing PCA and VAE, please refer to the following
+ papers [cite here]
+\change_inserted -1806609307 1590043190
+.
 
+\change_deleted -767166615 1590105658
+ 
 \end_layout
 
 \begin_layout Standard
-
-\change_deleted -1806609307 1590042821
-For completeness, we also include a comparison of our proposed statistic
- against the baseline method PCA, where 90% of the variance is retained.
-\change_inserted -1806609307 1589532160
 
 \end_layout
 
@@ -4858,7 +4454,20 @@ Even though this has been shown by other people.
  So what I did is simply merge these two tables.
  BUt I agree that we can keep it short and so I just least one sentence
  and give a citation.
+
+\change_deleted -767166615 1590105150
  
+\change_inserted -767166615 1590105150
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\change_inserted -767166615 1590105208
+Thanks for pointing this out! I like learning about these unwritten rules
+ of publishing, even though probably I won't be doing this after I graduate.
+\change_inserted -1806609307 1590043220
+
 \end_layout
 
 \end_inset
@@ -4925,13 +4534,7 @@ name "tab:rolling_results"
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\change_deleted -1806609307 1590042700
-Statistic 
-\change_inserted -1806609307 1590042743
 Model
-\change_deleted -1806609307 1590042700
-
 \end_layout
 
 \end_inset
@@ -4940,51 +4543,19 @@ Model
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\change_inserted -1806609307 1590042754
 \begin_inset ERT
 status open
 
 \begin_layout Plain Layout
 
-\change_inserted -1806609307 1590042755
-
 
 \backslash
 centering
-\change_unchanged
-
 \end_layout
 
 \end_inset
 
 VAE
-\change_deleted -1806609307 1590042700
-D
-\begin_inset Formula $D$
-\end_inset
-
- H2
-\begin_inset Formula $H2$
-\end_inset
-
- T2
-\begin_inset Formula $T2$
-\end_inset
-
- SPE/R
-\begin_inset Formula $SPE/R$
-\end_inset
-
- ERE
-\begin_inset Formula $ERE_{1}$
-\end_inset
-
-
-\begin_inset Formula $ERE_{2}$
-\end_inset
-
-
 \end_layout
 
 \end_inset
@@ -5038,8 +4609,6 @@ D
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\change_inserted -1806609307 1590042770
 PCA
 \end_layout
 
@@ -5051,9 +4620,11 @@ PCA
 \begin_inset Text
 
 \begin_layout Plain Layout
+Statistic
+\change_deleted -767166615 1590105670
+ 
+\change_unchanged
 
-\change_inserted -1806609307 1590042740
-Statistic 
 \end_layout
 
 \end_inset
@@ -5062,13 +4633,15 @@ Statistic
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\change_inserted -1806609307 1590042740
 D
 \begin_inset Formula $D$
 \end_inset
 
+
+\change_deleted -767166615 1590105670
  
+\change_unchanged
+
 \end_layout
 
 \end_inset
@@ -5077,13 +4650,15 @@ D
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\change_inserted -1806609307 1590042740
 H2
 \begin_inset Formula $H2$
 \end_inset
 
+
+\change_deleted -767166615 1590105670
  
+\change_unchanged
+
 \end_layout
 
 \end_inset
@@ -5092,13 +4667,15 @@ H2
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\change_inserted -1806609307 1590042740
 T2
 \begin_inset Formula $T2$
 \end_inset
 
+
+\change_deleted -767166615 1590105670
  
+\change_unchanged
+
 \end_layout
 
 \end_inset
@@ -5107,13 +4684,15 @@ T2
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\change_inserted -1806609307 1590042740
 SPE/R
 \begin_inset Formula $SPE/R$
 \end_inset
 
+
+\change_deleted -767166615 1590105670
  
+\change_unchanged
+
 \end_layout
 
 \end_inset
@@ -5122,8 +4701,6 @@ SPE/R
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\change_inserted -1806609307 1590042740
 ERE
 \begin_inset Formula $ERE_{1}$
 \end_inset
@@ -5137,8 +4714,6 @@ ERE
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\change_inserted -1806609307 1590042740
 \begin_inset Formula $ERE_{2}$
 \end_inset
 
@@ -5151,8 +4726,6 @@ ERE
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\change_inserted -1806609307 1590042773
 PCA-Q
 \end_layout
 
@@ -5164,7 +4737,11 @@ PCA-Q
 \begin_inset Text
 
 \begin_layout Plain Layout
-Fault ID 
+Fault ID
+\change_deleted -767166615 1590105670
+ 
+\change_unchanged
+
 \end_layout
 
 \end_inset
@@ -5219,8 +4796,6 @@ Fault ID
 
 \begin_layout Plain Layout
 
-\change_inserted -767166615 1589828421
-
 \end_layout
 
 \end_inset
@@ -5229,8 +4804,6 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\change_inserted -1806609307 1590042767
 
 \end_layout
 
@@ -5242,7 +4815,11 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
-2 
+2
+\change_deleted -767166615 1590105670
+ 
+\change_unchanged
+
 \end_layout
 
 \end_inset
@@ -5251,7 +4828,11 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
-0.00(0.00) 
+0.00(0.00)
+\change_deleted -767166615 1590105670
+ 
+\change_unchanged
+
 \end_layout
 
 \end_inset
@@ -5260,7 +4841,11 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
-0.00(0.00) 
+0.00(0.00)
+\change_deleted -767166615 1590105670
+ 
+\change_unchanged
+
 \end_layout
 
 \end_inset
@@ -5269,7 +4854,11 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
-0.00(0.00) 
+0.00(0.00)
+\change_deleted -767166615 1590105670
+ 
+\change_unchanged
+
 \end_layout
 
 \end_inset
@@ -5278,7 +4867,11 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
-0.37(0.03) 
+0.37(0.03)
+\change_deleted -767166615 1590105670
+ 
+\change_unchanged
+
 \end_layout
 
 \end_inset
@@ -5287,7 +4880,11 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
-0.44(0.06) 
+0.44(0.06)
+\change_deleted -767166615 1590105670
+ 
+\change_unchanged
+
 \end_layout
 
 \end_inset
@@ -5296,8 +4893,6 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\change_inserted -767166615 1589828434
 
 \series bold
 0.50
@@ -5311,9 +4906,11 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
+0.00(0.00)
+\change_deleted -767166615 1590105670
+ 
+\change_unchanged
 
-\change_inserted -1806609307 1590042784
-0.00(0.00) 
 \end_layout
 
 \end_inset
@@ -5324,7 +4921,11 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
-3 
+3
+\change_deleted -767166615 1590105670
+ 
+\change_unchanged
+
 \end_layout
 
 \end_inset
@@ -5333,7 +4934,11 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
-0.17(0.06) 
+0.17(0.06)
+\change_deleted -767166615 1590105670
+ 
+\change_unchanged
+
 \end_layout
 
 \end_inset
@@ -5342,7 +4947,11 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
-0.23(0.04) 
+0.23(0.04)
+\change_deleted -767166615 1590105670
+ 
+\change_unchanged
+
 \end_layout
 
 \end_inset
@@ -5351,7 +4960,11 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
-0.03(0.03) 
+0.03(0.03)
+\change_deleted -767166615 1590105670
+ 
+\change_unchanged
+
 \end_layout
 
 \end_inset
@@ -5360,7 +4973,11 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
-0.84(0.01) 
+0.84(0.01)
+\change_deleted -767166615 1590105670
+ 
+\change_unchanged
+
 \end_layout
 
 \end_inset
@@ -5369,7 +4986,11 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
-0.85(0.01) 
+0.85(0.01)
+\change_deleted -767166615 1590105670
+ 
+\change_unchanged
+
 \end_layout
 
 \end_inset
@@ -5378,8 +4999,6 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\change_inserted -767166615 1589828447
 
 \series bold
 0.86
@@ -5393,9 +5012,11 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
+0.78(0.00)
+\change_deleted -767166615 1590105670
+ 
+\change_unchanged
 
-\change_inserted -1806609307 1590042784
-0.78(0.00) 
 \end_layout
 
 \end_inset
@@ -5406,7 +5027,11 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
-4 
+4
+\change_deleted -767166615 1590105670
+ 
+\change_unchanged
+
 \end_layout
 
 \end_inset
@@ -5415,7 +5040,11 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
-0.00(0.00) 
+0.00(0.00)
+\change_deleted -767166615 1590105670
+ 
+\change_unchanged
+
 \end_layout
 
 \end_inset
@@ -5424,7 +5053,11 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
-0.00(0.00) 
+0.00(0.00)
+\change_deleted -767166615 1590105670
+ 
+\change_unchanged
+
 \end_layout
 
 \end_inset
@@ -5433,7 +5066,11 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
-0.00(0.00) 
+0.00(0.00)
+\change_deleted -767166615 1590105670
+ 
+\change_unchanged
+
 \end_layout
 
 \end_inset
@@ -5442,7 +5079,11 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
-0.62(0.02) 
+0.62(0.02)
+\change_deleted -767166615 1590105670
+ 
+\change_unchanged
+
 \end_layout
 
 \end_inset
@@ -5455,7 +5096,11 @@ Fault ID
 \series bold
 0.75
 \series default
-(0.05) 
+(0.05)
+\change_deleted -767166615 1590105670
+ 
+\change_unchanged
+
 \end_layout
 
 \end_inset
@@ -5464,8 +5109,6 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\change_inserted -767166615 1589828463
 0.71(0.05)
 \end_layout
 
@@ -5475,9 +5118,11 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
+0.56(0.00)
+\change_deleted -767166615 1590105670
+ 
+\change_unchanged
 
-\change_inserted -1806609307 1590042784
-0.56(0.00) 
 \end_layout
 
 \end_inset
@@ -5488,7 +5133,11 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
-5 
+5
+\change_deleted -767166615 1590105670
+ 
+\change_unchanged
+
 \end_layout
 
 \end_inset
@@ -5497,7 +5146,11 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
-0.58(0.07) 
+0.58(0.07)
+\change_deleted -767166615 1590105670
+ 
+\change_unchanged
+
 \end_layout
 
 \end_inset
@@ -5506,7 +5159,11 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
-0.62(0.09) 
+0.62(0.09)
+\change_deleted -767166615 1590105670
+ 
+\change_unchanged
+
 \end_layout
 
 \end_inset
@@ -5515,7 +5172,11 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
-0.00(0.00) 
+0.00(0.00)
+\change_deleted -767166615 1590105670
+ 
+\change_unchanged
+
 \end_layout
 
 \end_inset
@@ -5528,7 +5189,11 @@ Fault ID
 \series bold
 1.00
 \series default
-(0.00) 
+(0.00)
+\change_deleted -767166615 1590105670
+ 
+\change_unchanged
+
 \end_layout
 
 \end_inset
@@ -5541,7 +5206,11 @@ Fault ID
 \series bold
 1.00
 \series default
-(0.00) 
+(0.00)
+\change_deleted -767166615 1590105670
+ 
+\change_unchanged
+
 \end_layout
 
 \end_inset
@@ -5550,8 +5219,6 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\change_inserted -767166615 1589828471
 
 \series bold
 1.00
@@ -5565,9 +5232,11 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
+0.99(0.00)
+\change_deleted -767166615 1590105670
+ 
+\change_unchanged
 
-\change_inserted -1806609307 1590042784
-0.99(0.00) 
 \end_layout
 
 \end_inset
@@ -5578,7 +5247,11 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
-6 
+6
+\change_deleted -767166615 1590105670
+ 
+\change_unchanged
+
 \end_layout
 
 \end_inset
@@ -5587,7 +5260,11 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
-0.06(0.03) 
+0.06(0.03)
+\change_deleted -767166615 1590105670
+ 
+\change_unchanged
+
 \end_layout
 
 \end_inset
@@ -5596,7 +5273,11 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
-0.15(0.08) 
+0.15(0.08)
+\change_deleted -767166615 1590105670
+ 
+\change_unchanged
+
 \end_layout
 
 \end_inset
@@ -5605,7 +5286,11 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
-0.05(0.05) 
+0.05(0.05)
+\change_deleted -767166615 1590105670
+ 
+\change_unchanged
+
 \end_layout
 
 \end_inset
@@ -5614,7 +5299,11 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
-0.79(0.01) 
+0.79(0.01)
+\change_deleted -767166615 1590105670
+ 
+\change_unchanged
+
 \end_layout
 
 \end_inset
@@ -5627,7 +5316,11 @@ Fault ID
 \series bold
 0.80
 \series default
-(0.01) 
+(0.01)
+\change_deleted -767166615 1590105670
+ 
+\change_unchanged
+
 \end_layout
 
 \end_inset
@@ -5636,8 +5329,6 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\change_inserted -767166615 1589828480
 
 \series bold
 0.80
@@ -5651,9 +5342,11 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
+0.52(0.00)
+\change_deleted -767166615 1590105670
+ 
+\change_unchanged
 
-\change_inserted -1806609307 1590042784
-0.52(0.00) 
 \end_layout
 
 \end_inset
@@ -5664,7 +5357,11 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
-7 
+7
+\change_deleted -767166615 1590105670
+ 
+\change_unchanged
+
 \end_layout
 
 \end_inset
@@ -5673,7 +5370,11 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
-0.01(0.01) 
+0.01(0.01)
+\change_deleted -767166615 1590105670
+ 
+\change_unchanged
+
 \end_layout
 
 \end_inset
@@ -5682,7 +5383,11 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
-0.01(0.01) 
+0.01(0.01)
+\change_deleted -767166615 1590105670
+ 
+\change_unchanged
+
 \end_layout
 
 \end_inset
@@ -5691,7 +5396,11 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
-0.00(0.00) 
+0.00(0.00)
+\change_deleted -767166615 1590105670
+ 
+\change_unchanged
+
 \end_layout
 
 \end_inset
@@ -5700,7 +5409,11 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
-0.13(0.01) 
+0.13(0.01)
+\change_deleted -767166615 1590105670
+ 
+\change_unchanged
+
 \end_layout
 
 \end_inset
@@ -5713,7 +5426,11 @@ Fault ID
 \series bold
 0.17
 \series default
-(0.01) 
+(0.01)
+\change_deleted -767166615 1590105670
+ 
+\change_unchanged
+
 \end_layout
 
 \end_inset
@@ -5722,8 +5439,6 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\change_inserted -767166615 1589828508
 0.15(0.00)
 \end_layout
 
@@ -5733,9 +5448,11 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
+0.11(0.00)
+\change_deleted -767166615 1590105670
+ 
+\change_unchanged
 
-\change_inserted -1806609307 1590042784
-0.11(0.00) 
 \end_layout
 
 \end_inset
@@ -5746,7 +5463,11 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
-8 
+8
+\change_deleted -767166615 1590105670
+ 
+\change_unchanged
+
 \end_layout
 
 \end_inset
@@ -5755,7 +5476,11 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
-0.00(0.00) 
+0.00(0.00)
+\change_deleted -767166615 1590105670
+ 
+\change_unchanged
+
 \end_layout
 
 \end_inset
@@ -5764,7 +5489,11 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
-0.00(0.00) 
+0.00(0.00)
+\change_deleted -767166615 1590105670
+ 
+\change_unchanged
+
 \end_layout
 
 \end_inset
@@ -5773,7 +5502,11 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
-0.00(0.00) 
+0.00(0.00)
+\change_deleted -767166615 1590105670
+ 
+\change_unchanged
+
 \end_layout
 
 \end_inset
@@ -5782,7 +5515,11 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
-0.64(0.02) 
+0.64(0.02)
+\change_deleted -767166615 1590105670
+ 
+\change_unchanged
+
 \end_layout
 
 \end_inset
@@ -5795,7 +5532,11 @@ Fault ID
 \series bold
 0.70
 \series default
-(0.07) 
+(0.07)
+\change_deleted -767166615 1590105670
+ 
+\change_unchanged
+
 \end_layout
 
 \end_inset
@@ -5804,8 +5545,6 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\change_inserted -767166615 1589828517
 0.69(0.01)
 \end_layout
 
@@ -5815,9 +5554,11 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
+0.34(0.00)
+\change_deleted -767166615 1590105670
+ 
+\change_unchanged
 
-\change_inserted -1806609307 1590042784
-0.34(0.00) 
 \end_layout
 
 \end_inset
@@ -5828,7 +5569,11 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
-10 
+10
+\change_deleted -767166615 1590105670
+ 
+\change_unchanged
+
 \end_layout
 
 \end_inset
@@ -5837,7 +5582,11 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
-0.00(0.00) 
+0.00(0.00)
+\change_deleted -767166615 1590105670
+ 
+\change_unchanged
+
 \end_layout
 
 \end_inset
@@ -5846,7 +5595,11 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
-0.00(0.00) 
+0.00(0.00)
+\change_deleted -767166615 1590105670
+ 
+\change_unchanged
+
 \end_layout
 
 \end_inset
@@ -5855,7 +5608,11 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
-0.00(0.00) 
+0.00(0.00)
+\change_deleted -767166615 1590105670
+ 
+\change_unchanged
+
 \end_layout
 
 \end_inset
@@ -5864,7 +5621,11 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
-0.49(0.03) 
+0.49(0.03)
+\change_deleted -767166615 1590105670
+ 
+\change_unchanged
+
 \end_layout
 
 \end_inset
@@ -5877,7 +5638,11 @@ Fault ID
 \series bold
 0.57
 \series default
-(0.05) 
+(0.05)
+\change_deleted -767166615 1590105670
+ 
+\change_unchanged
+
 \end_layout
 
 \end_inset
@@ -5886,8 +5651,6 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\change_inserted -767166615 1589828523
 
 \series bold
 0.57
@@ -5901,9 +5664,11 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
+0.29(0.00)
+\change_deleted -767166615 1590105670
+ 
+\change_unchanged
 
-\change_inserted -1806609307 1590042784
-0.29(0.00) 
 \end_layout
 
 \end_inset
@@ -5914,7 +5679,11 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
-12 
+12
+\change_deleted -767166615 1590105670
+ 
+\change_unchanged
+
 \end_layout
 
 \end_inset
@@ -5923,7 +5692,11 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
-0.00(0.00) 
+0.00(0.00)
+\change_deleted -767166615 1590105670
+ 
+\change_unchanged
+
 \end_layout
 
 \end_inset
@@ -5932,7 +5705,11 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
-0.00(0.00) 
+0.00(0.00)
+\change_deleted -767166615 1590105670
+ 
+\change_unchanged
+
 \end_layout
 
 \end_inset
@@ -5941,7 +5718,11 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
-0.00(0.00) 
+0.00(0.00)
+\change_deleted -767166615 1590105670
+ 
+\change_unchanged
+
 \end_layout
 
 \end_inset
@@ -5950,7 +5731,11 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
-0.79(0.01) 
+0.79(0.01)
+\change_deleted -767166615 1590105670
+ 
+\change_unchanged
+
 \end_layout
 
 \end_inset
@@ -5963,7 +5748,11 @@ Fault ID
 \series bold
 0.80
 \series default
-(0.02) 
+(0.02)
+\change_deleted -767166615 1590105670
+ 
+\change_unchanged
+
 \end_layout
 
 \end_inset
@@ -5972,8 +5761,6 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\change_inserted -767166615 1589828536
 
 \series bold
 0.80
@@ -5987,9 +5774,11 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
+0.69(0.00)
+\change_deleted -767166615 1590105670
+ 
+\change_unchanged
 
-\change_inserted -1806609307 1590042784
-0.69(0.00) 
 \end_layout
 
 \end_inset
@@ -6000,7 +5789,11 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
-13 
+13
+\change_deleted -767166615 1590105670
+ 
+\change_unchanged
+
 \end_layout
 
 \end_inset
@@ -6009,7 +5802,11 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
-0.00(0.00) 
+0.00(0.00)
+\change_deleted -767166615 1590105670
+ 
+\change_unchanged
+
 \end_layout
 
 \end_inset
@@ -6018,7 +5815,11 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
-0.00(0.00) 
+0.00(0.00)
+\change_deleted -767166615 1590105670
+ 
+\change_unchanged
+
 \end_layout
 
 \end_inset
@@ -6027,7 +5828,11 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
-0.01(0.00) 
+0.01(0.00)
+\change_deleted -767166615 1590105670
+ 
+\change_unchanged
+
 \end_layout
 
 \end_inset
@@ -6036,7 +5841,11 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
-0.71(0.04) 
+0.71(0.04)
+\change_deleted -767166615 1590105670
+ 
+\change_unchanged
+
 \end_layout
 
 \end_inset
@@ -6049,7 +5858,11 @@ Fault ID
 \series bold
 0.77
 \series default
-(0.02) 
+(0.02)
+\change_deleted -767166615 1590105670
+ 
+\change_unchanged
+
 \end_layout
 
 \end_inset
@@ -6058,8 +5871,6 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\change_inserted -767166615 1589828546
 0.76(0.02)
 \end_layout
 
@@ -6069,9 +5880,11 @@ Fault ID
 \begin_inset Text
 
 \begin_layout Plain Layout
+0.56(0.00)
+\change_deleted -767166615 1590105670
+ 
+\change_unchanged
 
-\change_inserted -1806609307 1590042784
-0.56(0.00) 
 \end_layout
 
 \end_inset
@@ -6724,33 +6537,10 @@ name "tab:rolling:vsPCA"
 \end_layout
 
 \begin_layout Standard
-To support our claim of 
-\change_inserted -1806609307 1590048558
-the 
-\change_unchanged
-ineffectiveness of 
-\change_deleted -1806609307 1590048569
-the statistics based on the 
-\change_unchanged
-latent 
-\change_inserted -767166615 1589936603
-variable
-\change_inserted -1806609307 1590048575
--based statistics
-\change_deleted -1806609307 1590048572
-s
-\change_inserted -767166615 1589936603
+To support our claim of the ineffectiveness of latent variable-based statistics
  
-\change_deleted -767166615 1589936598
-space such as 
-\begin_inset Formula $H^{2}$
-\end_inset
-
-
-\change_unchanged
+\change_deleted -767166615 1590105921
  
-\change_deleted -767166615 1589936606
-statistics
 \change_unchanged
 , we refer the reader to 
 \begin_inset CommandInset ref
@@ -6773,44 +6563,35 @@ noprefix "false"
 
  while for latent variable-based statistics the obtained values are mostly
  overlapping.
-
-\change_inserted -767166615 1589936632
  Note that we omitted 
 \begin_inset Formula $ERE_{2}$
 \end_inset
 
-
-\change_deleted -767166615 1589936629
- 
-\change_inserted -767166615 1589936649
 because it was almost identical to 
 \begin_inset Formula $ERE_{1}$
 \end_inset
 
 .
  
-\change_inserted -1806609307 1589532226
+\change_deleted -767166615 1590120536
 
 \begin_inset Note Comment
-status collapsed
+status open
 
 \begin_layout Plain Layout
-
-\change_inserted -1806609307 1589532237
 Please add few sentences better explain this behavior.
+
+\change_deleted -767166615 1590105921
  
+\change_unchanged
+
 \end_layout
 
 \end_inset
 
 
-\change_inserted -767166615 1589944469
- To obtain a deeper understanding of the results, 
-\change_deleted -1806609307 1590043340
-observe
-\change_inserted -1806609307 1590043343
-we would like to show
-\change_inserted -767166615 1589944469
+\change_unchanged
+ To obtain a deeper understanding of the results, we would like to show
  
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -6821,19 +6602,9 @@ noprefix "false"
 
 \end_inset
 
-
-\change_inserted -1806609307 1590043384
- for the original images and their reconstructions
-\change_inserted -767166615 1589944469
-.
- Decoder is persistent on generating samples that looks like in-control
- rolling 
-\change_deleted -1806609307 1590048610
-defects
-\change_inserted -1806609307 1590048611
-samples
-\change_inserted -767166615 1589944469
- with little fidelity to how the original defect sample looks like.
+ for the original images and their reconstructions.
+ Decoder is persistent on generating samples that look like in-control rolling
+ samples with little fidelity to how the original defect sample looks like.
  When 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -6868,21 +6639,11 @@ noprefix "false"
  shows that most latent representations fall into the region that would
  be considered in-control from a profile monitoring perspective.
  We observe instances of class 3,5,6 and 7 
-\change_deleted -1806609307 1590043431
-which are exceptions to these
-\change_inserted -1806609307 1590043493
- generate the latent variables in the OC regions
-\change_inserted -767166615 1589944469
-.
+\change_deleted -767166615 1590105921
  
-\change_inserted -1806609307 1590043496
-However, 
-\change_deleted -1806609307 1590043497
-E
-\change_inserted -1806609307 1590043497
-e
-\change_inserted -767166615 1589944469
-ven for these classes, 
+\change_unchanged
+generate the latent variables in the OC regions.
+ However, even for these classes, 
 \begin_inset Formula $SPE/R$
 \end_inset
 
@@ -6894,15 +6655,7 @@ ven for these classes,
 \begin_inset Formula $ERE_{2}$
 \end_inset
 
- yields 
-\change_inserted -1806609307 1590048645
-much 
-\change_inserted -767166615 1589944469
-better detection 
-\change_deleted -1806609307 1590048652
-rates
-\change_inserted -1806609307 1590048657
-power than 
+ yields much better detection power than 
 \begin_inset Formula $D$
 \end_inset
 
@@ -6914,9 +6667,7 @@ power than
 \begin_inset Formula $T_{2}$
 \end_inset
 
-,
-\change_inserted -767166615 1589944469
- as it can be seen in 
+, as it can be seen in 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "tab:rolling_results"
@@ -6927,23 +6678,19 @@ noprefix "false"
 \end_inset
 
 .
-
-\change_inserted -1806609307 1590043618
  In conclusion, we would like to suggest the use of 
 \begin_inset Formula $ERE_{1}$
 \end_inset
 
  for deep autoencoders, which is consistent with our findings in the simulation
  study.
-\change_unchanged
-
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset ERT
@@ -7549,15 +7296,6 @@ name "fig:Output-of-the"
 
 \end_layout
 
-\begin_layout Standard
-
-\change_deleted -1806609307 1590043567
-Overall, our case study results replicate the behaviors we explored in the
- simulation study.
-\change_inserted -767166615 1589945006
-
-\end_layout
-
 \begin_layout Section
 Conclusion 
 \begin_inset CommandInset label
@@ -7570,111 +7308,29 @@ name "sec:conclusions"
 \end_layout
 
 \begin_layout Standard
-In this paper, we 
-\change_deleted -1806609307 1590045576
-criticize
-\change_inserted -1806609307 1590045583
-focus on evaluating
-\change_unchanged
- Phase-II monitoring statistics proposed so far in the literature for VAE
- 
-\change_deleted -1806609307 1590045590
-that
-\change_inserted -1806609307 1590045593
-and demonstrate that
-\change_unchanged
- they were not performing optimally in terms of accuracy and/or computational
- feasibility.
+In this paper, we focus on evaluating Phase-II monitoring statistics proposed
+ so far in the literature for VAE and demonstrate that they were not performing
+ optimally in terms of accuracy and/or computational feasibility.
  First, we point out two important issues related to the latent variables
  learned by the encoder of VAE, namely, entanglement and failure to extrapolate.
  Based on these issues, we argue that latent variable-based statistics should
- be discarded altogether 
-\change_inserted -1806609307 1590046014
-with both conceptual explanations and real experiments
-\change_deleted -1806609307 1590045639
-because they will fail to reflect extremity in latent space
-\change_unchanged
-.
- 
-\change_deleted -1806609307 1590045673
-Then
-\change_inserted -1806609307 1590045674
-Second
-\change_unchanged
-, we point out that 
-\change_inserted -1806609307 1590045686
-the residual-based 
-\change_unchanged
-statistics based on sampling will require too many samples to be computationally
- feasible.
- 
-\change_deleted -1806609307 1590045702
-In 
-\change_deleted -767166615 1589833973
- 
-\change_deleted -1806609307 1590045702
-light of these
-\change_inserted -1806609307 1590045703
-Finally
-\change_unchanged
-, we propose a novel formulation
-\change_inserted -1806609307 1590045741
- by deriving the Taylor expansion of expected reconstruction error
-\change_unchanged
- that addresses 
-\change_deleted -1806609307 1590045749
-all of these issues
-\change_inserted -1806609307 1590046026
-both accuracy and computational efficiency
-\change_unchanged
-.
+ be discarded altogether with both conceptual explanations and real experiments.
+ Second, we point out that the residual-based statistics based on sampling
+ will require too many samples to be computationally feasible.
+ Finally, we propose a novel formulation by deriving the Taylor expansion
+ of expected reconstruction error that addresses both accuracy and computational
+ efficiency.
 \end_layout
 
 \begin_layout Standard
-
-\change_inserted -1806609307 1590045762
-To support our claim, 
-\change_deleted -1806609307 1590045778
-We first run a simulation study to support our claims.
- O
-\change_inserted -1806609307 1590045778
-o
-\change_unchanged
-ur simulation study
-\change_inserted -1806609307 1590045859
- first
-\change_unchanged
- demonstrates the 
-\change_inserted -1806609307 1590045926
-entanglement and lack of extrapolation of latent variable-based statistics
- and its inferior Phase-II monitoring performance
-\change_deleted -1806609307 1590045829
-existence of the issues we argue in the discussion of our methodology
-\change_unchanged
-.
- It 
-\change_deleted -1806609307 1590045937
-also
-\change_inserted -1806609307 1590045938
-further
-\change_unchanged
- shows that 
-\change_deleted -1806609307 1590045946
-our formulation
-\change_inserted -1806609307 1590045960
-the derived statistics based on the residual space
-\change_unchanged
- is more robust and 
-\change_deleted -1806609307 1590045968
-for the most part 
-\change_unchanged
-more accurate than all the other statistics proposed so far.
+To support our claim, our simulation study first demonstrates the entanglement
+ and lack of extrapolation of latent variable-based statistics and its inferior
+ Phase-II monitoring performance.
+ It further shows that the derived statistics based on the residual space
+ is more robust and more accurate than all the other statistics proposed
+ so far.
  Finally, we validate the superiority of our formulation on a real-life
- case study
-\change_inserted -1806609307 1590045978
-,
-\change_unchanged
- where steel defect image profiles are used.
+ case study, where steel defect image profiles are used.
 \end_layout
 
 \begin_layout Standard
@@ -7774,13 +7430,7 @@ name "sec:PoofOfPropTQ"
 
 \begin_layout Standard
 Kullback-Leibler divergence between two multivariate Gaussian distributions
- has a 
-\change_deleted -1806609307 1590045531
-closed form
-\change_inserted -1806609307 1590045531
-closed-form
-\change_unchanged
- solution.
+ has a closed-form solution.
  If we define these distributions as 
 \begin_inset Formula $p_{0}=N(\mbz;\mbmu_{0},\mbSigma_{0})$
 \end_inset
@@ -7806,13 +7456,7 @@ literal "false"
 
 \end_inset
 
- the 
-\change_deleted -1806609307 1590045531
-closed form
-\change_inserted -1806609307 1590045516
-closed-form
-\change_unchanged
- solution will be the following: 
+ the closed-form solution will be the following: 
 \begin_inset Formula 
 \begin{align*}
 \KL{p_{0}}{p_{1}} & =\frac{1}{2}[\log\frac{\g\mbSigma_{1}\g}{\g\mbSigma_{0}\g}+Tr(\mbSigma_{1}\inv\mbSigma_{0})-r\\
@@ -7953,17 +7597,10 @@ Assume using a multilayer perceptron, we are trying to approximate the famous
 \end_inset
 
 .
- We use 
-\change_inserted -1806609307 1590046047
-a 
-\change_unchanged
-multilayer perceptron with six hidden layers and a hundred neurons in each
- layer.
- Half of the points are used in training
-\change_inserted -1806609307 1590046081
-,
-\change_unchanged
- and the other half is used as a validation set to optimize hyper-parameters.
+ We use a multilayer perceptron with six hidden layers and a hundred neurons
+ in each layer.
+ Half of the points are used in training, and the other half is used as
+ a validation set to optimize hyper-parameters.
  Using the trained network, we plot the actual Rosenbrock function along
  with the neural network approximation in 
 \begin_inset CommandInset ref
@@ -7980,16 +7617,8 @@ noprefix "false"
 \begin_inset Formula $[-1,3]\times[-2,3]$
 \end_inset
 
-
-\change_inserted -1806609307 1590046071
-,
-\change_unchanged
- but there is 
-\change_inserted -1806609307 1590046057
-a 
-\change_unchanged
-serious discrepancy between the approximated and the real outside of the
- region.
+, but there is a serious discrepancy between the approximated and the real
+ outside of the region.
  This is a small yet to the point example of out-of-distribution issues
  with neural networks.
 \end_layout
@@ -8057,14 +7686,10 @@ name "app:ere"
 \end_layout
 
 \begin_layout Standard
-
-\change_inserted -767166615 1589846677
 \begin_inset Note Note
-status collapsed
+status open
 
 \begin_layout Plain Layout
-
-\change_inserted -767166615 1589932312
 here needs a bit more neat explanation of everything, such as what q (it's
  a normal distrbution with mean 
 \begin_inset Formula $\mbmu_{\mbphi}(\mbx)$
@@ -8079,20 +7704,14 @@ here needs a bit more neat explanation of everything, such as what q (it's
  I'm not sure where exactly trace is introduced, but probably the derivation
  here led to that https://stats.stackexchange.com/questions/34477/expected-value-a
 nd-variance-of-trace-function .
-\change_unchanged
-
 \end_layout
 
 \end_inset
 
 
-\change_unchanged
-
 \end_layout
 
 \begin_layout Standard
-
-\change_inserted -1806609307 1590043699
 To derive the 
 \begin_inset Formula $ERE_{1}$
 \end_inset
@@ -8102,20 +7721,14 @@ To derive the
 \end_inset
 
 , 
-\change_deleted -1806609307 1590043702
-Here,
+\change_deleted -767166615 1590116225
+ 
 \change_unchanged
- we 
-\change_inserted -1806609307 1590044615
-first 
-\change_unchanged
-define 
+we first define 
 \begin_inset Formula $R(z)=\|y-\mbmu_{\mbtheta}(z)\|^{2}$
 \end_inset
 
-
-\change_inserted -1806609307 1590045116
- as the recontruction error (RE).
+ as the reconstruction error (RE).
  Since 
 \begin_inset Formula $\encoding=\Norm(\mbmu_{\mbphi}(\mbx),\Sigma_{z})$
 \end_inset
@@ -8125,7 +7738,9 @@ define
 \begin_inset Formula $z_{0}=\mbmu_{\mbphi}(\mbx)$
 \end_inset
 
- as follows: 
+ as follows:
+\change_deleted -767166615 1590116225
+ 
 \change_unchanged
 
 \end_layout
@@ -8153,55 +7768,32 @@ Since
 \begin_inset Formula $\mathrm{tr}(\mathbf{H}_{z}S_{z})=\mathrm{tr}(diag(\mathbf{H}_{z})S_{z})=\sum_{i}(\mathbf{H}_{z})_{ii}(S_{z})_{ii}$
 \end_inset
 
-
-\change_inserted -1806609307 1590045408
 .
-\change_deleted -1806609307 1590045408
-,
-\change_unchanged
+
+\change_deleted -767166615 1590116225
  
-\change_inserted -1806609307 1590045410
+\change_unchanged
 
 \end_layout
 
 \begin_layout Standard
-
-\change_inserted -1806609307 1590045418
 Therefore, to compute 
 \begin_inset Formula $ERE_{2}$
 \end_inset
 
 , we propose to 
-\change_deleted -1806609307 1590045420
-and
+\change_deleted -767166615 1590116225
+ 
 \change_unchanged
- only
-\change_inserted -1806609307 1590045431
- compute the
-\change_unchanged
- diagonal element of 
+only compute the diagonal element of 
 \begin_inset Formula $\mathbf{H}_{z}$
 \end_inset
 
  
-\change_deleted -1806609307 1590045439
-is needed, so it can be
-\change_inserted -1806609307 1590045442
- to increase its
+\change_deleted -767166615 1590116225
+ 
 \change_unchanged
- comput
-\change_inserted -1806609307 1590045447
-ational
-\change_deleted -1806609307 1590045444
-ed
-\change_unchanged
- efficien
-\change_inserted -1806609307 1590045454
-cy
-\change_deleted -1806609307 1590045451
-tly
-\change_unchanged
-.
+to increase its computational efficiency.
 \end_layout
 
 \end_body
