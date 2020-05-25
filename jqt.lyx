@@ -143,7 +143,7 @@ theorems-sec
 
 \begin_layout Standard
 \begin_inset ERT
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -163,6 +163,51 @@ filename "preamble/preamble_glossary.lyx"
 
 \end_inset
 
+
+\change_inserted -767166615 1590439094
+
+\end_layout
+
+\begin_layout Title
+
+\change_inserted -767166615 1590439190
+Toward a Better Statistic Formulation for Profile Monitoring with Variational
+ Autoencoders
+\end_layout
+
+\begin_layout Abstract
+
+\change_inserted -767166615 1590440229
+Due to recent success of deep learning models, nonlinear profile monitoring
+ schemes based on deep neural networks have attracted increasing interest.
+ A number of such monitoring statistic formulations for were proposed specifical
+ly for variational autoencoders, a mainstay deep generative model.
+ While these works show impressive results over classical methods, they
+ ignore shortcomings of learned lower-dimensional representations and computatio
+nal limitations of real-world high-dimensional systems in their proposed
+ formulations.
+ In this work, we first manifest these issues and then overcome them with
+ a novel statistic formulation that both increases out-of-control detection
+ accuracy and computational efficiency.
+ We demonstrate our results both on a carefully designed simulation study
+ and a real-life example of image profiles obtained from a hot steel rolling
+ process.
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+
+\change_inserted -767166615 1590440232
+~100 words abstract required, right now this is 118, to check in LyX, highlight
+ the text then use: Tools -> Statistics
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_unchanged
 
 \end_layout
 
@@ -572,9 +617,9 @@ We demonstrate the effectiveness of this new formulation on both simulation
 \end_layout
 
 \begin_layout Standard
-The rest of the paper is organized as follows.
-
-\color red
+The rest of the paper is organized as follow
+\color black
+s.
  
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -585,9 +630,7 @@ noprefix "false"
 
 \end_inset
 
- 
-\color black
-first reviews the related literature in the variational autoencoders and
+ first reviews the related literature in the variational autoencoders and
  traditional 
 \begin_inset Formula $T^{2}$
 \end_inset
@@ -1255,7 +1298,7 @@ where
 \begin_inset Formula $S_{\mbz}\inv$
 \end_inset
 
- can be slow and unneccesary since for a well trained VAE, 
+ can be slow and unnecessary since for a well trained VAE, 
 \begin_inset Formula $\bar{\mbz}$
 \end_inset
 
@@ -6769,55 +6812,25 @@ To derive the
 \begin_inset Formula $ERE_{2}$
 \end_inset
 
-, 
-\change_deleted -767166615 1590116225
- 
-\change_unchanged
-we first define 
+, we first define 
 \begin_inset Formula $R(z)=\|y-\mbmu_{\mbtheta}(z)\|^{2}$
 \end_inset
 
  as the reconstruction error (RE).
-
-\change_inserted -767166615 1590430242
  The quantity we would like approximate is 
 \begin_inset Formula $E_{\mbz\sim q_{\phi}}R(\mbz)$
 \end_inset
 
- where
-\change_deleted -767166615 1590430240
- Since
-\change_unchanged
- 
+ where 
 \begin_inset Formula $\encoding=\Norm(\mbmu_{\mbphi}(\mbx),\Sigma_{z})$
 \end_inset
 
-
-\change_inserted -767166615 1590430246
 .
-\change_deleted -767166615 1590430245
-,
-\change_unchanged
+ We are looking forthe Taylor expansion of the expected RE (ERE) around
  
-\change_inserted -767166615 1590430317
-W
-\change_deleted -767166615 1590430317
-w
-\change_unchanged
-e 
-\change_deleted -767166615 1590430193
-would like derive
-\change_inserted -767166615 1590430196
-are looking for
-\change_deleted -767166615 1590430194
- 
-\change_unchanged
-the Taylor expansion of the expected RE (ERE) around 
 \begin_inset Formula $z_{0}=\mbmu_{\mbphi}(\mbx)$
 \end_inset
 
-
-\change_inserted -767166615 1590430420
 , i.e.
  the first moment.
  For notational simplicity, we use 
@@ -6830,10 +6843,6 @@ the Taylor expansion of the expected RE (ERE) around
 
 .
  The derivation is formalized as follows:
-\change_deleted -767166615 1590430203
- as follows: 
-\change_unchanged
-
 \end_layout
 
 \begin_layout Standard
@@ -6851,8 +6860,6 @@ E_{\mbz\sim q_{\phi}}R(\mbz) & =R(\mbmu_{\mbphi}(\mbx))+R'(\mbmu_{\mbphi}(\mbx))
 \end_layout
 
 \begin_layout Standard
-
-\change_inserted -767166615 1590430485
 Note for 
 \begin_inset Formula $ERE_{1}$
 \end_inset
@@ -6870,11 +6877,7 @@ Note for
 \begin_inset Formula $ERE_{2}$
 \end_inset
 
-, s
-\change_deleted -767166615 1590430481
-S
-\change_unchanged
-ince 
+, since 
 \begin_inset Formula $\Sigma_{z}$
 \end_inset
 
@@ -6882,39 +6885,18 @@ ince
 \begin_inset Formula $\mathrm{tr}(\mathbf{H}_{z}S_{z})=\mathrm{tr}(diag(\mathbf{H}_{z})S_{z})=\sum_{i}(\mathbf{H}_{z})_{ii}(S_{z})_{ii}$
 \end_inset
 
-
-\change_inserted -767166615 1590430496
- holds
-\change_unchanged
-.
-
-\change_deleted -767166615 1590116225
- 
-\change_unchanged
-
+ holds.
 \end_layout
 
 \begin_layout Standard
-
-\change_inserted -767166615 1590430537
-We can utilize this result
-\change_deleted -767166615 1590430539
-Therefore,
-\change_unchanged
- to compute 
+We can utilize this result to compute 
 \begin_inset Formula $ERE_{2}$
 \end_inset
 
-, 
-\change_inserted -767166615 1590430562
-in a more computationally efficient manner.
- 
-\change_deleted -767166615 1590430545
-we propose to  only compute the diagonal element of 
-\begin_inset Formula $\mathbf{H}_{z}$
-\end_inset
+, in a more computationally efficient manner.
 
-  to increase its computational efficiency.
+\change_deleted -767166615 1590430571
+ 
 \change_unchanged
 
 \end_layout
