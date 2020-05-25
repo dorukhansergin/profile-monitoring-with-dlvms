@@ -283,12 +283,8 @@ literal "false"
 
 \end_inset
 
- utilize
-\change_inserted -1806609307 1590019353
-s
-\change_unchanged
- a multivariate linear regression model for profiles with the LASSO penalty
- and use the regression coefficients for Phase-II monitoring.
+ utilizes a multivariate linear regression model for profiles with the LASSO
+ penalty and use the regression coefficients for Phase-II monitoring.
  However, the linearity assumption can be quite limiting.
  To address this challenge, nonlinear parametric models are proposed 
 \begin_inset CommandInset citation
@@ -300,40 +296,15 @@ literal "false"
 
 .
  These models assume an explicit family of parameterized functions and,
- their parameter
-\change_inserted -1806609307 1590019375
-s
-\change_unchanged
- are estimated via nonlinear regression.
+ their parameters are estimated via nonlinear regression.
  In both cases, the drawback of both linear and nonlinear parametric models
  is that they assume the parametric form is known beforehand, which might
  not always be the case.
 \end_layout
 
 \begin_layout Standard
-
-\change_deleted -1806609307 1590019402
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-% Literature: non-parametric Methods for certain types of profiles
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\change_unchanged
 Another large body of profile monitoring research focuses on the type of
- profiles where the basis of the representation is assumed to be known
-\change_inserted -1806609307 1590019395
-,
-\change_unchanged
+ profiles where the basis of the representation is assumed to be known,
  but the coefficients are unknown.
  For instance, to monitor smooth profiles, various non-parametric methods
  based on local kernel regression 
@@ -353,11 +324,8 @@ literal "false"
 \end_inset
 
  are developed.
- To monitor the non-smooth wave
-\change_deleted -1806609307 1590048401
--
-\change_unchanged
-form signals, a wavelet-based mixed effect model is proposed 
+ To monitor the non-smooth waveform signals, a wavelet-based mixed effect
+ model is proposed 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "paynabar2011characterization"
@@ -373,26 +341,6 @@ n for the original data and it normally requires many trial and error.
 \end_layout
 
 \begin_layout Standard
-
-\change_deleted -1806609307 1590019405
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-%Here, we focus on the HD profiles where we cannot assume a parametric function
- form and the basis representation is unknown.
- 
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\change_unchanged
 In the case that the basis of HD profiles are not known, dimensionality
  reduction techniques are widely used.
  Principal component analysis (PCA) is arguably the most popular method
@@ -467,11 +415,7 @@ The main limitation of all the aforementioned PCA-related methods is that
  Therefore, PCA requires much larger latent space dimensions than the dimension
  of the actual latent space, yielding a sub-optimal and overfitting-prone
  representation.
- This phenomenon hinders 
-\change_deleted -767166615 1590103909
- 
-\change_unchanged
-profile monitoring performance.
+ This phenomenon hinders profile monitoring performance.
 \end_layout
 
 \begin_layout Standard
@@ -618,11 +562,6 @@ We demonstrate the effectiveness of this new formulation on both simulation
  and real-life case studies and conclude that residual-based monitoring
  statistics with deep learning architecture as encoders and decoders outperform
  other monitoring statistics and the traditional methods.
-
-\change_deleted -767166615 1590103909
- 
-\change_unchanged
-
 \end_layout
 
 \begin_layout Standard
@@ -748,10 +687,6 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
-
-\change_deleted -767166615 1589823836
- 
-\change_unchanged
 Latent variables models are powerful tools to model complex distributions
  over high-dimensional spaces.
  The underlying assumption is that there exists a low-dimensional latent
@@ -925,12 +860,9 @@ literal "false"
 .
  Growing the width of shallow networks in an exponential fashion for arbitrarily
  complex tasks is not practical.
- It has been shown that deeper representations can often achieve 
-\change_deleted -767166615 1589823836
- 
-\change_unchanged
-better expressive power than shallow networks with fewer parameters due
- to the efficient reuse of the previous layers 
+ It has been shown that deeper representations can often achieve better
+ expressive power than shallow networks with fewer parameters due to the
+ efficient reuse of the previous layers 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "eldan2016power"
@@ -961,10 +893,6 @@ decoder
 
  (i.e., often set as independent normal distributions), deep neural networks
  can transfer such prior into a wide variety of densities 
-\change_deleted -767166615 1589823836
- 
-\change_unchanged
-
 \begin_inset CommandInset citation
 LatexCommand citep
 key "kingma2019introduction"
@@ -1105,10 +1033,6 @@ name "sec:bckgrnd:ReviewPCA"
 \end_inset
 
  Process monitoring via PCA is typically undertaken using the 
-\change_deleted -767166615 1590103931
- 
-\change_unchanged
-
 \begin_inset Formula $\Tsq$
 \end_inset
 
@@ -1258,11 +1182,7 @@ literal "false"
 \begin_inset Formula $H^{2}$
 \end_inset
 
-
-\change_inserted -1806609307 1590022977
-,
-\change_unchanged
- which is basically the Mahalanobis distance of the mean of the proposal
+, which is basically the Mahalanobis distance of the mean of the proposal
  distribution from standard Gaussian distribution.
  
 \begin_inset Formula 
@@ -1348,16 +1268,7 @@ where
 \end_inset
 
 .
- Instead, 
-\change_deleted -767166615 1589826510
- 
-\change_unchanged
-the estimation can be unstable when data is limited.
-
-\change_deleted -767166615 1589826510
- 
-\change_unchanged
-
+ Instead, the estimation can be unstable when data is limited.
 \end_layout
 
 \begin_layout Standard
@@ -1463,11 +1374,7 @@ Log-likelihood,
 \begin_inset Formula $\log\ptheta(\mbx)$
 \end_inset
 
-, arises as a natural monitoring statistic candidate 
-\change_deleted -767166615 1589826642
- 
-\change_unchanged
-in the context of VAEs.
+, arises as a natural monitoring statistic candidate in the context of VAEs.
  That is, given a well trained VAE, in-control samples should have relatively
  larger log-likelihood than out-of-control samples.
  However, the required number of Monte Carlo samples—
@@ -1493,11 +1400,8 @@ literal "false"
 
 \end_inset
 
-, which do not satisfy the real-time 
-\change_deleted -767166615 1589826642
- 
-\change_unchanged
-requirement to monitor high throughput systems.
+, which do not satisfy the real-time requirement to monitor high throughput
+ systems.
  To address this issue, ELBO defined in 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -1844,6 +1748,7 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename figs/Disentangled_Extrapolated.pdf
 	lyxscale 50
@@ -1858,69 +1763,27 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Different
-\change_inserted -1806609307 1590048306
- 
-\change_inserted -767166615 1590117339
-failure mode 
-\change_unchanged
-possibilities of learned latent space representation of the independent
- source of variation.
+Different failure mode possibilities of learned two-dimensional latent space
+ representation of the independent source of variation.
  
 \series bold
-Top
-\change_deleted -767166615 1590117290
- Left
-\change_unchanged
-:
+Top:
 \series default
  A hypothetical in-control latent space (gray area) and a range of the independe
-nt source of variation (
-\change_inserted -767166615 1590117744
-ABC 
-\change_unchanged
-line).
- Points A and B are extreme values of in-control
-\change_inserted -767166615 1590104323
- range
-\change_deleted -767166615 1590104323
- 
-\change_unchanged
-and point C 
-\change_inserted -767166615 1590117769
-denotes
-\change_deleted -767166615 1590117768
-is
-\change_unchanged
+nt source of variation (ABC line).
+ Points A and B are extreme values of in-control range and point C denotes
  an out-of-control sample.
-
-\change_deleted -767166615 1590117299
- 
-\series bold
-Top Right: 
-\series default
-An ideal learned representation.
-
-\change_unchanged
  
 \series bold
 Bottom Left:
 \series default
- A learned representation 
-\change_inserted -767166615 1590117305
-that 
-\change_unchanged
-fails to extrapolate.
+ A learned representation that fails to extrapolate.
  
 \series bold
 Bottom Right: 
 \series default
-A learned representation that is entangled
-\change_inserted -767166615 1590117784
- (i.e.
- not axis-parallel)
-\change_unchanged
-.
+A learned representation that is entangled (i.e.
+ not axis-parallel).
  
 \begin_inset CommandInset label
 LatexCommand label
@@ -1942,22 +1805,6 @@ name "fig:entang-extrap"
 \end_layout
 
 \begin_layout Standard
-
-\change_deleted -767166615 1590120509
-\begin_inset Note Comment
-status open
-
-\begin_layout Plain Layout
-
-\change_inserted -1806609307 1590041887
-Hao: Dorukhan, please double check: is Top Right figure Entangled and Extropolat
-es?? 
-\change_unchanged
-
-\end_layout
-
-\end_inset
-
 
 \change_inserted -1806609307 1590029457
 
@@ -2911,6 +2758,7 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:gasketgrid"
@@ -3122,67 +2970,37 @@ noprefix "false"
 
 \series bold
 Representations are 
-\change_deleted -767166615 1590119137
-partially
+\change_deleted -767166615 1590429518
+ 
 \change_unchanged
- entangled
+entangled
 \series default
 .
- 
-\change_inserted -767166615 1590119127
-For any of the fixed sources of variation, the variation in the other source
+ For any of the fixed sources of variation, the variation in the other source
  is not axis-parallel and therefore the variations are entangled in the
  learned space.
- 
-\change_deleted -767166615 1590119135
-For every fixed center location, the direction of the axis on which radius
- change differs.
- The direction would have been independent from the fixed value of center
- location should the representations were disentangled.
+
+\change_deleted -767166615 1590429518
  
 \change_unchanged
-We may claim partial disentanglement for location, but that would be quite
- unlikely if it wasn't for the translational equivariance injected in convolutio
-nal layers 
-\begin_inset CommandInset citation
-LatexCommand citep
-after "Thm. 1"
-key "locatello2018challenging"
-literal "false"
 
-\end_inset
-
-.
 \end_layout
 
 \begin_layout Itemize
 
 \series bold
 The encoder cannot extrapolate for extreme values
-\change_inserted -767166615 1590119631
-
 \series default
 .
 
-\change_unchanged
-
 \series bold
  
-\change_deleted -767166615 1590119627
-of the radius.
-
-\change_unchanged
+\change_deleted -767166615 1590429518
  
-\change_deleted -767166615 1590116404
-
 \series default
-Observe how from point 7 to 1, from point 6 to 0 and from point 8 to 2 the
- proposal means are converging to a point in the in-control region.
- This signals that the representations will not be able to extrapolate for
- even smaller values of radii.
-
-\change_inserted -767166615 1590119690
- Observe how for the extremely high values of center location 
+ 
+\change_unchanged
+Observe how for the extremely high values of center location 
 \begin_inset Formula $c$
 \end_inset
 
@@ -3191,14 +3009,10 @@ Observe how from point 7 to 1, from point 6 to 0 and from point 8 to 2 the
 \end_inset
 
  are the overall variation pattern starts getting distorted.
-\change_unchanged
-
 \end_layout
 
 \begin_layout Standard
-Given these two observations
-\change_inserted -767166615 1590119712
- and 
+Given these two observations and 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Fixed-c-varying-r"
@@ -3208,26 +3022,13 @@ noprefix "false"
 
 \end_inset
 
-
-\change_unchanged
-, we can conclude right away that 
-\change_inserted -767166615 1590119799
-gaskets with extremely small radius 
+, we can conclude right away that gaskets with extremely small radius 
 \begin_inset Formula $r$
 \end_inset
 
-
-\change_deleted -767166615 1590119789
-extremely small gaskets (in terms of radius)
-\change_unchanged
- will likely go undetected if only the latent variable-based statistic
-\change_deleted -767166615 1590119895
-s
-\change_unchanged
- is used.
- 
-\change_inserted -767166615 1590120482
-This is an undesired consequence of the two aforementioned issues.
+ will likely go undetected if only the latent variable-based statistic is
+ used.
+ This is an undesired consequence of the two aforementioned issues.
  The model seems to be more accurately responsive to the extreme values
  of center location 
 \begin_inset Formula $c$
@@ -3246,17 +3047,13 @@ literal "false"
 .
  In many real-life applications, the nature of variations in profiles will
  be more complex than simple translations in spatial or temporal domain.
- For such variations, a method to inject equivariance into the model might
- be unknown or infeasible due to the rigid architectures of deep neural
- networks.
+ For such variations, it would be infeasible to inject required predicates
+ due to the rigid architectures of deep neural networks.
  We already have radius as the evidence because convolutional layers are
  not scale equivariant.
+
+\change_deleted -767166615 1590429351
  
-\change_deleted -767166615 1590119911
-On the other hand, samples coming from some tolerable radius ranges—such
- as point 7— will be falsely identified as out-of-control.
- Observe for that point, how most sample latent codes fall outside the tolerable
- region in the inferred space.
 \change_unchanged
 
 \end_layout
@@ -4357,16 +4154,8 @@ noprefix "false"
  autoencoders, the change happens in the residual space rather than the
  latent space.
  The advantage of VAE over PCA is mainly due to the better representative
- power and data compression ability of deep autoencoders compared to 
-\change_deleted -767166615 1590105637
- 
-\change_unchanged
-PCA.
-
-\change_inserted -1806609307 1590043190
- 
-\change_inserted -767166615 1590105627
-We replicated the superiority of VAE over PCA for process monitoring the
+ power and data compression ability of deep autoencoders compared to PCA.
+ We replicated the superiority of VAE over PCA for process monitoring the
  same way it was demonstrated in the earlier works mentioned in this study
  
 \begin_inset CommandInset citation
@@ -4377,15 +4166,9 @@ literal "false"
 \end_inset
 
 .
- 
-\change_deleted -767166615 1590105396
-For more discussions of comparing PCA and VAE, please refer to the following
- papers [cite here]
-\change_inserted -1806609307 1590043190
-.
-
+ .
 \change_deleted -767166615 1590105658
- 
+
 \end_layout
 
 \begin_layout Standard
@@ -4492,14 +4275,8 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Summary of fault detection 
-\change_deleted -767166615 1589936519
-accuracies
-\change_inserted -767166615 1589936520
-rates
-\change_unchanged
- on out-of-control cases averaged over 10 replications per model and monitoring
- statistic.
+Summary of fault detection rates on out-of-control cases averaged over 10
+ replications per model and monitoring statistic.
  Standard deviations are in parentheses.
  Bolded values represent the maximum average across different statistics.
  
@@ -5903,640 +5680,6 @@ Fault ID
 \end_layout
 
 \begin_layout Standard
-
-\change_deleted -1806609307 1590042813
-\begin_inset Float table
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Detection rate performance of ERE on hot steel rolling faulty cases compared
- against PCA with 90% variance retained and 
-\begin_inset Formula $Q$
-\end_inset
-
- statistic is used.
- Best performers bolded on each row.
- Standard deviation over 10 replication is in parentheses.
-\end_layout
-
-\end_inset
-
-
-\begin_inset FormulaMacro
-\renewcommand{\arraystretch}{1.3}
-\end_inset
-
- 
-\begin_inset Tabular
-<lyxtabular version="3" rows="12" columns="4">
-<features booktabs="true" tabularvalignment="middle">
-<column alignment="left" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<row>
-<cell alignment="left" valignment="top" topline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Model 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-PCA-Q
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\change_deleted -1806609307 1590045071
-ERE1
-\change_inserted -1806609307 1590045071
-
-\begin_inset Formula $ERE_{1}$
-\end_inset
-
-
-\change_unchanged
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\change_deleted -1806609307 1590045096
-ERE2
-\change_inserted -1806609307 1590045096
-
-\begin_inset Formula $ERE_{2}$
-\end_inset
-
-
-\change_unchanged
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="left" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Fault ID 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="none" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\change_inserted -767166615 1589935098
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\change_inserted -767166615 1589935098
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="left" valignment="top" topline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-2 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.00(0.00) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\change_inserted -767166615 1589935098
-0.44(0.06) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\change_inserted -767166615 1589935098
-
-\series bold
-0.50
-\series default
-(0.06)
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="left" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-3 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.78(0.00) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\change_inserted -767166615 1589935098
-0.85(0.01) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\change_inserted -767166615 1589935098
-
-\series bold
-0.86
-\series default
-(0.01)
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="left" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-4 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.56(0.00) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\change_inserted -767166615 1589935098
-
-\series bold
-0.75
-\series default
-(0.05) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\change_inserted -767166615 1589935098
-0.71(0.05)
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="left" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-5 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.99(0.00) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\change_inserted -767166615 1589935098
-
-\series bold
-1.00
-\series default
-(0.00) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\change_inserted -767166615 1589935098
-
-\series bold
-1.00
-\series default
-(0.00)
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="left" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-6 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.52(0.00) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\change_inserted -767166615 1589935098
-
-\series bold
-0.80
-\series default
-(0.01) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\change_inserted -767166615 1589935098
-
-\series bold
-0.80
-\series default
-(0.00)
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="left" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-7 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.11(0.00) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\change_inserted -767166615 1589935098
-
-\series bold
-0.17
-\series default
-(0.01) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\change_inserted -767166615 1589935098
-0.15(0.00)
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="left" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-8 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.34(0.00) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\change_inserted -767166615 1589935098
-
-\series bold
-0.70
-\series default
-(0.07) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\change_inserted -767166615 1589935098
-0.69(0.01)
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="left" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-10 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.29(0.00) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\change_inserted -767166615 1589935098
-
-\series bold
-0.57
-\series default
-(0.05) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\change_inserted -767166615 1589935098
-
-\series bold
-0.57
-\series default
-(0.04)
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="left" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-12 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.69(0.00) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\change_inserted -767166615 1589935098
-
-\series bold
-0.80
-\series default
-(0.02) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\change_inserted -767166615 1589935098
-
-\series bold
-0.80
-\series default
-(0.02)
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="left" valignment="top" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-13 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.56(0.00) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\change_inserted -767166615 1589935098
-
-\series bold
-0.77
-\series default
-(0.02) 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\change_inserted -767166615 1589935098
-0.76(0.02)
-\end_layout
-
-\end_inset
-</cell>
-</row>
-</lyxtabular>
-
-\end_inset
-
-
-\begin_inset CommandInset label
-LatexCommand label
-name "tab:rolling:vsPCA"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\change_unchanged
-
-\end_layout
-
-\begin_layout Standard
 To support our claim of the ineffectiveness of latent variable-based statistics
  
 \change_deleted -767166615 1590105921
@@ -6572,25 +5715,6 @@ because it was almost identical to
 \end_inset
 
 .
- 
-\change_deleted -767166615 1590120536
-
-\begin_inset Note Comment
-status open
-
-\begin_layout Plain Layout
-Please add few sentences better explain this behavior.
-
-\change_deleted -767166615 1590105921
- 
-\change_unchanged
-
-\end_layout
-
-\end_inset
-
-
-\change_unchanged
  To obtain a deeper understanding of the results, we would like to show
  
 \begin_inset CommandInset ref
@@ -6638,11 +5762,8 @@ noprefix "false"
 
  shows that most latent representations fall into the region that would
  be considered in-control from a profile monitoring perspective.
- We observe instances of class 3,5,6 and 7 
-\change_deleted -767166615 1590105921
- 
-\change_unchanged
-generate the latent variables in the OC regions.
+ We observe instances of class 3,5,6 and 7 generate the latent variables
+ in the OC regions.
  However, even for these classes, 
 \begin_inset Formula $SPE/R$
 \end_inset
@@ -6725,11 +5846,7 @@ textwidth]{figs/kdes/SPE.pdf}
 
      
 \backslash
-caption{$ERE
-\change_inserted -767166615 1589936618
-_{1}
-\change_unchanged
-$}
+caption{$ERE_{1}$}
 \end_layout
 
 \begin_layout Plain Layout
@@ -6986,21 +6103,15 @@ name "fig:kde"
 \end_inset
 
 
-\change_inserted -767166615 1589936728
-
 \end_layout
 
 \begin_layout Standard
-
-\change_inserted -767166615 1589936732
 \begin_inset Float figure
 wide false
 sideways false
 status open
 
 \begin_layout Plain Layout
-
-\change_inserted -767166615 1589942967
 \begin_inset Box Frameless
 position "t"
 hor_pos "c"
@@ -7020,20 +6131,12 @@ backgroundcolor "none"
 status open
 
 \begin_layout Plain Layout
-
-\change_inserted -767166615 1589942979
 \begin_inset Float figure
 wide false
 sideways false
 status open
 
 \begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\change_inserted -767166615 1589943194
 \begin_inset Graphics
 	filename figs/casestudy_orig.pdf
 	width 100text%
@@ -7044,8 +6147,6 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
-\change_inserted -767166615 1589944152
 Original profiles
 \begin_inset CommandInset label
 LatexCommand label
@@ -7054,21 +6155,15 @@ name "fig:Original-profiles"
 \end_inset
 
 
-\change_unchanged
-
 \end_layout
 
 \end_inset
 
 
-\change_unchanged
-
 \end_layout
 
 \end_inset
 
-
-\change_unchanged
 
 \end_layout
 
@@ -7098,16 +6193,12 @@ backgroundcolor "none"
 status open
 
 \begin_layout Plain Layout
-
-\change_inserted -767166615 1589942981
 \begin_inset Float figure
 wide false
 sideways false
 status open
 
 \begin_layout Plain Layout
-
-\change_inserted -767166615 1589943213
 \begin_inset Graphics
 	filename figs/casestudy_recons.pdf
 	width 82col%
@@ -7115,18 +6206,12 @@ status open
 \end_inset
 
 
-\change_unchanged
-
 \end_layout
 
 \begin_layout Plain Layout
-
-\change_inserted -767166615 1589942981
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
-\change_inserted -767166615 1589944164
 Reconstructions via VAE
 \begin_inset CommandInset label
 LatexCommand label
@@ -7135,25 +6220,15 @@ name "fig:Reconstructions-via-VAE"
 \end_inset
 
 
-\change_unchanged
-
 \end_layout
 
 \end_inset
 
 
-\change_unchanged
-
-\end_layout
-
-\begin_layout Plain Layout
-
 \end_layout
 
 \end_inset
 
-
-\change_unchanged
 
 \end_layout
 
@@ -7183,16 +6258,12 @@ backgroundcolor "none"
 status open
 
 \begin_layout Plain Layout
-
-\change_inserted -767166615 1589942983
 \begin_inset Float figure
 wide false
 sideways false
 status open
 
 \begin_layout Plain Layout
-
-\change_inserted -767166615 1589943261
 \begin_inset Graphics
 	filename figs/casestudy_scat.pdf
 	width 100text%
@@ -7200,18 +6271,12 @@ status open
 \end_inset
 
 
-\change_unchanged
-
 \end_layout
 
 \begin_layout Plain Layout
-
-\change_inserted -767166615 1589942983
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
-\change_inserted -767166615 1589944167
 Inferred means
 \begin_inset CommandInset label
 LatexCommand label
@@ -7220,25 +6285,15 @@ name "fig:Inferred-means"
 \end_inset
 
 
-\change_unchanged
-
 \end_layout
 
 \end_inset
 
 
-\change_unchanged
-
-\end_layout
-
-\begin_layout Plain Layout
-
 \end_layout
 
 \end_inset
 
-
-\change_unchanged
 
 \end_layout
 
@@ -7248,8 +6303,6 @@ name "fig:Inferred-means"
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
-\change_inserted -767166615 1589944102
 Output of the VAE decoder and the encoder for randomly select rolling profiles.
  
 \series bold
@@ -7278,21 +6331,15 @@ name "fig:Output-of-the"
 \end_inset
 
 
-\change_unchanged
-
 \end_layout
 
 \end_inset
 
 
-\change_unchanged
-
 \end_layout
 
 \end_inset
 
-
-\change_unchanged
 
 \end_layout
 
@@ -7671,9 +6718,11 @@ name "fig:Rosenbrock"
 \end_layout
 
 \begin_layout Section
-Derived Testing Statistics for SPE
-\change_inserted -1806609307 1589526886
+ERE Testing Statistic Derivation 
+\change_deleted -767166615 1590429630
  
+\change_unchanged
+
 \begin_inset CommandInset label
 LatexCommand label
 name "app:ere"
@@ -7729,18 +6778,60 @@ we first define
 \end_inset
 
  as the reconstruction error (RE).
- Since 
+
+\change_inserted -767166615 1590430242
+ The quantity we would like approximate is 
+\begin_inset Formula $E_{\mbz\sim q_{\phi}}R(\mbz)$
+\end_inset
+
+ where
+\change_deleted -767166615 1590430240
+ Since
+\change_unchanged
+ 
 \begin_inset Formula $\encoding=\Norm(\mbmu_{\mbphi}(\mbx),\Sigma_{z})$
 \end_inset
 
-, we would like derive the Taylor expansion of the expected RE (ERE) around
+
+\change_inserted -767166615 1590430246
+.
+\change_deleted -767166615 1590430245
+,
+\change_unchanged
  
+\change_inserted -767166615 1590430317
+W
+\change_deleted -767166615 1590430317
+w
+\change_unchanged
+e 
+\change_deleted -767166615 1590430193
+would like derive
+\change_inserted -767166615 1590430196
+are looking for
+\change_deleted -767166615 1590430194
+ 
+\change_unchanged
+the Taylor expansion of the expected RE (ERE) around 
 \begin_inset Formula $z_{0}=\mbmu_{\mbphi}(\mbx)$
 \end_inset
 
- as follows:
-\change_deleted -767166615 1590116225
- 
+
+\change_inserted -767166615 1590430420
+, i.e.
+ the first moment.
+ For notational simplicity, we use 
+\begin_inset Formula $H_{z}$
+\end_inset
+
+ to denote the Hessian 
+\begin_inset Formula $R''(\mbmu_{\mbphi}(\mbx))$
+\end_inset
+
+.
+ The derivation is formalized as follows:
+\change_deleted -767166615 1590430203
+ as follows: 
 \change_unchanged
 
 \end_layout
@@ -7760,7 +6851,30 @@ E_{\mbz\sim q_{\phi}}R(\mbz) & =R(\mbmu_{\mbphi}(\mbx))+R'(\mbmu_{\mbphi}(\mbx))
 \end_layout
 
 \begin_layout Standard
-Since 
+
+\change_inserted -767166615 1590430485
+Note for 
+\begin_inset Formula $ERE_{1}$
+\end_inset
+
+, the second term 
+\begin_inset Formula $\frac{1}{2}\mathrm{tr}(\mathbf{H}_{z}\Sigma_{z})$
+\end_inset
+
+ drops and we are left with 
+\begin_inset Formula $R(\mbmu_{\mbphi}(\mbx))$
+\end_inset
+
+ only.
+ For 
+\begin_inset Formula $ERE_{2}$
+\end_inset
+
+, s
+\change_deleted -767166615 1590430481
+S
+\change_unchanged
+ince 
 \begin_inset Formula $\Sigma_{z}$
 \end_inset
 
@@ -7768,6 +6882,10 @@ Since
 \begin_inset Formula $\mathrm{tr}(\mathbf{H}_{z}S_{z})=\mathrm{tr}(diag(\mathbf{H}_{z})S_{z})=\sum_{i}(\mathbf{H}_{z})_{ii}(S_{z})_{ii}$
 \end_inset
 
+
+\change_inserted -767166615 1590430496
+ holds
+\change_unchanged
 .
 
 \change_deleted -767166615 1590116225
@@ -7777,23 +6895,28 @@ Since
 \end_layout
 
 \begin_layout Standard
-Therefore, to compute 
+
+\change_inserted -767166615 1590430537
+We can utilize this result
+\change_deleted -767166615 1590430539
+Therefore,
+\change_unchanged
+ to compute 
 \begin_inset Formula $ERE_{2}$
 \end_inset
 
-, we propose to 
-\change_deleted -767166615 1590116225
+, 
+\change_inserted -767166615 1590430562
+in a more computationally efficient manner.
  
-\change_unchanged
-only compute the diagonal element of 
+\change_deleted -767166615 1590430545
+we propose to  only compute the diagonal element of 
 \begin_inset Formula $\mathbf{H}_{z}$
 \end_inset
 
- 
-\change_deleted -767166615 1590116225
- 
+  to increase its computational efficiency.
 \change_unchanged
-to increase its computational efficiency.
+
 \end_layout
 
 \end_body
