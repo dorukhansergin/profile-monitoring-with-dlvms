@@ -1636,7 +1636,7 @@ literal "false"
 
 \end_inset
 
- proposes the 
+ propose the 
 \begin_inset Formula $R$
 \end_inset
 
@@ -2320,8 +2320,12 @@ literal "false"
 
 \end_inset
 
- proves that without proper inductive biases injected into the model about
- sources of variation, it is impossible to find disentangled representations.
+ prove
+\change_deleted -767166615 1590531311
+s
+\change_unchanged
+ that without proper inductive biases injected into the model about sources
+ of variation, it is impossible to find disentangled representations.
  Unfortunately, injecting such inductive biases requires 
 \change_inserted -767166615 1590459753
 unrealistically accurate
