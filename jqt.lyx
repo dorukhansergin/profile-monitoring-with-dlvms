@@ -71,11 +71,11 @@ theorems-sec
 \language_package none
 \inputencoding utf8
 \fontencoding T1
-\font_roman "default" "default"
+\font_roman "times" "default"
 \font_sans "default" "default"
 \font_typewriter "default" "default"
-\font_math "auto" "auto"
-\font_default_family default
+\font_math "newtxmath" "auto"
+\font_default_family rmdefault
 \use_non_tex_fonts false
 \font_sc false
 \font_osf false
@@ -88,11 +88,11 @@ theorems-sec
 \output_sync 0
 \bibtex_command biber
 \index_command default
-\paperfontsize default
+\paperfontsize 12
 \spacing single
 \use_hyperref false
 \papersize default
-\use_geometry false
+\use_geometry true
 \use_package amsmath 2
 \use_package amssymb 2
 \use_package cancel 0
@@ -111,7 +111,7 @@ theorems-sec
 \use_bibtopic false
 \use_indices false
 \paperorientation portrait
-\suppress_date false
+\suppress_date true
 \justification true
 \use_refstyle 0
 \use_minted 0
@@ -119,6 +119,10 @@ theorems-sec
 \shortcut idx
 \color #008000
 \end_index
+\leftmargin 2.5cm
+\topmargin 2.5cm
+\rightmargin 2.5cm
+\bottommargin 2.5cm
 \secnumdepth 3
 \tocdepth 3
 \paragraph_separation indent
@@ -197,8 +201,8 @@ status open
 
 \begin_layout Plain Layout
 
-\change_inserted -767166615 1590442974
-~121 words abstract required, right now this is 118, to check in LyX, highlight
+\change_inserted -767166615 1590509732
+~100 words abstract required, right now this is 121, to check in LyX, highlight
  the text then use: Tools -> Statistics
 \change_unchanged
 
@@ -857,8 +861,8 @@ g
 \change_unchanged
 .
 
-\change_inserted -767166615 1590444902
- Therefore we start with a definition of it.
+\change_inserted -767166615 1590444960
+ This is why we begin with an introduction to latent variable modeling.
 \change_unchanged
 
 \end_layout
@@ -870,10 +874,59 @@ Latent variables models are powerful tools to model complex distributions
  structure that explains well the variations in the high-dimensional observed
  space.
  Typically, the density over observed variables can be decoupled into the
- distribution on the latent variables and the conditional distribution of
- observed variables given latent variables can be assigned as tractable
- families of distributions, which will be much more efficient than modeling
- the data distribution directly.
+ distribution on the latent variables 
+\change_inserted -767166615 1590445034
+
+\begin_inset Formula $\pz$
+\end_inset
+
+ 
+\change_unchanged
+and the conditional distribution of observed variables given latent variables
+ 
+\change_inserted -767166615 1590445338
+
+\begin_inset Formula $p(\mbx\g\mbz)$
+\end_inset
+
+.
+ Then, these distributions 
+\change_unchanged
+can be assigned 
+\change_inserted -767166615 1590445113
+to
+\change_deleted -767166615 1590445113
+as
+\change_unchanged
+ tractable families of distributions
+\change_inserted -767166615 1590445298
+, such as Gaussian.
+\change_deleted -767166615 1590445293
+, 
+\change_inserted -767166615 1590445307
+This enables 
+\change_deleted -767166615 1590445229
+which will be much more efficient than
+\change_unchanged
+ 
+\change_inserted -767166615 1590445337
+a more efficient 
+\change_unchanged
+modeling 
+\change_inserted -767166615 1590445322
+of 
+\change_unchanged
+the data distribution
+\change_inserted -767166615 1590445146
+ 
+\begin_inset Formula $p(\mbx)$
+\end_inset
+
+
+\change_deleted -767166615 1590445325
+ directly
+\change_unchanged
+.
 \end_layout
 
 \begin_layout Standard
@@ -923,11 +976,15 @@ In the above formulation,
 \begin_inset Formula $\pz$
 \end_inset
 
- is typically chosen to be standard multivariate normal distribution to
- avoid degenerate solutions 
+ is typically chosen to be standard multivariate 
+\change_deleted -767166615 1590445376
+normal
+\change_inserted -767166615 1590445377
+Gaussian
+\change_unchanged
+ distribution to avoid degenerate solutions 
 \begin_inset CommandInset citation
 LatexCommand citep
-after "p. 307"
 key "roweis1999unifying"
 literal "false"
 
@@ -967,9 +1024,9 @@ literal "false"
 
 .
  Disentangled representations are useful to represent variations in latent
- variations due to their ability to separate out the independent factors.
- However, there are also discussions on what disentangled representation
- implies for profile monitoring.
+ variations due to their ability to separate the independent factors.
+ However, a discussion on what disentangled representation implies for profile
+ monitoring is necessary.
  We are interested in whether and if so, how such representations will be
  critical for profile monitoring.
 \end_layout
@@ -986,14 +1043,15 @@ literal "false"
 
 .
  The parameters are optimized via a maximum likelihood estimation framework
- and it can be solved analytically due to the fact that 
+ and it can be solved analytically since 
 \begin_inset Formula $\mu_{\mbtheta}$
 \end_inset
 
- is a simple linear transformation enabling the optimization to reuse results
- from original solutions to the PCA problem.
+ is a simple linear transformation.
+ This enables reusinganalytical results from solutions to the classical
+ PCA problem.
  The assumption of PPCA that the latent and observed variables have a strictly
- linear relationship can be quite restricting.
+ linear relationship is restrictive.
  In real-world processes, it is likely that this relationship is highly
  nonlinear.
  Deep latent variable models are a marriage of deep neural networks and
@@ -1035,8 +1093,8 @@ literal "false"
 \end_inset
 
 .
- Growing the width of shallow networks in an exponential fashion for arbitrarily
- complex tasks is not practical.
+ However, growing the width of shallow networks in an exponential fashion
+ for arbitrarily complex tasks is not practical.
  It has been shown that deeper representations can often achieve better
  expressive power than shallow networks with fewer parameters due to the
  efficient reuse of the previous layers 
@@ -1068,8 +1126,12 @@ decoder
 \begin_inset Formula $\pz$
 \end_inset
 
- (i.e., often set as independent normal distributions), deep neural networks
- can transfer such prior into a wide variety of densities 
+, 
+\change_deleted -767166615 1590458551
+ 
+\change_unchanged
+deep neural networks can transfer such prior into a wide variety of densities
+ 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "kingma2019introduction"
@@ -1246,8 +1308,11 @@ literal "false"
 \begin_inset Formula $\Tsq$
 \end_inset
 
- represents how far the sample is away from the cluster of latent codes
- of the IC samples.
+ represents how far the 
+\change_inserted -767166615 1590458603
+latent representation of that 
+\change_unchanged
+sample is away from the cluster of latent codes of the IC samples.
 \end_layout
 
 \begin_layout Standard
@@ -1345,8 +1410,12 @@ name "sec:bckgrnd:critique"
 
 \end_inset
 
- Three works have considered VAE for process monitoring, all of which propose
- different statistic formulations for monitoring.
+ Three works have 
+\change_inserted -767166615 1590458674
+recently 
+\change_unchanged
+considered VAE for process monitoring, all of which propose different statistic
+ formulations for monitoring.
  
 \begin_inset CommandInset citation
 LatexCommand citet
@@ -1386,7 +1455,7 @@ literal "false"
 \end_inset
 
  and 
-\begin_inset Formula $SPE$
+\begin_inset Formula $Q$
 \end_inset
 
  of PCA for VAE.
@@ -1394,15 +1463,51 @@ literal "false"
 \begin_inset Formula $\mbx$
 \end_inset
 
- and a single sample drawn from the proposal distribution 
+
+\change_inserted -767166615 1590458716
+,
+\change_deleted -767166615 1590458716
+ and
+\change_unchanged
+ a single sample 
+\change_inserted -767166615 1590458723
+is 
+\change_unchanged
+drawn from the proposal distribution 
 \begin_inset Formula $\mbz^{(l)}\sim\encoding$
 \end_inset
 
- and a reconstruction based on that sample 
+ 
+\change_inserted -767166615 1590458800
+which is used
+\change_deleted -767166615 1590458797
+and
+\change_unchanged
+ 
+\change_deleted -767166615 1590458804
+a reconstruction based on that sample
+\change_inserted -767166615 1590458824
+reconstruct the input using the generative model
+\change_deleted -767166615 1590458806
+ 
+\change_unchanged
+
 \begin_inset Formula $\mbx^{(l)}\sim p_{\mbtheta}(\mbx\g\mbz^{(l)})$
 \end_inset
 
-, the proposed test statistics in this work are as follows: 
+
+\change_inserted -767166615 1590458826
+.
+\change_deleted -767166615 1590458826
+,
+\change_unchanged
+ 
+\change_inserted -767166615 1590458839
+T
+\change_deleted -767166615 1590458838
+t
+\change_unchanged
+he proposed test statistics in this work are as follows: 
 \begin_inset Formula 
 \begin{equation}
 \begin{aligned}T^{2} & =(\mbz^{(l)}-\bar{\mbz})^{\top}S_{\mbz}\inv(\mbz^{(l)}-\bar{\mbz})\\
@@ -1423,7 +1528,11 @@ where
  are estimated over a single loop from the data.
  The proposed control charting methodology suggests that these two statistics
  work in combination and at least one vote of either statistics is enough
- to make a detection.
+ to make a detection
+\change_inserted -767166615 1590458854
+ decision
+\change_unchanged
+.
  However, the estimation of the 
 \begin_inset Formula $\bar{\mbz}$
 \end_inset
@@ -1444,6 +1553,10 @@ where
 \begin_inset Formula $I$
 \end_inset
 
+
+\change_inserted -767166615 1590458866
+, respectively
+\change_unchanged
 .
  Instead, the estimation can be unstable when data is limited.
 \end_layout
@@ -1516,6 +1629,15 @@ R & =\frac{1}{L}\sum_{l=1}^{L}-\log q_{\mbtheta}(\mbx\g\mbz^{(l)}),
 
  are essentially the same quantities up to a constant, which makes them
  identical in the context of monitoring statistics.
+
+\change_inserted -767166615 1590458942
+ This is why we will refer to them as 
+\begin_inset Formula $SPE/R$
+\end_inset
+
+ throughout the rest of the paper.
+\change_unchanged
+
 \end_layout
 
 \begin_layout Section
@@ -1529,7 +1651,11 @@ name "sec:methodology"
 
 \end_inset
 
+
+\change_deleted -767166615 1590458643
  
+\change_unchanged
+
 \end_layout
 
 \begin_layout Subsection
@@ -1577,8 +1703,22 @@ literal "false"
 
 \end_inset
 
-, which do not satisfy the real-time requirement to monitor high throughput
- systems.
+
+\change_inserted -767166615 1590458997
+.
+\change_deleted -767166615 1590458996
+,
+\change_unchanged
+ 
+\change_deleted -767166615 1590458999
+which do not
+\change_inserted -767166615 1590459080
+This will make it intractable to monitor high throughput systems in real-time.
+
+\change_deleted -767166615 1590459089
+ satisfy the real-time requirement to monitor high throughput systems.
+
+\change_unchanged
  To address this issue, ELBO defined in 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -1614,7 +1754,9 @@ A natural choice of the monitoring statistics is to separate the ELBO into
 \end_inset
 
 .
- We call 
+ 
+\change_deleted -767166615 1590459212
+We call 
 \begin_inset Formula $\E_{\mbz\sim q_{\mbtheta}}\log\decoding$
 \end_inset
 
@@ -1624,6 +1766,8 @@ A natural choice of the monitoring statistics is to separate the ELBO into
 \end_inset
 
  as latent KLD loss.
+
+\change_unchanged
  To understand the role of these two terms in process monitoring, we revisit
  the assumptions of the model described in 
 \begin_inset CommandInset ref
@@ -1846,7 +1990,13 @@ noprefix "false"
 residual-based statistics
 \emph default
 .
- Likewise, 
+ 
+\change_deleted -767166615 1590459306
+Likewise, 
+\change_inserted -767166615 1590459308
+The statistics 
+\change_unchanged
+
 \begin_inset Formula $H^{2},T^{2}$
 \end_inset
 
@@ -1854,7 +2004,13 @@ residual-based statistics
 \begin_inset Formula $D$
 \end_inset
 
- is based on 
+ 
+\change_deleted -767166615 1590459311
+is
+\change_inserted -767166615 1590459311
+are
+\change_unchanged
+ based on 
 \begin_inset Formula $T^{2}$
 \end_inset
 
@@ -1863,7 +2019,15 @@ residual-based statistics
 \end_inset
 
  of PPCA.
- We shall call these statistics, 
+ We
+\change_deleted -767166615 1590459332
+ shall
+\change_unchanged
+ call these
+\change_deleted -767166615 1590459321
+ statistics,
+\change_unchanged
+ 
 \emph on
 latent-variable based statistics
 \emph default
@@ -1871,15 +2035,55 @@ latent-variable based statistics
 \end_layout
 
 \begin_layout Standard
-Our first major claim is that 
-\emph on
-latent variable-based statistics are not useful for profile monitoring when
- deep neural network based encoders are used to produce latent representations
-\emph default
-.
- We give the following two major reasons: 1) for such high-dimensional complex
- processes, most of the change or disturbances should be expected on residual
- distribution.
+Our first major claim is that latent variable-based statistics are not useful
+ for profile monitoring when deep neural network based encoders are used
+ to produce latent representations.
+ 
+\change_deleted -767166615 1590459387
+We give the following two major
+\change_inserted -767166615 1590459399
+We argue three
+\change_deleted -767166615 1590459388
+ 
+\change_unchanged
+reasons
+\change_inserted -767166615 1590459402
+ for that
+\change_unchanged
+:
+\change_deleted -767166615 1590459540
+ 
+\change_inserted -767166615 1590459600
+
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+
+\change_inserted -767166615 1590459650
+I'm not sure about these three, it seems to be drifting from the argument
+ we're trying to make.
+ Except number 3
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\change_deleted -767166615 1590459586
+1) f
+\change_inserted -767166615 1590459587
+In
+\change_deleted -767166615 1590459586
+or such
+\change_unchanged
+ high-dimensional complex processes, most of the change or disturbances
+ should be expected on residual distribution.
  According to 
 \begin_inset CommandInset citation
 LatexCommand citet
@@ -1889,13 +2093,57 @@ literal "false"
 \end_inset
 
  faults in complex real-life processes tend to alter the existing relationship
- between latent sources of variation and what is observed, as opposed to
- pushing to most extreme cases in the latent variational sources.
- 2) A deep autoencoders typically require a much smaller latent dimension
- compared to PCA, due to a better data compression of the deep autoencoder
- models compared to the traditional PCA methods.
+ between latent sources of variation 
+\change_deleted -767166615 1590459447
+and what is observed, 
+\change_unchanged
+as opposed to pushing to most extreme cases in the latent variational sources.
+
+\change_deleted -767166615 1590459548
+ 
+\change_inserted -767166615 1590459548
+
+\end_layout
+
+\begin_layout Enumerate
+
+\change_deleted -767166615 1590459549
+2) 
+\change_unchanged
+A deep autoencoder
+\change_deleted -767166615 1590459459
+s
+\change_unchanged
+ typically require a much smaller latent dimension compared to PCA, due
+ to
+\change_deleted -767166615 1590459465
+ a
+\change_unchanged
+ better data compression 
+\change_inserted -767166615 1590459471
+capabilities
+\change_deleted -767166615 1590459502
+of the deep autoencoder models
+\change_unchanged
+ compared to the traditional PCA methods.
  This leaves a much smaller chance for change happening in the latent space.
- 3) the mean encoder 
+
+\change_deleted -767166615 1590459555
+ 
+\change_inserted -767166615 1590459555
+
+\end_layout
+
+\begin_layout Enumerate
+
+\change_deleted -767166615 1590459558
+3) 
+\change_inserted -767166615 1590459559
+T
+\change_deleted -767166615 1590459558
+t
+\change_unchanged
+he mean encoder 
 \begin_inset Formula $\mu_{\mbphi}$
 \end_inset
 
@@ -2003,10 +2251,16 @@ literal "false"
 
  proves that without proper inductive biases injected into the model about
  sources of variation, it is impossible to find disentangled representations.
- Unfortunately, injecting such inductive biases requires detailed anticipation
- of variations among in-control samples as well as specialized neural network
- structures, both of which are extremely challenging tasks given the potential
- complexity of the processes that generate high-dimensional profiles.
+ Unfortunately, injecting such inductive biases requires 
+\change_inserted -767166615 1590459753
+unrealistically accurate
+\change_deleted -767166615 1590459748
+detailed
+\change_unchanged
+ anticipation of variations among in-control samples as well as specialized
+ neural network structures, both of which are extremely challenging tasks
+ given the potential complexity of the processes that generate high-dimensional
+ profiles.
  Moreover, even if the representations are disentangled, correct mappings
  of 
 \begin_inset Formula $\encoding$
@@ -3154,11 +3408,7 @@ noprefix "false"
 \begin_layout Itemize
 
 \series bold
-Representations are 
-\change_deleted -767166615 1590429518
- 
-\change_unchanged
-entangled
+Representations are entangled
 \series default
 .
  For any of the fixed sources of variation, the variation in the other source
@@ -6882,9 +7132,16 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Rosenbrock function (green surface) approximated by an MLP (red surface)
- given training (black crosses) and validation (black dots) samples form
- a bounded region 
+Rosenbrock function (green surface) approximated by an 
+\change_deleted -767166615 1590460400
+MLP
+\change_inserted -767166615 1590460403
+multilayer perceptron
+\change_deleted -767166615 1590460401
+ 
+\change_unchanged
+(red surface) given training (black crosses) and validation (black dots)
+ samples form a bounded region 
 \begin_inset Formula $(x_{i},y_{i})\in[-1,3]\times[-2,3]$
 \end_inset
 
@@ -6974,7 +7231,7 @@ To derive the
 \end_inset
 
 .
- We are looking forthe Taylor expansion of the expected RE (ERE) around
+ We are looking for the Taylor expansion of the expected RE (ERE) around
  
 \begin_inset Formula $z_{0}=\mbmu_{\mbphi}(\mbx)$
 \end_inset
@@ -7001,8 +7258,9 @@ i.e.,
 \begin_layout Standard
 \begin_inset Formula 
 \begin{align*}
-E_{\mbz\sim q_{\phi}}R(\mbz) & =R(\mbmu_{\mbphi}(\mbx))+R'(\mbmu_{\mbphi}(\mbx))E_{\mbz\sim q_{\phi}}[\mbz-\mbmu_{\mbphi}(\mbx)]+\frac{1}{2}E_{\mbz\sim q_{\phi}}[(\mbz-\mbmu_{\mbphi}(\mbx))^{\top}\mathbf{H}_{z}(\mbz-\mbmu_{\mbphi}(\mbx))]+O(\|(\mbz-\mbmu_{\mbphi}(\mbx)\|^{3})\\
- & =R(\mbmu_{\mbphi}(\mbx))+\frac{1}{2}E_{\mbz\sim q_{\phi}}[(\mbz-\mbmu_{\mbphi}(\mbx))^{\top}\mathbf{H}_{z}(\mbz-\mbmu_{\mbphi}(\mbx))]\\
+E_{\mbz\sim q_{\phi}}R(\mbz) & =R(\mbmu_{\mbphi}(\mbx))+R'(\mbmu_{\mbphi}(\mbx))E_{\mbz\sim q_{\phi}}[\mbz-\mbmu_{\mbphi}(\mbx)])\\
+ & \quad+\frac{1}{2}E_{\mbz\sim q_{\phi}}[(\mbz-\mbmu_{\mbphi}(\mbx))^{\top}\mathbf{H}_{z}(\mbz-\mbmu_{\mbphi}(\mbx))]+O(\|(\mbz-\mbmu_{\mbphi}(\mbx)\|^{3}\\
+ & \simeq R(\mbmu_{\mbphi}(\mbx))+\frac{1}{2}E_{\mbz\sim q_{\phi}}[(\mbz-\mbmu_{\mbphi}(\mbx))^{\top}\mathbf{H}_{z}(\mbz-\mbmu_{\mbphi}(\mbx))]\\
  & =R(\mbmu_{\mbphi}(\mbx))+\frac{1}{2}\mathrm{tr}(\mathbf{H}_{z}E[(\mbz-\mbmu_{z})(\mbz-\mbmu_{z})^{T}])\\
  & =R(\mbmu_{\mbphi}(\mbx))+\frac{1}{2}\mathrm{tr}(\mathbf{H}_{z}\Sigma_{z})
 \end{align*}
