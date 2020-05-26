@@ -181,7 +181,7 @@ Toward a Better Statistic Formulation for Profile Monitoring with Variational
 
 \begin_layout Abstract
 
-\change_inserted -767166615 1590443453
+\change_inserted -767166615 1590519796
 Due to the recent success of deep learning models, nonlinear profile monitoring
  schemes based on deep neural networks have attracted increasing interest.
  A number of such monitoring schemes were proposed specifically for variational
@@ -211,8 +211,26 @@ status open
 \end_inset
 
 
-\change_unchanged
+\end_layout
 
+\begin_layout Abstract
+
+\change_inserted -767166615 1590519814
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Abstract
+
+\change_inserted -767166615 1590519956
+
+\series bold
+Keywords: 
+\series default
+Control charts, deep learning, high-dimensionality, latent variable modeling,
+ profile monitoring
 \end_layout
 
 \begin_layout Section
@@ -790,7 +808,11 @@ s
 \change_unchanged
  of the proposed methodology
 \change_inserted -767166615 1590444707
- on a real-life case study,
+ on a real-life case 
+\lang american
+study
+\lang english
+,
 \change_deleted -767166615 1590444700
  
 \change_unchanged
@@ -3839,7 +3861,11 @@ noprefix "false"
 
 \end_inset
 
- as the encoder and decoder are tightly coupled to each other.
+ 
+\change_inserted -767166615 1590510941
+above 
+\change_unchanged
+as the encoder and decoder are tightly coupled to each other.
  We observe two important behavior: the posterior gets distorted beyond
  two or three standard deviations, and the representations are partially
  entangled in line with the behavior of its encoder depicted in 
@@ -3896,6 +3922,7 @@ noprefix "false"
 
 \begin_layout Standard
 \begin_inset Float figure
+placement H
 wide false
 sideways false
 status open
@@ -3978,6 +4005,10 @@ noprefix "false"
 
 \end_inset
 
+
+\change_inserted -767166615 1590510962
+ below
+\change_unchanged
 .
  The key observation is that it takes at least a few tens of Monte Carlo
  iterations to get a stable and accurate estimation.
@@ -4016,6 +4047,7 @@ noprefix "false"
 
 \begin_layout Standard
 \begin_inset Float figure
+placement H
 wide false
 sideways false
 status open
@@ -4142,11 +4174,11 @@ name "tab:far"
 <lyxtabular version="3" rows="2" columns="6">
 <features booktabs="true" tabularvalignment="middle">
 <column alignment="left" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
 <row>
 <cell alignment="left" valignment="top" topline="true" usebox="none">
 \begin_inset Text
@@ -4157,7 +4189,7 @@ Statistic
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -4166,7 +4198,7 @@ ERE
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -4175,7 +4207,7 @@ SPE/R
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -4184,7 +4216,7 @@ D
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -4193,7 +4225,7 @@ H2
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -4213,7 +4245,7 @@ T2
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+<cell alignment="left" valignment="top" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -4222,7 +4254,7 @@ T2
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+<cell alignment="left" valignment="top" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -4231,7 +4263,7 @@ T2
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+<cell alignment="left" valignment="top" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -4240,7 +4272,7 @@ T2
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+<cell alignment="left" valignment="top" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -4249,7 +4281,7 @@ T2
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+<cell alignment="left" valignment="top" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -4610,10 +4642,16 @@ noprefix "false"
 
 \end_inset
 
+
+\change_inserted -767166615 1590511345
+ below
+\change_unchanged
 .
 \end_layout
 
 \begin_layout Standard
+
+\change_deleted -767166615 1590511380
 From 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -4655,8 +4693,6 @@ literal "false"
 
 .
  .
-\change_deleted -767166615 1590105658
-
 \end_layout
 
 \begin_layout Standard
@@ -4750,6 +4786,7 @@ Thanks for pointing this out! I like learning about these unwritten rules
 
 \begin_layout Standard
 \begin_inset Float table
+placement H
 wide false
 sideways false
 status open
@@ -4787,13 +4824,13 @@ name "tab:rolling_results"
 <lyxtabular version="3" rows="13" columns="8">
 <features booktabs="true" tabularvalignment="middle">
 <column alignment="left" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
 <row>
 <cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
@@ -4808,18 +4845,6 @@ Model
 \begin_inset Text
 
 \begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-centering
-\end_layout
-
-\end_inset
-
 VAE
 \end_layout
 
@@ -4870,7 +4895,7 @@ VAE
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
+<cell multicolumn="1" alignment="center" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -4881,117 +4906,74 @@ PCA
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 Statistic
-\change_deleted -767166615 1590105670
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 D
-\begin_inset Formula $D$
-\end_inset
-
-
-\change_deleted -767166615 1590105670
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 H2
-\begin_inset Formula $H2$
-\end_inset
-
-
-\change_deleted -767166615 1590105670
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 T2
-\begin_inset Formula $T2$
-\end_inset
-
-
-\change_deleted -767166615 1590105670
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 SPE/R
-\begin_inset Formula $SPE/R$
-\end_inset
-
-
-\change_deleted -767166615 1590105670
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 ERE
-\begin_inset Formula $ERE_{1}$
-\end_inset
-
-
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-\begin_inset Formula $ERE_{2}$
-\end_inset
-
-
+ERE2
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-PCA-Q
+Q
 \end_layout
 
 \end_inset
@@ -5003,15 +4985,11 @@ PCA-Q
 
 \begin_layout Plain Layout
 Fault ID
-\change_deleted -767166615 1590105670
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -5020,7 +4998,7 @@ Fault ID
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -5029,7 +5007,7 @@ Fault ID
 
 \end_inset
 </cell>
-<cell alignment="none" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -5038,7 +5016,7 @@ Fault ID
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -5047,7 +5025,7 @@ Fault ID
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -5056,7 +5034,7 @@ Fault ID
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -5065,7 +5043,7 @@ Fault ID
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -5081,80 +5059,56 @@ Fault ID
 
 \begin_layout Plain Layout
 2
-\change_deleted -767166615 1590105670
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 0.00(0.00)
-\change_deleted -767166615 1590105670
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 0.00(0.00)
-\change_deleted -767166615 1590105670
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 0.00(0.00)
-\change_deleted -767166615 1590105670
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 0.37(0.03)
-\change_deleted -767166615 1590105670
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 0.44(0.06)
-\change_deleted -767166615 1590105670
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -5167,15 +5121,11 @@ Fault ID
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 0.00(0.00)
-\change_deleted -767166615 1590105670
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
@@ -5187,80 +5137,56 @@ Fault ID
 
 \begin_layout Plain Layout
 3
-\change_deleted -767166615 1590105670
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 0.17(0.06)
-\change_deleted -767166615 1590105670
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 0.23(0.04)
-\change_deleted -767166615 1590105670
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 0.03(0.03)
-\change_deleted -767166615 1590105670
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 0.84(0.01)
-\change_deleted -767166615 1590105670
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 0.85(0.01)
-\change_deleted -767166615 1590105670
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -5273,15 +5199,11 @@ Fault ID
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 0.78(0.00)
-\change_deleted -767166615 1590105670
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
@@ -5293,67 +5215,47 @@ Fault ID
 
 \begin_layout Plain Layout
 4
-\change_deleted -767166615 1590105670
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 0.00(0.00)
-\change_deleted -767166615 1590105670
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 0.00(0.00)
-\change_deleted -767166615 1590105670
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 0.00(0.00)
-\change_deleted -767166615 1590105670
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 0.62(0.02)
-\change_deleted -767166615 1590105670
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -5362,15 +5264,11 @@ Fault ID
 0.75
 \series default
 (0.05)
-\change_deleted -767166615 1590105670
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -5379,15 +5277,11 @@ Fault ID
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 0.56(0.00)
-\change_deleted -767166615 1590105670
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
@@ -5399,88 +5293,38 @@ Fault ID
 
 \begin_layout Plain Layout
 5
-\change_deleted -767166615 1590105670
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 0.58(0.07)
-\change_deleted -767166615 1590105670
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 0.62(0.09)
-\change_deleted -767166615 1590105670
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 0.00(0.00)
-\change_deleted -767166615 1590105670
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
-1.00
-\series default
-(0.00)
-\change_deleted -767166615 1590105670
- 
-\change_unchanged
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
-1.00
-\series default
-(0.00)
-\change_deleted -767166615 1590105670
- 
-\change_unchanged
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -5493,15 +5337,37 @@ Fault ID
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+1.00
+\series default
+(0.00)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+1.00
+\series default
+(0.00)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 0.99(0.00)
-\change_deleted -767166615 1590105670
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
@@ -5513,67 +5379,47 @@ Fault ID
 
 \begin_layout Plain Layout
 6
-\change_deleted -767166615 1590105670
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 0.06(0.03)
-\change_deleted -767166615 1590105670
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 0.15(0.08)
-\change_deleted -767166615 1590105670
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 0.05(0.05)
-\change_deleted -767166615 1590105670
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 0.79(0.01)
-\change_deleted -767166615 1590105670
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -5582,15 +5428,11 @@ Fault ID
 0.80
 \series default
 (0.01)
-\change_deleted -767166615 1590105670
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -5603,15 +5445,11 @@ Fault ID
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 0.52(0.00)
-\change_deleted -767166615 1590105670
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
@@ -5623,67 +5461,47 @@ Fault ID
 
 \begin_layout Plain Layout
 7
-\change_deleted -767166615 1590105670
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 0.01(0.01)
-\change_deleted -767166615 1590105670
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 0.01(0.01)
-\change_deleted -767166615 1590105670
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 0.00(0.00)
-\change_deleted -767166615 1590105670
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 0.13(0.01)
-\change_deleted -767166615 1590105670
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -5692,15 +5510,11 @@ Fault ID
 0.17
 \series default
 (0.01)
-\change_deleted -767166615 1590105670
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -5709,15 +5523,11 @@ Fault ID
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 0.11(0.00)
-\change_deleted -767166615 1590105670
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
@@ -5729,67 +5539,47 @@ Fault ID
 
 \begin_layout Plain Layout
 8
-\change_deleted -767166615 1590105670
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 0.00(0.00)
-\change_deleted -767166615 1590105670
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 0.00(0.00)
-\change_deleted -767166615 1590105670
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 0.00(0.00)
-\change_deleted -767166615 1590105670
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 0.64(0.02)
-\change_deleted -767166615 1590105670
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -5798,15 +5588,11 @@ Fault ID
 0.70
 \series default
 (0.07)
-\change_deleted -767166615 1590105670
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -5815,15 +5601,11 @@ Fault ID
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 0.34(0.00)
-\change_deleted -767166615 1590105670
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
@@ -5835,67 +5617,47 @@ Fault ID
 
 \begin_layout Plain Layout
 10
-\change_deleted -767166615 1590105670
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 0.00(0.00)
-\change_deleted -767166615 1590105670
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 0.00(0.00)
-\change_deleted -767166615 1590105670
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 0.00(0.00)
-\change_deleted -767166615 1590105670
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 0.49(0.03)
-\change_deleted -767166615 1590105670
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -5904,15 +5666,11 @@ Fault ID
 0.57
 \series default
 (0.05)
-\change_deleted -767166615 1590105670
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -5925,15 +5683,11 @@ Fault ID
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 0.29(0.00)
-\change_deleted -767166615 1590105670
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
@@ -5945,84 +5699,47 @@ Fault ID
 
 \begin_layout Plain Layout
 12
-\change_deleted -767166615 1590105670
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 0.00(0.00)
-\change_deleted -767166615 1590105670
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 0.00(0.00)
-\change_deleted -767166615 1590105670
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 0.00(0.00)
-\change_deleted -767166615 1590105670
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 0.79(0.01)
-\change_deleted -767166615 1590105670
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
-0.80
-\series default
-(0.02)
-\change_deleted -767166615 1590105670
- 
-\change_unchanged
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -6035,15 +5752,24 @@ Fault ID
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+0.80
+\series default
+(0.02)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 0.69(0.00)
-\change_deleted -767166615 1590105670
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
@@ -6055,67 +5781,47 @@ Fault ID
 
 \begin_layout Plain Layout
 13
-\change_deleted -767166615 1590105670
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+<cell alignment="left" valignment="top" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 0.00(0.00)
-\change_deleted -767166615 1590105670
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+<cell alignment="left" valignment="top" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 0.00(0.00)
-\change_deleted -767166615 1590105670
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+<cell alignment="left" valignment="top" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 0.01(0.00)
-\change_deleted -767166615 1590105670
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+<cell alignment="left" valignment="top" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 0.71(0.04)
-\change_deleted -767166615 1590105670
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+<cell alignment="left" valignment="top" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -6124,15 +5830,11 @@ Fault ID
 0.77
 \series default
 (0.02)
-\change_deleted -767166615 1590105670
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+<cell alignment="left" valignment="top" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -6141,15 +5843,11 @@ Fault ID
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+<cell alignment="left" valignment="top" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 0.56(0.00)
-\change_deleted -767166615 1590105670
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
@@ -6168,6 +5866,52 @@ Fault ID
 \end_layout
 
 \begin_layout Standard
+
+\change_inserted -767166615 1590511384
+From 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:rolling_results"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, we can observe that 
+\begin_inset Formula $ERE_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $ERE_{2}$
+\end_inset
+
+ consistently outperforms all other statistic formulations.
+ The divide between residual-based statistics and latent variable-based
+ statistics observed in simulation study is replicated here too.
+ The inferiority of latent variable-based statistics are much more obvious
+ here, as we observe for most out-of-control classes the detection rate
+ is simply zero.
+ This observation further validate our claims that in practice, for deep
+ autoencoders, the change happens in the residual space rather than the
+ latent space.
+ The advantage of VAE over PCA is mainly due to the better representative
+ power and data compression ability of deep autoencoders compared to PCA.
+ We replicated the superiority of VAE over PCA for process monitoring the
+ same way it was demonstrated in the earlier works mentioned in this study
+ 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Zhang2019-lu,wang2019systematic,lee2019process"
+literal "false"
+
+\end_inset
+
+.
+ .
+\end_layout
+
+\begin_layout Standard
 To support our claim of the ineffectiveness of latent variable-based statistics
  
 \change_deleted -767166615 1590105921
@@ -6183,6 +5927,10 @@ noprefix "false"
 
 \end_inset
 
+
+\change_inserted -767166615 1590511432
+ below
+\change_unchanged
 .
  We observe how well separated the statistics are for 
 \begin_inset Formula $ERE_{1}$
@@ -6203,8 +5951,7 @@ because it was almost identical to
 \end_inset
 
 .
- To obtain a deeper understanding of the results, we would like to show
- 
+ To obtain a deeper understanding of the results, we point out 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Output-of-the"
@@ -6214,7 +5961,7 @@ noprefix "false"
 
 \end_inset
 
- for the original images and their reconstructions.
+ below for the original images and their reconstructions.
  Decoder is persistent on generating samples that look like in-control rolling
  samples with little fidelity to how the original defect sample looks like.
  When 
@@ -6297,6 +6044,7 @@ noprefix "false"
 
 \begin_layout Standard
 \begin_inset Float figure
+placement H
 wide false
 sideways false
 status open
@@ -6595,6 +6343,7 @@ name "fig:kde"
 
 \begin_layout Standard
 \begin_inset Float figure
+placement H
 wide false
 sideways false
 status open
