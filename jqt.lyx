@@ -2604,9 +2604,9 @@ for the first moment of the function
 
  can be derived as:
 \begin_inset Formula 
-\[
-ERE_{1}=\gg\mbx-\mbmu_{\mbtheta}(\mbmu_{\mbphi}(\mbx))\gg_{2}^{2}
-\]
+\begin{equation}
+ERE_{1}=\gg\mbx-\mbmu_{\mbtheta}(\mbmu_{\mbphi}(\mbx))\gg_{2}^{2}\label{eq:ere-1}
+\end{equation}
 
 \end_inset
 
@@ -2616,9 +2616,9 @@ ERE_{1}=\gg\mbx-\mbmu_{\mbtheta}(\mbmu_{\mbphi}(\mbx))\gg_{2}^{2}
 \begin_deeper
 \begin_layout Standard
 \begin_inset Formula 
-\[
-ERE_{2}=\gg\mbx-\mbmu_{\mbtheta}(\mbmu_{\mbphi}(\mbx))\gg_{2}^{2}+\frac{1}{2}\mathrm{tr}(\mathbf{H}_{z}\diag(\mbsigma_{\mbphi}(x)))
-\]
+\begin{equation}
+ERE_{2}=\gg\mbx-\mbmu_{\mbtheta}(\mbmu_{\mbphi}(\mbx))\gg_{2}^{2}+\frac{1}{2}\mathrm{tr}(\mathbf{H}_{z}\diag(\mbsigma_{\mbphi}(x)))\label{eq:ere-2}
+\end{equation}
 
 \end_inset
 
@@ -2644,7 +2644,7 @@ where
 
 \end_deeper
 \begin_layout Standard
-The proof is given in 
+The derivation is given in 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "app:ere"
@@ -3068,6 +3068,7 @@ name "tab:model-architectures"
 \end_layout
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Tabular
 <lyxtabular version="3" rows="3" columns="2">
 <features booktabs="true" tabularvalignment="middle">
@@ -5044,6 +5045,7 @@ name "tab:rolling_results"
 \end_layout
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Tabular
 <lyxtabular version="3" rows="13" columns="8">
 <features booktabs="true" tabularvalignment="middle">
@@ -6972,10 +6974,9 @@ literal "false"
 
  the closed-form solution will be the following: 
 \begin_inset Formula 
-\begin{align*}
-\KL{p_{0}}{p_{1}} & =\frac{1}{2}[\log\frac{\g\mbSigma_{1}\g}{\g\mbSigma_{0}\g}+Tr(\mbSigma_{1}\inv\mbSigma_{0})-r\\
- & \quad+(\mbmu_{0}-\mbmu{1})^{\top}\mbSigma_{1}\inv(\mbmu_{0}-\mbmu{1})]
-\end{align*}
+\begin{align}
+\KL{p_{0}}{p_{1}} & =\frac{1}{2}[\log\frac{\g\mbSigma_{1}\g}{\g\mbSigma_{0}\g}+Tr(\mbSigma_{1}\inv\mbSigma_{0})-r+(\mbmu_{0}-\mbmu_{1})^{\top}\mbSigma_{1}\inv(\mbmu_{0}-\mbmu_{1})]\label{eq:kld-closed-form}
+\end{align}
 
 \end_inset
 
@@ -6989,10 +6990,10 @@ Since
 
 , we can derive that 
 \begin_inset Formula 
-\begin{align*}
-\KL{\encoding}{p(\mbz)} & =\frac{1}{2}\left[-\log\g\mbSigma_{z}\g+Tr(\mbSigma_{z})-r\right]+\frac{1}{2}\mbmu(\mbx)^{\top}\mbmu(\mbx)\\
- & =\frac{1}{2}\mbmu(\mbx)^{\top}\mbmu(\mbx)+C,
-\end{align*}
+\begin{align}
+\KL{\encoding}{p(\mbz)} & =\frac{1}{2}\left[-\log\g\mbSigma_{z}\g+Tr(\mbSigma_{z})-r\right]+\frac{1}{2}\mbmu(\mbx)^{\top}\mbmu(\mbx)\nonumber \\
+ & =\frac{1}{2}\mbmu(\mbx)^{\top}\mbmu(\mbx)+C,\label{eq:kld-prior}
+\end{align}
 
 \end_inset
 
@@ -7063,11 +7064,11 @@ noprefix "false"
 
 , we have 
 \begin_inset Formula 
-\begin{align*}
-\mathbb{E}_{\mbz\sim q_{\mbtheta}}\|\mbx-\mbW\mbz\|^{2} & =\mbx^{\top}\mbx-2\mbmu(\mbx)^{\top}\mbW\mbx+\mathbb{E}_{\mbz\sim q_{\mbtheta}}(\mbz^{\top}\mbW^{\top}\mbW\mbz)\\
- & =\mbx^{\top}\mbx-2\mbmu(\mbx)^{\top}\mbW\mbx+\mbmu(\mbx)^{\top}\mbW^{\top}\mbW\mbmu(\mbx)+tr\left(\mbW^{\top}\mbW\Sigma_{z}\right)\\
- & =\|\mbx-\mbW\mbmu(\mbx)\|^{2}+C\\
-\end{align*}
+\begin{align}
+\mathbb{E}_{\mbz\sim q_{\mbtheta}}\|\mbx-\mbW\mbz\|^{2} & =\mbx^{\top}\mbx-2\mbmu(\mbx)^{\top}\mbW\mbx+\mathbb{E}_{\mbz\sim q_{\mbtheta}}(\mbz^{\top}\mbW^{\top}\mbW\mbz)\nonumber \\
+ & =\mbx^{\top}\mbx-2\mbmu(\mbx)^{\top}\mbW\mbx+\mbmu(\mbx)^{\top}\mbW^{\top}\mbW\mbmu(\mbx)+tr\left(\mbW^{\top}\mbW\Sigma_{z}\right)\nonumber \\
+ & =\|\mbx-\mbW\mbmu(\mbx)\|^{2}+C\label{eq:q-to-ere}
+\end{align}
 
 \end_inset
 
@@ -7283,13 +7284,13 @@ i.e.,
 
 \begin_layout Standard
 \begin_inset Formula 
-\begin{align*}
-E_{\mbz\sim q_{\phi}}R(\mbz) & =R(\mbmu_{\mbphi}(\mbx))+R'(\mbmu_{\mbphi}(\mbx))E_{\mbz\sim q_{\phi}}[\mbz-\mbmu_{\mbphi}(\mbx)])\\
- & \quad+\frac{1}{2}E_{\mbz\sim q_{\phi}}[(\mbz-\mbmu_{\mbphi}(\mbx))^{\top}\mathbf{H}_{z}(\mbz-\mbmu_{\mbphi}(\mbx))]+O(\|(\mbz-\mbmu_{\mbphi}(\mbx)\|^{3}\\
- & \simeq R(\mbmu_{\mbphi}(\mbx))+\frac{1}{2}E_{\mbz\sim q_{\phi}}[(\mbz-\mbmu_{\mbphi}(\mbx))^{\top}\mathbf{H}_{z}(\mbz-\mbmu_{\mbphi}(\mbx))]\\
- & =R(\mbmu_{\mbphi}(\mbx))+\frac{1}{2}\mathrm{tr}(\mathbf{H}_{z}E[(\mbz-\mbmu_{z})(\mbz-\mbmu_{z})^{T}])\\
- & =R(\mbmu_{\mbphi}(\mbx))+\frac{1}{2}\mathrm{tr}(\mathbf{H}_{z}\Sigma_{z})
-\end{align*}
+\begin{align}
+E_{\mbz\sim q_{\phi}}R(\mbz) & =R(\mbmu_{\mbphi}(\mbx))+R'(\mbmu_{\mbphi}(\mbx))E_{\mbz\sim q_{\phi}}[\mbz-\mbmu_{\mbphi}(\mbx)])\nonumber \\
+ & \quad+\frac{1}{2}E_{\mbz\sim q_{\phi}}[(\mbz-\mbmu_{\mbphi}(\mbx))^{\top}\mathbf{H}_{z}(\mbz-\mbmu_{\mbphi}(\mbx))]+O(\|(\mbz-\mbmu_{\mbphi}(\mbx)\|^{3}\nonumber \\
+ & \simeq R(\mbmu_{\mbphi}(\mbx))+\frac{1}{2}E_{\mbz\sim q_{\phi}}[(\mbz-\mbmu_{\mbphi}(\mbx))^{\top}\mathbf{H}_{z}(\mbz-\mbmu_{\mbphi}(\mbx))]\nonumber \\
+ & =R(\mbmu_{\mbphi}(\mbx))+\frac{1}{2}\mathrm{tr}(\mathbf{H}_{z}E[(\mbz-\mbmu_{z})(\mbz-\mbmu_{z})^{T}])\nonumber \\
+ & =R(\mbmu_{\mbphi}(\mbx))+\frac{1}{2}\mathrm{tr}(\mathbf{H}_{z}\Sigma_{z})\label{eq:derived-ere2}
+\end{align}
 
 \end_inset
 
