@@ -61,6 +61,7 @@
 
 \tikzstyle{partialobs} = [latent,diagonal fill={gray!25}{gray!0}]
 \end_preamble
+\options headings=standardclasses
 \use_default_options false
 \begin_modules
 theorems-ams
@@ -89,7 +90,7 @@ theorems-sec
 \bibtex_command biber
 \index_command default
 \paperfontsize 12
-\spacing single
+\spacing double
 \use_hyperref false
 \papersize default
 \use_geometry true
@@ -535,7 +536,7 @@ The main limitation of all the aforementioned PCA-related methods is that
 \begin_layout Standard
 A systematic discussion of this issue is articulated in 
 \begin_inset CommandInset citation
-LatexCommand citep
+LatexCommand citet
 key "Shi2016-tg"
 literal "false"
 
@@ -549,7 +550,9 @@ literal "false"
 sional corpora may lie on a nonlinear manifold as opposed to a linear manifold,
  which is assumed by PCA and related methods.
  However, the authors only focus on applying manifold learning for Phase-I
- analysis, while the Phase-II monitoring procedure is not touched upon 
+ analysis, while the Phase-II monitoring procedure is not touched upon
+\change_deleted -767166615 1590528380
+ 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "Shi2016-tg"
@@ -557,6 +560,8 @@ literal "false"
 
 \end_inset
 
+
+\change_unchanged
 .
 \end_layout
 
@@ -566,7 +571,7 @@ Deep dimensionality reduction models have been proposed as an alternative
  Deep autoencoders have been proposed for profile monitoring for Phase-I
  analysis in 
 \begin_inset CommandInset citation
-LatexCommand citep
+LatexCommand citet
 key "Howard2018-op"
 literal "false"
 
@@ -1103,7 +1108,7 @@ literal "false"
 \end_inset
 
  is a simple linear transformation.
- This enables reusinganalytical results from solutions to the classical
+ This enables reusing analytical results from solutions to the classical
  PCA problem.
  The assumption of PPCA that the latent and observed variables have a strictly
  linear relationship is restrictive.
@@ -1316,7 +1321,13 @@ Review of
 \begin_inset Formula $Q$
 \end_inset
 
- statistics in PCA
+ 
+\change_inserted -767166615 1590521759
+S
+\change_deleted -767166615 1590521758
+s
+\change_unchanged
+tatistics in PCA
 \end_layout
 
 \begin_layout Standard
@@ -2456,7 +2467,7 @@ As of now, we have enough reasons to recommend the use of residual-based
 
  of 
 \begin_inset CommandInset citation
-LatexCommand citep
+LatexCommand citet
 key "lee2019process"
 literal "false"
 
@@ -2468,7 +2479,7 @@ literal "false"
 
  
 \begin_inset CommandInset citation
-LatexCommand citep
+LatexCommand citet
 key "wang2019systematic"
 literal "false"
 
@@ -2773,7 +2784,7 @@ In this work, we use convolutional encoders and decoders in our VAE architecture
  to represent the spatial neighborhood structures of the profiles.
  Introduced in 
 \begin_inset CommandInset citation
-LatexCommand citep
+LatexCommand citet
 key "lecun1989backpropagation"
 literal "false"
 
@@ -3416,7 +3427,31 @@ Here,
 \end_layout
 
 \begin_layout Subsection
-On the disentanglement and extrapolation performance of the encoder 
+On the 
+\change_inserted -767166615 1590521774
+D
+\change_deleted -767166615 1590521774
+d
+\change_unchanged
+isentanglement and 
+\change_inserted -767166615 1590521776
+E
+\change_deleted -767166615 1590521776
+e
+\change_unchanged
+xtrapolation 
+\change_inserted -767166615 1590521779
+P
+\change_deleted -767166615 1590521778
+p
+\change_unchanged
+erformance of the 
+\change_inserted -767166615 1590521781
+E
+\change_deleted -767166615 1590521780
+e
+\change_unchanged
+ncoder 
 \begin_inset CommandInset label
 LatexCommand label
 name "sec:simstudy:recognition"
@@ -3809,7 +3844,29 @@ literal "false"
 \end_layout
 
 \begin_layout Subsection
-On the extrapolation performance of the decoder network
+On the 
+\change_inserted -767166615 1590521787
+E
+\change_deleted -767166615 1590521786
+e
+\change_unchanged
+xtrapolation 
+\change_inserted -767166615 1590521788
+P
+\change_deleted -767166615 1590521788
+p
+\change_unchanged
+erformance of the 
+\change_inserted -767166615 1590521791
+D
+\change_deleted -767166615 1590521791
+d
+\change_unchanged
+ecoder 
+\change_deleted -767166615 1590521799
+network
+\change_unchanged
+
 \begin_inset CommandInset label
 LatexCommand label
 name "sec:simstudy:generator"
@@ -3966,7 +4023,31 @@ name "fig:manifold_vae"
 \end_layout
 
 \begin_layout Subsection
-On the estimation of log-likelihood under importance sampling
+On the 
+\change_inserted -767166615 1590521803
+E
+\change_deleted -767166615 1590521803
+e
+\change_unchanged
+stimation of log-likelihood 
+\change_inserted -767166615 1590521807
+U
+\change_deleted -767166615 1590521807
+u
+\change_unchanged
+nder 
+\change_inserted -767166615 1590521809
+I
+\change_deleted -767166615 1590521809
+i
+\change_unchanged
+mportance 
+\change_inserted -767166615 1590521811
+S
+\change_deleted -767166615 1590521811
+s
+\change_unchanged
+ampling
 \end_layout
 
 \begin_layout Standard
@@ -4100,7 +4181,31 @@ name "fig:Estimation-comparison-between"
 \end_layout
 
 \begin_layout Subsection
-Comparison of detection performance of proposed statistics
+Comparison of 
+\change_inserted -767166615 1590521815
+D
+\change_deleted -767166615 1590521814
+d
+\change_unchanged
+etection 
+\change_inserted -767166615 1590521816
+P
+\change_deleted -767166615 1590521816
+p
+\change_unchanged
+erformance of 
+\change_inserted -767166615 1590521818
+P
+\change_deleted -767166615 1590521818
+p
+\change_unchanged
+roposed 
+\change_inserted -767166615 1590521820
+S
+\change_deleted -767166615 1590521820
+s
+\change_unchanged
+tatistics
 \end_layout
 
 \begin_layout Standard
@@ -4701,7 +4806,7 @@ literal "false"
 
 \begin_layout Standard
 
-\change_inserted -767166615 1589935574
+\change_inserted -767166615 1590521612
 \begin_inset Note Comment
 status open
 
@@ -4780,6 +4885,25 @@ Thanks for pointing this out! I like learning about these unwritten rules
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+
+\change_inserted -767166615 1590521614
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+
+\change_inserted -767166615 1590521646
+I had to rotate this sideways beacuse it couldn't fit the required margins
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
 \change_unchanged
 
 \end_layout
@@ -4788,7 +4912,7 @@ Thanks for pointing this out! I like learning about these unwritten rules
 \begin_inset Float table
 placement H
 wide false
-sideways false
+sideways true
 status open
 
 \begin_layout Plain Layout
@@ -5866,8 +5990,6 @@ Fault ID
 \end_layout
 
 \begin_layout Standard
-
-\change_inserted -767166615 1590511384
 From 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -5909,6 +6031,8 @@ literal "false"
 
 .
  .
+\change_inserted -767166615 1590511384
+
 \end_layout
 
 \begin_layout Standard
