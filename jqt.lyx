@@ -177,15 +177,15 @@ Toward a Better Statistic Formulation for Profile Monitoring with Variational
 
 \begin_layout Abstract
 
-\change_inserted -767166615 1590440229
-Due to recent success of deep learning models, nonlinear profile monitoring
+\change_inserted -767166615 1590443453
+Due to the recent success of deep learning models, nonlinear profile monitoring
  schemes based on deep neural networks have attracted increasing interest.
- A number of such monitoring statistic formulations for were proposed specifical
-ly for variational autoencoders, a mainstay deep generative model.
- While these works show impressive results over classical methods, they
- ignore shortcomings of learned lower-dimensional representations and computatio
-nal limitations of real-world high-dimensional systems in their proposed
- formulations.
+ A number of such monitoring schemes were proposed specifically for variational
+ autoencoders, a mainstay deep generative model.
+ While these works show impressive results over classical methods, the statistic
+ formulations they propose ignore shortcomings of learned lower-dimensional
+ representations and computational limitations of real-world high-dimensional
+ systems in their proposed formulations.
  In this work, we first manifest these issues and then overcome them with
  a novel statistic formulation that both increases out-of-control detection
  accuracy and computational efficiency.
@@ -197,8 +197,8 @@ status open
 
 \begin_layout Plain Layout
 
-\change_inserted -767166615 1590440232
-~100 words abstract required, right now this is 118, to check in LyX, highlight
+\change_inserted -767166615 1590442974
+~121 words abstract required, right now this is 118, to check in LyX, highlight
  the text then use: Tools -> Statistics
 \change_unchanged
 
@@ -223,7 +223,8 @@ name "sec:introduction"
 \end_inset
 
  Profile monitoring has attracted a growing interest in the literature in
- the past decades 
+ the past decades for its ability to construct control charts with much
+ better representations for certain types of process measurements
 \begin_inset CommandInset citation
 LatexCommand citep
 key "Woodall2004-bp,Woodall2007-xs,Maleki2018-uo"
@@ -231,15 +232,28 @@ literal "false"
 
 \end_inset
 
- for its ability to construct control charts with much better representations
- for certain types of process measurements.
+.
  A profile can be defined as a functional relationship between the response
  variables and explanatory variables or spatiotemporal coordinates.
  In this work, we focus on the case where the profiles generated from the
- process are high-dimensional (HD)—
+ process are high-dimensional (HD)
+\change_inserted -767166615 1590443326
+
 \shape italic
+\emph on
+, 
+\change_deleted -767166615 1590443322
+
+\shape default
+\emph default
+—
+\change_unchanged
+
+\shape italic
+\emph on
 i.e.
 \shape default
+\emph default
 , the number of such explanatory variables or spatiotemporal coordinates
  are large.
  Specifically, we focus on sets of HD profiles for which intra-sample variation
@@ -554,8 +568,13 @@ I don't think this is exactly what we are proving
 
 .
  We argue that there is room for improvement for the monitoring statistic
- formulations in those works for a number of reasons, especially when high-dimen
-sional profiles are considered.
+ formulations in those works for 
+\change_deleted -767166615 1590444326
+a number of
+\change_inserted -767166615 1590444329
+several
+\change_unchanged
+ reasons, especially when high-dimensional profiles are considered.
  In this work, we propose a new monitoring statistic formulation to address
  this issue.
 \end_layout
@@ -630,8 +649,17 @@ noprefix "false"
 
 \end_inset
 
- first reviews the related literature in the variational autoencoders and
- traditional 
+ first 
+\change_inserted -767166615 1590444434
+introduces
+\change_deleted -767166615 1590444419
+reviews the related literature in the
+\change_unchanged
+ variational autoencoders and 
+\change_inserted -767166615 1590444441
+reviews 
+\change_unchanged
+traditional 
 \begin_inset Formula $T^{2}$
 \end_inset
 
@@ -639,8 +667,35 @@ noprefix "false"
 \begin_inset Formula $Q$
 \end_inset
 
- chart in the PCA method and then briefly introduce the existing monitoring
- statistics for VAE.
+ chart
+\change_inserted -767166615 1590444459
+s
+\change_unchanged
+ 
+\change_deleted -767166615 1590444450
+in the
+\change_inserted -767166615 1590444450
+of
+\change_unchanged
+ PCA
+\change_deleted -767166615 1590444457
+ method
+\change_unchanged
+ a
+\change_inserted -767166615 1590444497
+s well as
+\change_deleted -767166615 1590444495
+nd
+\change_unchanged
+ 
+\change_deleted -767166615 1590444479
+then briefly
+\change_unchanged
+ 
+\change_deleted -767166615 1590444484
+introduce
+\change_unchanged
+ the existing monitoring statistics for VAE.
 
 \color inherit
  
@@ -653,8 +708,12 @@ noprefix "false"
 
 \end_inset
 
- introduces the proposed monitoring statistics and gives insights on its
- meaning and mathematical relationship with the traditional PCA methods.
+ introduces the proposed monitoring statistic
+\change_deleted -767166615 1590444522
+s
+\change_unchanged
+ and gives insights on its meaning and mathematical relationship with the
+ traditional PCA methods.
  
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -667,8 +726,18 @@ noprefix "false"
 
  shows the simulation study to demonstrate the performance of the proposed
  method and give insight into why only the residual-based statistics is
- recommended.
+ recommended
+\change_inserted -767166615 1590444570
+ and how to make sure it is computationally efficient
+\change_unchanged
+.
+
+\change_inserted -767166615 1590444620
+ Finally,
+\change_deleted -767166615 1590444619
  
+\change_unchanged
+
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "sec:case-study"
@@ -678,9 +747,20 @@ noprefix "false"
 
 \end_inset
 
- demonstrates the advantage of the proposed methodology using images from
- hot-steel rolling processes.
- Finally, 
+ demonstrates the advantage
+\change_inserted -767166615 1590444692
+s
+\change_unchanged
+ of the proposed methodology
+\change_inserted -767166615 1590444707
+ on a real-life case study,
+\change_deleted -767166615 1590444700
+ 
+\change_unchanged
+using images from hot-steel rolling processes.
+ 
+\change_deleted -767166615 1590444606
+Finally, 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "sec:conclusions"
@@ -691,6 +771,35 @@ noprefix "false"
 \end_inset
 
  concludes the paper with future work.
+\change_inserted -767166615 1590444608
+
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+
+\change_inserted -767166615 1590444683
+we don't conclude the paper with future work and this part is probably unnecessa
+ry in the 
+\begin_inset Quotes eld
+\end_inset
+
+the rest of the paper organized as follows
+\begin_inset Quotes erd
+\end_inset
+
+.
+ I've seen many good papers simply don't mention the conclusion section
+ because it's pretty much the same across all papers.
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_unchanged
+
 \end_layout
 
 \begin_layout Section
@@ -725,8 +834,33 @@ literal "false"
 \end_inset
 
 , which is the primary modeling tool in this work.
- To achieve that, we believe a brief introduction to Gaussian factorized
- latent variable models is necessary.
+ 
+\change_deleted -767166615 1590444810
+To achieve that, we believe a brief introduction to
+\change_inserted -767166615 1590444815
+The
+\change_deleted -767166615 1590444815
+ 
+\change_unchanged
+Gaussian factorized latent variable model
+\change_inserted -767166615 1590444879
+ perspective of VAEs
+\change_deleted -767166615 1590444823
+s
+\change_unchanged
+ is 
+\change_deleted -767166615 1590444834
+necessary
+\change_inserted -767166615 1590444866
+crucial to understand the role of this model in the context of profile monitorin
+g
+\change_unchanged
+.
+
+\change_inserted -767166615 1590444902
+ Therefore we start with a definition of it.
+\change_unchanged
+
 \end_layout
 
 \begin_layout Standard
@@ -1825,7 +1959,12 @@ Bottom Left:
 \series bold
 Bottom Right: 
 \series default
-A learned representation that is entangled (i.e.
+A learned representation that is entangled (
+\change_deleted -767166615 1590442823
+i.e.
+\change_inserted -767166615 1590442823
+i.e.,
+\change_unchanged
  not axis-parallel).
  
 \begin_inset CommandInset label
@@ -2209,6 +2348,9 @@ name "sec:methodology:procedure"
  Phase-I analysis focuses on understanding the process variability by training
  an appropriate in-control mode, and selecting an appropriate control limit.
  In our case, Phase-I analysis results in a trained model (i.e.
+\change_inserted -767166615 1590442792
+,
+\change_unchanged
  an encoder and a decoder) and an Upper Control Limit (UCL) to help set
  up the control chart for each of the monitoring statistics.
  In Phase-II, the system is exposed to new profiles generated by the process
@@ -3416,11 +3558,17 @@ noprefix "false"
 .
  To see how this will help to detect disturbances in latent space, consider
  a gasket that is extremely small in term of the radius (i.e.
+\change_inserted -767166615 1590442798
+,
+\change_unchanged
  small 
 \begin_inset Formula $r$
 \end_inset
 
 ) or at the very margins of the grid in terms of center location (i.e.
+\change_inserted -767166615 1590442805
+,
+\change_unchanged
  center location 
 \begin_inset Formula $c$
 \end_inset
@@ -6831,7 +6979,12 @@ To derive the
 \begin_inset Formula $z_{0}=\mbmu_{\mbphi}(\mbx)$
 \end_inset
 
-, i.e.
+, 
+\change_deleted -767166615 1590442815
+i.e.
+\change_inserted -767166615 1590442815
+i.e.,
+\change_unchanged
  the first moment.
  For notational simplicity, we use 
 \begin_inset Formula $H_{z}$
