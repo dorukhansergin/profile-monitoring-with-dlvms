@@ -1369,7 +1369,11 @@ literal "false"
 
 .
  Its geometric representation is how far the sample is away from the learned
- subspace of in-control (IC) samples.
+ subspace of in-control
+\change_deleted -767166615 1590533369
+ (IC)
+\change_unchanged
+ samples.
  
 \begin_inset Formula $\Tsq$
 \end_inset
@@ -1378,7 +1382,13 @@ literal "false"
 \change_inserted -767166615 1590458603
 latent representation of that 
 \change_unchanged
-sample is away from the cluster of latent codes of the IC samples.
+sample is away from the cluster of latent codes of the 
+\change_deleted -767166615 1590533374
+IC
+\change_inserted -767166615 1590533374
+in-control
+\change_unchanged
+ samples.
 \end_layout
 
 \begin_layout Standard
@@ -2404,7 +2414,13 @@ Unlike latent variable-based statistics, extrapolation and disentanglement
 \begin_inset Formula $\encoding$
 \end_inset
 
- map the OC sample 
+ map the 
+\change_deleted -767166615 1590533408
+OC
+\change_inserted -767166615 1590533408
+out-of-control
+\change_unchanged
+ sample 
 \begin_inset Formula $\boldsymbol{x}$
 \end_inset
 
@@ -2412,13 +2428,25 @@ Unlike latent variable-based statistics, extrapolation and disentanglement
 \begin_inset Formula $\boldsymbol{z}$
 \end_inset
 
- in the IC domain, this will lead to the increase of the monitoring statistics
- based on the residual space for better detection power.
+ in the 
+\change_deleted -767166615 1590533351
+IC
+\change_inserted -767166615 1590533351
+in-control
+\change_unchanged
+ domain, this will lead to the increase of the monitoring statistics based
+ on the residual space for better detection power.
  Second, even if the mapping was correct and it maps 
 \begin_inset Formula $\boldsymbol{z}$
 \end_inset
 
- outside the IC region, the decoder 
+ outside the 
+\change_deleted -767166615 1590533352
+IC
+\change_inserted -767166615 1590533352
+in-control
+\change_unchanged
+ region, the decoder 
 \begin_inset Formula $\decoding$
 \end_inset
 
@@ -2426,8 +2454,14 @@ Unlike latent variable-based statistics, extrapolation and disentanglement
 \begin_inset Formula $\boldsymbol{z}$
 \end_inset
 
- outside the IC regions, which still leads to a large statistics to capture
- disturbances in latent variations.
+ outside the 
+\change_deleted -767166615 1590533353
+IC
+\change_inserted -767166615 1590533353
+in-control
+\change_unchanged
+ regions, which still leads to a large statistics to capture disturbances
+ in latent variations.
  In conclusion,
 \end_layout
 
@@ -2691,7 +2725,13 @@ ol samples.
 \end_layout
 
 \begin_layout Itemize
-Obtain IC dataset 
+Obtain 
+\change_deleted -767166615 1590533354
+IC
+\change_inserted -767166615 1590533354
+in-control
+\change_unchanged
+ dataset 
 \begin_inset Formula $\dataset$
 \end_inset
 
@@ -2764,7 +2804,13 @@ status collapsed
 \begin_layout Itemize
 Start admitting profiles from the process.
  Calculate test statistic using the trained VAE.
- If test statistic is over UCL, identify the sample as OC.
+ If test statistic is over UCL, identify the sample as 
+\change_deleted -767166615 1590533423
+OC
+\change_inserted -767166615 1590533423
+out-of-control
+\change_unchanged
+.
 \end_layout
 
 \begin_layout Standard
@@ -3310,8 +3356,14 @@ Gasket profiles depicted as grayscale images simulated with radius and center
 \end_layout
 
 \begin_layout Standard
-We define the sources of variation in IC gasket beads by two latent variables
- sampling from independent Gaussian distributions: 
+We define the sources of variation in 
+\change_deleted -767166615 1590533356
+IC
+\change_inserted -767166615 1590533356
+in-control
+\change_unchanged
+ gasket beads by two latent variables sampling from independent Gaussian
+ distributions: 
 \begin_inset Formula 
 \begin{equation}
 \begin{split}\czero\sim\Norm(0.5,1\times10^{-2})\\
@@ -3325,8 +3377,13 @@ r\sim\Norm(0.2,6.25\times10^{-4})
 \end_layout
 
 \begin_layout Standard
-Finally, we will consider the following four types of OC variation patterns
- for the system:
+Finally, we will consider the following four types of 
+\change_deleted -767166615 1590533418
+OC
+\change_inserted -767166615 1590533418
+out-of-control
+\change_unchanged
+ variation patterns for the system:
 \end_layout
 
 \begin_layout Itemize
@@ -3426,8 +3483,19 @@ Here,
 \end_inset
 
 .
- The training, validation, and testing IC or OC samples are generated of
- size 500 each.
+ The training, validation, and testing 
+\change_deleted -767166615 1590533358
+IC
+\change_inserted -767166615 1590533358
+in-control
+\change_unchanged
+ or 
+\change_deleted -767166615 1590533420
+OC
+\change_inserted -767166615 1590533420
+out-of-control
+\change_unchanged
+ samples are generated of size 500 each.
 \end_layout
 
 \begin_layout Subsection
@@ -3756,8 +3824,13 @@ Similar to (b) but with fixed center location
 
 .
  The tolerable region is represented by the gray dashed circle, a curve
- of isodistant points in terms of Mahalanobis distance to in control distributio
-n.
+ of isodistant points in terms of Mahalanobis distance to 
+\change_deleted -767166615 1590533389
+in control
+\change_inserted -767166615 1590533389
+in-control
+\change_unchanged
+ distribution.
  
 \change_deleted -1806609307 1589953705
  
@@ -4587,8 +4660,19 @@ Unlike latent variable-based statistics,
  too much for the Phase-II monitoring.
  The reason behind this is that the second-order information encode the
  variance of the encoded latent variables, which are required by the encoders.
- However, given encoders would provide inaccurate information in the OC
- regions, the second-order information for OC samples would be bias.
+ However, given encoders would provide inaccurate information in the 
+\change_deleted -767166615 1590533401
+OC
+\change_inserted -767166615 1590533401
+out-of-control
+\change_unchanged
+ regions, the second-order information for 
+\change_deleted -767166615 1590533402
+OC
+\change_inserted -767166615 1590533402
+out-of-control
+\change_unchanged
+ samples would be bias.
  Therefore, it does not provide additional gain for the monitoring performance.
 
 \change_deleted -767166615 1590105309
@@ -4722,10 +4806,22 @@ noprefix "false"
  Four of these classes—0,1,9 and 11—are considered minor defects and they
  constitute our in-control set.
  There are in total 338 images in these classes.
- The other nine classes make up the out of control cases and they have in
- combination 3351 images to report detection accuracy for.
- We randomly partition the IC corpus to fix train, validate and test sets
- with 60%-20%-20% relative sizes, respectively.
+ The other nine classes make up the 
+\change_deleted -767166615 1590533435
+out of control
+\change_inserted -767166615 1590533435
+out-of-control
+\change_unchanged
+ cases and they have in combination 3351 images to report detection accuracy
+ for.
+ We randomly partition the 
+\change_deleted -767166615 1590533360
+IC
+\change_inserted -767166615 1590533360
+in-control
+\change_unchanged
+ corpus to fix train, validate and test sets with 60%-20%-20% relative sizes,
+ respectively.
  The rest of the procedure followed is outlined in 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -6126,7 +6222,13 @@ noprefix "false"
  shows that most latent representations fall into the region that would
  be considered in-control from a profile monitoring perspective.
  We observe instances of class 3,5,6 and 7 generate the latent variables
- in the OC regions.
+ in the 
+\change_deleted -767166615 1590533406
+OC
+\change_inserted -767166615 1590533406
+out-of-control
+\change_unchanged
+ regions.
  However, even for these classes, 
 \begin_inset Formula $SPE/R$
 \end_inset
