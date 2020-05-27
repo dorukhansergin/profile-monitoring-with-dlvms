@@ -107,6 +107,7 @@ theorems-sec
 \cite_engine biblatex
 \cite_engine_type authoryear
 \biblio_style plainnat
+\biblio_options doi=false,isbn=false,url=false,eprint=false
 \biblatex_bibstyle authoryear
 \biblatex_citestyle authoryear
 \use_bibtopic false
@@ -1223,7 +1224,7 @@ literal "false"
  
 \begin_inset CommandInset citation
 LatexCommand citep
-after "p. 532"
+after "532"
 key "bishop2006pattern"
 literal "false"
 
@@ -1269,7 +1270,7 @@ One important output of a trained VAE is the likelihood estimator.
  iterations 
 \begin_inset CommandInset citation
 LatexCommand citep
-after "p. 30"
+after "30"
 key "kingma2019introduction"
 literal "false"
 
@@ -1431,7 +1432,7 @@ where matrix
  such as fixing the percentage of variation explained 
 \begin_inset CommandInset citation
 LatexCommand citep
-after "p. 41"
+after "41"
 key "Chiang2001-nu"
 literal "false"
 
@@ -1450,7 +1451,7 @@ For processes with relatively small latent and residual dimensionality,
  of PPCA 
 \begin_inset CommandInset citation
 LatexCommand citep
-after "p. 43-44"
+after "43-44"
 key "Chiang2001-nu"
 literal "false"
 
@@ -4130,7 +4131,13 @@ ampling
 
 \begin_layout Standard
 Earlier, we claimed that it would take too many Monte Carlo sampling iterations
- to get a meaningful estimate of ERE defiend as 
+ to get a meaningful estimate of ERE 
+\change_deleted -767166615 1590542722
+defiend
+\change_inserted -767166615 1590542722
+defined
+\change_unchanged
+ as 
 \begin_inset Formula $\E_{\mbz\sim q_{\mbtheta}}\log\decoding$
 \end_inset
 
