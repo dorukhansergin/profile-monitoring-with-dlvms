@@ -107,9 +107,9 @@ theorems-sec
 \cite_engine biblatex
 \cite_engine_type authoryear
 \biblio_style plainnat
-\biblio_options doi=false,isbn=false,url=false,eprint=false
-\biblatex_bibstyle authoryear
-\biblatex_citestyle authoryear
+\biblio_options isbn=false,url=false,eprint=false
+\biblatex_bibstyle chicago-authordate
+\biblatex_citestyle chicago-authordate
 \use_bibtopic false
 \use_indices false
 \paperorientation portrait
@@ -426,7 +426,7 @@ Another large body of profile monitoring research focuses on the type of
  based on local kernel regression 
 \begin_inset CommandInset citation
 LatexCommand citep
-key "zou2008monitoring,qiu2010nonparametric,zou2009nonparametric"
+key "zou2008monitoring,qiu2010nonparametric"
 literal "false"
 
 \end_inset
