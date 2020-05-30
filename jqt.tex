@@ -1,4 +1,4 @@
-%% LyX 2.3.2 created this file.  For more info, see http://www.lyx.org/.
+ %% LyX 2.3.2 created this file.  For more info, see http://www.lyx.org/.
 %% Do not edit unless you really know what you are doing.
 \documentclass[12pt,headings=standardclasses]{scrartcl}
 \usepackage{amsmath}
@@ -143,7 +143,7 @@ below, in which we exhibit a sample of surface defect image profiles
 collected from a hot steel rolling process.
 
 \begin{figure}[H]
-\includegraphics[width=0.25\textheight]{figs/profile_examples} \caption{A collection of 64 by 64 image profiles taken from a hot steel rolling
+\includegraphics[width=0.5\textheight]{figs/profile_examples} \caption{A collection of 64 by 64 image profiles taken from a hot steel rolling
 process.}
 \label{fig:Rolling}
 \end{figure}
@@ -225,8 +225,7 @@ for Phase-II monitoring. \textcite{Zhang2018-js} proposed a denoising
 autoencoder for process monitoring. Aside from deterministic deep
 neural networks, only three works \parencite{wang2019systematic,Zhang2019-lu,lee2019process}
 proposed to use deep probabilistic latent variable models, specifically,
-variational autoencoders (VAE), for Phase-II monitoring. All of the
-proposed monitoring statistics in those works differ slightly, but
+variational autoencoders (VAE), for Phase-II monitoring. All the monitoring statistics in those works differ slightly, but
 they are all extensions of the classic $T^{2}$ and $Q$-charts of
 PCA. We argue that there is room for improvement for the monitoring
 statistic formulations in those works for several reasons, especially
@@ -244,10 +243,10 @@ through the autoencoder.
 models with a focus on variational autoencoders and classify them
 based on the latent-variable based and residual-based monitoring statistics.
 We also show how these statistics are natural extensions to the monitoring
-statistics for traditional dimension reduction methods such as probalistic
+statistics for traditional dimension reduction methods such as probabilistic
 PCA.
-\item Through extensive experiments, unlike traditional monitoring statistics,
-we demonstrate and give insight on why latent variable-based monitoring
+\item Unlike traditional monitoring statistics for PCA,
+we demonstrate through extensive experiments and give insight on why latent variable-based monitoring
 statistics should not be used due to the two issues related to deep
 neural network encoders: 1) their representations are likely entangled
 2) they will likely fail to extrapolate well beyond the region of
@@ -265,10 +264,10 @@ outperform other monitoring statistics and the traditional non-deep-learning-bas
 methods.
 \end{itemize}
 %
-The rest of the paper is organized as follow\textcolor{black}{s. \ref{sec:Background}
+The rest of the paper is organized as follows: \ref{sec:Background}
 first introduces variational autoencoders and reviews traditional
 $T^{2}$ and $Q$ charts of PCA as well as the existing monitoring
-statistics for VAE.} \ref{sec:methodology} introduces the proposed
+statistics for VAE. \ref{sec:methodology} introduces the proposed
 monitoring statistic and gives insights on its meaning and mathematical
 relationship with the traditional PCA methods. \ref{sec:Simulation-Study-Analysis}
 shows the simulation study to demonstrate the performance of the proposed
@@ -348,7 +347,7 @@ machine translation \parencite{bahdanau2014neural}, and speech recognition
 \parencite{amodei2016deep}. In theory, under sufficient conditions,
 a two-layer multilayer perceptron can approximate any function on
 a bounded region \parencite{cybenko1989approximation,Hornik1991-li}.
-However, growing the width of shallow networks in an exponential fashion
+However, growing the width of shallow networks exponentially
 for arbitrarily complex tasks is not practical. It has been shown
 that deeper representations can often achieve better expressive power
 than shallow networks with fewer parameters due to the efficient reuse
@@ -464,7 +463,7 @@ loop from the data. The proposed control charting methodology suggested
 that these two statistics work in combination and at least one vote
 of either statistics is enough to make a detection decision. However,
 the estimation of the $\bar{\mbz}$ and $S_{\mbz}\inv$ can be slow
-and unnecessary since for a well trained VAE, $\bar{\mbz}$ and $S_{\mbz}\inv$
+and unnecessary since for a well-trained VAE, $\bar{\mbz}$ and $S_{\mbz}\inv$
 would be approximately equal to 0 and $I$, respectively. Instead,
 the estimation can be unstable when data is limited.
 
@@ -495,8 +494,7 @@ of the paper.
 \label{sec:proposed-statistic}
 
 Log-likelihood, $\log\ptheta(\mbx)$, arises as a natural monitoring
-statistic candidate in the context of VAEs. That is, given a well
-trained VAE, in-control samples should have relatively larger log-likelihood
+statistic candidate in the context of VAEs. That is, given a well-trained VAE, in-control samples should have relatively larger log-likelihood
 than out-of-control samples. However, the required number of Monte
 Carlo samples---$L$ in \ref{eqn:SummationLL}--- can be prohibitively
 large to get meaningful estimates of the likelihood \parencite{Kingma2013-dl}.
@@ -526,7 +524,7 @@ latent variable models. Since we know that for simpler data that can
 be accurately modeled by PCA, both terms play an important role \parencite{kim2003process}
 for process monitoring. This also holds for PPCA and will become the
 $T^{2}$ and $Q$ statistics in the traditional monitoring framework.
-To prove this, we link the the $T^{2}$ and $Q$ statistics of PPCA
+To prove this, we link the $T^{2}$ and $Q$ statistics of PPCA
 (see \ref{sec:bckgrnd:ReviewPCA}) using the ELBO framework.
 \begin{prop}
 \label{prop: T2Q} We know from the definition of PPCA \parencite{tipping1999probabilistic}
@@ -596,7 +594,7 @@ A hypothetical in-control latent space (gray area) and a range of
 the independent source of variation (ABC line). Points A and B are
 extreme values of in-control range and point C denotes an out-of-control
 sample. \textbf{Bottom Left:} A learned representation that fails
-to extrapolate. \textbf{Bottom Right: }A learned representation that
+to extrapolate. \textbf{Bottom Right:} A learned representation that
 is entangled (i.e., not axis-parallel). \label{fig:entang-extrap}}
 \end{figure}
 
@@ -663,7 +661,7 @@ We can define $\E_{\mbz\sim q_{\phi}}\gg x-\mbmu_{\mbtheta}(z)\gg_{2}^{2}$
 as the expected reconstruction error (ERE) We argue that, the Taylor
 expansion for the first-order and second-order moment of the ERE $\E_{\mbz\sim q_{\phi}}\gg x-\mbmu_{\mbtheta}(z)\gg_{2}^{2}$
 given the random variable $\mbz\sim\encoding$ can be derived analytically
-as follows. .
+as follows.
 \begin{prop}
 The first and second-order Taylor Expansion (denoted by $ERE_{1}$
 and $ERE_{2}$ respectively) for the function $\E_{\mbz\sim q_{\phi}}\gg x-\mbmu_{\mbtheta}(z)\gg_{2}^{2}$
@@ -808,7 +806,7 @@ The values of the tuples stretch from $0$ to $1$, equally spaced,
 left to right and bottom-up. Each tuple takes a value based on its
 location through a function $\mbp\mapsto f(\mbp;\czero,r)+\epsilon$,
 where $\epsilon\sim\Norm(0,1\times10^{-2})$ is i.i.d Gaussian noise.
-The function $f$ is parametrized by the horizontal center location
+The function $f$ is parameterized by the horizontal center location
 of the bead $\czero$, and the radius of the bead $r$. The vertical
 center of the bead is fixed to be at the center. Given any parameter
 set $\{c_{0},r\}$, each pixel $\mbp$ can be evaluated with the following
@@ -852,12 +850,12 @@ is perturbed by an amount $\delta$ as in
 \[
 r\sim\Norm(0.2+\delta\times10^{-4},6.25\times10^{-4})
 \]
-\item \textbf{Mean shift}: all of the pixels are added an additive disturbance
+\item \textbf{Mean shift}: all the pixels are added an additive disturbance
 $\delta$ as in 
 \[
 f(\mbp;c_{0},r)\leftarrow f(\mbp;c_{0},r)+\delta
 \]
-\item \textbf{Magnitude shift:} all of the pixels are added a multiplicative
+\item \textbf{Magnitude shift:} all the pixels are added a multiplicative
 disturbance $\delta$ as in 
 \[
 f(\mbp;c_{0},r) \leftarrow f(\mbp;c_{0},r)*\delta
@@ -921,10 +919,10 @@ as the evidence because convolutional layers are not scale-equivariant.
 \par\end{centering}
 }\caption{Figure depicting the entangled representations and extrapolation issues
 of the encoder of a VAE with two-dimensional latent code trained on
-in-control samples with.\textbf{ }For each subfigure, plots on the
+in-control samples with. For each subfigure, plots on the
 left show where real factors of variation are sampled from and figure
 on the right is what the VAE encoder infers as the mean of the proposal
-distribution $\protect\encoding$. \textbf{Top: }Real factors of variation
+distribution $\protect\encoding$. \textbf{Top:} Real factors of variation
 are generated at three fixed levels of radius $r$ and varying values
 of center location $c$ on the left figure. Corresponding inferred
 mean plotted on the right graph. \textbf{Bottom:} Similar to (b) but
@@ -985,7 +983,7 @@ specific latent variable combination.}
 \end{figure}
 
 
-\subsection{On the Estimation of log-likelihood Under Importance Sampling}
+\subsection{On the Estimation of Log-likelihood Under Importance Sampling}
 
 Earlier, we claimed that it would take too many Monte Carlo sampling
 iterations to get a meaningful estimate of ERE defined as $\E_{\mbz\sim q_{\mbtheta}}\log\decoding$.
@@ -1162,7 +1160,7 @@ the latent space. The advantage of VAE over PCA is mainly due to the
 better representative power and data compression ability of deep autoencoders
 compared to PCA. It is worth noting that the superiority of VAE over
 PCA for process monitoring was also demonstrated in the earlier works
-in a large number of applications \parencite{Zhang2019-lu,wang2019systematic,lee2019process}.
+in various applications \parencite{Zhang2019-lu,wang2019systematic,lee2019process}.
 
 To support our claim of the ineffectiveness of latent variable-based
 statistics, we refer the reader to \ref{fig:kde} below. We observe
@@ -1170,7 +1168,7 @@ how well separated the statistics are for $ERE_{1}$ and $SPE/R$
 while for latent variable-based statistics the obtained values are
 mostly overlapping. Note that we omitted $ERE_{2}$ because it was
 almost identical to $ERE_{1}$. To obtain a deeper understanding of
-the results, we point out \ref{fig:Output-of-the} below for the original
+the results, we point out in \ref{fig:Output-of-the} for the original
 images and their reconstructions. The decoder is persistent on generating
 samples that look like in-control rolling samples with little fidelity
 to how the original defect sample looks like. When \ref{fig:Original-profiles}
@@ -1251,25 +1249,26 @@ Points are annotated by their class IDs. \label{fig:Output-of-the}}
 
 \section{Conclusion \label{sec:conclusions}}
 
-In this paper, we focus on evaluating Phase-II monitoring statistics
+In this paper, we focused on evaluating Phase-II monitoring statistics
 proposed so far in the literature for VAE and demonstrate that they
 were not performing optimally in terms of accuracy and/or computational
-feasibility. First, we point out two important issues related to the
+feasibility. First, we classified the monitoring statistics for latent-variable-based and residual-based and show how these are natural extension of monitoring statistics for PCA.
+Second, we further pointed out two important issues related to the
 latent variables learned by the encoder of VAE, namely, entanglement
-and failure to extrapolate. Based on these issues, we argue that latent
+and failure to extrapolate. Based on these issues, unlike PCA, we demonstrated that latent
 variable-based statistics should be discarded altogether with both
-conceptual explanations and real experiments. Second, we point out
+conceptual explanations and real experiments. Third, we pointed out
 that the residual-based statistics based on sampling will require
-too many samples to be computationally feasible. Finally, we propose
+too many samples to be computationally feasible. Finally, we proposed
 a novel formulation by deriving the Taylor expansion of expected reconstruction
 error that addresses both accuracy and computational efficiency.
 
-To support our claim, our simulation study first demonstrates the
+To support our claim, our simulation study first demonstrated the
 entanglement and lack of extrapolation of latent variable-based statistics
-and its inferior Phase-II monitoring performance. It further shows
+and its inferior Phase-II monitoring performance. It further showed
 that the derived statistics based on the residual space is more robust
 and more accurate than all the other statistics proposed so far. Finally,
-we validate the superiority of our formulation on a real-life case
+we validated the superiority of our formulation on a real-life case
 study, where steel defect image profiles are used.
 
 \printbibliography
@@ -1371,7 +1370,7 @@ E_{\mbz\sim q_{\phi}}R(\mbz) & =R(\mbmu_{\mbphi}(\mbx))+R'(\mbmu_{\mbphi}(\mbx))
 \end{align}
 
 Note for $ERE_{1}$, the second term $\frac{1}{2}\mathrm{tr}(\mathbf{H}_{z}\Sigma_{z})$
-drops and we are left with $R(\mbmu_{\mbphi}(\mbx))$ only. For $ERE_{2}$,
+is droped and we are left with $R(\mbmu_{\mbphi}(\mbx))$ only. For $ERE_{2}$,
 since $\Sigma_{z}$ is a diagonal matrix, $\mathrm{tr}(\mathbf{H}_{z}S_{z})=\mathrm{tr}(diag(\mathbf{H}_{z})S_{z})=\sum_{i}(\mathbf{H}_{z})_{ii}(S_{z})_{ii}$
 holds. We can utilize this result to compute $ERE_{2}$, in a more computationally
 efficient manner.
