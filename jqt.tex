@@ -38,8 +38,7 @@
 
 
 
-\graphicspath{{./figs/}}
-\DeclareGraphicsExtensions{.pdf,.jpeg,.png,.eps}
+
 \usepackage{amsthm}
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[section]
@@ -142,7 +141,7 @@ below, in which we exhibit a sample of surface defect image profiles
 collected from a hot steel rolling process.
 
 \begin{figure}[H]
-\includegraphics[width=0.5\textheight]{figs/profile_examples} \caption{A collection of 64 by 64 image profiles taken from a hot steel rolling
+\includegraphics[width=0.5\textheight]{profile_examples.pdf} \caption{A collection of 64 by 64 image profiles taken from a hot steel rolling
 process.}
 \label{fig:Rolling}
 \end{figure}
@@ -585,7 +584,7 @@ extrapolate.
 \end{enumerate}
 \begin{figure}[H]
 \begin{centering}
-\includegraphics[width=0.9\textwidth]{figs/Disentangled_Extrapolated}
+\includegraphics[width=0.9\textwidth]{Disentangled_Extrapolated.pdf}
 \par\end{centering}
 \caption{Different failure mode possibilities of learned two-dimensional latent
 space representation of the independent source of variation. \textbf{Top:}
@@ -823,7 +822,7 @@ f(\mbp;c_{0},r) & =\begin{cases}
 The samples are best visualized as grayscale images as shown in \ref{fig:gasketgrid}
 below. 
 \begin{figure}[H]
-\centering{}\label{fig:gasketgrid} \includegraphics[width=0.9\linewidth]{figs/gasket}
+\centering{}\label{fig:gasketgrid} \includegraphics[width=0.9\linewidth]{gasket.pdf}
 \caption{Gasket profiles depicted as grayscale images simulated with radius
 and center location they coincide with on the axes.}
 \end{figure}
@@ -911,10 +910,10 @@ architectures of deep neural networks. We already have the radius
 as the evidence because convolutional layers are not scale-equivariant.
 
 \begin{figure}[H]
-\subfloat[Fixed $r$, varying $c$\label{fig:Fixed-r-varying-c}]{\centering{}\includegraphics[scale=0.5]{figs/fixed_radii}}
+\subfloat[Fixed $r$, varying $c$\label{fig:Fixed-r-varying-c}]{\centering{}\includegraphics[scale=0.5]{fixed_radii.pdf}}
 
 \subfloat[Fixed $c$, varying $r$\label{fig:Fixed-c-varying-r}]{\begin{centering}
-\includegraphics[scale=0.5]{figs/fixed_center_locs}
+\includegraphics[scale=0.5]{fixed_center_locs.pdf}
 \par\end{centering}
 }\caption{Figure depicting the entangled representations and extrapolation issues
 of the encoder of a VAE with two-dimensional latent code trained on
@@ -971,7 +970,7 @@ proposed monitoring statistic will capture this behavior well thanks
 to the extrapolation issues in the decoder.
 
 \begin{figure}[H]
-\includegraphics[width=0.9\linewidth]{figs/manifold_vae} \caption{Latent space traversal and the response of the decoder of a VAE with
+\includegraphics[width=0.9\linewidth]{manifold_vae.pdf} \caption{Latent space traversal and the response of the decoder of a VAE with
 2-dimensional latent codes and trained with in-control gasket samples.
 Each row represents which latent dimension is traversed while the
 other dimension is fixed at zero. Each column represents what value
@@ -1007,7 +1006,7 @@ monitoring to evaluate whether the added computational complexity
 for $ERE_{2}$ is justifiable.
 
 \begin{figure}[H]
-\includegraphics[width=0.9\textwidth]{figs/mc_vs_foa}
+\includegraphics[width=0.9\textwidth]{mc_vs_foa.pdf}
 
 \caption{Estimation comparison between Monte Carlo sampling, first-order approximation
 and second-order approximation. 95\% confidence interval band is shown
@@ -1036,7 +1035,7 @@ per model and monitoring statistic. Standard deviations are in parentheses.\labe
 
 \begin{tabular}{llllll}
 \toprule 
-Statistic & ERE & SPE/R & D & H2 & T2\tabularnewline
+Statistic & ERE1 & SPE/R & D & H2 & T2\tabularnewline
  & 0.041(0.006) & 0.051(0.005) & 0.044(0.004) & 0.052(0.005) & 0.043(0.009)\tabularnewline
 \bottomrule
 \end{tabular}
@@ -1082,7 +1081,7 @@ samples would be bias. Therefore, it does not provide additional gain
 for monitoring performance.
 \end{itemize}
 \begin{figure}[!t]
-\includegraphics[width=1\linewidth]{figs/disturbance_on_pxz_vae_only}
+\includegraphics[width=1\linewidth]{disturbance_on_pxz_vae_only.pdf}
 \caption{Fault detection rates (y-axis) for varying intensities (x-axis) of
 different disturbance types (quadrants). Bands represent 95\% confidence
 interval estimated around mean detection rates.}
@@ -1186,35 +1185,35 @@ study.
 \begin{figure}[H]
 \begin{subfigure}[b]{0.3\textwidth}
      \centering
-     \includegraphics[width=\textwidth]{figs/kdes/SPE.pdf}
+     \includegraphics[width=\textwidth]{SPE.pdf}
      \caption{$ERE_{1}$}
      \label{fig:kde:ERE}
  \end{subfigure}
  \hspace{0.1\textwidth}
  \begin{subfigure}[b]{0.3\textwidth}
      \centering
-     \includegraphics[width=\textwidth]{figs/kdes/R.pdf}
+     \includegraphics[width=\textwidth]{R.pdf}
      \caption{$SPE/R$}
      \label{fig:kde:spe-r}
  \end{subfigure}
  
 \begin{subfigure}[b]{0.3\textwidth}
      \centering
-     \includegraphics[width=\textwidth]{figs/kdes/H2.pdf}
+     \includegraphics[width=\textwidth]{H2.pdf}
      \caption{$H^{2}$}
      \label{fig:kde:h2}
 \end{subfigure}
 \hfill
 \begin{subfigure}[b]{0.3\textwidth}
      \centering
-     \includegraphics[width=\textwidth]{figs/kdes/D.pdf}
+     \includegraphics[width=\textwidth]{D.pdf}
      \caption{$D$}
      \label{fig:kde:D}
 \end{subfigure}
 \hfill
 \begin{subfigure}[b]{0.3\textwidth}
      \centering
-     \includegraphics[width=\textwidth]{figs/kdes/T2.pdf}
+     \includegraphics[width=\textwidth]{T2.pdf}
      \caption{$T^{2}$}
      \label{fig:kde:T2}
 \end{subfigure}
@@ -1226,14 +1225,14 @@ type.\label{fig:kde}}
 
 \begin{figure}[H]
 \begin{minipage}[t]{0.25\textwidth}%
-\subfloat[Original profiles\label{fig:Original-profiles}]{\includegraphics[width=0.99\textwidth]{figs/casestudy_orig}}%
+\subfloat[Original profiles\label{fig:Original-profiles}]{\includegraphics[width=0.99\textwidth]{casestudy_orig.pdf}}%
 \end{minipage}\hfill{}%
 \begin{minipage}[t]{0.25\textwidth}%
-\subfloat[Reconstructions via VAE\label{fig:Reconstructions-via-VAE}]{\includegraphics[width=0.82\columnwidth]{figs/casestudy_recons}
+\subfloat[Reconstructions via VAE\label{fig:Reconstructions-via-VAE}]{\includegraphics[width=0.82\columnwidth]{casestudy_recons.pdf}
 }%
 \end{minipage}\hfill{}%
 \begin{minipage}[t]{0.45\textwidth}%
-\subfloat[Inferred means\label{fig:Inferred-means}]{\includegraphics[width=1\textwidth]{figs/casestudy_scat}
+\subfloat[Inferred means\label{fig:Inferred-means}]{\includegraphics[width=1\textwidth]{casestudy_scat.pdf}
 
 }%
 \end{minipage}\caption{Output of the VAE decoder and the encoder for randomly select rolling
@@ -1342,7 +1341,7 @@ of out-of-distribution issues with neural networks.
 
 \begin{figure}
 \begin{centering}
-\includegraphics[width=1\textwidth]{figs/rosenbrock}
+\includegraphics[width=1\textwidth]{rosenbrock.pdf}
 \par\end{centering}
 \caption{Rosenbrock function (green surface) approximated by an multilayer
 perceptron(red surface) given training (black crosses) and validation
