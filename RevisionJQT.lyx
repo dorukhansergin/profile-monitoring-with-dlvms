@@ -1,0 +1,703 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section
+Overall Comments
+\end_layout
+
+\begin_layout Standard
+Your article has been reviewed by two reviewers and I, as guest-editor of
+ the JQT Special Issue.
+ Reports from the two reviewers are below.
+ The decision for this article is Major Revision.
+ Specifically, Reviewer 1 viewed the paper positively, but expressed concerns
+ about the generalizability of your method.
+ This reviewer asks you to consider other architectures besides convolutional
+ neural networks to evaluate the generality of your method.
+ Reviewer 2 was less positive.
+ This reviewer expressed concerns about the ability for the JQT audience
+ to understand your paper, and also points out several important technical
+ issues that should be addressed.
+ The guest editor did not provide a report, but agreed that the paper addresses
+ an important topic, and is a good fit with the direction of the JQT Special
+ Issue on Artificial Intelligence.
+ The guest editor concurs with the technical and editorial suggestions of
+ both reviewers.
+ I encourage you to submit a revision of this article, and when doing so,
+ please include a point-by-point response to each of the reviewers’ concerns.
+ 
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\bar under
+Ans: 
+\series default
+\bar default
+ Thank you for the great suggestions.
+ According to the reviewers' comments, we have made the following revision
+ to the paper
+\end_layout
+
+\begin_layout Itemize
+Revision 1
+\end_layout
+
+\begin_layout Itemize
+Revision 2.
+ 
+\end_layout
+
+\begin_layout Itemize
+List the overview of your revisions after finishing the paper.
+\end_layout
+
+\begin_layout Section
+Reviewer: 1
+\end_layout
+
+\begin_layout Subsection
+Major Comments
+\end_layout
+
+\begin_layout Standard
+This paper is well written and the technical details describing variational
+ autoencoders, classical SPC monitoring, deep learning architectures and
+ proposed statistics are well founded and nicely laid out.
+ It is my belief that the paper, as currently written, deserves acceptance
+ and publication in this journal.
+ There are a few minor concerns that might enhance the applicability of
+ the proposed methodology and are laid out below:
+\end_layout
+
+\begin_layout Enumerate
+Neural Network Architectures and Training: The authors propose convolutional
+ neural networks.
+ (CNNs) for both the encoders and decoders.
+ The specific proposed architectures include Leaky ReLU activation functions
+ with a negative slope of 0.2.
+ The authors also use stochastic gradient decent with a batch size of 64
+ trained for 1000 epochs and a learning rate of 0.001.
+ My main concern here is that this specific architecture might work well
+ for certain problems but may not generalize well in all situations.
+ I consider the authors should explain whether the proposed methodology
+ is either robust to these hyperparameters, or if hyperparameter optimization
+ might be required for other problems.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\series bold
+\bar under
+Ans:
+\series default
+\bar default
+ Thank you for the comments about the hyper parameter tuning.
+ The reason that we choose Leakly ReLU is because xxx papers use it in xxx.
+ 
+\end_layout
+
+\begin_layout Standard
+Furthermore, we do have perform a hyperparameter tuning through cross-validation
+ and below is the guidelines for hyperparamter optimization.
+\end_layout
+
+\begin_layout Standard
+We do agree that advanced hyperparamter optimization algorithm including
+ Bayesian optimization can be used and combined with the techniques provided
+ in the paper and can be discussed.
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+For sequence-based data other architectures could provide advantages, such
+ as a Long-Short Term Memory (LSTM) autoencoders.
+ Variational LSTM autoencoders have been proposed in the literature.
+ I think the authors should mention whether the proposed statistic could
+ be obtained using other architectures (besides CNNs) for generality of
+ the methodology.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\series bold
+\bar under
+Ans:
+\series default
+\bar default
+ Thank you for the suggestion on broaden the scope of the paper.
+ We agree taht adding the LSTM autoencoders to the literature will give
+ a more complete overview of the deep learning method for other types of
+ method.
+ 
+\end_layout
+
+\begin_layout Standard
+We agree that the proposed method can be applied to variational LSTM as
+ well but we believe this is out of the scope of the proposed method.
+ We have made the followng changes in the revised manuscript: 
+\end_layout
+
+\begin_layout Enumerate
+In the literature review section, we have added the discussion about variational
+ LSTM as follows:
+\begin_inset Quotes eld
+\end_inset
+
+
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+In the future work section, we have added the potential generalibility of
+ the algorithm to sequence data using variational LSTM as follows: 
+\begin_inset Quotes eld
+\end_inset
+
+
+\begin_inset Quotes erd
+\end_inset
+
+.
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+The authors mention that the accuracy and computational feasibility of the
+ proposed method, however for the sake of completeness briefly explain how
+ computationally demanding is the proposed method and the computational
+ limitations.
+ With this comment I am not necessarily referring to the theoretical computation
+al complexity of VAEs, or of the profile monitoring procedure, but, for
+ example, under a specific machine configuration and computational power
+ the methodology certain computational time, and if there are limits in
+ either image size, sample size, batch size, learning rate, etc.
+\end_layout
+
+\begin_layout Enumerate
+Minor comments 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Introduction, Page 3, Line 39… it normally requires many trial and error
+ CHANGE TO it normally requires trial and error OR rephrase
+\end_layout
+
+\begin_layout Itemize
+Methodology, Proposition 3.1, Page 12, Line 26 ….
+ Where C1 and C2 and constants that doesn’t depend on x CHANGE TO where
+ C1 and C2 are constants that do not depend on x
+\end_layout
+
+\begin_layout Itemize
+Comparison of Detection Performance of Proposed Statistics, Page 25, Line
+ 47 … the former three is that they don’t rely on random samples CHANGE
+ TO the former three is that they do not rely on random samples.
+ 
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\bar under
+Ans:
+\series default
+\bar default
+ Thank you for the detailed revisions of the paper.
+ We have made the changes accordingly and carefully proofread the rest of
+ the paper again.
+\end_layout
+
+\end_deeper
+\begin_layout Section
+Reviewer: 2
+\end_layout
+
+\begin_layout Enumerate
+I like the intuition that is conveyed regarding why (9) by itself is not
+ a good monitoring statistic and how (10) overcomes this.
+ My primary concern is that the paper is not written with the JQT audience
+ in mind and assumes readers are more familiar with VAE and deep learning
+ concepts than typical JQT readers are.
+ I hope that the authors can improve upon this aspect, since I think it
+ could make a nice contribution to JQT.
+ Many of my comments below relate to this.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\series bold
+\bar under
+Ans:
+\series default
+\bar default
+ We have revised the paper accordingly, with the consideration of the JQT
+ audience in mind.
+ Please see the detailed comments below.
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+The writing is very sloppy.
+ Even the very first sentence of the abstract is incomplete and clearly
+ was not proofread.
+ There are also a lot of typos and other careless mistakes, e.g., inconsistencies
+ in the list of references, like some names being replaced by et al.
+ The writing must be improved to be suitable for JQT.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\series bold
+\bar under
+Ans:
+\series default
+\bar default
+ Sorry for the typos.
+ We have proofread the papers again and all the revision of the papers are
+ highlighted.
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Even more critical than sloppy writing is that it is not written with the
+ JQT audience in mind.
+ For example, the three lines before EQ.
+ (6) need elaboration.
+ I am pretty familiar with VAEs and also with multivariate SPC, but I am
+ still having trouble following what the authors mean.
+ I think many JQT readers, especially those less familiar with "machine
+ leaning" will not be able to follow.
+ The same goes for much of the rest of the paper, e.g., the arguments in Section
+ 3.1, which is really the main contributions of the paper.
+ I was able to follow, but I had to read it a few times, and I don't think
+ most JQT readers will do that.
+ The writing should be more tailored to the JQT audience.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\series bold
+\bar under
+Ans:
+\series default
+\bar default
+ Thank you for the suggestions.
+ We have added more details and visualization to exaplain our Section 3.1.
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+On page 12, I recommend rewording the statement "Our first major claim is
+ that latent variable-based statistics are not useful for profile monitoring
+ ..." I think you mean that using only (9) (the T^2-like component) by itself
+ is not useful.
+ But since (10) can also be viewed as a latent variable-based statistic,
+ the current wording sounds like you are saying that using (9) and (10)
+ together are not useful.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\series bold
+\bar under
+Ans:
+\series default
+\bar default
+ Thank you for the suggestions.
+ We would like to clarity that there are two types of monitoring statistics:
+ 1) the latent variable-based statistics and 2) the residual-based statistics.
+ In this paper, we define the latent variable-based statistics as the statistics
+ determined in the latent-space rather than the original data space.
+ 
+\series bold
+EXPLAIN WHY (10) is not latent-variable statistics here
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Why are you considering a VAE, as opposed to just an AE, i.e., why do we need
+ the variational part? By this, I mean why shouldn't we omit any assumed
+ distribution p(z) and just fit a regular autoencoder? With a regular AE,
+ we still have the encoded variables 
+\begin_inset Formula $z=\mu_{\phi}(x)$
+\end_inset
+
+, the decoded approximation 
+\begin_inset Formula $\mu_{\theta}(z)$
+\end_inset
+
+, and the "residuals" 
+\begin_inset Formula $x-\mu_{\theta}(z)$
+\end_inset
+
+, so we could still consider the same two T^2-like monitoring statistics
+ for z and for the residuals.
+ As I mention in a comment below, I suspect part of the reason for the failure-t
+o-extrapolate is that the assumed p(z) acts like a regularizer and prevents
+ some of the z's from falling outside the normal region, even when the x
+ falls outside its region.
+ Maybe you would not have this failure-to-extrapolate problem if you use
+ a regular AE instead of a VAE.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\series bold
+\bar under
+Ans:
+\series default
+\bar default
+ Thank you for the suggestions.
+ We have added the comparison of AE as well.
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regarding point 1 on page 12: For the standard linear PCA-based monitoring,
+ it is well known that only monitoring the dominant PC space misses shifts
+ that occur outside of this space.
+ I recommend including an older reference on this, and relating your point
+ to the analogous point for linear PCA.
+ This will help JQT readers (who are familiar with the linear situation)
+ to better relate to the nonlinear situation.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\series bold
+\bar under
+Ans:
+\series default
+\bar default
+ Thank you for the suggestions.
+ We have added a figure to highlight the connection and differences of the
+ VAE-based method and PCA-based monitoring statistics.
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Figure 2 and Point 2 on page 13 needs a lot more elaboration.
+ It is making an important argument, but I don't think readers without strong
+ machine learning background will follow with the current level of detail.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\series bold
+\bar under
+Ans:
+\series default
+\bar default
+ Thank you for the suggestions.
+ We have added a figure to highlight the connection and differences of the
+ VAE-based method and PCA-based monitoring statistics.
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Further regarding Point 2 on page 13: I understand the failure-to-extrapolate
+ argument and how it results in missed detections.
+ But the entangled latent space argument is less clear.
+ It seems to me that the entangled latent space situation depicted in the
+ bottom-right of Figure 2 results in a missed signal because it also fails
+ to extrapolate.
+ So the real reason in both the bottom-left and bottom-right is failure
+ to extrapolate.
+ Am I missing something?
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\series bold
+\bar under
+Ans:
+\series default
+\bar default
+ Thank you for the suggestions.
+ We have added a figure to highlight the connection and differences of the
+ VAE-based method and PCA-based monitoring statistics.
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Further regarding Point 2: The crux of the failure-to-extrapolate issue
+ is that unusual x values might get mapped to typical z values, and therefore
+ cause false negatives.
+ Is this because of the structure of the decoder part (which might suggest
+ a different structure could be more suitable for this type of VAE-based
+ process monitoring), or is it because of the implicit regularization of
+ z when fitting the VAE via the assumed p(z), or both.
+ I suspect the latter is just as important if not more important, but Appendix
+ B focuses on the former.
+ Could this problem be solved by using a regular AE instead of a VAE (per
+ my earlier comment)? Or could it be solved by replacing the Gaussian p(z)
+ that is used during the fitting stage with a heavier tailed distribution
+ (e.g.
+ multivariate t, or mixture of Gaussian and uniform over a much larger support)
+ during the monitoring stage? If the same Gaussian p(z) is used during monitorin
+g as during fitting the VAE, this is like telling the control chart that
+ you expect the data during monitoring to behave the same as the data during
+ fitting, i.e., that process shifts are not likely to happen.
+ The Gaussian/uniform mixture p(z) would allow you to specify "prior" probabilit
+ies on how likely a shift is to occur.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\series bold
+\bar under
+Ans:
+\series default
+\bar default
+ This is actually a great point.
+ Indeed, there are two reasons that may lead to the bad detection power
+ of the latent-based statistics.
+ 
+\end_layout
+
+\begin_layout Enumerate
+The failure-to-extrapolate issue, this is a well-known issue and is also
+ demonstrated in the appendix.
+ 
+\end_layout
+
+\begin_layout Enumerate
+The reviewer has pointed out another potential reason, the regularization
+ of 
+\begin_inset Formula $p(z)$
+\end_inset
+
+ may lead 
+\begin_inset Formula $z$
+\end_inset
+
+ only lies in the normal region.
+ To validate this, we would like to add another result by using regular
+ AE method, where no regularization is added.
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Section 4.1: I don't recognize this as the gasket bead example from Shi,
+ Apley and Runger (2016).
+ It might represent some other type of bead that changes position/shape,
+ but it doesn't seem to have much connection to gaskets.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\series bold
+\bar under
+Ans:
+\series default
+\bar default
+ We agree that this is not exactly the gasket example and therefore we have
+ revised it.
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Additional comments that are minor by themselves but related to the bigger
+ problem of poor writing in general:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+First paragraph of intro: In "...
+ intra-sample variation lies on a nonlinear low-dimensional manifold" it
+ is not clear what "sample" means.
+ Does "intra-sample variation" just mean variation across a sample of parts,
+ items, images, etc? Please clarify.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\series bold
+\bar under
+Ans:
+\series default
+\bar default
+ Thank you for the comments.
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Page 5, 3rd contribution bullet: It sounds like you are saying latent variable-b
+ased monitoring should not be used, but it seems the entire paper is about
+ latent variable-based monitoring.
+ VAEs are latent variable models.
+ Please clarify.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\series bold
+\bar under
+Ans:
+\series default
+\bar default
+ Thank you for the comments.
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+In Eq.
+ (5), I can't find where 
+\backslash
+mu_{
+\backslash
+phi}(x) has been defined.
+ I can guess what it is, but readers shouldn't have to guess.
+ There are quite a few other undefined or unclearly defined notations.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\series bold
+\bar under
+Ans:
+\series default
+\bar default
+ Thank you for the comments.
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+On page 11, does "this is actually true for linear latent variable models"
+ mean "this holds exactly for linear latent variable models"?
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\series bold
+\bar under
+Ans:
+\series default
+\bar default
+ Thank you for the comments.
+ 
+\end_layout
+
+\end_deeper
+\end_deeper
+\end_body
+\end_document
