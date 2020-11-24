@@ -269,7 +269,7 @@ statistics for VAE. \ref{sec:methodology} introduces the proposed
 monitoring statistic and gives insights on its meaning and mathematical
 relationship with the traditional PCA methods. \ref{sec:Simulation-Study-Analysis}
 shows the simulation study to demonstrate the performance of the proposed
-method and give insight into why only the residual-based statistics
+method and give insight into why only the residual space statistics
 is recommended and how to make sure it is computationally efficient.
 Finally, \ref{sec:case-study} demonstrates the advantages of the
 proposed methodology on a real-life case study,
@@ -548,19 +548,19 @@ where $C_{1}$ and $C_{2}$ are constants that do not depend on $x$.
 \end{prop}
 
 The proof is given in \ref{sec:PoofOfPropTQ}. Note that the constants
-do not affect the profile monitoring decision. Thus, the test statistics
-$\KL{\encoding}{p(\mbz)}$ is equivalent to the $T^{2}$ Statistics
+do not affect the profile monitoring decision as the control limits will be translated accordingly. Thus, the test statistic
+$\KL{\encoding}{p(\mbz)}$ is equivalent to the $T^{2}$-statistic
 of PCA as defined in \ref{eqn: QTPCA}, and $\E_{\mbz\sim q_{\mbphi}}\log\decoding$
-is equivalent the $Q$ statistic in the PCA case. Observe that previously
+is equivalent the $Q$-statistic in the PCA case. Observe that previously
 proposed formulations mentioned in \ref{sec:bckgrnd:critique} rely---directly
 or indirectly---on this framework. Statistics $R$ and $SPE$ are
-based on $Q$ or in the case of PPCA $\E_{\mbz\sim q_{\mbphi}}\log\decoding$.
-Let us call these \emph{residual-based statistics}. The statistics
+based on $Q$-statistic.
+Let us call these \emph{residual space statistics}, as they rely on the sum of squared differences between the signal itself and its predicted value, \ie, residuals. The statistics
 $H^{2},T^{2}$ and $D$ are based on $T^{2}$ of PCA or $\KL{\encoding}{p(\mbz)}$
-of PPCA. We call these \emph{latent-variable based statistics}, as
+of PPCA. We call these \emph{latent space statistics}, as
 they rely exclusively on latent representations.
 
-Our first major claim is that latent variable-based statistics are
+Our first major claim is that latent space statistics are
 not useful for profile monitoring when deep neural network based encoders
 are used to produce latent representations with the following reasons:
 \begin{enumerate}
@@ -620,11 +620,11 @@ dense regions of the out-of-control latent structure $p_{\delta}(\mbz)\neq\pz$.
 We expect increased false negatives should the model falsely map these
 profiles onto high-density regions of $\pz$ but not $p_{\delta}(\mbz)$.
 
-Unlike latent variable-based statistics, extrapolation issues in $\decoding$
-and $\encoding$ actually help the residual-based statistic detect
+Unlike latent space statistics, extrapolation issues in $\decoding$
+and $\encoding$ actually help the residual space statistic detect
 faults better. We will see this in two cases: 1) if the change happens
 in the residual space, $p_{\delta}(\mbx\g\mbz)\neq p(\mbx\g\mbz)$,
-it is clear that the residual-based statistics $\E_{\mbz\sim q_{\mbtheta}}\log\decoding$
+it is clear that the residual space statistics $\E_{\mbz\sim q_{\mbtheta}}\log\decoding$
 will be effective at capturing this. 2) More interestingly, this holds
 true even when the disturbance is purely on the latent structure $p_{\delta}(\mbz)\neq p(z)$.
 This is true no matter if the encoder can correctly map $\encoding$
@@ -643,7 +643,7 @@ monitoring statistics for both types of changes.
 As of now, we have justified the reasons to recommend the use of residual-based
 statistics as the only type of test statistics for the profile monitoring
 application that uses deep autoencoders such as VAE. Indeed, variations
-of the residual-based statistics have been previously proposed in
+of the residual space statistics have been previously proposed in
 the literature: $SPE$ of \textcite{lee2019process} and $R$ \textcite{wang2019systematic}.
 However, they both use random samples from the proposal distribution
 to estimate the expectation. This approach may require a large number
@@ -903,7 +903,7 @@ starts getting distorted.
 \end{itemize}
 Given these two observations and \ref{fig:Fixed-c-varying-r}, we
 can conclude right away that gaskets with extremely small radius $r$
-will likely go undetected if only the latent variable-based statistic
+will likely go undetected if only the latent space statistic
 is used. This is an undesired consequence of the two aforementioned
 issues. The model seems to be more accurately responsive to the extreme
 values of center location $c$. However, this is most likely due to
@@ -1049,7 +1049,7 @@ Statistic & ERE1 & SPE/R & D & H2 & T2\tabularnewline
 
 Through \ref{fig:disturbance_on_pxz}, we observe a clear superiority
 of $ERE_{1}$ and $ERE_{2}$ over other methods when the disturbance
-is on the observable space (top row). Latent variable-based statistics
+is on the observable space (top row). Latent space statistics
 $D$, $H^{2}$ and $T^{2}$ fail in this case since that they are
 purely computed using the proposal distribution latent variables.
 $ERE_{1}$ and $ERE_{2}$ also outperform $SPE/R$, although by a
@@ -1072,7 +1072,7 @@ radii). We foresaw this result in \ref{sec:simstudy:recognition}.
 To reiterate, disentanglement and the lack of extrapolation in the
 encoder is the reason behind this. We would also suggest that this
 result can extend to all the latent-variable based statistics.
-\item Unlike latent variable-based statistics, $ERE_{1}$ and $ERE_{2}$
+\item Unlike latent space statistics, $ERE_{1}$ and $ERE_{2}$
 and $SPE/R$ behave more robustly against varying intensities. In
 other words, the detection rate increase with increased intensities
 consistently. Among these, we observe that $ERE_{1}$ and $ERE_{2}$
@@ -1153,9 +1153,9 @@ Fault ID &  &  &  &  &  &  & \tabularnewline
 
 From \ref{tab:rolling_results}, we can observe that $ERE_{1}$ and
 $ERE_{2}$ consistently outperforms all other monitoring statistic
-formulations. The divide between residual-based statistics and latent
+formulations. The divide between residual space statistics and latent
 variable-based statistics observed in the simulation study is further
-validated here too. The inferiority of latent variable-based statistics
+validated here too. The inferiority of latent space statistics
 are much more obvious here in the real case study, as we observe for
 most out-of-control classes the detection rate is simply zero. This
 observation further validates our claims that in practice, for deep
@@ -1169,7 +1169,7 @@ in various applications \parencite{Zhang2019-lu,wang2019systematic,lee2019proces
 To support our claim of the ineffectiveness of latent variable-based
 statistics, we refer the reader to \ref{fig:kde} below. We observe
 how well separated the statistics are for $ERE_{1}$ and $SPE/R$
-while for latent variable-based statistics the obtained values are
+while for latent space statistics the obtained values are
 mostly overlapping. Note that we omitted $ERE_{2}$ because it was
 almost identical to $ERE_{1}$. To obtain a deeper understanding of
 the results, we point out in \ref{fig:Output-of-the} for the original
@@ -1262,13 +1262,13 @@ latent variables learned by the encoder of VAE, namely, entanglement
 and failure to extrapolate. Based on these issues, unlike PCA, we demonstrated that latent
 variable-based statistics should be discarded altogether with both
 conceptual explanations and real experiments. Third, we pointed out
-that the residual-based statistics based on sampling will require
+that the residual space statistics based on sampling will require
 too many samples to be computationally feasible. Finally, we proposed
 a novel formulation by deriving the Taylor expansion of expected reconstruction
 error that addresses both accuracy and computational efficiency.
 
 To support our claim, our simulation study first demonstrated the
-entanglement and lack of extrapolation of latent variable-based statistics
+entanglement and lack of extrapolation of latent space statistics
 and its inferior Phase-II monitoring performance. It further showed
 that the derived statistics based on the residual space is more robust
 and more accurate than all the other statistics proposed so far. Finally,

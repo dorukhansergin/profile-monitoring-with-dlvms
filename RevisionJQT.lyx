@@ -226,7 +226,7 @@ al complexity of VAEs, or of the profile monitoring procedure, but, for
 \end_layout
 
 \begin_layout Enumerate
-Minor comments 
+Minor comments
 \end_layout
 
 \begin_deeper
@@ -366,14 +366,36 @@ On page 12, I recommend rewording the statement "Our first major claim is
 Ans:
 \series default
 \bar default
- Thank you for the suggestions.
- We would like to clarity that there are two types of monitoring statistics:
- 1) the latent variable-based statistics and 2) the residual-based statistics.
- In this paper, we define the latent variable-based statistics as the statistics
- determined in the latent-space rather than the original data space.
- 
-\series bold
-EXPLAIN WHY (10) is not latent-variable statistics here
+ Thank you for this important suggestion.
+ Given that the name of the family of models we use are latent-variable
+ models, it is quite understandable that the word 
+\begin_inset Quotes eld
+\end_inset
+
+latent variable-based
+\begin_inset Quotes erd
+\end_inset
+
+ may cause confusions.
+ The distinction we tried to make was the space in which these two monitoring
+ statistics were computed in.
+ Thus, we renamed them to 
+\begin_inset Quotes eld
+\end_inset
+
+residual space statistics
+\begin_inset Quotes erd
+\end_inset
+
+ and 
+\begin_inset Quotes eld
+\end_inset
+
+latent space statistics
+\begin_inset Quotes erd
+\end_inset
+
+ accordingly.
 \end_layout
 
 \end_deeper
