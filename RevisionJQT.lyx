@@ -204,44 +204,12 @@ For sequence-based data other architectures could provide advantages, such
 Ans:
 \series default
 \bar default
- Thank you for the suggestion on broaden the scope of the paper.
- We agree taht adding the LSTM autoencoders to the literature will give
- a more complete overview of the deep learning method for other types of
- method.
- 
-\end_layout
-
-\begin_layout Standard
-We agree that the proposed method can be applied to variational LSTM as
- well but we believe this is out of the scope of the proposed method.
- We have made the followng changes in the revised manuscript: 
-\end_layout
-
-\begin_layout Enumerate
-In the literature review section, we have added the discussion about variational
- LSTM as follows:
-\begin_inset Quotes eld
-\end_inset
-
-
-\begin_inset Quotes erd
-\end_inset
-
-
-\end_layout
-
-\begin_layout Enumerate
-In the future work section, we have added the potential generalibility of
- the algorithm to sequence data using variational LSTM as follows: 
-\begin_inset Quotes eld
-\end_inset
-
-
-\begin_inset Quotes erd
-\end_inset
-
-.
- 
+ Thank you for the suggestion.
+ Indeed, we agree that sequence-based profiles are commonly found and so
+ the possibility of a recurrent architecture should be mentioned for interested
+ readers.
+ We added a related note for our readers in the last three paragraphs of
+ Section 3.3.
 \end_layout
 
 \end_deeper

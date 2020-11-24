@@ -766,6 +766,12 @@ optimization with parameters $(\beta_{1,}\beta_{2})=(0.9,0.999)$.
 The model checkpoint is saved at every epoch where a better validation
 loss is observed. The latest checkpoint is used as the final model.
 
+Image profiles comprise our simulation and case study, which will be introduced to the reader in the upcoming sections. This is why we only consider convolutional architectures. However, the monitoring statistics we propose in \ref{eq:ere-1} and \ref{eq:ere-2} are adaptable to other flavors of VAE architectures as well. 
+
+The original VAE \parencite{Kingma2013-dl} was introduced with fully connected feedforward neural networks which are generally applicable to most kinds of process inputs. The monitoring statistics we proposed can be readily applied for that scenario without the need for further modification. 
+
+For sequential profiles (e.g. time series), two alternative solutions can be used. First would be using one-dimensional convolutional layers. In that scenario, since we are still in the realm of convolutional architectures, no further modifications are needed. Alternatively, a recurrent neural network-based encoder and decoder structure might be efficient at capturing sequential dependencies, as outlined in \textcite{ChungKDGCB15}. A modification required for that method would be using a variational layer only between the last hidden state of the encoder and the initial generating state of the decoder, as opposed to having a VAE at every time step. In other words, the recurrent layers would be used as a way to encode the sequence-dependent signal into a vector, just as convolutional layers do the same for spatially-dependent signal. Given that modification, the proposed monitoring statistics can be used right away.
+
 \begin{table}[!t]
 \global\long\def\arraystretch{1.3}%
  \caption{Architecture details of deep neural networks used in this study\label{tab:model-architectures}}
