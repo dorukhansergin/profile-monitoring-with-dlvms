@@ -434,9 +434,120 @@ o-extrapolate is that the assumed p(z) acts like a regularizer and prevents
 Ans:
 \series default
 \bar default
- Thank you for the suggestions.
- We have added the comparison of AE as well.
- 
+ Thank you for this comment.
+ This is indeed an interesting point.
+ The major issue with using a regular AE anticipating how the decision boundary
+ should be set around this prior-free cloud of points.
+ One can think of a number of alternatives: (1) fitting a multivariate Gaussian,
+ (2) using a minimum enclosing hyperrectangle (whether axis-parallel or
+ arbitrarily oriented), (3) using average distance to K-nearest neighbors
+ or (4) fitting a Kernel Density Estimation model.
+ All these alternatives come with an implicit assumption around the distribution
+ of the in-control samples.
+ More often than not, it is very unlikely to guess which one will work best
+ for any given dataset, especially when deep learning based encoder-decoder
+ structures are used against very complicated datasets such as images.
+\end_layout
+
+\begin_layout Standard
+In this paper, our research goal was not to compare VAE with other methods
+ when it comes to profile monitoring, but to propose the most efficient
+ statistic given that the practicioner decides to use VAE for some reason.
+ This is why we don't think the question you're asking should to be answered
+ in this paper.
+ Nonetheless, we think it is a very important discussion.
+ That's why we ran experiments with regular AE.
+\end_layout
+
+\begin_layout Standard
+For fairness, we kept the same convolutional encoder-decoder architecture
+ as in VAE.
+ The experiments were run on the same train-validation-test split.
+ We plot the encoded variables 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $z=\mu_{\phi}(x)$
+\end_inset
+
+
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+ below for when the compressed length is 2, similar to the way we did it
+ in the paper.
+ We also provide some decision boundary alternatives, in line with our discussio
+n above.
+ We can observe that using regular AE does not necessarily mitigate the
+ issue in question.
+ Other than classes 3, 5 and 6, none of the class encodings (shown in blue)
+ really deviate too much from the center of gravity of the validation points
+ (shown in red).
+ Classes 3, 5 and 6 are not surprising either.
+ They are the ones that are picked up the most by latent space statistics
+ (please see column 
+\begin_inset Formula $H^{2}$
+\end_inset
+
+ in Table 3 in page 28).
+ This suggests that AE and VAE behave quite similar regardless of the regulariza
+tion brought up by VAE.
+ We really think the phenomena we discuss in Appendix.B is at play here.
+ As a result, we kindly reject the suspicion that VAE regularization is
+ the culprit.
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename scatter.pdf
+	scale 20
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Encoded variables with a regular AE.
+ Validation samples are shown in red.
+ Out-of-control class samples are shown in blue.
+ Black lines indicate the contours of the fit wherever applicable.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_deeper
