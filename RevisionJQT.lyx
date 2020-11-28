@@ -171,7 +171,6 @@ Ans:
 \bar default
  Thank you for the comments about the hyper parameter tuning.
  The reason that we choose Leakly ReLU is because xxx papers use it in xxx.
- 
 \end_layout
 
 \begin_layout Standard
@@ -298,7 +297,6 @@ The writing is very sloppy.
  There are also a lot of typos and other careless mistakes, e.g., inconsistencies
  in the list of references, like some names being replaced by et al.
  The writing must be improved to be suitable for JQT.
- 
 \end_layout
 
 \begin_deeper
@@ -355,7 +353,6 @@ On page 12, I recommend rewording the statement "Our first major claim is
  But since (10) can also be viewed as a latent variable-based statistic,
  the current wording sounds like you are saying that using (9) and (10)
  together are not useful.
- 
 \end_layout
 
 \begin_deeper
@@ -396,6 +393,18 @@ latent space statistics
 \end_inset
 
  accordingly.
+ However, the point we try to make in this paper is slightly different.
+ We claim that (9) (the T^2-like component) should not be used 
+\emph on
+at all
+\emph default
+.
+ They are unreliable and that has to do with the typical incorrectness of
+ the latent representations learned by deep encoders.
+ We agree with your comment that we haven't made that clear enough in the
+ paper.
+ This is why we did major revision to the related parts of Section 3.1 and
+ also to Section 4.2.
 \end_layout
 
 \end_deeper
@@ -570,10 +579,60 @@ Regarding point 1 on page 12: For the standard linear PCA-based monitoring,
 Ans:
 \series default
 \bar default
- Thank you for the suggestions.
- We have added a figure to highlight the connection and differences of the
- VAE-based method and PCA-based monitoring statistics.
+ Thank you for this crucial point.
+ Point 1 can be misleading for our readers given the conclusion we want
+ to lead them to in this paper so this comment is quite relevant.
+ This is also related to the 4th comment you made so we hope to provide
+ a more thorough answer to that too.
+\end_layout
+
+\begin_layout Standard
+Our explanation of the sources of disturbances in Section 3.1 is at the core
+ of our argument.
+ There, we make the distinction of the disturbances in the latent distribution
  
+\begin_inset Formula $p_{\delta}(z)\neq p(z)$
+\end_inset
+
+ and the residual distribution 
+\begin_inset Formula $p_{\delta}(x|z)\neq p(x|z)$
+\end_inset
+
+, given the overall probability of observing any sample when the process
+ is in-control can be described as 
+\begin_inset Formula $p(x)=\int p(x|z)p(z)dz$
+\end_inset
+
+.
+ The purpose of a 
+\begin_inset Formula $T^{2}$
+\end_inset
+
+-chart in PCA is to monitor the dominant PC space or in the probabilistic
+ paradigm, the disturbance in the latent distribution.
+ This is a valid concern when PCA is used.
+ The point we are trying to make in this paper is that, unlike PCA-based
+ profile monitoring, latent space statistics, such as 
+\begin_inset Formula $T^{2}$
+\end_inset
+
+, should not be considered 
+\emph on
+at all
+\emph default
+ if VAE is being used.
+ In other words, given a limited budget for false positives, 
+\begin_inset Formula $T^{2}$
+\end_inset
+
+-chart is not worth having alongside with 
+\begin_inset Formula $Q$
+\end_inset
+
+-chart when VAE is used, due to the incorrectness of the latent mapping
+ semantics.
+ We tested this in the simulation study, by creating two such disturbances,
+ radius shift and location shift.
 \end_layout
 
 \end_deeper
@@ -592,10 +651,17 @@ Figure 2 and Point 2 on page 13 needs a lot more elaboration.
 Ans:
 \series default
 \bar default
- Thank you for the suggestions.
- We have added a figure to highlight the connection and differences of the
- VAE-based method and PCA-based monitoring statistics.
- 
+ Thank you for this suggestion.
+ We certainly agree with it.
+ Figure 2 is updated in a way that it represents the entire story of the
+ paper.
+ In line with your comments about the paper being accessible by JQT audience,
+ we also skimmed the details about the properties of latent representations,
+ such as disentanglement or invariance to nuisance factors.
+ The main idea that we want to convey to the readers in that section is
+ the unreliability of the semantics of deep encoder learned latent representatio
+ns when it comes to profile monitoring.
+ Please visit the updated Section 3.1.
 \end_layout
 
 \end_deeper
@@ -619,10 +685,35 @@ Further regarding Point 2 on page 13: I understand the failure-to-extrapolate
 Ans:
 \series default
 \bar default
- Thank you for the suggestions.
- We have added a figure to highlight the connection and differences of the
- VAE-based method and PCA-based monitoring statistics.
- 
+ Thank you for this valuable comment.
+ Your suggestion that entanglement causes failure to extrapolate which in
+ turn results in Type-II error, may be true under certain conditions.
+ However, entanglement is not a necessary condition to failure to extrapolate
+ nor the conditions are caused by the same dynamics related to deep learning.
+ We do not have enough evidence to support that or can provide theoretical
+ guarantees to it.
+ If you check Figure 2, the representation may have been able to successfully
+ extrapolate beyond Point A and result in a correctly identified as an evidence
+ to process being out-of-control, even when we had clear entanglement.
+ See top right subfigure in Figure 4 for an example.
+ When radius is fixed at the mean (
+\begin_inset Formula $r=0.15$
+\end_inset
+
+), all the in-control samples fall within the region and all the out-of-control
+ samples fall outside.
+ The representation is clearly entangled.
+ Yet the decisions are right and one might say the extrapolation is successful.
+ Your comment is valuable in the sense that we did not clearly define what
+ it means to fail to extrapolate and what is entanglement to the reader.
+ This would confuse our reader.
+ In the end, we decided to keep it simple for the audience and call any
+ mapping that's semantically wrong as 
+\emph on
+incorrect
+\emph default
+, which we claim to be the culprit of the inaccurate decision made by the
+ latent space statistics.
 \end_layout
 
 \end_deeper
@@ -647,7 +738,6 @@ g as during fitting the VAE, this is like telling the control chart that
  fitting, i.e., that process shifts are not likely to happen.
  The Gaussian/uniform mixture p(z) would allow you to specify "prior" probabilit
 ies on how likely a shift is to occur.
- 
 \end_layout
 
 \begin_deeper
@@ -661,13 +751,11 @@ Ans:
  This is actually a great point.
  Indeed, there are two reasons that may lead to the bad detection power
  of the latent-based statistics.
- 
 \end_layout
 
 \begin_layout Enumerate
 The failure-to-extrapolate issue, this is a well-known issue and is also
  demonstrated in the appendix.
- 
 \end_layout
 
 \begin_layout Enumerate
@@ -683,7 +771,6 @@ The reviewer has pointed out another potential reason, the regularization
  only lies in the normal region.
  To validate this, we would like to add another result by using regular
  AE method, where no regularization is added.
- 
 \end_layout
 
 \end_deeper
@@ -692,7 +779,6 @@ Section 4.1: I don't recognize this as the gasket bead example from Shi,
  Apley and Runger (2016).
  It might represent some other type of bead that changes position/shape,
  but it doesn't seem to have much connection to gaskets.
- 
 \end_layout
 
 \begin_deeper
@@ -705,7 +791,6 @@ Ans:
 \bar default
  We agree that this is not exactly the gasket example and therefore we have
  revised it.
- 
 \end_layout
 
 \end_deeper
@@ -732,7 +817,6 @@ Ans:
 \series default
 \bar default
  Thank you for the comments.
- 
 \end_layout
 
 \end_deeper
@@ -753,7 +837,6 @@ Ans:
 \series default
 \bar default
  Thank you for the comments.
- 
 \end_layout
 
 \end_deeper
@@ -777,7 +860,6 @@ Ans:
 \series default
 \bar default
  Thank you for the comments.
- 
 \end_layout
 
 \end_deeper
@@ -795,7 +877,6 @@ Ans:
 \series default
 \bar default
  Thank you for the comments.
- 
 \end_layout
 
 \end_deeper
