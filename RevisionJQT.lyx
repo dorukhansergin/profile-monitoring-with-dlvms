@@ -748,29 +748,68 @@ ies on how likely a shift is to occur.
 Ans:
 \series default
 \bar default
- This is actually a great point.
- Indeed, there are two reasons that may lead to the bad detection power
- of the latent-based statistics.
-\end_layout
-
-\begin_layout Enumerate
-The failure-to-extrapolate issue, this is a well-known issue and is also
- demonstrated in the appendix.
-\end_layout
-
-\begin_layout Enumerate
-The reviewer has pointed out another potential reason, the regularization
- of 
-\begin_inset Formula $p(z)$
+ Thank you for this fruitful discussion.
+ We partially answer the your comments related to AE in the response of
+ your 5th comment.
+ Even when we use a regular AE, the latent representations are biased towards
+ the center of gravity of the training representations.
+ For your other comment, we don't quite understand how the prior can be
+ replaced by some other distribution during the monitoring stage.
+ The model only infers a single mean vector and the diagonals of a single
+ covariance.
+ The multivariate-t would need an additional degrees of freedom or a mixture
+ of Gaussians would need multiple means and covariances to be inferred.
+ Once the architecture and the weights are fixed, we don't think it is feasible
+ to do that.
+ Besides, theoretically, we don't see anything wrong about using the same
+ VAE model during monitoring stage.
+ The job of VAE is to model the pdf of the distribution that generates the
+ in-control samples 
+\begin_inset Formula $p(x)$
 \end_inset
 
- may lead 
-\begin_inset Formula $z$
+ and this is very neatly explained in Section 1.3 of 
+\begin_inset Quotes eld
 \end_inset
 
- only lies in the normal region.
- To validate this, we would like to add another result by using regular
- AE method, where no regularization is added.
+An Introduction to Variational Autoencoder
+\begin_inset Quotes erd
+\end_inset
+
+ by Kingma and Welling (2019) which is a follow-up paper by the same authors
+ who invented the VAE model.
+ In theory, having an accurate pdf of in-control samples is exactly what
+ we need.
+ We don't need to make any assumption about the data stream, before or after
+ monitoring, as the domain of the pdf is the entire space of all possible
+ inputs.
+ Using the pdf, we can simply monitor a new sample 
+\begin_inset Formula $x_{i}$
+\end_inset
+
+ by checking 
+\begin_inset Formula $p(x_{i})<\tau$
+\end_inset
+
+.
+ The importance of Appendix.B in this study is that it reveals that we cannot
+ trust the output of 
+\begin_inset Formula $p(x_{i})$
+\end_inset
+
+ when 
+\begin_inset Formula $x_{i}$
+\end_inset
+
+ is not coming from high density regions of in-control distribution.
+ In practice, there is another issue.
+ Computing 
+\begin_inset Formula $p(x_{i})$
+\end_inset
+
+ is not tractable so one is doomed to rely on approximations.
+ These two problems are what we are revealing and addressing in this paper,
+ which previous papers did not.
 \end_layout
 
 \end_deeper
