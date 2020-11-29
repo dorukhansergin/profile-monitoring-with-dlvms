@@ -515,7 +515,7 @@ This is why
 \change_unchanged
  we did major revision to the related parts of Section 3.1 and also to Section
  4.2
-\change_inserted -1806609307 1606630553
+\change_inserted -1806609307 1606634174
  by changing the name of 
 \begin_inset Quotes eld
 \end_inset
@@ -535,6 +535,19 @@ latent space statistics
 
 \change_unchanged
 .
+
+\change_inserted -1806609307 1606634188
+ We also made the followng adjustment in the paper: 
+\begin_inset Quotes eld
+\end_inset
+
+
+\begin_inset Quotes erd
+\end_inset
+
+ 
+\change_unchanged
+
 \end_layout
 
 \end_deeper
@@ -757,7 +770,7 @@ B
 
 \begin_layout Standard
 
-\change_inserted -1806609307 1606632095
+\change_inserted -1806609307 1606634157
 Finally, we would like to mention that the advantage of the residual space
  statistics for the VAE method compared to the AE method for anomaly detection
  has been proved in many papers including [1], which is not the major focus
@@ -765,6 +778,20 @@ Finally, we would like to mention that the advantage of the residual space
  In this paper, we emphasize more on finding the most efficient and effective
  statistic for VAE methods, which have been proved to be very useful for
  anomaly detection in literature [1].
+\end_layout
+
+\begin_layout Standard
+
+\change_inserted -1806609307 1606634158
+Here, we made the following adjustment in the revised manuscript as follows:
+\begin_inset Quotes eld
+\end_inset
+
+
+\begin_inset Quotes erd
+\end_inset
+
+
 \change_unchanged
 
 \end_layout
@@ -838,11 +865,52 @@ Regarding point 1 on page 12: For the standard linear PCA-based monitoring,
 Ans:
 \series default
 \bar default
- Thank you for this crucial point.
- Point 1 can be misleading for our readers given the conclusion we want
- to lead them to in this paper so this comment is quite relevant.
- This is also related to the 4th comment you made so we hope to provide
- a more thorough answer to that too.
+ Thank you for this 
+\change_deleted -1806609307 1606633598
+crucial
+\change_inserted -1806609307 1606633598
+great
+\change_unchanged
+ point
+\change_inserted -1806609307 1606633600
+s
+\change_unchanged
+.
+ 
+\change_inserted -1806609307 1606633696
+We agree that the previous 
+\begin_inset Quotes eld
+\end_inset
+
+
+\change_unchanged
+Point 1
+\change_inserted -1806609307 1606633699
+
+\begin_inset Quotes erd
+\end_inset
+
+ 
+\change_deleted -1806609307 1606633703
+ can be
+\change_inserted -1806609307 1606633703
+is
+\change_unchanged
+ misleading for our readers
+\change_inserted -1806609307 1606634110
+.
+
+\change_deleted -1806609307 1606633731
+ given the conclusion we want to lead them to in this paper so this comment
+ is quite relevant
+\change_unchanged
+.
+ 
+\change_deleted -1806609307 1606633900
+This is also related to the 4th comment you made so we hope to provide a
+ more thorough answer to that too.
+\change_unchanged
+
 \end_layout
 
 \begin_layout Standard
@@ -868,9 +936,17 @@ Our explanation of the sources of disturbances in Section 3.1 is at the core
 \end_inset
 
 -chart in PCA is to monitor the dominant PC space or in the probabilistic
- paradigm, the disturbance in the latent distribution.
- This is a valid concern when PCA is used.
- The point we are trying to make in this paper is that, unlike PCA-based
+ paradigm, 
+\change_inserted -1806609307 1606633951
+i.e., 
+\change_unchanged
+the disturbance in the latent distribution.
+ 
+\change_deleted -1806609307 1606633964
+This is a valid concern when PCA is used.
+ 
+\change_unchanged
+The point we are trying to make in this paper is that, unlike PCA-based
  profile monitoring, latent space statistics, such as 
 \begin_inset Formula $T^{2}$
 \end_inset
@@ -889,9 +965,76 @@ at all
 \end_inset
 
 -chart when VAE is used, due to the incorrectness of the latent mapping
- semantics.
- We tested this in the simulation study, by creating two such disturbances,
+\change_deleted -1806609307 1606633994
+ semantics
+\change_unchanged
+.
+ 
+\change_deleted -1806609307 1606634012
+We tested this in the simulation study, by creating two such disturbances,
  radius shift and location shift.
+\change_inserted -1806609307 1606634378
+The ineffectiveness of the latent space statistics is further illustrated
+ in the simulation and case study.
+ 
+\end_layout
+
+\begin_layout Standard
+
+\change_inserted -1806609307 1606634564
+To help the readers to understand why Q-chart will only be used.
+ We have added the following explanation in the revised paper: 
+\begin_inset Quotes eld
+\end_inset
+
+Similar behaviors have been observed in PCA that using the 
+\begin_inset Formula $T^{2}$
+\end_inset
+
+ statistics on a few dominant PC may miss the shifts that happended in the
+ residual space [ref].
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\change_inserted -1806609307 1606634213
+\begin_inset Note Comment
+status open
+
+\begin_layout Plain Layout
+
+\change_inserted -1806609307 1606634590
+I felt that the reviewers just ask can we explain why only Q-chart should
+ be used for VAE from the PCA-point of view.
+ Therefore, I think it is good for us just to add this sentence in the response.
+ 
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\change_inserted -1806609307 1606634201
+Here, we made the following adjustment in the revised manuscript as follows:
+\begin_inset Quotes eld
+\end_inset
+
+
+\begin_inset Quotes erd
+\end_inset
+
+ 
+\change_unchanged
+
 \end_layout
 
 \end_deeper
@@ -920,7 +1063,28 @@ Ans:
  The main idea that we want to convey to the readers in that section is
  the unreliability of the semantics of deep encoder learned latent representatio
 ns when it comes to profile monitoring.
- Please visit the updated Section 3.1.
+ 
+\change_deleted -1806609307 1606634621
+Please visit the updated Section 3.1.
+\change_inserted -1806609307 1606634632
+Here are the major changes that we made in Section 3.1: 
+\end_layout
+
+\begin_layout Itemize
+
+\change_inserted -1806609307 1606634714
+We removed the entire concepts of the disentanglement.
+ For more discussion about the disentanglement, please visit the Comment
+ 8.
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\change_inserted -1806609307 1606634715
+xxx
+\change_unchanged
+
 \end_layout
 
 \end_deeper
@@ -945,15 +1109,59 @@ Ans:
 \series default
 \bar default
  Thank you for this valuable comment.
- Your suggestion that entanglement causes failure to extrapolate which in
- turn results in Type-II error, may be true under certain conditions.
- However, entanglement is not a necessary condition to failure to extrapolate
+
+\change_inserted -1806609307 1606634908
+ We totally agree the 
+\begin_inset Quotes eld
+\end_inset
+
+failure-to-extrapolate
+\begin_inset Quotes erd
+\end_inset
+
+ is the major reason for missed detections.
+ 
+\change_deleted -1806609307 1606634882
+ 
+\change_inserted -1806609307 1606634893
+
+\end_layout
+
+\begin_layout Standard
+
+\change_inserted -1806609307 1606634913
+We also agree with your comment 
+\change_unchanged
+that
+\change_inserted -1806609307 1606634768
+ under some circumstances, the
+\change_unchanged
+ entanglement causes failure to extrapolate which in turn results in Type-II
+ error
+\change_deleted -1806609307 1606634775
+, may be true under certain conditions
+\change_unchanged
+.
+ 
+\change_inserted -1806609307 1606635010
+However, we do not have enough practical evidence or theory to support that
+ the entanglement may not lead to the missed detections or failure to extropalat
+e.
+ 
+\change_deleted -1806609307 1606635023
+However, entanglement is not a necessary condition to failure to extrapolate
  nor the conditions are caused by the same dynamics related to deep learning.
  We do not have enough evidence to support that or can provide theoretical
  guarantees to it.
+
+\change_unchanged
  If you check Figure 2, the representation may have been able to successfully
  extrapolate beyond Point A and result in a correctly identified as an evidence
- to process being out-of-control, even when we had clear entanglement.
+ to process being out-of-control, even when we had 
+\change_inserted -1806609307 1606635038
+a 
+\change_unchanged
+clear entanglement.
  See top right subfigure in Figure 4 for an example.
  When radius is fixed at the mean (
 \begin_inset Formula $r=0.15$
@@ -965,14 +1173,93 @@ Ans:
  Yet the decisions are right and one might say the extrapolation is successful.
  Your comment is valuable in the sense that we did not clearly define what
  it means to fail to extrapolate and what is entanglement to the reader.
- This would confuse our reader.
- In the end, we decided to keep it simple for the audience and call any
- mapping that's semantically wrong as 
+ This would confuse our reader
+\change_inserted -1806609307 1606634983
+s
+\change_unchanged
+.
+ 
+\change_inserted -1806609307 1606634983
+
+\end_layout
+
+\begin_layout Standard
+In the end, 
+\change_inserted -1806609307 1606635146
+we decide to make the following changes in the revised manuscript: 
+\end_layout
+
+\begin_layout Itemize
+
+\change_inserted -1806609307 1606635206
+We remove the concepts of disentangment, given it is even not clearly defined
+ in the deep learning community and the causal relationship of the disentangment
+ and anomaly detection is not supported by the experiments.
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\change_inserted -1806609307 1606635251
+We use the word 
+\begin_inset Quotes eld
+\end_inset
+
+incorrect mapping of latent space
+\begin_inset Quotes erd
+\end_inset
+
+ 
+\begin_inset Note Comment
+status open
+
+\begin_layout Plain Layout
+
+\change_inserted -1806609307 1606635232
+Is it true? What word do you use?
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\change_inserted -1806609307 1606635257
+xxx? 
+\begin_inset Note Comment
+status open
+
+\begin_layout Plain Layout
+
+\change_inserted -1806609307 1606635261
+Can you explain more?
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_unchanged
+
+\end_layout
+
+\begin_layout Standard
+
+\change_deleted -1806609307 1606635237
+we decided to keep it simple for the audience and call any mapping that's
+ semantically wrong as 
 \emph on
 incorrect
 \emph default
 , which we claim to be the culprit of the inaccurate decision made by the
  latent space statistics.
+\change_unchanged
+
 \end_layout
 
 \end_deeper
@@ -1008,12 +1295,62 @@ Ans:
 \series default
 \bar default
  Thank you for this fruitful discussion.
- We partially answer the your comments related to AE in the response of
- your 5th comment.
+ 
+\change_inserted -1806609307 1606636159
+First, 
+\change_deleted -1806609307 1606636160
+W
+\change_inserted -1806609307 1606636160
+w
+\change_unchanged
+e 
+\change_inserted -1806609307 1606635277
+have 
+\change_unchanged
+partially answer
+\change_inserted -1806609307 1606635280
+ed
+\change_unchanged
+ the your comments related to AE in the response of your 5th comment.
  Even when we use a regular AE, the latent representations are biased towards
- the center of gravity of the training representations.
- For your other comment, we don't quite understand how the prior can be
- replaced by some other distribution during the monitoring stage.
+ the center of gravity of the training representations
+\change_inserted -1806609307 1606636053
+ and the 
+\begin_inset Quotes eld
+\end_inset
+
+failure to extropalation issue still occur
+\begin_inset Quotes erd
+\end_inset
+
+
+\change_unchanged
+.
+ 
+\change_inserted -1806609307 1606636161
+
+\end_layout
+
+\begin_layout Standard
+
+\change_inserted -1806609307 1606635324
+\begin_inset Note Comment
+status open
+
+\begin_layout Plain Layout
+
+\change_inserted -1806609307 1606635540
+I think we can still replace the prior distribution by others during the
+ training stage.
+ So I remove your comments of asking how to do that.
+\end_layout
+
+\end_inset
+
+
+\change_deleted -1806609307 1606635689
+For your other comment, we don't quite understand how the prior can be replaced
+ by some other distribution during the monitoring stage.
  The model only infers a single mean vector and the diagonals of a single
  covariance.
  The multivariate-t would need an additional degrees of freedom or a mixture
@@ -1022,7 +1359,18 @@ Ans:
  to do that.
  Besides, theoretically, we don't see anything wrong about using the same
  VAE model during monitoring stage.
- The job of VAE is to model the pdf of the distribution that generates the
+ 
+\change_inserted -1806609307 1606636141
+
+\end_layout
+
+\begin_layout Standard
+
+\change_inserted -1806609307 1606635739
+We would like to emphasize that the major reason that the latent statistics
+ doesn't work well is shown in 
+\change_deleted -1806609307 1606635735
+The job of VAE is to model the pdf of the distribution that generates the
  in-control samples 
 \begin_inset Formula $p(x)$
 \end_inset
@@ -1051,8 +1399,17 @@ An Introduction to Variational Autoencoder
 \end_inset
 
 .
- The importance of Appendix.B in this study is that it reveals that we cannot
- trust the output of 
+ The importance of 
+\change_unchanged
+Appendix.B
+\change_inserted -1806609307 1606635746
+, which
+\change_unchanged
+ 
+\change_deleted -1806609307 1606635616
+in this study is that it 
+\change_unchanged
+reveals that we cannot trust the output of 
 \begin_inset Formula $p(x_{i})$
 \end_inset
 
@@ -1060,15 +1417,49 @@ An Introduction to Variational Autoencoder
 \begin_inset Formula $x_{i}$
 \end_inset
 
- is not coming from high density regions of in-control distribution.
- In practice, there is another issue.
+ is not coming from high density regions of in-control distribution
+\change_inserted -1806609307 1606635676
+s
+\change_unchanged
+.
+ 
+\change_inserted -1806609307 1606635668
+
+\end_layout
+
+\begin_layout Standard
+
+\change_deleted -1806609307 1606635639
+In practice, there is another issue.
  Computing 
 \begin_inset Formula $p(x_{i})$
 \end_inset
 
- is not tractable so one is doomed to rely on approximations.
+ is not tractable so one is d
+\change_inserted -1806609307 1606635644
+ 
+\change_deleted -1806609307 1606635639
+oomed to rely on approximations.
  These two problems are what we are revealing and addressing in this paper,
  which previous papers did not.
+
+\change_inserted -1806609307 1606635645
+ 
+\begin_inset Note Comment
+status open
+
+\begin_layout Plain Layout
+
+\change_inserted -1806609307 1606635665
+I felt we don't have any proof on this sentence, even it might be true so
+ I like to remove it.
+\end_layout
+
+\end_inset
+
+
+\change_unchanged
+
 \end_layout
 
 \end_deeper
