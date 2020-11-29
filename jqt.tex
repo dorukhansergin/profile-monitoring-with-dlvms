@@ -709,8 +709,8 @@ Decoder & FC($r$, 256) - A - CT(64, 4, 0, 0) - A - CT(64, 4, 2, 1) - A - C(32,
 
 \section{Simulation Study Analysis and Results \label{sec:Simulation-Study-Analysis}}
 
-In this section, we propose to evaluate the proposed methodology via
-the simulation study to test our claims we make in \ref{sec:proposed-statistic}
+In this section, we evaluate the proposed methodology via
+a simulation study to test our claims we make in \ref{sec:proposed-statistic}
 in a controlled environment over the data generating process. For
 every experiment mentioned in this section, we follow the procedure
 outlined in \ref{sec:methodology:procedure} and we use VAE models
@@ -719,20 +719,12 @@ with the architecture described in \ref{subsec:Model-Architectures}.
 \subsection{Simulation Setup}
 \label{sec:simsetting} 
 
-We first evaluate the performance of the deep
-latent variable models in a simulation setting inspired by the work
-of \textcite{Shi2016-tg}. The simulation procedure produces 2D structured
-point clouds that resemble the scanned topology of a gasket bead.
+We first evaluate the performance of the deep latent variable models in a simulation setting where we have explicit control over the latent variations. 
+The simulation procedure produces 2D structured point clouds that resemble the scanned topology of a dome.
+
 Let each pixel on a $64$ by $64$ grid be denoted by a tuple $\mbp=(p_{0},p_{1})$.
-The values of the tuples stretch from $0$ to $1$, equally spaced,
-left to right and bottom-up. Each tuple takes a value based on its
-location through a function $\mbp\mapsto f(\mbp;c,r)+\epsilon$,
-where $\epsilon\sim\Norm(0,1\times10^{-2})$ is i.i.d Gaussian noise.
-The function $f$ is parameterized by the horizontal center location
-of the bead $c$, and the radius of the bead $r$. The vertical
-center of the bead is fixed to be at the center. Given any parameter
-set $\{c,r\}$, each pixel $\mbp$ can be evaluated with the following
-logic: 
+The values of the tuples stretch from $0$ to $1$, equally spaced, left to right and bottom-up. Each tuple takes a value based on its location through a function $\mbp\mapsto f(\mbp;c,r)+\epsilon$, where $\epsilon\sim\Norm(0,1\times10^{-2})$ is i.i.d Gaussian noise.
+The function $f$ is parameterized by the horizontal location of the dome $c$, and the radius of the base of the dome $r$. The vertical location of the dome on the 2D surface is fixed at the vertical center of the surface. Given any parameter set $\{c,r\}$, each pixel $\mbp$ can be evaluated with the following logic: 
 \begin{equation}
 \begin{split}g(\mbp;c,r) & =1-\frac{(p_{0}-c)}{r}^{2}-\frac{(p_{1}-0.5)}{r}^{2}\\
 f(\mbp;c,r) & =\begin{cases}
@@ -743,32 +735,28 @@ f(\mbp;c,r) & =\begin{cases}
 \label{eq:gasketfun}
 \end{equation}
 
-The samples are best visualized as grayscale images as shown in \ref{fig:gasketgrid}
-below. 
+The samples are best visualized as grayscale images as shown in \ref{fig:gasketgrid} below. 
 
 \begin{figure}[t]
 \centering{}\label{fig:gasketgrid} \includegraphics[width=0.5\linewidth]{gasket.pdf}
-\caption{Gasket profiles depicted as grayscale images simulated with radius
-and center location they coincide with on the axes.}
+\caption{Dome profiles depicted as grayscale images simulated with radius and center location they coincide with on the axes.}
 \end{figure}
 
-We define the sources of variation in in-control gasket beads by two
-latent variables sampling from independent Gaussian distributions:
+The processes that generate the latent variations of in-control domes are defined as Gaussian distributions:
 \begin{equation}
 \begin{split}c\sim\Norm(0.5,1\times10^{-2})\\
 r\sim\Norm(0.2,6.25\times10^{-4})
 \end{split}
 \end{equation}
 
-Finally, we will consider the following four types of out-of-control
-variation patterns for the system:
+As our out-of-control scenarios consider the following four distribution shifts in which $\delta$ denotes the intensity of the shift:
 \begin{itemize}
 \item \textbf{Location shift:} the mean of the process that generates $c$
 is altered by an amount $\delta$ as in 
 \[
 c\sim\Norm(0.5+\delta\times10^{-2},1\times10^{-2})
 \]
-\item \textbf{Width shift:} the mean of the process that generates $a$
+\item \textbf{Radius shift:} the mean of the process that generates $a$
 is perturbed by an amount $\delta$ as in
 \[
 r\sim\Norm(0.2+\delta\times10^{-4},6.25\times10^{-4})
@@ -784,16 +772,13 @@ disturbance $\delta$ as in
 f(\mbp;c,r) \leftarrow f(\mbp;c,r)*\delta
 \]
 \end{itemize}
-Here, $\delta$ is the intensity of the change. Note that the location
-shift and width shift represent disturbances in latent distribution
-$p_{\delta}(\mbz)$. An important distinction between the two is that
-location equivariance is injected into convolutional networks but
-not scale equivariance, therefore we expect different reactions to
-these changes by deep convolutional latent variable models in terms
-of disentanglement. The other two cases, mean shift and magnitude
-shift, represent disturbances in the conditional distribution $p_{\delta}(\mbx\g\mbz)$.
-The training, validation, and testing in-control or out-of-control
-samples are generated of size 500 each.
+
+Note that the location shift and radius shift represent disturbances in latent distribution $p_{\delta}(\mbz)$. 
+The other two cases, mean shift and magnitude shift, represent disturbances in the conditional distribution $p_{\delta}(\mbx\g\mbz)$.
+
+We generate the training, validation, and testing sets for in-control domes as well as a set of each out-of-control scenario above.
+All sets have exactly 500 distinct samples.
+We generate these sets once, fix them and use them for the analyses in the subsequent sections.
 
 \subsection{On the Incorrect Mapping of Latent Representations by the Encoder
 \label{sec:simstudy:recognition}}
@@ -807,9 +792,16 @@ samples are generated of size 500 each.
 	\label{fig:proposals}
 \end{figure}
 
-In this section, we investigate the correctness of the latent representations produced by the encoder. In order to do so, we first train a VAE with an architecture describe in \ref{tab:model-architectures} and latent representation $ r $ is fixed at two. The training samples are generated in-control gasket image generation as described in \ref{sec:simsetting}. We use the encoder of the trained VAE for the rest of the analysis.
+In this section, we investigate the correctness of the latent representations produced by the encoder. 
+In order to do so, we first train a VAE with an architecture as described in \ref{tab:model-architectures} and latent representation $ r $ is fixed at two. 
+The training samples are generated by the in-control dome generation process as described in \ref{sec:simsetting}. 
+We use the encoder of the trained VAE for the rest of the analysis.
 
-After training, we generate samples from the simulation process by fixing one of the latent factor and traversing along the other. The plots on the left side of \ref{fig:proposals} depicts the traversals of the true latent space we sample the gaskets from. We then push these generated examples through the encoder to obtain their respective proposal distributions. The geometry in which the means of these distributions vary gives us an idea about the correctness of the mappings. This can be traced from the plots on the right in \ref{fig:proposals}. There, we observe gross incorrectness in the mapping of latent representations. For example, we can conclude right away that gaskets with extremely small radius $ r $ will likely go undetected if only the latent space statistic is used. The behavior along the variation of center location $ c $ is directly dependent on the fixed value of $ r $.
+After training, we generate samples from the simulation process by fixing one of the latent factor and traversing along the other. 
+The plots on the left side of \ref{fig:proposals} depicts the traversals of the true latent space we sample the domes from. 
+We then push these generated examples through the encoder to obtain their respective proposal distributions. 
+The geometry in which the means of these distributions vary gives us an idea about the correctness of the mappings. 
+This can be traced from the plots on the right in \ref{fig:proposals}. There, we observe gross incorrectness in the mapping of latent representations. For example, we can conclude right away that domes with extremely small radius $ r $ will likely go undetected if only the latent space statistic is used. The behavior along the variation of center location $ c $ is directly dependent on the fixed value of $ r $.
 
 Overall, the findings are in agreement with our rationale behind the proposed statistic outlined in \ref{sec:proposed-statistic}. To reiterate, learned latent representations may not correctly be associated with the likelihood of observing sample due to incorrect mappings. This, in turn, will lead to an incorrect out-of-control likelihood assignment of an observed profile in Phase-II, if the monitoring statistic being used is a function of the latent representations only.
 
@@ -824,7 +816,7 @@ two important behavior: the posterior gets distorted beyond two or
 three standard deviations, and the representations are partially entangled
 in line with the behavior of its encoder depicted in \ref{fig:proposals}.
 To see how this will help to detect disturbances in latent space,
-consider a gasket that is extremely small in terms of the radius (i.e.,
+consider a dome that is extremely small in terms of the radius (i.e.,
 small $r$) or at the very margins of the grid in terms of center
 location (i.e., center location $c$ far from 0.5). Looking at \ref{fig:manifold_vae},
 we can observe that the decoder simply cannot generate such a sample
@@ -838,7 +830,7 @@ to the extrapolation issues in the decoder.
 
 \begin{figure}[H]
 \includegraphics[width=0.9\linewidth]{manifold_vae.pdf} \caption{Latent space traversal and the response of the decoder of a VAE with
-2-dimensional latent codes and trained with in-control gasket samples.
+2-dimensional latent codes and trained with in-control dome samples.
 Each row represents which latent dimension is traversed while the
 other dimension is fixed at zero. Each column represents what value
 is assigned to that latent dimension that is represented by the row

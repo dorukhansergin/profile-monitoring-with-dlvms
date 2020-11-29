@@ -828,8 +828,14 @@ Section 4.1: I don't recognize this as the gasket bead example from Shi,
 Ans:
 \series default
 \bar default
- We agree that this is not exactly the gasket example and therefore we have
- revised it.
+ Thank you for this comment.
+ We actually did not claim it is the same but it is only inspired, especially
+ in the sense that one variation is affecting the location of the peak of
+ the profile while the other affect the shape.
+ On the other hand, it is our mistake that we kept the wording gasket bead
+ because just as your comment suggests, a 2D point cloud with a circular
+ shape does not have much connection to the gasket bead component anymore.
+ We made sure all the related wordings are changed to dome.
 \end_layout
 
 \end_deeper
