@@ -717,26 +717,27 @@ outlined in \ref{sec:methodology:procedure} and we use VAE models
 with the architecture described in \ref{subsec:Model-Architectures}.
 
 \subsection{Simulation Setup}
+\label{sec:simsetting} 
 
-\label{sec:simsetting} We first evaluate the performance of the deep
+We first evaluate the performance of the deep
 latent variable models in a simulation setting inspired by the work
 of \textcite{Shi2016-tg}. The simulation procedure produces 2D structured
 point clouds that resemble the scanned topology of a gasket bead.
 Let each pixel on a $64$ by $64$ grid be denoted by a tuple $\mbp=(p_{0},p_{1})$.
 The values of the tuples stretch from $0$ to $1$, equally spaced,
 left to right and bottom-up. Each tuple takes a value based on its
-location through a function $\mbp\mapsto f(\mbp;\czero,r)+\epsilon$,
+location through a function $\mbp\mapsto f(\mbp;c,r)+\epsilon$,
 where $\epsilon\sim\Norm(0,1\times10^{-2})$ is i.i.d Gaussian noise.
 The function $f$ is parameterized by the horizontal center location
-of the bead $\czero$, and the radius of the bead $r$. The vertical
+of the bead $c$, and the radius of the bead $r$. The vertical
 center of the bead is fixed to be at the center. Given any parameter
-set $\{c_{0},r\}$, each pixel $\mbp$ can be evaluated with the following
+set $\{c,r\}$, each pixel $\mbp$ can be evaluated with the following
 logic: 
 \begin{equation}
-\begin{split}g(\mbp;c_{0},r) & =1-\frac{(p_{0}-\czero)}{r}^{2}-\frac{(p_{1}-0.5)}{r}^{2}\\
-f(\mbp;c_{0},r) & =\begin{cases}
-\sqrt{g(\mbp;c_{0},r)} & \mbox{if }g(\mbp;c_{0},r)\geq0\\
-0 & \mbox{if }g(\mbp;c_{0},r)<0
+\begin{split}g(\mbp;c,r) & =1-\frac{(p_{0}-c)}{r}^{2}-\frac{(p_{1}-0.5)}{r}^{2}\\
+f(\mbp;c,r) & =\begin{cases}
+\sqrt{g(\mbp;c,r)} & \mbox{if }g(\mbp;c,r)\geq0\\
+0 & \mbox{if }g(\mbp;c,r)<0
 \end{cases}
 \end{split}
 \label{eq:gasketfun}
@@ -744,8 +745,9 @@ f(\mbp;c_{0},r) & =\begin{cases}
 
 The samples are best visualized as grayscale images as shown in \ref{fig:gasketgrid}
 below. 
-\begin{figure}[H]
-\centering{}\label{fig:gasketgrid} \includegraphics[width=0.9\linewidth]{gasket.pdf}
+
+\begin{figure}[t]
+\centering{}\label{fig:gasketgrid} \includegraphics[width=0.5\linewidth]{gasket.pdf}
 \caption{Gasket profiles depicted as grayscale images simulated with radius
 and center location they coincide with on the axes.}
 \end{figure}
@@ -753,7 +755,7 @@ and center location they coincide with on the axes.}
 We define the sources of variation in in-control gasket beads by two
 latent variables sampling from independent Gaussian distributions:
 \begin{equation}
-\begin{split}\czero\sim\Norm(0.5,1\times10^{-2})\\
+\begin{split}c\sim\Norm(0.5,1\times10^{-2})\\
 r\sim\Norm(0.2,6.25\times10^{-4})
 \end{split}
 \end{equation}
@@ -761,10 +763,10 @@ r\sim\Norm(0.2,6.25\times10^{-4})
 Finally, we will consider the following four types of out-of-control
 variation patterns for the system:
 \begin{itemize}
-\item \textbf{Location shift:} the mean of the process that generates $\czero$
+\item \textbf{Location shift:} the mean of the process that generates $c$
 is altered by an amount $\delta$ as in 
 \[
-\czero\sim\Norm(0.5+\delta\times10^{-2},1\times10^{-2})
+c\sim\Norm(0.5+\delta\times10^{-2},1\times10^{-2})
 \]
 \item \textbf{Width shift:} the mean of the process that generates $a$
 is perturbed by an amount $\delta$ as in
@@ -774,12 +776,12 @@ r\sim\Norm(0.2+\delta\times10^{-4},6.25\times10^{-4})
 \item \textbf{Mean shift}: all the pixels are added an additive disturbance
 $\delta$ as in 
 \[
-f(\mbp;c_{0},r)\leftarrow f(\mbp;c_{0},r)+\delta
+f(\mbp;c,r)\leftarrow f(\mbp;c,r)+\delta
 \]
 \item \textbf{Magnitude shift:} all the pixels are added a multiplicative
 disturbance $\delta$ as in 
 \[
-f(\mbp;c_{0},r) \leftarrow f(\mbp;c_{0},r)*\delta
+f(\mbp;c,r) \leftarrow f(\mbp;c,r)*\delta
 \]
 \end{itemize}
 Here, $\delta$ is the intensity of the change. Note that the location
