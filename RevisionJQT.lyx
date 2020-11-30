@@ -72,6 +72,7 @@
 \html_css_as_file 0
 \html_be_strict false
 \author -1806609307 "Hao yan"
+\author -767166615 "Dorukhan Sergin"
 \end_header
 
 \begin_body
@@ -170,20 +171,79 @@ Neural Network Architectures and Training: The authors propose convolutional
 Ans:
 \series default
 \bar default
- Thank you for the comments about the hyper parameter tuning.
- The reason that we choose Leakly ReLU is because xxx papers use it in xxx.
+ Thank you for th
+\change_inserted -767166615 1606709977
+is important comment.
+ We made the following changes to Section3.3:
+\end_layout
+
+\begin_layout Itemize
+
+\change_inserted -767166615 1606710006
+We added the reference on which we base our CNN architecture (Higgins et
+ al.
+ 2017)
+\end_layout
+
+\begin_layout Itemize
+
+\change_inserted -767166615 1606710421
+We added the reference for why we chose Leaky ReLU with a negative slope
+ of 0.2 for activation (Radford, Metz and Chintala 2016).
+\end_layout
+
+\begin_layout Itemize
+
+\change_inserted -767166615 1606710398
+We added the reference on which we base the parameters for Adam optimizer
+ (Kingma and Ba 2015).
+\end_layout
+
+\begin_layout Itemize
+
+\change_inserted -767166615 1606710294
+We added the extra paragraph that starts with 
+\begin_inset Quotes eld
+\end_inset
+
+In our experiments, the architecture...
+\begin_inset Quotes erd
+\end_inset
+
+ in which we explain the rationale behind our choice of how hyperparameters
+ are chosen.
+ We claim that the selection is robust since the same setting worked well
+ for two datasets that are drastically different: the simulation set and
+ the case study.
+ Nevertheless, we leave an open door.
+ We state that our choices are based on the VAE convergence and we provide
+ advise to the practitioners that if they need make adjustments, they should
+ do it with respect to this indicator.
+\change_deleted -767166615 1606709047
+e comments about the hyper parameter tuning
+\change_unchanged
+.
+ 
+\change_deleted -767166615 1606709150
+The reason that we choose Leakly ReLU is because xxx papers use it in xxx.
 \end_layout
 
 \begin_layout Standard
+
+\change_deleted -767166615 1606709150
 Furthermore, we do have perform a hyperparameter tuning through cross-validation
  and below is the guidelines for hyperparamter optimization.
 \end_layout
 
 \begin_layout Standard
+
+\change_deleted -767166615 1606709150
 We do agree that advanced hyperparamter optimization algorithm including
  Bayesian optimization can be used and combined with the techniques provided
  in the paper and can be discussed.
  
+\change_unchanged
+
 \end_layout
 
 \end_deeper
@@ -365,31 +425,8 @@ Ans:
 \series default
 \bar default
  Thank you for this important suggestion.
- Given that 
-\change_deleted -1806609307 1606628547
-the name of 
-\change_unchanged
-the 
-\change_deleted -1806609307 1606628557
-family of 
-\change_unchanged
-models we
-\change_inserted -1806609307 1606628565
- are
-\change_unchanged
- us
-\change_inserted -1806609307 1606628567
-ing
-\change_deleted -1806609307 1606628566
-e
-\change_unchanged
- 
-\change_deleted -1806609307 1606628569
-are
-\change_inserted -1806609307 1606628573
-belong to the
-\change_unchanged
- latent-variable models, it is quite understandable that the word 
+ Given that the models we are using belong to the latent-variable models,
+ it is quite understandable that the word 
 \begin_inset Quotes eld
 \end_inset
 
@@ -397,47 +434,11 @@ latent variable-based
 \begin_inset Quotes erd
 \end_inset
 
- may cause confusions
-\change_inserted -1806609307 1606628706
- on which statistics it actually refer to, either (9) or (10)
-\change_unchanged
-.
- 
-\change_inserted -1806609307 1606628655
-To make it more clear, 
-\change_deleted -1806609307 1606628662
-The distinction 
-\change_unchanged
-we 
-\change_deleted -1806609307 1606628671
-tried to make was
-\change_inserted -1806609307 1606628672
-will use
-\change_unchanged
- the space in which these two monitoring statistics were computed 
-\change_deleted -1806609307 1606628716
-in
-\change_inserted -1806609307 1606628722
-to refer to these two statistics
-\change_unchanged
-.
- Thus, we 
-\change_deleted -1806609307 1606628753
-renamed
-\change_inserted -1806609307 1606628754
-referred
-\change_unchanged
- 
-\change_deleted -1806609307 1606628734
-them
-\change_inserted -1806609307 1606628742
-the statistics (10) 
-\change_deleted -1806609307 1606628748
- to
-\change_inserted -1806609307 1606628750
-as the
-\change_unchanged
- 
+ may cause confusions on which statistics it actually refer to, either (9)
+ or (10).
+ To make it more clear, we will use the space in which these two monitoring
+ statistics were computed to refer to these two statistics.
+ Thus, we referred the statistics (10) as the 
 \begin_inset Quotes eld
 \end_inset
 
@@ -445,11 +446,7 @@ residual space statistics
 \begin_inset Quotes erd
 \end_inset
 
- and
-\change_inserted -1806609307 1606628767
- the statistics (9) as the
-\change_unchanged
- 
+ and the statistics (9) as the 
 \begin_inset Quotes eld
 \end_inset
 
@@ -457,10 +454,6 @@ latent space statistics
 \begin_inset Quotes erd
 \end_inset
 
-
-\change_deleted -1806609307 1606628776
- accordingly
-\change_unchanged
 .
  
 \change_inserted -1806609307 1606630566
@@ -501,6 +494,8 @@ at all
  the latent representations learned by deep encoders.
  We agree with your comment that we haven't made that clear enough in the
  paper.
+
+\change_deleted -767166615 1606667954
  
 \change_inserted -1806609307 1606630491
 
@@ -568,15 +563,9 @@ Why are you considering a VAE, as opposed to just an AE, i.e., why do we need
 \end_inset
 
 , so we could still consider the same two 
-\change_deleted -1806609307 1606630694
-T^2
-\change_inserted -1806609307 1606630694
-
 \begin_inset Formula $T^{2}$
 \end_inset
 
-
-\change_unchanged
 -like monitoring statistics for z and for the residuals.
  As I mention in a comment below, I suspect part of the reason for the failure-t
 o-extrapolate is that the assumed p(z) acts like a regularizer and prevents
@@ -584,7 +573,11 @@ o-extrapolate is that the assumed p(z) acts like a regularizer and prevents
  falls outside its region.
  Maybe you would not have this failure-to-extrapolate problem if you use
  a regular AE instead of a VAE.
+
+\change_deleted -767166615 1606681276
  
+\change_unchanged
+
 \end_layout
 
 \begin_deeper
@@ -597,101 +590,40 @@ Ans:
 \bar default
  Thank you for this comment.
  This is indeed an interesting point.
- The major issue 
-\change_deleted -1806609307 1606631188
-with
-\change_inserted -1806609307 1606631188
-of
-\change_unchanged
- using a regular AE 
-\change_inserted -1806609307 1606631220
-is the irregular latent space mapping and 
-\change_deleted -1806609307 1606631265
-anticipating
-\change_inserted -1806609307 1606631269
-the challenge of setting
-\change_deleted -1806609307 1606631280
- how
-\change_unchanged
- the decision boundary 
-\change_deleted -1806609307 1606631284
-should be set 
-\change_unchanged
-around this prior-free cloud of points
-\change_inserted -1806609307 1606631324
- related to the latent-space statistics
-\change_unchanged
-.
+ The major issue of using a regular AE is the irregular latent space mapping
+ and the challenge of setting the decision boundary around this prior-free
+ cloud of points related to the latent-space statistics.
+
+\change_deleted -767166615 1606681188
  
-\change_inserted -1806609307 1606631320
+\change_unchanged
 
 \end_layout
 
 \begin_layout Standard
-
-\change_inserted -1806609307 1606631335
-For example, 
-\change_deleted -1806609307 1606631338
-O
-\change_inserted -1806609307 1606631338
-o
-\change_unchanged
-ne can think of a number of alternatives: (1) fitting a multivariate Gaussian,
- (2) using a minimum enclosing hyperrectangle (whether axis-parallel or
- arbitrarily oriented), (3) using average distance to K-nearest neighbors
- or (4) fitting a Kernel 
-\change_inserted -1806609307 1606631351
-d
-\change_deleted -1806609307 1606631351
-D
-\change_unchanged
-ensity 
-\change_inserted -1806609307 1606631353
-e
-\change_deleted -1806609307 1606631353
-E
-\change_unchanged
-stimation model.
+For example, one can think of a number of alternatives: (1) fitting a multivaria
+te Gaussian, (2) using a minimum enclosing hyperrectangle (whether axis-parallel
+ or arbitrarily oriented), (3) using average distance to K-nearest neighbors
+ or (4) fitting a Kernel density estimation model.
  All these alternatives come with an implicit assumption around the distribution
  of the in-control samples.
  More often than not, it is very unlikely to guess which one will work best
  for any given dataset, especially when deep learning based encoder-decoder
  structures are used against very complicated datasets such as images.
 
-\change_inserted -1806609307 1606631395
+\change_deleted -767166615 1606681188
  
+\change_unchanged
+
 \end_layout
 
 \begin_layout Standard
-
-\change_deleted -1806609307 1606631742
-In this paper, our research goal was not to compare VAE with other methods
- when it comes to profile monitoring, but to propose the most efficient
- statistic given that the practicioner decides to use VAE for some reason.
- This is why we don't think the question you're asking should to be answered
- in this paper.
- Nonetheless, we think it is a very important discussion.
- That's why we ran experiments with regular AE.
-\change_inserted -1806609307 1606631775
 To illustrate the ineffectiveness of the AE method, we ran another set of
  experiments.
- 
-\change_deleted -1806609307 1606631777
-
-\end_layout
-
-\begin_layout Standard
-For fairness, we kept the same convolutional encoder-decoder architecture
- as in VAE
-\change_inserted -1806609307 1606631826
- for the real-case study
-\change_unchanged
-.
- The experiments were run on the same train-validation-test split
-\change_inserted -1806609307 1606631843
- of the rolling image datset
-\change_unchanged
-.
+ For fairness, we kept the same convolutional encoder-decoder architecture
+ as in VAE for the real-case study.
+ The experiments were run on the same train-validation-test split of the
+ rolling image dataset.
  We plot the encoded variables 
 \family roman
 \series medium
@@ -740,59 +672,13 @@ n above.
  in Table 3 in page 28).
  This suggests that AE and VAE behave quite similar regardless of the regulariza
 tion brought up by VAE.
- 
-\change_inserted -1806609307 1606631940
-Overall, we like to conclude that the lack of the extropolation issue is
+ Overall, we like to conclude that the lack of the extrapolation issue is
  an inherent problem of deep neural network including both VAE and AE, which
- has been 
-\change_deleted -1806609307 1606631944
-We really think the phenomena we 
-\change_unchanged
-discuss
-\change_inserted -1806609307 1606631946
-ed
-\change_unchanged
- in Appendix.
-
-\change_inserted -1806609307 1606631948
- 
-\change_unchanged
-B
-\change_deleted -1806609307 1606631950
- is at play here
-\change_unchanged
-.
+ has been discussed in Appendix.
+ B.
  As a result, we kindly reject the suspicion that VAE regularization is
  the culprit.
 \change_inserted -1806609307 1606631836
-
-\end_layout
-
-\begin_layout Standard
-
-\change_inserted -1806609307 1606634157
-Finally, we would like to mention that the advantage of the residual space
- statistics for the VAE method compared to the AE method for anomaly detection
- has been proved in many papers including [1], which is not the major focus
- of this paper.
- In this paper, we emphasize more on finding the most efficient and effective
- statistic for VAE methods, which have been proved to be very useful for
- anomaly detection in literature [1].
-\end_layout
-
-\begin_layout Standard
-
-\change_inserted -1806609307 1606634158
-Here, we made the following adjustment in the revised manuscript as follows:
-\begin_inset Quotes eld
-\end_inset
-
-
-\begin_inset Quotes erd
-\end_inset
-
-
-\change_unchanged
 
 \end_layout
 
@@ -830,18 +716,6 @@ Encoded variables with a regular AE.
 
 \end_inset
 
-
-\change_inserted -1806609307 1606631640
-
-\end_layout
-
-\begin_layout Standard
-
-\change_inserted -1806609307 1606631642
-[1] An, Jinwon, and Sungzoon Cho.
- "Variational autoencoder based anomaly detection using reconstruction probabili
-ty." Special Lecture on IE 2.1 (2015): 1-18.
-\change_unchanged
 
 \end_layout
 
@@ -1186,7 +1060,11 @@ s
 \begin_layout Standard
 In the end, 
 \change_inserted -1806609307 1606635146
-we decide to make the following changes in the revised manuscript: 
+we decide to make the following changes in the revised manuscript:
+\change_deleted -767166615 1606709016
+ 
+\change_inserted -1806609307 1606635146
+
 \end_layout
 
 \begin_layout Itemize
