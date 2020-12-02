@@ -128,7 +128,7 @@ of image profiles obtained from a hot steel rolling process.
 \label{sec:introduction} Profile monitoring has attracted a growing
 interest in the literature in the past decades for its ability to
 construct control charts with much better representations for certain
-types of process measurements\parencite{Woodall2004-bp,Woodall2007-xs,Maleki2018-uo}.
+types of process measurements \parencite{Woodall2004-bp,Woodall2007-xs,Maleki2018-uo}.
 A profile can be defined as a functional relationship between the
 response variables and explanatory variables or spatiotemporal coordinates.
 In this work, we focus on the case where the profiles generated from
@@ -239,24 +239,21 @@ accurately than previous formulations requiring only a single pass
 through the autoencoder.
 \item We give insight into the existing monitoring statistics for latent-variable
 models with a focus on variational autoencoders and classify them
-based on the latent-variable based and residual-based monitoring statistics.
+based on the latent-variable based and residual space monitoring statistics.
 We also show how these statistics are natural extensions to the monitoring
 statistics for traditional dimension reduction methods such as probabilistic
 PCA.
 \item Unlike traditional monitoring statistics for PCA,
-we demonstrate through extensive experiments and give insight on why latent variable-based monitoring
-statistics should not be used due to the two issues related to deep
-neural network encoders: 1) their representations are likely entangled
-2) they will likely fail to extrapolate well beyond the region of
-in-control profiles.
-\item We derive two approximations on the residual-based monitoring statistics
+we demonstrate through extensive experiments and give insight on why latent space monitoring
+statistics should not be used due to the "incorrect" mapping of the latent variable and the encoder will likely fail to extrapolate well beyond the region of in-control profiles.
+\item We derive two approximations on the residual space monitoring statistics
 leveraging on the first-order and second-order Taylor expansion and
 compare with the sampling-based monitoring statistics. We have demonstrated
-that the first-order approximation of the residual-based monitoring
+that the first-order approximation of the residual space monitoring
 statistics gives the best overall detection accuracy and is computationally
 efficient.
 \item We demonstrate the effectiveness of this new formulation on both simulation
-and real-life case studies and conclude that residual-based monitoring
+and real-life case studies and conclude that residual space monitoring
 statistics with deep learning architecture as encoders and decoders
 outperform other monitoring statistics and the traditional non-deep-learning-based
 methods.
@@ -277,12 +274,14 @@ using images from hot-steel rolling processes.
 
 \section{Background \label{sec:Background}}
 
+In this section, we will first briefly review the methodology of Variational Autoencoder (VAE) \parencite{Kingma2013-dl} in \ref{sec:bckgrnd:lvms}. Furthermore, we will review the existing monitoring statistics in the literature based on latent variables models including the PCA methods and VAE methods in \ref{sec:bckgrnd:ReviewPCA} and \ref{sec:bckgrnd:critique}, respectively. 
+
 \subsection{Variational Autoencoders \label{sec:bckgrnd:lvms}}
 
-In this section, we introduce Variational Autoencoder (VAE) \parencite{Kingma2013-dl},
-which is the primary modeling tool in this work. The Gaussian factorized
+In this section, we will first introduce Variational Autoencoder (VAE) \parencite{Kingma2013-dl},
+which is the primary modeling framework in this work. The Gaussian factorized
 latent variable model perspective of VAEs is crucial to understand
-the role of this model in the context of profile monitoring. This
+the role of this model in the context of the profile monitoring. This
 is why we begin with an introduction to latent variable modeling.
 
 Latent variables models are powerful tools to model complex distributions
@@ -317,16 +316,8 @@ and this approximation can be obtained through marginalization:
 \[
 p_{\mbtheta}(\mbx)=\int p_{\mbtheta}(\mbx,\mbz)d\mbz
 \]
-Finally, in literature, there have been discussions about whether
-the independent latent structure assumption $\pz=\Norm(\mbz;0,\mbI_{r})$
-can lead to the discovery of the true disentangled variations, a task
-also known as disentangled representation learning \parencite[Sec. 3.5]{bengio2013representation}.
-Disentangled representations are useful to represent variations in
-latent variations due to their ability to separate the independent
-factors. However, a discussion on what disentangled representation
-implies for profile monitoring is necessary. We are interested in
-whether and if so, how such representations will be critical for profile
-monitoring.
+% Finally, in literature, there have been discussions about whether the independent latent structure assumption $pz=\Norm(\mbz;0,\mbI_{r})$ can lead to the discovery of the true disentangled variations, a task also known as disentangled representation learning \parencite[Sec. 3.5]{bengio2013representation}. Disentangled representations are useful to represent variations in latent variations due to their ability to separate the independent factors. However, a discussion on what disentangled representation implies for profile monitoring is necessary. We are interested in whether and if so, how such representations will be critical for profile monitoring.
+% I think we delete all about disentanglement
 
 A famous member of the family of models described above is the probabilistic
 principal component analysis (PPCA) \parencite{tipping1999probabilistic}.
@@ -360,8 +351,8 @@ deep neural networks can transfer such prior to model a wide variety
 of densities to model the training data \parencite{kingma2019introduction}.
 Unlike PPCA, these models will not have analytical solutions due to
 the complex nature of the neural network used. Like most other deep
-learning models, their parameters have to be optimized via gradient
-descent for maximum likelihood. The problem becomes even harder given
+learning models, their parameters are often optimized via various variants of stochastic gradient 
+descent optimizers. The problem becomes even harder given
 the observation that the posterior $\decoding$ takes meaningful values
 only for a small sub-region within $\R^{r}$. This makes sampling
 from the prior $\pz$ to estimate the likelihood prohibitively expensive.
@@ -369,7 +360,7 @@ Both models work around this problem using the importance sampling
 framework \parencite[532]{bishop2006pattern}, where they introduce
 another network (called \textit{recognition} or \textit{encoder})
 to approximate a proposal distribution $\encoding$ ---parametrized
-by $\mbphi$--- which will hopefully sample latent variables from
+by $\mbphi$--- which aims to sample latent variables from
 a much smaller region that is more likely to produce higher posterior
 densities for a given input $\mbx$. In fact, PPCA can be treated
 as a special case of VAE, where the decoder is modeled by linear transformation.
@@ -379,14 +370,14 @@ Once the two networks are trained, the log-likelihood $\log\ptheta(\mbx)$
 can be approximated by a Monte Carlo sampling procedure with $L$
 iterations \parencite[30]{kingma2019introduction}: 
 \begin{equation}
-\log\ptheta(\mbx)\approx\log\frac{1}{L}\sum_{l=1}^{L}\frac{\ptheta(\mbx,\mbz^{(l)})}{\qphizgivenx{\mbz^{(l)}}{\mbx}}\label{eqn:SummationLL}
+\log\ptheta(\mbx)\approx\log\frac{1}{L}\sum_{l=1}^{L}\frac{\ptheta(\mbx,\mbz^{(l)})}{\qphizgivenx{\mbz^{(l)}}{\mbx}}.\label{eqn:SummationLL}
 \end{equation}
 
-VAEs are trained to maximize the so-called evidence lower bound (ELBO),
-which is deemed a proxy to the likelihood: 
+However, the Monte Carlo sampling procedure is shown to be computational inefficient and the evidence lower bound (ELBO),
+which is deemed a proxy to the likelihood, is often used: 
 \begin{equation}
 \begin{split}\text{ELBO} & \triangleq\log\left(p(\mbx)\right)-\KL{\encoding}{q^{*}(\mbz|\mbx)}\\
- & =\E_{\mbz\sim q_{\mbtheta}}\log\decoding+\KL{\encoding}{p(\mbz)}
+ & =\E_{\mbz\sim q_{\mbtheta}}\log\decoding+\KL{\encoding}{p(\mbz)},
 \end{split}
 \label{eqn:VAELoss}
 \end{equation}
@@ -396,9 +387,9 @@ of interest, while the right-hand side is the tractable expression
 that guides the updating of parameters $\mbtheta,\mbphi$ in an end-to-end
 fashion.
 
-\subsection{Review of $\protect\Tsq$ and $Q$ Statistics in PCA}
+\subsection{Review of $\protect\Tsq$ and $Q$ Statistics in PCA \label{sec:bckgrnd:ReviewPCA}}
 
-\label{sec:bckgrnd:ReviewPCA} Process monitoring via PCA is typically
+Process monitoring via PCA is typically
 undertaken using the $\Tsq$ and $Q$ statistics \parencite{Chen2004-px}.
 The $Q$ statistic for PCA is defined as the reconstruction error
 between the real sample $\mbx$ and the reconstructed sample $\tilde{\mbx}$.
@@ -427,9 +418,9 @@ chi-square distribution can tolerate. As an alternative, non-parametric
 methods are typically used to estimate these limits, such as simple percentiles or kernel density estimators.
 
 \subsection{Review of Previously Proposed Monitoring Statistics
-Proposed for VAE}
+Proposed for VAE \label{sec:bckgrnd:critique} }
 
-\label{sec:bckgrnd:critique} Three works have recently considered
+Three works have recently considered
 VAE for process monitoring, all of which propose different statistic
 formulations for monitoring. \textcite{Zhang2019-lu} propose $H^{2}$, which is basically the
 Mahalanobis distance of the mean of the proposal distribution from standard Gaussian distribution. 
@@ -453,13 +444,20 @@ R & =\frac{1}{L}\sum_{l=1}^{L}-\log q_{\mbtheta}(\mbx\g\mbz^{(l)}),
 \label{eq: DR}
 \end{equation}
 
-$SPE$ in and $R$ are essentially the same quantities up to a constant,
-which makes them identical in the context of monitoring. This is why we will refer to them as $SPE/R$ throughout the rest of the paper.
+$SPE$ in and $R$ are essentially the same quantities up to a constant, which makes them identical in the context of monitoring. This is why we will refer to them as $SPE/R$ throughout the rest of the paper.
 
-A common pattern we observe in these three works is that they claim to formulate direct extensions of the $ \Tsq $ and $ Q $ statistics of PCA-based monitoring.
-This is done by breaking the tractable formulation of \ref{eqn:VAELoss} into two terms: $\E_{\mbz\sim q_{\mbtheta}}\log\decoding$ and $\KL{\encoding}{p(\mbz)}$.
+\section{Methodology \label{sec:methodology}} 
+
+In Section 3, we will start how the concepts of residual space statistics and latent space statistics can be used for VAE and PCA in Section \ref{sec:residual-latent-vae-pca}. Furthermore, we will discuss our refined monitoring statistics designed specific for VAE methods in Section \ref{sec:proposed-statistic}. The implementation details of profile monitoring procedures and neural network architectures are discussed in \ref{sec:methodology:procedure} and \ref{subsec:Model-Architectures}. 
+
+
+
+\subsection{Unifying residual space and Latent space Monitoring Statistics for VAE and PCA} 
+\label{sec:residual-latent-vae-pca}
+
+In this section, we would like to generalize the definition of the $ \Tsq $ and $ Q $ statistics of the PCA-based monitoring for VAE. This can be achieved by breaking the tractable formulation of \ref{eqn:VAELoss} into two terms: $\E_{\mbz\sim q_{\mbtheta}}\log\decoding$ and $\KL{\encoding}{p(\mbz)}$.
 To understand the rationale behind this, we revisit the assumptions of the model described in \ref{eq:gaussian-factorized}.
-Let us formally represent an out-of-control distribution as $p_{\delta}(\mbx)\neq p(\mbx)$.
+Let us formally represent an out-of-control distribution as $p_{\delta}(\mbx)\neq p(\mbx)$, where $\delta$ is the change magnitude in the out-of-control distribution.
 Since $p(\mbx)=\int p(\mbx\g\mbz)p(\mbz)d\mbz$, we can anticipate two
 sources of out-of-control behaviors: a shift in latent distribution
 $p_{\delta}(\mbz)\neq\pz$ or a shift in residual distribution
@@ -506,9 +504,6 @@ Observe that previously proposed formulations mentioned in \ref{sec:bckgrnd:crit
 	\end{centering}
 \end{figure}
 
-\section{Methodology}
-
-\label{sec:methodology}
 
 \subsection{Proposed Monitoring Statistic}
 
@@ -903,8 +898,8 @@ interval estimated around mean detection rates.}
 
 As mentioned, in a real-life process, disturbances on the residual
 space is often more likely than the disturbance in the latent space.
-Therefore, we would recommend the use of residual-based monitoring
-statistics. Among all residual-based monitoring statistics, we conclude
+Therefore, we would recommend the use of residual space monitoring
+statistics. Among all residual space monitoring statistics, we conclude
 that $ERE_{1}$ performance the best considering the accuracy, robustness
 and computational demand. This will be further validated through the
 case study analysis.
@@ -927,7 +922,7 @@ The rest of the procedure followed is outlined in \ref{sec:methodology:procedure
 Same as in the simulation study, to account for randomness in weight
 initialization, we replicate the experiment with 10 different seeds.
 For comparison, we also include the monitoring performance with the
-traditional PCA method with the same residual-based control chart,
+traditional PCA method with the same residual space control chart,
 denoted as PCA-Q. The results are summarized in \ref{tab:rolling_results}
 below.
 
@@ -960,8 +955,7 @@ Fault ID &  &  &  &  &  &  & \tabularnewline
 
 From \ref{tab:rolling_results}, we can observe that $ERE_{1}$ and
 $ERE_{2}$ consistently outperforms all other monitoring statistic
-formulations. The divide between residual space statistics and latent
-variable-based statistics observed in the simulation study is further
+formulations. The divide between residual space statistics and latent space statistics observed in the simulation study is further
 validated here too. The inferiority of latent space statistics
 are much more obvious here in the real case study, as we observe for
 most out-of-control classes the detection rate is simply zero. This
@@ -973,7 +967,7 @@ compared to PCA. It is worth noting that the superiority of VAE over
 PCA for process monitoring was also demonstrated in the earlier works
 in various applications \parencite{Zhang2019-lu,wang2019systematic,lee2019process}.
 
-To support our claim of the ineffectiveness of latent variable-based
+To support our claim of the ineffectiveness of latent space
 statistics, we refer the reader to \ref{fig:kde} below. We observe
 how well separated the statistics are for $ERE_{1}$ and $SPE/R$
 while for latent space statistics the obtained values are
@@ -1063,11 +1057,11 @@ Points are annotated by their class IDs. \label{fig:Output-of-the}}
 In this paper, we focused on evaluating Phase-II monitoring statistics
 proposed so far in the literature for VAE and demonstrate that they
 were not performing optimally in terms of accuracy and/or computational
-feasibility. First, we classified the monitoring statistics for latent-variable-based and residual-based and show how these are natural extension of monitoring statistics for PCA.
+feasibility. First, we classified the monitoring statistics in the latent-variable space and residual space and show how these are natural extension of monitoring statistics for PCA.
 Second, we further pointed out two important issues related to the
 latent variables learned by the encoder of VAE, namely, entanglement
 and failure to extrapolate. Based on these issues, unlike PCA, we demonstrated that latent
-variable-based statistics should be discarded altogether with both
+space statistics should be discarded altogether with both
 conceptual explanations and real experiments. Third, we pointed out
 that the residual space statistics based on sampling will require
 too many samples to be computationally feasible. Finally, we proposed
