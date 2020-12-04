@@ -135,11 +135,10 @@ types of process measurements \parencite{Woodall2004-bp,Woodall2007-xs,Maleki201
 A profile can be defined as a functional relationship between the
 response variables and explanatory variables or spatiotemporal coordinates.
 In this work, we focus on the case where the profiles generated from
-the process are high-dimensional (HD)\textit{\emph{, i.e.}}, the number
+the process are high-dimensional \textit{\emph{, i.e.}}, the number
 of such explanatory variables or spatiotemporal coordinates are large.
-Specifically, we focus on sets of HD profiles for which intra-sample
-variation lies on a nonlinear low-dimensional manifold \parencite{Shi2016-tg}.
-Our motivating example of such HD profiles is presented in \ref{fig:Rolling}
+Specifically, we focus on the case where profiles are observed in a high-dimensional space but profile-to-profile variation lie on a nonlinear low-dimensional manifold.
+Our motivating example of such high-dimensional profiles is presented in \ref{fig:Rolling}
 below, in which we exhibit a sample of surface defect image profiles
 collected from a hot steel rolling process.
 
@@ -365,8 +364,7 @@ another network (called \textit{recognition} or \textit{encoder})
 to approximate a proposal distribution $\encoding$ ---parametrized
 by $\mbphi$--- which aims to sample latent variables from
 a much smaller region that is more likely to produce higher posterior
-densities for a given input $\mbx$. In fact, PPCA can be treated
-as a special case of VAE, where the decoder is modeled by linear transformation.
+densities for a given input $\mbx$. The encoder is modeled as another Gaussian distribution $\encoding = \Norm(\mbz;\mu_{\mbphi}(\mbx),\sigma_{\mbphi}(\mbx))$ where the mean and standard deviation of the proposal distribution are inferred via high capacity neural networks $\mu_{\mbphi}$ and $\sigma_{\mbphi}$, respectively.
 
 One important output of a trained VAE is the likelihood estimator.
 Once the two networks are trained, the log-likelihood $\log\ptheta(\mbx)$
