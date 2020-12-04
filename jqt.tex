@@ -171,10 +171,9 @@ trial and error to find the right basis.
 
 In the case that the basis of HD profiles are not known, dimensionality
 reduction techniques are widely used. Principal component analysis
-(PCA) is arguably the most popular method in this context for profile
-data monitoring because of its simplicity, scalability, and good data
+(PCA) is arguably the most popular method in this context for profile monitoring because of its simplicity, scalability, and good data
 compression capability. In \textcite{liu1995control}, PCA is proposed
-to reduce the dimensionality of the streaming data and, $T^{2}$ and
+to reduce the dimensionality of the streaming data where $T^{2}$ and
 $Q$ charts are constructed to monitor the extracted representations
 and residuals, respectively. To generalize PCA methods to monitor
 the complex correlation among the channels of multi-channel profiles,
@@ -182,9 +181,8 @@ the complex correlation among the channels of multi-channel profiles,
 method and apply change point detection methods on the function coefficients.
 Along this line, tensor-based PCA methods are also proposed for multi-channel
 profiles, examples including uncorrelated multi-linear PCA \parencite{paynabar2013monitoring}
-and multi-linear PCA \parencite{grasso2014profile}. Finally, various
-tensor-based PCA methods \parencite{yan2015image} are compared and
-different test statistics are developed for tensor-based process monitoring.
+and multi-linear PCA \parencite{grasso2014profile}. Finally
+tensor-based PCA methods \parencite{yan2015image} are proposed specifically for image profile data.
 
 The main limitation of all the aforementioned PCA-related methods
 is that the expressive power of linear transformations is very limited.
@@ -205,10 +203,8 @@ and related methods. However, the authors only focus on applying manifold
 learning for Phase-I analysis, while the Phase-II monitoring procedure
 is not touched upon.
 
-Deep dimensionality reduction models have been proposed as an alternative
-to classical dimensionality reduction techniques in a handful. Deep
-autoencoders have been proposed for profile monitoring for Phase-I
-analysis in \parencite{Howard2018-op}. \textcite{Yan2016-wa} compared
+In recent years, we observe a surge in deep learning-based solutions to the problem. For instance, deep autoencoders have been proposed for profile monitoring for Phase-I
+analysis in \parencite{Howard2018-op}. In another work, \textcite{Yan2016-wa} compared
 the performance of contractive autoencoders and denoising autoencoders
 for Phase-II monitoring. \textcite{Zhang2018-js} proposed a denoising
 autoencoder for process monitoring. Aside from deterministic deep
@@ -223,45 +219,19 @@ a new monitoring statistic formulation to address this issue.
 
 The contributions of this work are as follows:
 \begin{itemize}
-\item We compare all the existing monitoring statistics for deep latent
-variable models with the focus on the VAE model and propose a better
-monitoring statistic that responds robustly and, in most cases, more
-accurately than previous formulations requiring only a single pass
-through the autoencoder.
-\item We give insight into the existing monitoring statistics for latent-variable
-models with a focus on variational autoencoders and classify them
-based on the latent-variable based and residual space monitoring statistics.
-We also show how these statistics are natural extensions to the monitoring
-statistics for traditional dimension reduction methods such as probabilistic
-PCA.
-\item Unlike traditional monitoring statistics for PCA,
-we demonstrate through extensive experiments and give insight on why latent space monitoring
-statistics should not be used due to the "incorrect" mapping of the latent variable and the encoder will likely fail to extrapolate well beyond the region of in-control profiles.
-\item We derive two approximations on the residual space monitoring statistics
-leveraging on the first-order and second-order Taylor expansion and
-compare with the sampling-based monitoring statistics. We have demonstrated
-that the first-order approximation of the residual space monitoring
-statistics gives the best overall detection accuracy and is computationally
-efficient.
-\item We demonstrate the effectiveness of this new formulation on both simulation
-and real-life case studies and conclude that residual space monitoring
-statistics with deep learning architecture as encoders and decoders
-outperform other monitoring statistics and the traditional non-deep-learning-based
-methods.
+\item We compare the existing monitoring statistics proposed by previous works on VAE-based monitoring and unify them in a framework with respect to their relation to the classic $T^{2}$ and $Q$-charts of PCA.
+\item We highlight an important shortcoming of neural network-based encoders and how it negatively impacts the efficiency of statistics that are derived exclusively from learned latent representations. We demonstrate this on a carefully designed simulation study with explicit control over the actual latent variations.
+\item We explain how statistics that are derived using residuals in the observed space can cover most types of process drifts. We also propose two approximations on the residual space monitoring statistics leveraging on the first-order and second-order Taylor expansion that strikes a better balance between detection accuracy and computational feasibility than previously proposed similar statistics.
+\item We support our claims on both simulation and real-life case study profile datasets.
 \end{itemize}
 %
 The rest of the paper is organized as follows: \ref{sec:Background}
 first introduces variational autoencoders and reviews traditional
 $T^{2}$ and $Q$ charts of PCA as well as the existing monitoring
-statistics for VAE. \ref{sec:methodology} introduces the proposed
-monitoring statistic and gives insights on its meaning and mathematical
-relationship with the traditional PCA methods. \ref{sec:Simulation-Study-Analysis}
-shows the simulation study to demonstrate the performance of the proposed
-method and give insight into why only the residual space statistics
-is recommended and how to make sure it is computationally efficient.
+statistics proposed for VAE. \ref{sec:methodology} introduces our proposed monitoring statistic formulation and the rationale behind how it tackles the shortcomings of existing formulations. \ref{sec:Simulation-Study-Analysis} introduces the simulation process used in this work as well as the manifestations of the aforementioned shortcomings.
 Finally, \ref{sec:case-study} demonstrates the advantages of the
 proposed methodology on a real-life case study,
-using images from hot-steel rolling processes.
+using images from a hot-steel rolling processes.
 
 \section{Background \label{sec:Background}}
 
