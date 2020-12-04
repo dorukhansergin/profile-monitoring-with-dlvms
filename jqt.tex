@@ -142,7 +142,7 @@ Our motivating example of such high-dimensional profiles is presented in \ref{fi
 below, in which we exhibit a sample of surface defect image profiles
 collected from a hot steel rolling process.
 
-\begin{figure}[H]
+\begin{figure}[t]
 \includegraphics[width=0.5\textheight]{profile_examples.pdf} \caption{A collection of 64 by 64 image profiles taken from a hot steel rolling
 process.}
 \label{fig:Rolling}
@@ -781,7 +781,7 @@ purely on the latent distribution $p_{\delta}(\mbz)$ and yet our
 proposed monitoring statistic will capture this behavior well thanks
 to the extrapolation issues in the decoder.
 
-\begin{figure}[H]
+\begin{figure}[t]
 \includegraphics[width=0.9\linewidth]{manifold_vae.pdf} \caption{Latent space traversal and the response of the decoder of a VAE with
 2-dimensional latent codes and trained with in-control dome samples.
 Each row represents which latent dimension is traversed while the
@@ -817,7 +817,7 @@ will evaluate the performance of $ERE_{2}$ and $ERE_{1}$ in Phase-II
 monitoring to evaluate whether the added computational complexity
 for $ERE_{2}$ is justifiable.
 
-\begin{figure}[H]
+\begin{figure}[t]
 \includegraphics[width=0.9\textwidth]{mc_vs_foa.pdf}
 
 \caption{Estimation comparison between Monte Carlo sampling, first-order approximation
@@ -993,7 +993,7 @@ In conclusion, we would like to suggest the use of $ERE_{1}$ for
 deep autoencoders, which is consistent with our findings in the simulation
 study.
 
-\begin{figure}[H]
+\begin{figure}[t]
 \begin{subfigure}[b]{0.3\textwidth}
      \centering
      \includegraphics[width=\textwidth]{SPE.pdf}
@@ -1034,7 +1034,7 @@ and out-of-control steel defect profiles, per each proposed statistic
 type.\label{fig:kde}}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}[t]
 \begin{minipage}[t]{0.25\textwidth}%
 \subfloat[Original profiles\label{fig:Original-profiles}]{\includegraphics[width=0.99\textwidth]{casestudy_orig.pdf}}%
 \end{minipage}\hfill{}%
@@ -1150,7 +1150,7 @@ but there is a serious discrepancy between the approximated and the
 real outside of the region. This is a small yet to the point example
 of out-of-distribution issues with neural networks.
 
-\begin{figure}
+\begin{figure}[t]
 \begin{centering}
 \includegraphics[width=1\textwidth]{rosenbrock.pdf}
 \par\end{centering}
