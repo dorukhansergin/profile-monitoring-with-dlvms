@@ -1055,6 +1055,7 @@ correspondence to the samples on the image to the left. \textbf{Right:
 Points are annotated by their class IDs. \label{fig:Output-of-the}}
 \end{figure}
 
+Finally, we report execution time on our specific machine configuration with respect to this case study. For this study, we utilized a workstation with 6-core Intel(R) Core(TM) i7-5930K CPU @ 3.50GHz CPUs and 4 GeForce GTX 1080 Ti GPUs. Neural network computations are executed on a single GPU and a single CPU core is used for image input/output and preprocessing steps such as resizing to 64-by-64 and grayscale conversion wherever needed. A single GPU has 12GB memory and the model parameters take up about 730MBs. GPUs can leverage parallel computation of multiple images, therefore the remaining memory can be used to stock up images so their execution becomes parallel. An example of a batch of 128 images take up only 63MBs more space in the GPU's memory and the per image execution time is roughly 0.8 miliseconds. On the extreme case of using a single image per batch, average per image execution time is around 2 miliseconds.
 
 \section{Conclusion \label{sec:conclusions}}
 
