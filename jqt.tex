@@ -94,7 +94,10 @@
 %\usepackage{subfig}
 %\makeatother
 
-\usepackage[style=chicago-authordate,isbn=false,url=false,eprint=false]{biblatex}
+\usepackage[style=chicago-authordate,isbn=false,url=false,eprint=false,minbibnames=10, maxbibnames=10,maxcitenames=3,firstinits=true]{biblatex}
+\DeclareFieldFormat[article,inbook,book,incollection,inproceedings,patent,thesis,unpublished]{citetitle}{#1}
+\DeclareFieldFormat[article,inbook,incollection,inproceedings,patent,thesis,unpublished]{title}{#1} 
+
 \providecommand{\propositionname}{Proposition}
 \providecommand{\theoremname}{Theorem}
 
