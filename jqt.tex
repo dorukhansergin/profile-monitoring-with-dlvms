@@ -633,15 +633,10 @@ transpose layers are used to upscale latent codes back to ambient
 dimensions.
 
 The sequential order of the computational graphs used for this study
-is summarized in \ref{tab:model-architectures}. The encoder will
-output $2r$ nodes, which is a concatenation of the inferred posterior
-mean $\mbmu_{\mbphi}(\mbx)$and variance $\diag(\mbsigma(\mbx))$,
-both are of length $r$. The number of epochs per training is fixed
-at $1000$ and the learning rate and batch size are fixed at $0.001$
-and $64$ respectively. Adam algorithm is used for first-order gradient
-optimization with parameters $(\beta_{1,}\beta_{2})=(0.9,0.999)$.
-The model checkpoint is saved at every epoch where a better validation
+is summarized in \ref{tab:model-architectures}. The architecture choice is directly based on the encoder-decoder architecture that was used in \textcite{higgins2017beta}, except that we use Leaky ReLU with a negative slope of 0.2 as the activation which is advised in \textcite{radford2015unsupervised} for better gradient flow. The encoder  outputs $2r$ nodes, which is a concatenation of the inferred posterior mean $\mbmu_{\mbphi}(\mbx)$ and variance $\diag(\mbsigma(\mbx))$, both are of length $r$. The number of epochs per training is fixed at $1000$ and the learning rate and batch size are fixed at $0.001$ and $64$ respectively, both are chosen empirically to guarantee a meaningful convergence. Adam algorithm is used for first-order gradient optimization with parameters $(\beta_{1,}\beta_{2})=(0.9,0.999)$ as advised in \textcite{KingmaB14}. The model checkpoint is saved at every epoch where a better validation
 loss is observed. The latest checkpoint is used as the final model.
+
+In our experiments, the architecture and the training conditions described above are generated with respect to the convergence of the VAE objective on in-control dataset because in real life, the practitioner will not have access to out-of-control samples. The same setting worked well for both the simulation dataset and the case study dataset we consider in this paper. This gives us confidence that the selection is robust from one set to the other. However, a different dataset might benefit from adjustments to the above conditions. The adjustments should be based on monitoring the convergence of the VAE objective, as the procedure will benefit from a better approximated in-control distribution.
 
 Image profiles comprise our simulation and case study, which will be introduced to the reader in the upcoming sections. This is why we only consider convolutional architectures. However, the monitoring statistics we propose in \ref{eq:ere-1} and \ref{eq:ere-2} are adaptable to other flavors of VAE architectures as well. 
 
