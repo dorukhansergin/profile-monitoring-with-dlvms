@@ -991,28 +991,20 @@ Finally, we report execution time on our specific machine configuration with res
 In this paper, we focused on evaluating Phase-II monitoring statistics
 proposed so far in the literature for VAE and demonstrate that they
 were not performing optimally in terms of accuracy and/or computational
-feasibility. First, we classified the monitoring statistics in the latent-variable space and residual space and show how these are natural extension of monitoring statistics for PCA.
-Second, we further pointed out two important issues related to the
-latent variables learned by the encoder of VAE, namely, entanglement
-and failure to extrapolate. Based on these issues, unlike PCA, we demonstrated that latent
-space statistics should be discarded altogether with both
-conceptual explanations and real experiments. Third, we pointed out
-that the residual space statistics based on sampling will require
-too many samples to be computationally feasible. Finally, we proposed
-a novel formulation by deriving the Taylor expansion of expected reconstruction
-error that addresses both accuracy and computational efficiency.
+feasibility. 
+First, we classified these statistics into two groups and showed how they are designed as an extension to the classical statistics used for PCA.
+Then we pointed out that such extension is not as straightforward as it seems due to the incorrectness of learned latent representations by VAEs and also due to the failure to extrapolate behavior. 
+This led us to the conclusion that only residual space statistics should be monitoring, regardless of the anticipated source of the shift in the process.
+We also pointed out that the residual space statistics based on sampling will require
+too many samples to be computationally feasible. 
+Finally, we proposed a novel formulation by deriving the Taylor expansion of the expected reconstruction error that addresses the computational efficiency issue in residual space statistics.
 
-To support our claim, our simulation study first demonstrated the
-entanglement and lack of extrapolation of latent space statistics
-and its inferior Phase-II monitoring performance. It further showed
-that the derived statistics based on the residual space is more robust
-and more accurate than all the other statistics proposed so far. Finally,
-we validated the superiority of our formulation on a real-life case
-study, where steel defect image profiles are used.
+We put our claims to test with a carefully designed simulation study.
+This study demonstrated clearly the discrepancy between the true latent variations and its learned counterparts, and its implications to the process monitoring performance of latent space statistics.
+We also reinforced our claim that the derived statistics based on the residual space is overall more robust and accurate than all the other statistics proposed so far. 
+Finally, we validated the superiority of our formulation on a real-life case study, where steel defect image profiles are used.
 
-Finally, one of the future work is to extend the proposed method for other types of data format. For example, for sequential profiles (e.g. time series), we will evaluate the use of one-dimensional convolutional layers or a recurrent neural network for encoder and decoder structures as outlined in \textcite{ChungKDGCB15}. Different variational layers are needed but beyond the scope of the proposed work. 
-
-% A modification required for that method would be using a variational layer only between the last hidden state of the encoder and the initial generating state of the decoder, as opposed to having a VAE at every time step. In other words, the recurrent layers would be used as a way to encode the sequence-dependent signal into a vector, just as convolutional layers do the same for spatially-dependent signal. Given that modification, the proposed monitoring statistics can be used right away.
+As future work, we hope to extend the proposed method for other types of data format. For example, for sequential profiles (e.g. time series), one-dimensional convolutional layers or a recurrent neural network for encoder and decoder structures as outlined in \textcite{ChungKDGCB15} can be used. We are also curious to see how new developments in deep learning research will affect profile monitoring in high dimensions in the future. Specifically, developments in deep latent variable models and representation learning may have important implications.
 
 \printbibliography
 
