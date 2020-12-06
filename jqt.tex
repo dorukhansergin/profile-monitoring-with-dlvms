@@ -126,7 +126,7 @@ response variables and explanatory variables or spatiotemporal coordinates.
 In this work, we focus on the case where the profiles generated from
 the process are high-dimensional, \ie, the number
 of such explanatory variables or spatiotemporal coordinates are large.
-Specifically, we focus on the case where profiles are observed in a high-dimensional space but profile-to-profile variation lies on a nonlinear low-dimensional manifold.
+Specifically, we focus on the case where profiles are observed in a high-dimensional space, but profile-to-profile variation lies on a nonlinear low-dimensional manifold.
 Our motivating example of such high-dimensional profiles is presented in \ref{fig:Rolling}
 below, in which we exhibit a sample of surface defect image profiles
 collected from a hot steel rolling process.
@@ -137,42 +137,34 @@ process.}
 \label{fig:Rolling}
 \end{figure}
 
-In literature, profile monitoring techniques can be categorized by
-their assumptions on the type of functional relationship. Linear profile
-monitoring can be considered the most basic profile monitoring technique,
-in which it is assumed that the profile can be represented by a linear
-function. The idea is to extract the slope and the intercept from
-each profile and monitor its coefficients \parencite{zhu2009monitoring}.
-Regularization techniques can also be used in linear profile estimation.
-For example, \textcite{zou2012lasso} utilizes a multivariate linear
-regression model for profiles with the LASSO penalty and use the regression
-coefficients for Phase-II monitoring. However, the linearity assumption
-can be quite limiting. To address this challenge, nonlinear parametric
-models are proposed \parencite{Williams2007-ty,Jensen2009-tu,Noorossana2011-oj,Maleki2018-uo}.
+In literature, profile monitoring techniques can be categorized by their assumptions on the type of functional relationship. 
+For example, linear profile monitoring techniques assumed that the profiles can be represented by a linear function. 
+The idea is to extract the slope and the intercept from each profile and monitor its coefficients \parencite{zhu2009monitoring}.
+Regularization techniques can also be used in linear profile estimation. For example, \textcite{zou2012lasso} utilizes a multivariate linear regression model for profiles with the LASSO penalty and use the regression coefficients for Phase-II monitoring. 
+However, the linear assumption can be quite limiting. To address this challenge, nonlinear parametric models are normally proposed \parencite{Williams2007-ty,Jensen2009-tu,Noorossana2011-oj,Maleki2018-uo}.
 These models assume an explicit family of parameterized functions
 and, their parameters are estimated via nonlinear regression. In both
 cases, the drawback of both linear and nonlinear parametric models
 is that they assume the parametric form is known beforehand, which
-might not always be the case.
+might not always be the case in practice.
 
 Another large body of profile monitoring research focuses on the type
 of profiles where the basis of the representation is assumed to be
 known, but the coefficients are unknown. For instance, to monitor
 smooth profiles, various non-parametric methods based on local kernel
 regression \parencite{zou2008monitoring,qiu2010nonparametric} and
-splines \parencite{chang2010statistical} are developed. To monitor
+splines \parencite{chang2010statistical,Yan2018-ux} are developed. To monitor
 the non-smooth waveform signals, a wavelet-based mixed effect model
 is proposed \parencite{paynabar2011characterization}. However, for
 all the aforementioned methods, it is assumed that the nonlinear variation
 pattern of the profile is well captured by a known basis or kernel.
 Usually, there is no guidance on selecting the right basis of the
 representation for the original data and it requires
-trial and error to find the right basis.
+many trial and errors to find the right basis.
 
 In the case that the basis of HD profiles are not known, dimensionality
 reduction techniques are widely used. Principal component analysis
-(PCA) is arguably the most popular method in this context for profile monitoring because of its simplicity, scalability, and good data
-compression capability. In \textcite{liu1995control}, PCA is proposed
+(PCA) is arguably the most popular method in this context for profile monitoring because of its simplicity, scalability, and good data compression capability. In \textcite{liu1995control}, PCA is proposed
 to reduce the dimensionality of the streaming data where $T^{2}$ and
 $Q$ charts are constructed to monitor the extracted representations
 and residuals, respectively. To generalize PCA methods to monitor
@@ -181,15 +173,15 @@ the complex correlation among the channels of multi-channel profiles,
 method and apply change point detection methods on the function coefficients.
 Along this line, tensor-based PCA methods are also proposed for multi-channel
 profiles, examples including uncorrelated multi-linear PCA \parencite{paynabar2013monitoring}
-and multi-linear PCA \parencite{grasso2014profile}. Finally
-tensor-based PCA methods \parencite{yan2015image} are proposed specifically for image profile data.
+and multi-linear PCA \parencite{grasso2014profile}, and  
+various tensor-based decomposition methods \parencite{yan2015image}.
 
 The main limitation of all the aforementioned PCA-related methods
 is that the expressive power of linear transformations is very limited.
 Furthermore, each principal component represents a global variation
 pattern of the original profiles, which is not efficient at capturing
 the local spatial correlation within a single profile. Therefore,
-PCA requires much larger latent space dimensions than the dimension
+PCA requires much larger latent-space dimensions than the dimension
 of the actual latent space, yielding a sub-optimal and overfitting-prone
 representation. This phenomenon hinders profile monitoring performance.
 
@@ -219,9 +211,10 @@ a new monitoring statistic formulation to address this issue.
 
 The contributions of this work are as follows:
 \begin{itemize}
-\item We compare the existing monitoring statistics proposed by previous works on VAE-based monitoring and unify them in a framework concerning their relation to the classic $T^{2}$ and $Q$-charts of PCA.
+\item We compare the existing monitoring statistics proposed by previous works on VAE-based monitoring and unify them into the latent-space and residual-space monitoring statistics. We also prove the mathematical equivalency of these statistics with the classical $T^{2}$ and $Q$-charts of PCA in the linear setting.
 \item We highlight an important shortcoming of neural network-based encoders and how it negatively impacts the efficiency of statistics that are derived exclusively from learned latent representations. We demonstrate this on a carefully designed simulation study with explicit control over the actual latent variations.
-\item We explain how statistics that are derived using residuals in the observed space can cover most types of process drifts. We also propose two approximations on the residual space monitoring statistics leveraging on the first-order and second-order Taylor expansion that strikes a better balance between detection accuracy and computational feasibility than previously proposed similar statistics.
+\item We explain why residual-space monitoring statistics can cover most types of process drifts in both conceptual illustration and real simulation study. 
+\item We propose two approximations on the residual-space monitoring statistics leveraging on the first-order and second-order Taylor expansion that strikes a better balance between detection accuracy and computational feasibility than previously proposed similar statistics.
 \item We support our claims on both simulation and real-life case study profile datasets.
 \end{itemize}
 %
@@ -234,13 +227,15 @@ proposed methodology on a real-life case study,
 using images from a hot-steel rolling process.
 
 \section{Background \label{sec:Background}}
+In this section, we review the variational autoencoder (VAE) in \ref{sec:bckgrnd:lvms}. We will then review the $T^2$ and $Q$ statistics for PCA methods in \ref{sec:bckgrnd:ReviewPCA}. Finally, we will briefly review the existing works profile monitoring works utilizing the VAE in \ref{sec:bckgrnd:critique}.
 
 \subsection{Variational Autoencoders \label{sec:bckgrnd:lvms}}
 
-In this section, we review the variational autoencoder (VAE) which was first introduced by \textcite{Kingma2013-dl} and soon became one of the most prominent probabilistic models in the literature. The Gaussian factorized latent variable model perspective of VAEs is crucial to understand the role of this model in the context of profile monitoring. This
-is why we begin with an introduction to latent variable modeling.
+We will first review the variational autoencoder (VAE), which was first introduced by \textcite{Kingma2013-dl}. VAE soon became one of the most prominent probabilistic models in the literature. 
+The Gaussian factorized latent variable model perspective of VAEs is crucial to understand the role of this model in the context of profile monitoring. 
+This is why we begin with an introduction to latent variable modeling.
 
-Let us assume we observe samples $\mbx\in\R^{d}$ in a high-dimensional space, generated by a random multivariate process that can be described by the density function $ p(\mbx) $. We also believe that there is redundancy in this observation and sample-to-sample variation can be explained well by a latent representation $\mbz\in\R^{r}$ where $ r << d $. 
+Let us assume we observe samples $\mbx\in\R^{d}$ in a high-dimensional space, generated by a random multivariate process that can be described by the density function $ p(\mbx) $. We also believe that there is redundancy in this observation and sample-to-sample variation can be explained well by a latent representation $\mbz\in\R^{r}$, where the latent dimension $ r \ll d $. 
 Latent variable models are powerful tools to model such complex distributions. The joint density $ p(\mbx,\mbz) $ is factorized into the distribution of the latent variables $\pz$ and the conditional distribution of observed variables given latent variables $p(\mbx\g\mbz)$. A typical example of latent variable models is when the joint distribution is Gaussian factorized as in \ref{eq:gaussian-factorized}. 
 \begin{equation}
 \begin{split}\pz & =\Norm(\mbz;0,\mbI_{r})\\
@@ -332,13 +327,12 @@ that guides the updating of parameters $\mbtheta,\mbphi$ in an end-to-end
 fashion.
 
 \subsection{Review of $\protect\Tsq$ and $Q$ Statistics in PCA \label{sec:bckgrnd:ReviewPCA}}
-
-Profile monitoring via PCA is typically
-done using the $\Tsq$ and $Q$ statistics \parencite{Chen2004-px}.
+We will then review the profile monitoring statistics in the principal component analysis (PCA). 
+Profile monitoring via PCA is typically done using the $\Tsq$ and $Q$ statistics \parencite{Chen2004-px}.
 The $Q$ statistic for PCA is defined as the reconstruction error
 between the observed profile $\mbx$ and the reconstructed profile $\tilde{\mbx}$.
-The geometric interpretation of $ Q $ is that it quantifies how far the sample is away from the
-learned subspace of in-control samples. $\Tsq$, on the other hand, quantifies the shift along the directions of the most dominant principal components.
+The geometric interpretation of $ Q $ statistics is that it quantifies how far the sample is away from the
+learned subspace of in-control samples. $\Tsq$ statistics on the other hand, quantifies the shift along the directions of the most dominant principal components.
 
 The $\Tsq$ statistic and $Q$ statistic for PCA are defined formally as follows:
 \begin{equation}
@@ -359,12 +353,13 @@ of PPCA \parencite[43-44]{Chiang2001-nu}. However, using such measures
 for high-dimensional nonlinear profiles is prohibitively error-prone
 as both $r$ and $d$ will be much higher than the assumptions of
 chi-square distribution can tolerate. As an alternative, non-parametric
-methods are typically used to estimate these limits, such as simple percentiles or kernel density estimators.
+methods are typically used to estimate these limits, such as simple percentiles or kernel density estimators. 
+
 
 \subsection{Review of Previously Proposed Monitoring Statistics
 Proposed for VAE \label{sec:bckgrnd:critique} }
 
-Three works have recently considered
+In this section, we will briefly review several proposed monitoring statistics for variational autoencoders (VAE).s Three works have recently considered
 VAE for process monitoring, all of which propose different statistic
 formulations for monitoring. \textcite{Zhang2019-lu} propose $H^{2}$, which is basically the
 Mahalanobis distance of the mean of the proposal distribution from standard Gaussian distribution. 
@@ -392,50 +387,51 @@ $SPE$ in and $R$ are essentially the same quantities up to a constant, which mak
 
 \section{Methodology \label{sec:methodology}} 
 
-In this section, we start by explaining how previously proposed statistics for VAE-based monitoring are modeled as extensions of their PCA-based monitoring counterparts, in \ref{sec:residual-latent-vae-pca}. Then, we will reveal the pitfalls of this extension concerning the peculiar behaviors of neural networks in \ref{sec:proposed-statistic}. Against the backdrop of these pitfalls, we will propose a novel monitoring statistic formulation. Lastly, we will outline the implementation details of profile monitoring procedures and neural network architectures we use in this study in \ref{sec:methodology:procedure} and \ref{subsec:Model-Architectures}, respectively. 
+In this section, we start by explaining how previously proposed statistics for VAE-based monitoring are modeled as extensions of their PCA-based monitoring counterparts, in \ref{sec:residual-latent-vae-pca}. Then, we will reveal the pitfalls of this extension concerning the behaviors of neural networks in \ref{sec:proposed-statistic}. Against the backdrop of these pitfalls, we will propose a novel monitoring statistic formulation. Lastly, we will outline the implementation details of profile monitoring procedures and neural network architectures we use in this study in \ref{sec:methodology:procedure} and \ref{subsec:Model-Architectures}, respectively. 
 
 \subsection{Relationship of the Monitoring Statistics for VAE and PCA} 
 \label{sec:residual-latent-vae-pca}
 
 A common approach in the literature to tackle process monitoring with VAE is to extend the definitions of $ \Tsq $ and $ Q $ statistics of the PCA-based monitoring to VAE. This is done by breaking the tractable portion of \ref{eqn:VAELoss} into two term as follows:
-\[
+
+\begin{equation}
 Q_{VAE}  = \E_{\mbz\sim q_{\mbtheta}}\log\decoding, 
-T^2_{VAE} = \KL{\encoding}{p(\mbz)}. 
-\]
+T^2_{VAE} = \KL{\encoding}{p(\mbz)}.  \label{eq: TQVAE}
+\end{equation}
+
 Either these formulations or some variant of them are typically used as the monitoring statistics. To understand the rationale behind this, we will revisit the assumptions of the model described in \ref{eq:gaussian-factorized}.
 Let us formally represent an out-of-control distribution as a shift in $p(\mbx)$. 
 Since $p(\mbx)=\int p(\mbx\g\mbz)p(\mbz)d\mbz$, we can anticipate two sources: a shift in the latent distribution $\pz$ or a shift in the residual distribution $p(\mbx\g\mbz)$. The two statistics are assumed to be connected to these two sources: 1) a shift in the conditional distribution $ p(\mbx\g\mbz) $ can be detected monitoring $Q_{VAE}=\E_{\mbz\sim q_{\mbtheta}}\log\decoding$ and
 2) a shift in the latent distribution $p(\mbz)$, can be detected monitoring $T^2_{VAE}=\KL{\encoding}{p(\mbz)}$. 
 
-This idea is similar to utilizing both $T^2$ and $Q$-charts in the PCA-based method, where both terms play an important role in process monitoring \parencite{kim2003process}. To make this similarity more obvious we prove that if the same ELBO framework for VAE used above is used for PPCA (see \ref{sec:bckgrnd:ReviewPCA}), we get the equivalents of $T^{2}$ and $Q$ statistics of PCA.
+This idea is similar to utilizing both $T^2$ and $Q$-charts in the PCA-based method, where both terms play an important role in process monitoring \parencite{kim2003process}. To make this similarity more obvious we prove that if the same ELBO framework for VAE used above is used for PPCA (see \ref{sec:bckgrnd:ReviewPCA}), we prove the equivalency of $T^{2}$ and $Q$ statistics of PPCA and $T^2_{VAE}$ and $Q_{VAE}$ of VAE in the linear settings.
 
 \begin{prop}
-	\label{prop: T2Q} We know from the definition of PPCA \parencite{tipping1999probabilistic}
-	that the prior, encoding and decoding functions are normally distributed
-	as: 
+	\label{prop: T2Q} If we use linear decoders for VAE, the models will become the Probabilistic PCA \parencite{tipping1999probabilistic}
+	that the prior and decoding functions are normally distributed as: 
 	\[
 	\begin{split}p(\mbz) & =\Norm(0,\mbI),\\
 		\decoding & =\Norm(\mbW\mbz,\sigma^{2}\mbI).\label{eq:Gaussian}
 	\end{split}
 	\]
-	In this case, from PPCA, the encoder can be solved analytically as
+	In this case, the encoder can be solved analytically as
 	another normal distribution as $\encoding=\Norm(\mu_{\mbphi}(\mbx),\Sigma_{z})$,
 	where $\mu_{\mbphi}(\mbx)=\mbM^{-1}\mbW^{\top}\mbx$, $\Sigma_{z}=\sigma^{2}\mbM^{-1}$,
-	and $\mbM=\mbW^{\top}\mbW+\sigma^{2}\mbI$. Then, the two monitoring statistics can be derived as follows:
+	and $\mbM=\mbW^{\top}\mbW+\sigma^{2}\mbI$. Then, the two monitoring statistics defined in \ref{eq: TQVAE} can be derived as follows:
 	\begin{equation}
-		T^2_{PPCA} = \KL{\encoding}{p(\mbz)}=\frac{1}{2}\gg\mu_{\mbphi}(\mbx)\gg^{2}+C_{1},\label{eqn:KL_PPCA}
+		\KL{\encoding}{p(\mbz)}=\frac{1}{2}\gg\mu_{\mbphi}(\mbx)\gg^{2}+C_{1},\label{eqn:KL_PPCA}
 	\end{equation}
 	\begin{equation}
-		Q_{PPCA} = \E_{\mbz\sim q_{\mbphi}}\log\decoding\propto\gg\mbx-\mbW\mu_{\mbphi}(\mbx)\gg^{2}+C_{2},\label{eqn:E_PPCA}
+		\E_{\mbz\sim q_{\mbphi}}\log\decoding\propto\gg\mbx-\mbW\mu_{\mbphi}(\mbx)\gg^{2}+C_{2},\label{eqn:E_PPCA}
 	\end{equation}
 	where $C_{1}$ and $C_{2}$ are constants that do not depend on $x$. The proof is given in \ref{sec:PoofOfPropTQ}.
 \end{prop}
 
-Note that the constants do not affect the profile monitoring decision as the control limits will be translated accordingly. Thus, the test statistic $T^2_{PPCA}$ is equivalent to the $T^{2}$-statistic of PCA and $Q_{PPCA}$ is equivalent the $Q$-statistic of PCA. 
+Note that the constants do not affect the profile monitoring decision as the control limits will be translated accordingly. Thus, the test statistic $T^2_{VAE}$ and $Q_{VAE}$ for linear decoders (i.e., PPCA) is equivalent to the $T^{2}$-statistic and $Q$-statistic of PCA, respectively. residual-space
 
-Observe that previously proposed formulations mentioned in \ref{sec:bckgrnd:critique} draw inspiration---directly or indirectly---from this framework. Statistics $R$ and $SPE$ are based on the $Q$-statistic. Let us call these \emph{residual space statistics}, as they rely on the sum of squared differences between the signal itself and its predicted value, \ie, residuals. The statistics $H^{2},T^{2}$ and $D$ are based on the $T^{2}$ of PCA. We call these \emph{latent space statistics}, as they rely exclusively on latent representations. 
+Observe that previously proposed formulations mentioned in \ref{sec:bckgrnd:critique} draw inspiration---directly or indirectly---from this framework. Statistics $R$ and $SPE$ are based on the $Q$-statistic. Let us call these \emph{residual-space statistics}, as they rely on the sum of squared differences between the signal itself and its predicted value, \ie, residuals. The statistics $H^{2},T^{2}$ and $D$ are based on the $T^{2}$ of PCA. We call these \emph{latent-space statistics}, as they rely exclusively on latent representations. 
 
-\ref{fig:pcaVSvae} shows a graphical illustration of this analogy of residual-space statistics and latent space statistics for PCA and VAE. Residual space statistics quantifies the distance of the observed data with respect to the learned linear or nonlinear manifold. The latent space statistics monitors the distance within the learned manifold. In the linear case, this is the Euclidean distance. However, when the latent space is modeled by VAE, this distance should be defined on the nonlinear manifold.
+\ref{fig:pcaVSvae} shows a graphical illustration of this analogy of residual-space statistics and latent-space statistics for PCA and VAE. Residual-space statistics quantifies the distance of the observed data with respect to the learned linear or nonlinear manifold. The latent-space statistics monitors the distance within the learned manifold. In the linear case (i.e., PCA), this is the Euclidean distance. However, in the nonlinear case (i.e., VAE), this distance should be defined on the nonlinear manifold.
 
 
 \begin{figure}[t]
@@ -461,22 +457,25 @@ In this section, we will first reveal the shortcomings of the previously propose
 
 There are two major pitfalls of the previously proposed methodologies:
 \begin{enumerate}
-	\item Latent space statistics $H^{2},T^{2}$ and $D$ or any other formulation that relies exclusively on the latent representation $ \mbz \sim \qphizgivenx{\mbz}{\mbx}$ will be unreliable for process monitoring. Thus, they should be discarded altogether from the monitoring framework since they will likely increase false alarms without contributing to the detection power in any meaningful way.
-	\item Residual space statistic $ SPE $ and $ R $ rely on Monte Carlo sampling. These are not computationally feasible given how expensive calculations are on deep neural networks. An alternative approach is required to stay computationally feasible without sacrificing too much from the estimation quality of these statistics.
+	\item Latent-space statistics $H^{2},T^{2}$ and $D$ or any other formulation that relies exclusively on the latent representation $ \mbz \sim \qphizgivenx{\mbz}{\mbx}$ will be unreliable for process monitoring. Thus, they should be discarded altogether from the monitoring framework since they will likely increase false alarms without contributing to the detection power in any meaningful way.
+	\item Residual-space statistic $ SPE $ and $ R $ rely on Monte Carlo sampling. These are not computationally feasible given how expensive calculations are on deep neural networks. An alternative approach is required to stay computationally feasible without sacrificing too much from the estimation quality of these statistics.
 \end{enumerate}
 We will address these two shortcomings in \ref{sec:unreliable} and \ref{sec:efficiency}. 
 
-\subsubsection{Unreliability of Latent Representations Learned by Deep Autoencoders} \label{sec:unreliable}
+\subsubsection{Unreliability of Latent-space Statistics for Deep Autoencoders} \label{sec:unreliable}
 
-First, we focus on the unreliability of latent space statistics. Let us first start with the case when the shift occurs in the latent distribution (i.e., $\pz$). According to the PCA-VAE analogy illustrated in \ref{fig:pcaVSvae}, latent space statistics are supposed to catch such shifts, which are represented with triangular points in the same figure. While this may work for PCA-based monitoring, we claim that such an analogy cannot be straightforwardly made for VAE because neural network-based encoders in autoencoder architectures typically learn incorrect mappings of actual latent variations. We illustrate this phenomenon in \ref{fig:entang-extrap}. The line segment ABC illustrates a traversal along a latent dimension. All the samples generated along the line segment AB are sampled from the typical region of the in-control process and their mappings are contained within the typical region of the predicted space. However, Point C is generated by an out-of-control process where there is a shift in latent distribution but its mapping incorrectly falls within the probable region. This leads to false evidence which suggests that Point C is unlikely to be generated by an out-of-control process while in reality, it was.
+First, we focus on the unreliability of latent-space statistics. Let us first start with the case when the shift occurs in the latent distribution (i.e., $\pz$). According to the PCA-VAE analogy illustrated in \ref{fig:pcaVSvae}, latent-space statistics are supposed to catch such shifts, which are represented with triangular points in the same figure. While this may work for PCA-based monitoring, we claim that such an analogy cannot be straightforwardly made for VAE because neural network-based encoders in autoencoder architectures typically learn incorrect mappings of actual latent variations. We illustrate this phenomenon in \ref{fig:entang-extrap}. The line segment ABC illustrates a traversal along a latent dimension. All the samples generated along the line segment AB are sampled from the typical region of the in-control process and their mappings are contained within the typical region of the predicted space. However, Point C is generated by an out-of-control process where there is a shift in the latent distribution but its mapping incorrectly falls within the probable region. This leads to false evidence which suggests that Point C is unlikely to be generated by an out-of-control process while in reality, it was.
 
-The reasons as to why incorrect mappings are learned by deep autoencoders have been studied well in the deep learning literature. Interested readers are encouraged to refer to \textcite{AchilleS18} for a discussion of the properties of ideal latent representations and to \textcite{locatello2018challenging} for a discussion of the challenges around attaining one of these properties, namely, disentanglement. The key takeaway is that it is very likely that we end up with an imperfect mapping, especially with real-life datasets. Consequently, in Phase-II, samples generated by out-of-control processes that are characterized by a shift in the latent distribution will not be mapped consistently to the regions in the latent space which we consider to be unusual. This will result in an increased type-II error.
+The reasons as to why incorrect mappings are learned by deep autoencoders have been studied well in the deep learning literature. Interested readers are encouraged to refer to \textcite{AchilleS18} for a discussion of the properties of ideal latent representations and to \textcite{locatello2018challenging} for a discussion of the challenges around attaining one of these properties, namely, disentanglement. The key takeaway is that it is very likely that we end up with an imperfect mapping, especially with real-life datasets. Consequently, in Phase-II, samples generated by out-of-control processes that are characterized by a shift in the latent distribution will not be mapped consistently to the regions in the latent space, which we consider to be unusual. This will result in an increased type-II error.
 
-A natural question to ask at this point is how should we expect to detect shifts in latent distribution if we cannot rely on latent representations. We argue that an analogue of a $ Q $-chart would catch such shifts too, even though its original purpose is to catch shifts in the conditional distribution. Our argument is based on another shortcoming of neural networks, namely, failure to extrapolate. Deep neural networks approximate well only at a bounded domain defined by where the training set is densely samples from. In the context of our problem, this refers to the high-density region of $ p(\mbx) $ which generated the set of in-control profiles we use in Phase-I. The behavior of the function is unpredictable and often erroneous outside the training domain. In other words, it does not extrapolate well beyond the domain of training samples, which are likely to be coming from out-of-control processes. We refer interested readers to \ref{app:rosenbrock}, where we replicate this phenomenon on a toy example.
+A natural question to ask at this point is how should we expect to detect shifts in latent distribution if we cannot rely on latent representations. We argue that the residual-space statistics (i.e, an analogue of a $ Q $-chart) would catch such shifts too, even though its original purpose is to catch shifts in the residual space. Our argument is based on another "shortcoming" of neural networks, namely, failure to extrapolate. Deep neural networks approximate well only at a bounded domain defined by where the training set is densely samples from. In the context of our problem, this refers to the high-density region of $ p(\mbx) $, which generated the set of in-control profiles we use in Phase-I. The behavior of the function is unpredictable and often erroneous outside the training domain. In other words, it does not extrapolate well beyond the domain of training samples, which are likely to be coming from out-of-control processes. We refer interested readers to \ref{app:rosenbrock}, where we replicate this phenomenon on a toy example.
 
-A decoder that fails to extrapolate is counter-intuitively helpful since it will struggle with generating profiles that are in the low-density region of the in-control data distribution $ p(\mbx) $. This means that the discrepancy between the true profile and its generated counterpart will be larger for out-of-control profiles than it is for in-control profiles, regardless of the source of the shift. Thus, a monitoring statistic that is based on the residuals only would be efficient at covering both sources of shifts. We refer the reader back to \ref{fig:entang-extrap} for an illustration. There is a significant discrepancy between the observations and reconstructions of Point C and D, even though they are generated by different sources of shifts in the process. Thus, an extension of a residual space statistic should be able to catch both types of shifts.
+A decoder that fails to extrapolate is counter-intuitively helpful for the residual-space statistics since it will struggle with generating profiles that are in the low-density region of the in-control data distribution $ p(\mbx) $. This means that the discrepancy between the true profile and its generated counterpart will be larger for out-of-control profiles than it is for in-control profiles, regardless of the source of the shift. 
+Overall, we conclude that the residual-space monitoring statistic would be efficient at detecting changes in the residual space and latent space. We refer the readers to \ref{fig:entang-extrap} for an illustration. 
+Point C is generated from a shift in the latent space distribution. However, due to the "incorrect" mapping of the latent distribution, Point C' will still lie in the in-control region of the latent space. There is a significant discrepancy between the Point C and reconstruction C', which can be detected by the residual-space statistics. Point D is generated from a shift in the residual space and can be captured by the residual space statistics. 
+In conclusion, the residual-space statistic should be able to catch both types of shifts. 
 
-\subsubsection{Improving the Computational Efficiency of the Residual Space Statistics} \label{sec:efficiency}
+\subsubsection{Improving the Computational Efficiency of the residual-space Statistics} \label{sec:efficiency}
 
 Now that we established our rationale behind the first shortcoming we claim to reveal, we move onto the second and focus on the previously proposed residual-based statistics: $ SPE $ and $ R $. Both $SPE$ and $ R $ rely on samples from the proposal distribution for the estimation of the expectation. This approach requires a large number of samples to be generated, and thus a large number of the forward passes through the decoder network, which is prohibitively expensive in terms of computation when deployed in real-life systems. To overcome this problem, we propose a Taylor expansion based approximation. First, observe that $\log\decoding\propto\gg x-\mbmu_{\mbtheta}(z)\gg_{2}^{2}+C$ for all $\mbx$ and $\mbz$ because of the common isotropic covariance assumption. The constant $C$ can be discarded as noneffective in terms of control charting because it would only translate the limits and the statistics by the same amount for any given $\mbx$ and $\mbz$. We call the expression $\E_{\mbz\sim q_{\phi}}\gg x-\mbmu_{\mbtheta}(z)\gg_{2}^{2}$ as the expected reconstruction error (ERE). The Taylor expansion for the first-order and second-order moment of ERE given the random variable $\mbz\sim\encoding$ can be derived analytically.
 \begin{prop}
@@ -557,7 +556,7 @@ to the number of output channels $O$, kernel size $K$, stride $S$,
 and size of zero-padding $P$.
 \item FC($I,O$): Fully connected layer with arguments referring to input
 dimension $I$ and output dimension $O$.
-\item A: Activation function. Leaky ReLU with a negative slope of $0.2$.
+\item A(): Activation function. Leaky ReLU with a negative slope of $0.2$.
 \end{itemize}
 Here, C(), CT(), and FC() are considered the linear transformation
 layers while R(), LR(), and S() are considered the nonlinear activation
@@ -568,8 +567,8 @@ transpose layers are used to upscale latent codes back to ambient
 dimensions.
 
 The sequential order of the computational graphs used for this study
-is summarized in \ref{tab:model-architectures}. The architecture choice is directly based on the encoder-decoder architecture that was used in \textcite{higgins2017beta}, except that we use Leaky ReLU with a negative slope of 0.2 as the activation which is advised in \textcite{radford2015unsupervised} for better gradient flow. The encoder  outputs $2r$ nodes, which is a concatenation of the inferred posterior mean $\mbmu_{\mbphi}(\mbx)$ and variance $\diag(\mbsigma(\mbx))$, both are of length $r$. The number of epochs per training is fixed at $1000$ and the learning rate and batch size are fixed at $0.001$ and $64$, respectively, both are chosen empirically to guarantee a meaningful convergence. Adam algorithm is used for first-order gradient optimization with parameters $(\beta_{1,}\beta_{2})=(0.9,0.999)$ as advised in \textcite{KingmaB14}. The model checkpoint is saved at every epoch where a better validation
-loss is observed. The latest checkpoint is used as the final model.
+is summarized in \ref{tab:model-architectures}. The architecture choice is directly based on the encoder-decoder architecture that was used in \textcite{higgins2017beta}, except that we use Leaky ReLU with a negative slope of 0.2 as the activation, which is advised in \textcite{radford2015unsupervised} for better gradient flow. The encoder  outputs $2r$ nodes, which is a concatenation of the inferred posterior mean $\mbmu_{\mbphi}(\mbx)$ and variance $\diag(\mbsigma(\mbx))$, both are of length $r$. 
+The number of epochs per training is fixed at $1000$, and the learning rate and batch size are fixed at $0.001$ and $64$, respectively, both are chosen empirically to guarantee a meaningful convergence. Adam algorithm is used for first-order gradient optimization with parameters $(\beta_{1,}\beta_{2})=(0.9,0.999)$ as advised in \textcite{KingmaB14}. The model checkpoint is saved at every epoch where a better validation loss is observed. The latest checkpoint is used as the final model.
 
 In our experiments, the architecture and the training conditions described above are optimized with respect to the convergence performance of the VAE objective on in-control dataset. This is because in real life, the practitioner will not have access to out-of-control samples. Consequently, the same setting worked well for both the simulation dataset and the case study dataset we consider in this paper. This gives us confidence that the selection is robust from one set to the other. However, a different dataset might benefit from adjustments to the above conditions. The adjustments should be based on monitoring the convergence of the VAE objective, as the procedure will benefit from a better approximated in-control distribution.
 
@@ -585,10 +584,10 @@ We would like to emphasize that even we focus only on the image profiles in our 
 \toprule 
 Module & Architecture\tabularnewline
 \midrule 
-Encoder & C(32, 4, 2, 1) - A - C(32, 4, 2, 1) - A - C(64, 4, 2, 1) - A - C(64,
-4, 2, 1) - A - C(64, 4, 1, 0) - FC(256, $2r$)\tabularnewline
-Decoder & FC($r$, 256) - A - CT(64, 4, 0, 0) - A - CT(64, 4, 2, 1) - A - C(32,
-4, 2, 1) - CT(32, 4, 2, 1) - A - CT(1, 4, 2, 1)\tabularnewline
+Encoder & C(32, 4, 2, 1) - A() - C(32, 4, 2, 1) - A() - C(64, 4, 2, 1) - A() - C(64,
+4, 2, 1) - A() - C(64, 4, 1, 0) - FC(256, $2r$)\tabularnewline
+Decoder & FC($r$, 256) - A() - CT(64, 4, 0, 0) - A() - CT(64, 4, 2, 1) - A() - C(32,
+4, 2, 1) - CT(32, 4, 2, 1) - A() - CT(1, 4, 2, 1)\tabularnewline
 \bottomrule
 \end{tabular}
 \end{table}
@@ -689,10 +688,10 @@ The plots on the left side of \ref{fig:proposals} depicts the traversals of the 
 We then push these generated examples through the encoder to obtain their respective proposal distributions. We will compare the mean of the respective proposal distributions and the true latent space. If the learned proposal distribution is mapped into a substantially different geometry by the encoders, we will describe the distribution as "incorrect". 
  
 \ref{fig:proposals} shows the incorrectness in the mapping of latent representations. This incorrect mapping behavior is even worse when we are dealing with the extreme values in the true latent space. 
-For example, from \ref{fig:proposals} (b), we can conclude that domes with extremely small radii will likely go undetected if only the latent space statistic is used. 
+For example, from \ref{fig:proposals} (b), we can conclude that domes with extremely small radii will likely go undetected if only the latent-space statistic is used. 
 
 Overall, the learned latent representations are typically "incorrect" especially for the samples with extreme latent variables. 
-This, in turn, will lead to an incorrect out-of-control assignment in Phase-II analysis, if only the latent space monitoring statistic is used.
+This, in turn, will lead to an incorrect out-of-control assignment in Phase-II analysis, if only the latent-space monitoring statistic is used.
 
 \subsection{On the Extrapolation Performance of the Decoder \label{sec:simstudy:generator}}
 
@@ -706,11 +705,11 @@ three standard deviations, and the representations are partially entangled
 in line with the behavior of its encoder depicted in \ref{fig:proposals}.
 
 To see how this will help to detect disturbances in latent space, we consider a dome that is extremely small in terms of the radius (i.e., small $r$) or at the very margins of the grid in terms of center location (i.e., center location $c$ far from 0.5). 
-Looking at \ref{fig:manifold_vae}, we can observe that the decoder simply cannot generate such a sample because it does not extrapolate well in either of the latent dimensions. This will, in turn, produce a larger reconstruction error, which can be captured by a monitoring statistic focused on the residual space.
+Looking at \ref{fig:manifold_vae}, we can observe that the decoder simply cannot generate such a sample because it does not extrapolate well in either of the latent dimensions. This will, in turn, produce a larger reconstruction error, which can be captured by a monitoring statistic focused on the residual-space.
 
-Recall once again that the disturbance described is purely on the latent distribution $p_{\delta}(\mbz)$ and yet detected by the residual space monitoring statistic only due to the extrapolation issue. 
+Recall once again that the disturbance described is purely on the latent distribution $p_{\delta}(\mbz)$ and yet detected by the residual-space monitoring statistic only due to the extrapolation issue. 
 \begin{figure}[t]
-\includegraphics[width=0.9\linewidth]{manifold_vae.pdf} \caption{Latent space traversal and the response of the decoder of a VAE with
+\includegraphics[width=0.9\linewidth]{manifold_vae.pdf} \caption{latent-space traversal and the response of the decoder of a VAE with
 2-dimensional latent codes and trained with in-control dome samples.
 Each row represents which latent dimension is traversed while the
 other dimension is fixed at zero. Each column represents what value
@@ -783,7 +782,7 @@ Statistic & ERE1 & SPE/R & D & H2 & T2\tabularnewline
 
 Through \ref{fig:disturbance_on_pxz}, we observe a clear superiority
 of $ERE_{1}$ and $ERE_{2}$ over other methods when the disturbance
-is on the observable space (top row). Latent space statistics
+is on the observable space (top row). latent-space statistics
 $D$, $H^{2}$ and $T^{2}$ fail in this case since that they are
 purely computed using the proposal distribution latent variables.
 $ERE_{1}$ and $ERE_{2}$ also outperform $SPE/R$, although by a
@@ -806,7 +805,7 @@ radii). We foresaw this result in \ref{sec:simstudy:recognition}.
 To reiterate, disentanglement and the lack of extrapolation in the
 encoder is the reason behind this. We would also suggest that this
 result can extend to all the latent-variable based statistics.
-\item Unlike latent space statistics, $ERE_{1}$ and $ERE_{2}$
+\item Unlike latent-space statistics, $ERE_{1}$ and $ERE_{2}$
 and $SPE/R$ behave more robustly against varying intensities. In
 other words, the detection rate increase with increased intensities
 consistently. Among these, we observe that $ERE_{1}$ and $ERE_{2}$
@@ -830,8 +829,8 @@ interval estimated around mean detection rates.}
 
 As mentioned, in a real-life process, disturbances on the residual
 space is often more likely than the disturbance in the latent space.
-Therefore, we would recommend the use of residual space monitoring
-statistics. Among all residual space monitoring statistics, we conclude
+Therefore, we would recommend the use of residual-space monitoring
+statistics. Among all residual-space monitoring statistics, we conclude
 that $ERE_{1}$ perform the best considering the accuracy, robustness
 and, computational demand. This will be further validated through the
 case study analysis.
@@ -854,7 +853,7 @@ The rest of the procedure followed is outlined in \ref{sec:methodology:procedure
 Same as in the simulation study, to account for randomness in weight
 initialization, we replicate the experiment with 10 different seeds.
 For comparison, we also include the monitoring performance with the
-traditional PCA method with the same residual space control chart,
+traditional PCA method with the same residual-space control chart,
 denoted as PCA-Q. The results are summarized in \ref{tab:rolling_results}
 below.
 
@@ -887,8 +886,8 @@ Fault ID &  &  &  &  &  &  & \tabularnewline
 
 From \ref{tab:rolling_results}, we can observe that $ERE_{1}$ and
 $ERE_{2}$ consistently outperforms all other monitoring statistic
-formulations. The divide between residual space statistics and latent space statistics observed in the simulation study is further
-validated here too. The inferiority of latent space statistics
+formulations. The divide between residual-space statistics and latent-space statistics observed in the simulation study is further
+validated here too. The inferiority of latent-space statistics
 are much more obvious here in the real case study, as we observe for
 most out-of-control classes the detection rate is simply zero. This
 observation further validates our claims that in practice, for deep
@@ -899,10 +898,10 @@ compared to PCA. It is worth noting that the superiority of VAE over
 PCA for process monitoring was also demonstrated in the earlier works
 in various applications \parencite{Zhang2019-lu,wang2019systematic,lee2019process}.
 
-To support our claim of the ineffectiveness of latent space
+To support our claim of the ineffectiveness of latent-space
 statistics, we refer the reader to \ref{fig:kde} below. We observe
 how well separated the statistics are for $ERE_{1}$ and $SPE/R$
-while for latent space statistics the obtained values are
+while for latent-space statistics the obtained values are
 mostly overlapping. Note that we omitted $ERE_{2}$ because it was
 almost identical to $ERE_{1}$. To obtain a deeper understanding of
 the results, we point out in \ref{fig:Output-of-the} for the original
@@ -993,13 +992,13 @@ were not performing optimally in terms of accuracy and/or computational
 feasibility. 
 First, we classified these statistics into two groups and showed how they are designed as an extension to the classical statistics used for PCA.
 Then we pointed out that such an extension is not as straightforward as it seems due to the incorrectness of learned latent representations by VAEs and also due to the failure to extrapolate behavior. 
-This led us to the conclusion that only residual space statistics should be monitoring, regardless of the anticipated source of the shift in the process.
-We also pointed out that the residual space statistics based on sampling will require
+This led us to the conclusion that only residual-space statistics should be monitoring, regardless of the anticipated source of the shift in the process.
+We also pointed out that the residual-space statistics based on sampling will require
 too many samples to be computationally feasible. 
-Finally, we proposed a novel formulation by deriving the Taylor expansion of the expected reconstruction error that addresses the computational efficiency issue in residual space statistics.
+Finally, we proposed a novel formulation by deriving the Taylor expansion of the expected reconstruction error that addresses the computational efficiency issue in residual-space statistics.
 
 We put our claims to test with a carefully designed simulation study.
-This study demonstrated the discrepancy between the true latent variations and its learned counterparts, and its implications to the process monitoring performance of latent space statistics.
+This study demonstrated the discrepancy between the true latent variations and its learned counterparts, and its implications to the process monitoring performance of latent-space statistics.
 We also reinforced our claim that the derived statistics based on the residual space is overall more robust and accurate than all the other statistics proposed so far. 
 Finally, we validated the superiority of our formulation on a real-life case study, where steel defect image profiles are used.
 
