@@ -397,12 +397,12 @@ In this section, we start by explaining in \ref{sec:residual-latent-vae-pca} how
 \subsection{Relationship of the Monitoring Statistics for VAE and PCA} 
 \label{sec:residual-latent-vae-pca}
 
-In this section, we extend the definition of the $ \Tsq $ and $ Q $ statistics of the PCA-based monitoring for VAE. This can be achieved by breaking the tractable portion of \ref{eqn:VAELoss} into two term as follows:
+A common approach in the literature to tackle process monitoring with VAE is to extend the definitions of $ \Tsq $ and $ Q $ statistics of the PCA-based monitoring to VAE. This is done by breaking the tractable portion of \ref{eqn:VAELoss} into two term as follows:
 \[
 Q_{VAE}  = \E_{\mbz\sim q_{\mbtheta}}\log\decoding, 
 T^2_{VAE} = \KL{\encoding}{p(\mbz)}. 
 \]
-These two formulations are typically used as the monitoring statistics for VAE. To understand the rationale behind this, we will revisit the assumptions of the model described in \ref{eq:gaussian-factorized}.
+Either these formulations or some variant of them are typically used as the monitoring statistics. To understand the rationale behind this, we will revisit the assumptions of the model described in \ref{eq:gaussian-factorized}.
 Let us formally represent an out-of-control distribution as a shift in $p(\mbx)$. 
 Since $p(\mbx)=\int p(\mbx\g\mbz)p(\mbz)d\mbz$, we can anticipate two sources: a shift in the latent distribution $\pz$ or a shift in the residual distribution $p(\mbx\g\mbz)$. The two statistics are assumed to be connected to these two sources: 1) a shift in the conditional distribution $ p(\mbx\g\mbz) $ can be detected monitoring $Q_{VAE}=\E_{\mbz\sim q_{\mbtheta}}\log\decoding$ and
 2) a shift in the latent distribution $p(\mbz)$, can be detected monitoring $T^2_{VAE}=\KL{\encoding}{p(\mbz)}$. 
